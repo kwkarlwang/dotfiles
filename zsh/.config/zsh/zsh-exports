@@ -3,7 +3,6 @@ HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=~/.emacs.d/bin:$PATH
 # eval "$(fnm env)"
