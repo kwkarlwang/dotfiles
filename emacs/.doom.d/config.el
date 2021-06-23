@@ -53,6 +53,8 @@
 
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 
+(remove-hook 'text-mode-hook #'spell-fu-mode)
+
 (setq-default delete-by-moving-to-trash t
               window-combination-resize t)
 
@@ -335,7 +337,11 @@
 (add-hook! '(prog-mode-hook) #'rainbow-mode #'rainbow-delimiters-mode
            )
 
-(setq enable-remote-dir-locals t)
-(setq enable-local-variables :all)
-(after! tramp
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+;; (setq enable-remote-dir-locals t)
+;; (setq enable-local-variables :all)
+;; (after! tramp
+;;   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
+(after! magit
+  (setq git-commit-style-convention-checks nil)
+  )

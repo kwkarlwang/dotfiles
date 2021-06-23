@@ -113,6 +113,11 @@ Make S work like before in vim
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 #+end_src
 
+Disable spell checking by default
+#+begin_src emacs-lisp
+(remove-hook 'text-mode-hook #'spell-fu-mode)
+#+end_src
+
 Other defaults
 #+begin_src emacs-lisp
 (setq-default delete-by-moving-to-trash t
@@ -467,10 +472,18 @@ Rainbow mode turns on the colored parentheses
 (add-hook! '(prog-mode-hook) #'rainbow-mode #'rainbow-delimiters-mode
            )
 #+end_src
-** Tramp
+** TODO Tramp
 #+begin_src emacs-lisp
-(setq enable-remote-dir-locals t)
-(setq enable-local-variables :all)
-(after! tramp
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+;; (setq enable-remote-dir-locals t)
+;; (setq enable-local-variables :all)
+;; (after! tramp
+;;   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+#+end_src
+
+** Magit
+Disable long summary warning
+#+begin_src emacs-lisp
+(after! magit
+  (setq git-commit-style-convention-checks nil)
+  )
 #+end_src
