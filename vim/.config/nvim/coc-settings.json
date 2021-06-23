@@ -1,0 +1,9 @@
+{
+	"suggest.noselect": false,
+	"python.jediEnabled": true,
+	"suggest.enablePreview": true,
+	"python.pythonPath": "/Users/kwkarlwang/anaconda3/bin/python",
+	//"python.setLinter": "pylint",
+	"python.autoComplete.addBrackets": true,
+	"coc.preferences.colorSupport": true
+}

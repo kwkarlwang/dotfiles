@@ -1,0 +1,7 @@
+# -*- mode: org -*-
+# name: latex-header
+# key: latexh
+# --
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}

@@ -1,0 +1,9 @@
+# -*- mode: org -*-
+# name: gather-block
+# uuid:
+# key: gather
+# condition: t
+# --
+\begin{gather*}
+    $0
+\end{gather*}

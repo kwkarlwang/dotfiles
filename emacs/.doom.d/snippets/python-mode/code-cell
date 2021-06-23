@@ -1,0 +1,9 @@
+# -*- mode: python -*-
+# name: code-cell
+# uuid:
+# key: i
+# condition: t
+# --
+
+# %%
+$0
