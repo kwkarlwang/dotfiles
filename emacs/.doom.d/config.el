@@ -22,18 +22,22 @@
 ;;   (set-face-bold 'highlight-numbers-number nil)
 ;;   )
 
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'dracula)
 ;; (setq doom-dracula-brighter-comments t)
 
 (unless (display-graphic-p)
-  (set-face-foreground 'font-lock-comment-face "#a8a8a8")
-  (set-face-foreground 'line-number "#a8a8a8")
-  (set-face-foreground 'font-lock-doc-face "#c6c6c6")
-  (set-face-background 'default "undefined")
+  ;;   (set-face-foreground 'font-lock-comment-face "#a8a8a8")
+  ;;   (set-face-foreground 'line-number "#a8a8a8")
+  ;;   (set-face-foreground 'font-lock-doc-face "#c6c6c6")
+  ;;   (set-face-background 'default "undefined")
 
-  (set-face-background 'hl-line "#524867")
   (set-face-background 'region "#524867")
-  (set-face-background 'markdown-code-face "#1c1c1c")
+  (after! lsp-mode
+    (set-face-background 'lsp-face-highlight-read "#66bbff")
+    (set-face-background 'lsp-face-highlight-textual "#66bbff")
+    (set-face-background 'lsp-face-highlight-write "#66bbff")
+    (set-face-background 'markdown-code-face "#1c1c1c")
+    )
   )
 
 (setq display-line-numbers-type 'relative)
@@ -90,13 +94,6 @@
    lsp-idle-delay 0.5
    )
 
-  (unless (display-graphic-p)
-
-
-    (set-face-background 'lsp-face-highlight-read "#66bbff")
-    (set-face-background 'lsp-face-highlight-textual "#66bbff")
-    (set-face-background 'lsp-face-highlight-write "#66bbff")
-    )
   )
 (after! lsp-ui
   (lsp-ui-sideline-mode -1) ; flycheck is better
