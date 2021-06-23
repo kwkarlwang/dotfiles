@@ -10,12 +10,12 @@
 
 (after! doom-themes
   ;; (set-face-attribute 'bold nil :weight 'light)
-  (mapc
-   (lambda (face)
-     (when (eq (face-attribute face :weight) 'bold)
-       (set-face-attribute face nil :weight 'normal)))
-   (face-list))
-  ;; (setq doom-themes-enable-bold nil)
+  ;; (mapc
+  ;;  (lambda (face)
+  ;;    (when (eq (face-attribute face :weight) 'bold)
+  ;;      (set-face-attribute face nil :weight 'normal)))
+  ;;  (face-list))
+  (setq doom-themes-enable-bold nil)
   )
 
 ;; (after! highlight-numbers
@@ -33,6 +33,7 @@
 
   (set-face-background 'hl-line "#524867")
   (set-face-background 'region "#524867")
+  (set-face-background 'markdown-code-face "#1c1c1c")
   )
 
 (setq display-line-numbers-type 'relative)
@@ -115,7 +116,7 @@
   )
 
 (after! lsp-pyright
-  (setq lsp-pyright-python-executable-cmd "python"
+  (setq lsp-pyright-python-executable-cmd "python3"
         lsp-pyright-multi-root nil
         lsp-pyright-use-library-code-for-types t
         lsp-pyright-diagnostic-mode "workspace"
@@ -179,13 +180,13 @@
 
 (after! python
   ;; set shell
-  (setq python-shell-interpreter "python"
+  (setq python-shell-interpreter "python3"
         ;; python-shell-interpreter-args "--simple-prompt"
         python-shell-prompt-detect-failure-warning nil)
-  (add-to-list 'python-shell-completion-native-disabled-interpreters "python")
+  (add-to-list 'python-shell-completion-native-disabled-interpreters "python3")
 
   ;; NOTE: reenable lsp after format, local hook
-  (add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
+  ;; (add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
 
   ;; keybindings
   (map!
