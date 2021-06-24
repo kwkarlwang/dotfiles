@@ -3,9 +3,8 @@
 (setq user-full-name "Karl Wang"
       user-mail-address "kwkarlwang@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code"
+(setq doom-font (font-spec :family "Fira Code Light"
                            :size 13
-                           :weight 'light
                            ))
 
 (after! doom-themes
@@ -26,9 +25,9 @@
 ;; (setq doom-dracula-brighter-comments t)
 
 (unless (display-graphic-p)
-  ;;   (set-face-foreground 'font-lock-comment-face "#a8a8a8")
-  ;;   (set-face-foreground 'line-number "#a8a8a8")
-  ;;   (set-face-foreground 'font-lock-doc-face "#c6c6c6")
+    (set-face-foreground 'font-lock-comment-face "#a8a8a8")
+    (set-face-foreground 'line-number "#a8a8a8")
+    (set-face-foreground 'font-lock-doc-face "#c6c6c6")
   ;;   (set-face-background 'default "undefined")
 
   (set-face-background 'region "#524867")
@@ -38,6 +37,12 @@
     (set-face-background 'lsp-face-highlight-write "#66bbff")
     (set-face-background 'markdown-code-face "#1c1c1c")
     )
+  (after! magit
+    (set-face-background 'magit-diff-removed-highlight "undefined")
+    (set-face-background 'magit-diff-added-highlight "undefined")
+    (set-face-background 'magit-diff-removed "undefined")
+    (set-face-background 'magit-diff-added "undefined")
+    )
   )
 
 (setq display-line-numbers-type 'relative)
@@ -46,7 +51,7 @@
  :leader
  :desc "Toggle Comment" "c SPC" (lambda ()(interactive)(evilnc-comment-or-uncomment-lines -1))
  :desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
- :desc "Toggle line highlight" "t H" #'global-hl-line-mode
+ :desc "Toggle line highlight" "t h" #'global-hl-line-mode
  )
 
 (setq confirm-kill-emacs nil)
@@ -289,9 +294,9 @@
 
 (set-popup-rule! "^\\*format-all" :size 0.01 :ttl 0 :modeline nil)
 
-;; (after! format-all
-;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
-;;   )
+(after! format-all
+  (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+  )
 
 (use-package! tree-sitter
   :init
@@ -323,6 +328,8 @@
                                           (pcase capture-name
                                             ("method.call" 'font-lock-function-name-face)
                                             ("function.call" 'font-lock-function-name-face)
+                                            ("variable.parameter" 'default)
+                                            ("constant" 'default)
                                             )))))
          )
   )
