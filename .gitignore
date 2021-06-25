@@ -7,3 +7,6 @@ zsh/*/*/.zsh_history
 kubernetes/*/config
 /zsh/.config/zsh/.zsh_sessions/
 /zsh/.config/zsh/.zcompdump-Karl’s MacBook Pro-5.8
+/zsh/.config/zsh/*.zwc
+/zsh/.config/zsh/.zcompdump.zwc.old
+/zsh/.config/zsh/.zim/modules/
