@@ -251,11 +251,12 @@ determine the exact padding."
    (tree-sitter-hl-face:method.call :foreground green)
    (tree-sitter-hl-face:number :foreground violet)
    (tree-sitter-hl-face:constant :foreground violet)
-   (tree-sitter-hl-face:variable.parameter :foreground orange)
+   (tree-sitter-hl-face:variable.parameter :foreground orange :inherit'italic)
    (tree-sitter-hl-face:label :foreground orange)
    (tree-sitter-hl-face:type :foreground cyan)
    (tree-sitter-hl-face:type.builtin :foreground cyan)
    (tree-sitter-hl-face:function.builtin :foreground cyan)
+   (tree-sitter-hl-face:constant.builtin :foreground cyan)
    )
 
 
