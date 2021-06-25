@@ -32,9 +32,9 @@
 
   (set-face-background 'region "#524867")
   (after! lsp-mode
-    (set-face-background 'lsp-face-highlight-read "#66bbff")
-    (set-face-background 'lsp-face-highlight-textual "#66bbff")
-    (set-face-background 'lsp-face-highlight-write "#66bbff")
+    (set-face-background 'lsp-face-highlight-read "#acebfb")
+    (set-face-background 'lsp-face-highlight-textual "#acebfb")
+    (set-face-background 'lsp-face-highlight-write "#acebfb")
     (set-face-background 'markdown-code-face "#1c1c1c")
     )
   (after! magit
@@ -188,7 +188,7 @@
   (add-to-list 'python-shell-completion-native-disabled-interpreters "python3")
 
   ;; NOTE: reenable lsp after format, local hook
-  ;; (add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
+  (add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
 
   ;; keybindings
   (map!
@@ -322,15 +322,15 @@
          (inferior-python-mode . tree-sitter-hl-mode)
 
          ;; make method call and function call the same color as function name
-         (prog-mode . (lambda ()
-                          (add-function :before-until (local 'tree-sitter-hl-face-mapping-function)
-                                        (lambda (capture-name)
-                                          (pcase capture-name
-                                            ("method.call" 'font-lock-function-name-face)
-                                            ("function.call" 'font-lock-function-name-face)
-                                            ("variable.parameter" 'default)
-                                            ("constant" 'default)
-                                            )))))
+         ;; (prog-mode . (lambda ()
+         ;;                  (add-function :before-until (local 'tree-sitter-hl-face-mapping-function)
+         ;;                                (lambda (capture-name)
+         ;;                                  (pcase capture-name
+         ;;                                    ;; ("method.call" 'font-lock-function-name-face)
+         ;;                                    ;; ("function.call" 'font-lock-function-name-face)
+         ;;                                    ;; ("variable.parameter" 'default)
+         ;;                                    ;; ("constant" 'default)
+         ;;                                    )))))
          )
   )
 

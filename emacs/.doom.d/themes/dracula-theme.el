@@ -39,10 +39,10 @@ determine the exact padding."
   "A dark theme based on Dracula theme"
 
   ;; name        default   256       16
-  ((bg         '("#282a36" "black" "black"        ))
+  ((bg         '("#282a36" "unspecified" "black"        ))
    (bg-alt     '("#1E2029" "#1c1c1c" "black"        ))
    (base0      '("#1E2029" "#1c1c1c" "black"        ))
-   (base1      '("#282a36" "black" "brightblack"  ))
+   (base1      '("#282a36" "#1e1e1e" "brightblack"  ))
    (base2      '("#373844" "#2e2e2e" "brightblack"  ))
    (base3      '("#44475a" "#262626" "brightblack"  ))
    (base4      '("#565761" "#3f3f3f" "brightblack"  ))
@@ -56,12 +56,12 @@ determine the exact padding."
    (grey       base4)
    (red        '("#ff5555" "red" "red"          ))
    (orange     '("#ffb86c" "brightred" "brightred"    ))
-   (green      '("#88f298" "green" "green"        ))
+   (green      '("#50fa7b" "green" "green"        ))
    (teal       '("#0189cc" "#0088cc" "brightgreen"  ))
    (yellow     '("#f1fa8c" "yellow" "yellow"       ))
    (blue       '("#61bfff" "#66bbff" "brightblue"   ))
    (dark-blue  '("#0189cc" "#0088cc" "blue"         ))
-   (magenta    '("#f199ce" "magenta" "magenta"      ))
+   (magenta    '("#ff79c6" "magenta" "magenta"      ))
    (violet     '("#bd93f9" "brightmagenta" "brightmagenta"))
    (cyan       '("#8be9fd" "cyan" "brightcyan"   ))
    (dark-cyan  '("#8be9fd" "cyan" "cyan"         ))
@@ -80,7 +80,8 @@ determine the exact padding."
    (operators      violet)
    (type           violet)
    (strings        yellow)
-   (variables      (doom-lighten magenta 0.6))
+   ;; (variables      (doom-lighten magenta 0.6))
+   (variables      fg)
    (numbers        violet)
    (region         `(,(car base3) ,@(cdr base1)))
    (error          red)
@@ -243,7 +244,23 @@ determine the exact padding."
    (web-mode-html-attr-name-face :foreground green)
    (web-mode-html-tag-bracket-face :inherit 'default)
    (web-mode-html-tag-face :foreground magenta :weight 'bold)
-   (web-mode-preprocessor-face :foreground orange))
+   (web-mode-preprocessor-face :foreground orange)
+
+   ;;;; Tree sitter
+   (tree-sitter-hl-face:function.call :foreground green)
+   (tree-sitter-hl-face:method.call :foreground green)
+   (tree-sitter-hl-face:number :foreground violet)
+   (tree-sitter-hl-face:constant :foreground violet)
+   (tree-sitter-hl-face:variable.parameter :foreground orange)
+   (tree-sitter-hl-face:label :foreground orange)
+   (tree-sitter-hl-face:type :foreground cyan)
+   (tree-sitter-hl-face:type.builtin :foreground cyan)
+   (tree-sitter-hl-face:function.builtin :foreground cyan)
+   )
+
+
+
+
 
 
   ;;;; Base theme variable overrides-
