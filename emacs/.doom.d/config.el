@@ -7,6 +7,13 @@
                            :size 13
                            ))
 
+;; (after! highlight-numbers
+;;   (set-face-bold 'highlight-numbers-number nil)
+;;   )
+
+(setq doom-theme 'dracula)
+;; (setq doom-dracula-brighter-comments t)
+
 (after! doom-themes
   ;; (set-face-attribute 'bold nil :weight 'light)
   ;; (mapc
@@ -17,25 +24,20 @@
   (setq doom-themes-enable-bold nil)
   )
 
-;; (after! highlight-numbers
-;;   (set-face-bold 'highlight-numbers-number nil)
-;;   )
-
-(setq doom-theme 'dracula)
-;; (setq doom-dracula-brighter-comments t)
-
 (unless (display-graphic-p)
-    (set-face-foreground 'font-lock-comment-face "#a8a8a8")
-    (set-face-foreground 'line-number "#a8a8a8")
-    (set-face-foreground 'font-lock-doc-face "#c6c6c6")
-  ;;   (set-face-background 'default "undefined")
+  (set-face-foreground 'font-lock-comment-face "#a8a8a8")
+  (set-face-foreground 'line-number "#a8a8a8")
+  (set-face-foreground 'font-lock-doc-face "#c6c6c6")
+  (set-face-background 'default "undefined")
 
   (set-face-background 'region "#524867")
   (after! lsp-mode
-    (set-face-background 'lsp-face-highlight-read "#acebfb")
-    (set-face-background 'lsp-face-highlight-textual "#acebfb")
-    (set-face-background 'lsp-face-highlight-write "#acebfb")
-    (set-face-background 'markdown-code-face "#1c1c1c")
+    (set-face-background 'lazy-highlight "#524867")
+    (set-face-foreground 'lazy-highlight "#f8f8f2")
+    (set-face-background 'lsp-face-highlight-textual "#524867")
+    (set-face-foreground 'lsp-face-highlight-textual "#f8f8f2")
+    ;; (set-face-background 'markdown-code-face "#1c1c1c")
+    (set-face-background 'markdown-code-face "undefined")
     )
   (after! magit
     (set-face-background 'magit-diff-removed-highlight "undefined")

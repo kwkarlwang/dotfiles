@@ -129,11 +129,17 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Alias
 # ------------------------------
 
-
+alias szsh="source $ZDOTDIR/.zshrc"
 if [ "$TERM" = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
   alias icat="kitty +kitten icat"
 fi
+
+# ------------------------------
+# Export
+# ------------------------------
+
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
