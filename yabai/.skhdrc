@@ -64,6 +64,7 @@ rshift - 3 : yabai -m space --focus 3
 rshift - 4 : yabai -m space --focus 4
 rshift - 5 : yabai -m space --focus 5
 rshift - 6 : yabai -m space --focus 6
+rshift - 7 : yabai -m space --focus 7
 ## 0x31 is SPC
 rshift - 0x31 : yabai -m space --focus recent
 
@@ -79,6 +80,7 @@ rshift + lshift - 3 : yabai -m window --space 3
 rshift + lshift - 4 : yabai -m window --space 4
 rshift + lshift - 5 : yabai -m window --space 5
 rshift + lshift - 6 : yabai -m window --space 6
+rshift + lshift - 7 : yabai -m window --space 7
 
 ## toggle window zoom
 rshift - f : yabai -m window --toggle zoom-fullscreen

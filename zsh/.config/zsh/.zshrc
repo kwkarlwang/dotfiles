@@ -122,6 +122,30 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
-# source $ZDOTDIR/zshrc
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# ------------------------------
+# Alias
+# ------------------------------
+
+
+if [ "$TERM" = "xterm-kitty" ]; then
+  alias ssh="kitty +kitten ssh"
+  alias icat="kitty +kitten icat"
+fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/kwkarlwang/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/kwkarlwang/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kwkarlwang/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
