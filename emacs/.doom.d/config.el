@@ -3,7 +3,7 @@
 (setq user-full-name "Karl Wang"
       user-mail-address "kwkarlwang@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code Light"
+(setq doom-font (font-spec :family "Fira Code Retina"
                            :size 13
                            ))
 
@@ -15,12 +15,12 @@
 ;; (setq doom-dracula-brighter-comments t)
 
 (after! doom-themes
-  ;; (set-face-attribute 'bold nil :weight 'light)
+  ;; (set-face-attribute 'bold nil :weight 'normal)
   ;; (mapc
   ;;  (lambda (face)
   ;;    (when (eq (face-attribute face :weight) 'bold)
   ;;      (set-face-attribute face nil :weight 'normal)))
-  ;;  (face-list))
+   ;; (face-list))
   (setq doom-themes-enable-bold nil)
   )
 
@@ -28,22 +28,19 @@
   (set-face-foreground 'font-lock-comment-face "#a8a8a8")
   (set-face-foreground 'line-number "#a8a8a8")
   (set-face-foreground 'font-lock-doc-face "#c6c6c6")
-  (set-face-background 'default "undefined")
+  ;; (set-face-background 'default "undefined")
 
-  (set-face-background 'region "#524867")
+  (set-face-attribute 'region nil :background "#524867")
   (after! lsp-mode
-    (set-face-background 'lazy-highlight "#524867")
-    (set-face-foreground 'lazy-highlight "#f8f8f2")
-    (set-face-background 'lsp-face-highlight-textual "#524867")
-    (set-face-foreground 'lsp-face-highlight-textual "#f8f8f2")
-    ;; (set-face-background 'markdown-code-face "#1c1c1c")
-    (set-face-background 'markdown-code-face "undefined")
+    (set-face-attribute 'lazy-highlight nil :foreground "#f8f8f2" :background "#524867" :inherit 'lazy-highlight)
+    (set-face-attribute 'lsp-face-highlight-textual nil :foreground "#f8f8f2" :background "#524867" :weight 'normal)
+    (set-face-background 'markdown-code-face "unspecified")
     )
   (after! magit
-    (set-face-background 'magit-diff-removed-highlight "undefined")
-    (set-face-background 'magit-diff-added-highlight "undefined")
-    (set-face-background 'magit-diff-removed "undefined")
-    (set-face-background 'magit-diff-added "undefined")
+    (set-face-background 'magit-diff-removed-highlight "unspecified")
+    (set-face-background 'magit-diff-added-highlight "unspecified")
+    (set-face-background 'magit-diff-removed "unspecified")
+    (set-face-background 'magit-diff-added "unspecified")
     )
   )
 
