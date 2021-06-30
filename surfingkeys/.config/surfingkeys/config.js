@@ -39,7 +39,7 @@ settings.theme = `
 :root {
   /* Font */
   --font: 'Fira Code', Ubuntu, sans;
-  --font-size: 12;
+  --font-size: 14;
   /* -------------- */
   /* --- THEMES --- */
   /* -------------- */
