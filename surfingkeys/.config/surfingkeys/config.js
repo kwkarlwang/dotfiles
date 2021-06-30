@@ -221,7 +221,7 @@ input {
 .ace_cursor {
   color: var(--red) !important;
 }
-.normal-mode .ace_cursor {
+.normal-mode .ace_cursor, ace_focus {
   background-color: var(--red) !important;
   border: var(--fg) !important;
   opacity: 0.2 !important;
