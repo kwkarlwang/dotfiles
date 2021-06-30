@@ -219,12 +219,12 @@ input {
   color: var(--fg) !important;
 }
 .ace_cursor {
-  color: var(--fg) !important;
+  color: var(--red) !important;
 }
 .normal-mode .ace_cursor {
   background-color: var(--red) !important;
   border: var(--fg) !important;
-  opacity: 0.7 !important;
+  opacity: 0.2 !important;
 }
 .ace_marker-layer .ace_selection {
   background: var(--select) !important;
