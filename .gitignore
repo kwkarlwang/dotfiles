@@ -11,3 +11,5 @@ kubernetes/*/config
 /zsh/.config/zsh/.zcompdump.zwc.old
 /zsh/.config/zsh/.zim/modules/
 *.old
+/kubernetes/.kube/cache/
+*.old

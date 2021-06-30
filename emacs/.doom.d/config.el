@@ -96,6 +96,8 @@
    lsp-signature-auto-activate nil ; really annoying
    lsp-log-io nil ; increases performance
    lsp-idle-delay 0.5
+   lsp-enable-symbol-highlighting nil
+   lsp-eldoc-enable-hover nil
    )
 
   )
@@ -272,7 +274,11 @@
 (after! org
   ;;adjust the scale of latex preview
   (plist-put org-format-latex-options :scale 1.1)
+  ;; higher resolution preview
   (setq org-preview-latex-default-process 'dvisvgm)
+
+  ;; markdown export
+  ;; (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
   (map!
    :map org-mode-map
    :localleader
@@ -319,17 +325,6 @@
          (python-mode . tree-sitter-hl-mode)
          (jupyter-repl-mode . tree-sitter-hl-mode)
          (inferior-python-mode . tree-sitter-hl-mode)
-
-         ;; make method call and function call the same color as function name
-         ;; (prog-mode . (lambda ()
-         ;;                  (add-function :before-until (local 'tree-sitter-hl-face-mapping-function)
-         ;;                                (lambda (capture-name)
-         ;;                                  (pcase capture-name
-         ;;                                    ;; ("method.call" 'font-lock-function-name-face)
-         ;;                                    ;; ("function.call" 'font-lock-function-name-face)
-         ;;                                    ;; ("variable.parameter" 'default)
-         ;;                                    ;; ("constant" 'default)
-         ;;                                    )))))
          )
   )
 

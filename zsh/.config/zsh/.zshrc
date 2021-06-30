@@ -19,7 +19,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -e
+bindkey -v
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -130,6 +130,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 # ------------------------------
 
 alias szsh="source $ZDOTDIR/.zshrc"
+alias vim="nvim"
+alias mas="cd ~/Desktop/Master/"
+alias k="kubectl"
 if [ "$TERM" = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
   alias icat="kitty +kitten icat"
@@ -140,18 +143,22 @@ fi
 # ------------------------------
 
 export PATH="$HOME/.emacs.d/bin:$PATH"
-
+export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/kwkarlwang/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/kwkarlwang/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/kwkarlwang/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+#__conda_setup="$('~/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+##if [ 0 -eq 0 ]; then
+    #echo "first"
+    #eval "$__conda_setup"
+#else
+    #if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
+        #echo "second"
+        #. "~/anaconda3/etc/profile.d/conda.sh"
+    #else
+        #echo "third"
+        #export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
+    #fi
+#fi
+#unset __conda_setup
 # <<< conda initialize <<<

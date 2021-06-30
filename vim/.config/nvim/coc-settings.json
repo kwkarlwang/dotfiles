@@ -1,6 +1,6 @@
 {
 	"suggest.noselect": false,
-	"python.jediEnabled": true,
+	"python.jediEnabled": false,
 	"suggest.enablePreview": true,
 	"python.pythonPath": "/Users/kwkarlwang/anaconda3/bin/python",
 	//"python.setLinter": "pylint",

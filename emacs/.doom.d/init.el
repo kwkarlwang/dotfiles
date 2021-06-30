@@ -167,6 +167,7 @@
        (org               ; organize your plain life in plain text
         ;; +jupyter
         +pretty
+        ;; +pandoc
         )
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

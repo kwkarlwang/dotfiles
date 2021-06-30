@@ -6,7 +6,7 @@
 # Sets sane Zsh built-in environment options.
 zmodule environment
 # Provides handy git aliases and functions.
-zmodule git
+#zmodule git
 # Applies correct bindkeys for input events.
 zmodule input
 # Sets a custom terminal title.
@@ -20,7 +20,7 @@ zmodule utility
 # Exposes to prompts how long the last command took to execute, used by asciiship.
 zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
-zmodule git-info
+#zmodule git-info
 # A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
 zmodule asciiship
 
@@ -40,6 +40,6 @@ zmodule zsh-users/zsh-history-substring-search
 # }}} End configuration added by Zim install
 
 
-if [ "$INSIDE_EMACS" != "vterm" ]; then
-    zmodule jeffreytse/zsh-vi-mode
-fi
+#if [ "$INSIDE_EMACS" != "vterm" ]; then
+    #zmodule jeffreytse/zsh-vi-mode
+#fi

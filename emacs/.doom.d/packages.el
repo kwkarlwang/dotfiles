@@ -57,9 +57,9 @@
 (package! solaire-mode :disable t)
 (package! pdf-continuous-scroll-mode
   :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
-;; (package! kubernetes)
 (package! kubel)
 (package! kubel-evil)
+(package! ox-gfm)
 
 ;; FIXME currently not working
-;; (package! leetcode)
+(package! leetcode)
