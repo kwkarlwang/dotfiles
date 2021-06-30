@@ -219,7 +219,7 @@ input {
   color: var(--fg) !important;
 }
 .ace_cursor {
-  color: var(--red) !important;
+  color: var(--fg) !important;
 }
 .normal-mode .ace_cursor {
   background-color: var(--red) !important;
