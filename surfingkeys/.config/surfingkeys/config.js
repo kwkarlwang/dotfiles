@@ -218,10 +218,10 @@ input {
 .ace_dialog {
   color: var(--fg) !important;
 }
-/*
 .ace_cursor {
-  color: var(--red) !important;
+  color: var(--fg) !important;
 }
+/*
 .normal-mode .ace_cursor {
   background-color: var(--red) !important;
   border: var(--fg) !important;
