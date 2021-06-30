@@ -218,15 +218,16 @@ input {
 .ace_dialog {
   color: var(--fg) !important;
 }
+/*
 .ace_cursor {
   color: var(--red) !important;
-  opacity: 0.7 !important;
 }
 .normal-mode .ace_cursor {
   background-color: var(--red) !important;
   border: var(--fg) !important;
   opacity: 0.7 !important;
 }
+*/
 
 .ace_marker-layer .ace_selection {
   background: var(--select) !important;
