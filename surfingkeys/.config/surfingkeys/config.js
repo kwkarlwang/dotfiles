@@ -55,9 +55,9 @@ settings.theme = `
   --info-fg: #5E81AC;
   --select: #4C566A;
   /* Unused Alternate Colors */
-  /* --orange: #D08770; */
-  /* --red: #BF616A; */
-  /* --yellow: #EBCB8B; */
+  --orange: #D08770;
+  --red: #BF616A;
+  --yellow: #EBCB8B;
 }
 /* ---------- Generic ---------- */
 .sk_theme {
@@ -219,10 +219,10 @@ input {
   color: var(--fg) !important;
 }
 .ace_cursor {
-  color: var(--fg) !important;
+  color: var(--red) !important;
 }
 .normal-mode .ace_cursor {
-  background-color: var(--fg) !important;
+  background-color: var(--red) !important;
   border: var(--fg) !important;
   opacity: 0.7 !important;
 }
