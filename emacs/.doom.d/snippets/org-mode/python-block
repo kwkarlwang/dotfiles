@@ -1,0 +1,8 @@
+# -*- mode: org -*-
+# name: python-block
+# key: <p
+# uuid: python-block
+# --
+#+begin_src python
+    $0
+#+end_src

@@ -12,6 +12,7 @@
 ;;   )
 
 (setq doom-theme 'dracula)
+;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-dracula-brighter-comments t)
 
 (after! doom-themes
@@ -28,11 +29,11 @@
   (set-face-foreground 'font-lock-comment-face "#a8a8a8")
   (set-face-foreground 'line-number "#a8a8a8")
   (set-face-foreground 'font-lock-doc-face "#c6c6c6")
-  ;; (set-face-background 'default "undefined")
+  (set-face-background 'default "unspecfied")
 
   (set-face-attribute 'region nil :background "#524867")
+  (set-face-attribute 'lazy-highlight nil :foreground "#f8f8f2" :background "#524867")
   (after! lsp-mode
-    (set-face-attribute 'lazy-highlight nil :foreground "#f8f8f2" :background "#524867" :inherit 'lazy-highlight)
     (set-face-attribute 'lsp-face-highlight-textual nil :foreground "#f8f8f2" :background "#524867" :weight 'normal)
     (set-face-background 'markdown-code-face "unspecified")
     )

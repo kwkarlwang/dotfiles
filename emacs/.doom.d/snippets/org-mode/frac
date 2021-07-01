@@ -1,6 +1,6 @@
-# -*- mode: snippet -*-
+# -*- mode: org -*-
 # name: frac
-# key: frac
-# uuid: frac
+# key: fr
+# uuid: fr
 # --
 \frac{$1}{$2}$0

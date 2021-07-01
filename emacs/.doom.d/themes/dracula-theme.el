@@ -39,7 +39,7 @@ determine the exact padding."
   "A dark theme based on Dracula theme"
 
   ;; name        default   256       16
-  ((bg         '("#282a36" "unspecified" "black"        ))
+  ((bg         '("#282a36" "black" "black"        ))
    (bg-alt     '("#1E2029" "#1c1c1c" "black"        ))
    (base0      '("#1E2029" "#1c1c1c" "black"        ))
    (base1      '("#282a36" "#1e1e1e" "brightblack"  ))
@@ -260,6 +260,20 @@ determine the exact padding."
    (tree-sitter-hl-face:type.builtin :foreground cyan)
    (tree-sitter-hl-face:function.builtin :foreground cyan)
    (tree-sitter-hl-face:constant.builtin :foreground violet)
+   ;; (unless (display-graphic-p)
+     ;; (font-lock-comment-face :foreground "#a8a8a8")
+     ;; (line-number :foreground "#a8a8a8")
+     ;; (font-lock-doc-face :foreground "#c6c6c6")
+     ;; (default :foreground "unspecfied")
+     ;; (region :background "#524867")
+     ;; (set-face-foreground 'font-lock-comment-face "#a8a8a8")
+     ;; (set-face-foreground 'line-number "#a8a8a8")
+     ;; (set-face-foreground 'font-lock-doc-face "#c6c6c6")
+     ;; (set-face-background 'default "unspecfied")
+
+     ;; (set-face-attribute 'region nil :background "#524867")
+
+     ;; )
    )
 
 
