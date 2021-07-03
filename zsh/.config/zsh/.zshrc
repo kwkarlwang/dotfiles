@@ -135,8 +135,8 @@ alias mas="cd ~/Desktop/Master/"
 alias k="kubectl"
 if [ "$TERM" = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
-  alias icat="kitty +kitten icat"
 fi
+alias icat="kitty +kitten icat"
 
 # ------------------------------
 # Export

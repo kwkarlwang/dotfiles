@@ -73,7 +73,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Windowed
 
   # Window title
   #title: Alacritty
@@ -433,17 +433,17 @@ live_config_reload: true
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true
-#mouse:
-# Click settings
-#
-# The `double_click` and `triple_click` settings control the time
-# alacritty should wait for accepting multiple clicks as one double
-# or triple click.
-#double_click: { threshold: 300 }
-#triple_click: { threshold: 300 }
+mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
+  #double_click: { threshold: 300 }
+  #triple_click: { threshold: 300 }
 
-# If this is `true`, the cursor is temporarily hidden when typing.
-#hide_when_typing: false
+  # If this is `true`, the cursor is temporarily hidden when typing.
+  hide_when_typing: true
 
 # Regex hints
 #

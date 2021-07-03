@@ -59,7 +59,7 @@
   :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 (package! kubel)
 (package! kubel-evil)
-(package! ox-gfm)
+;; (package! ox-gfm)
 
 ;; FIXME currently not working
 (package! leetcode)

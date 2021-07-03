@@ -54,10 +54,10 @@ rshift + lshift - r : yabai -m space --rotate 90
 
 
 ## fast focus desktop
-lctrl - 1 : yabai -m space --focus prev
-lctrl - 2 : yabai -m space --focus next
-rshift - q : yabai -m space --focus prev
-rshift - e : yabai -m space --focus next
+lctrl - 1 : yabai -m space --focus prev || yabai -m space --focus last
+lctrl - 2 : yabai -m space --focus next || yabai -m space --focus first
+rshift - q : yabai -m space --focus prev || yabai -m space --focus last
+rshift - e : yabai -m space --focus next || yabai -m space --focus first
 rshift - 1 : yabai -m space --focus 1
 rshift - 2 : yabai -m space --focus 2
 rshift - 3 : yabai -m space --focus 3
@@ -70,10 +70,10 @@ rshift - 0x31 : yabai -m space --focus recent
 
 
 ## send window to desktop and follow focus
-rshift + lctrl - 1 : yabai -m window --space prev
-rshift + lctrl - 2 : yabai -m window --space next
-rshift + lshift - q : yabai -m window --space prev
-rshift + lshift - e : yabai -m window --space next
+rshift + lctrl - 1 : yabai -m window --space prev || yabai -m window --space last
+rshift + lctrl - 2 : yabai -m window --space next || yabai -m window --space first
+rshift + lshift - q : yabai -m window --space prev || yabai -m window --space last
+rshift + lshift - e : yabai -m window --space next || yabai -m window --space first
 rshift + lshift - 1 : yabai -m window --space 1
 rshift + lshift - 2 : yabai -m window --space 2
 rshift + lshift - 3 : yabai -m window --space 3
