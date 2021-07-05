@@ -143,7 +143,13 @@ alias icat="kitty +kitten icat"
 # ------------------------------
 
 export PATH="$HOME/.emacs.d/bin:$PATH"
+# For HomeBrew
+export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
+
+
+
+# Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 #__conda_setup="$('~/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

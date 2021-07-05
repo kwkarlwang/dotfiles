@@ -322,6 +322,9 @@
    :leader
    :desc "Toggle tree-sitter" "t t" #'toggle-tree-sitter
    )
+  (add-hook! 'tree-sitter-after-on-hook
+    (add-hook! 'iedit-mode-hook :local (tree-sitter-mode -1))
+    (add-hook! 'iedit-mode-end-hook :local (tree-sitter-hl-mode)))
   :config
   (require 'tree-sitter-langs)
   ;; Treat jupyter and python shell as python
@@ -371,4 +374,11 @@
 
 (after! magit
   (setq git-commit-style-convention-checks nil)
+  )
+
+(after! leetcode
+  (setq leetcode-prefer-language "python3"
+        leetcode-save-solutions t
+        leetcode-directory "~/leetcode"
+        )
   )

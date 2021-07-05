@@ -13,3 +13,4 @@ kubernetes/*/config
 *.old
 /kubernetes/.kube/cache/
 /zsh/.config/zsh/.zcompcache/
+/vim/.config/nvim/*.json
