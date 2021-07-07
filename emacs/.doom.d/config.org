@@ -431,9 +431,9 @@ Minimized the popup factor of format error
 
 Use yapf formatting for python
 #+begin_src emacs-lisp
-(after! format-all
-  (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
-  )
+;; (after! format-all
+;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+;;   )
 #+end_src
 ** Tree Sitter
 Tree sitter is used to give semantic highlighting to code.

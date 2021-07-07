@@ -306,9 +306,9 @@
 
 (set-popup-rule! "^\\*format-all" :size 0.01 :ttl 0 :modeline nil)
 
-(after! format-all
-  (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
-  )
+;; (after! format-all
+;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+;;   )
 
 (use-package! tree-sitter
   :init

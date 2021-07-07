@@ -91,6 +91,8 @@ set colorcolumn=110
 
 set mouse=a
 
+set clipboard+=unnamedplus
+
 
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
