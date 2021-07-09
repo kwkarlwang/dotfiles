@@ -89,8 +89,7 @@
 
        :checkers
        (syntax              ; tasing you for every semicolon you forget
-        +childframe
-        )
+        +childframe)
        (spell ; tasing you for misspelling mispelling
         +aspell)
 
@@ -98,7 +97,7 @@
 
        :tools
        ;;ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        (docker +lsp)
        ;;editorconfig      ; let someone else argue about tabs vs spaces

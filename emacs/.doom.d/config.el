@@ -3,9 +3,10 @@
 (setq user-full-name "Karl Wang"
       user-mail-address "kwkarlwang@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code Retina"
+(setq doom-font (font-spec :family "Fira Code"
                            :size 13
                            ))
+(setq ns-use-thin-smoothing t)
 
 ;; (after! highlight-numbers
 ;;   (set-face-bold 'highlight-numbers-number nil)
@@ -52,6 +53,8 @@
 ;; Also in visual mode
 (define-key evil-visual-state-map "j" 'evil-next-visual-line)
 (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+;; Scroll off
+(setq scroll-margin 3)
 
 (map!
  :leader
@@ -84,6 +87,12 @@
 
 (remove-hook 'text-mode-hook #'spell-fu-mode)
 
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
+(setq ns-use-proxy-icon nil
+      frame-title-format nil
+      )
+
 (setq-default delete-by-moving-to-trash t
               window-combination-resize t)
 
@@ -92,7 +101,7 @@
   (setq company-minimum-prefix-length 2
         company-idle-delay 0.0)
   ;; (add-to-list 'company--disabled-backends 'company-ispell)
-  (set-company-backend! '(text-mode)
+  (set-company-backend! '(text-mode org-mode)
     '(:separate company-yasnippet company-files company-dabbrev))
   )
 
@@ -382,3 +391,31 @@
         leetcode-directory "~/leetcode"
         )
   )
+
+;; (use-package! eaf
+;;   :load-path "/Users/kwkarlwang/.emacs.d/.local/straight/repos/emacs-application-framework"
+;;   :init
+;;   (use-package! ctable :defer t)
+;;   (use-package! deferred :defer t)
+;;   (use-package! epc :defer t)
+;;   (use-package! s :defer t)
+;;   :custom
+;;   (setq eaf-browser-continue-where-left-off t)
+;;   :config
+;;   (require 'eaf-evil)
+
+;;   (define-key key-translation-map (kbd "SPC")
+;;     (lambda (prompt)
+;;       (if (derived-mode-p 'eaf-mode)
+;;           (pcase eaf--buffer-app-name
+;;             ("browser" (if  (string= (eaf-call-sync "call_function" eaf--buffer-id "is_focus") "True")
+;;                            (kbd "SPC")
+;;                          (kbd eaf-evil-leader-key)))
+;;             ("pdf-viewer" (kbd eaf-evil-leader-key))
+;;             ("image-viewer" (kbd eaf-evil-leader-key))
+;;             (_  (kbd "SPC")))
+;;         (kbd "SPC"))))
+
+;;   (eaf-bind-key scroll_down_page "C-u" eaf-pdf-viewer-keybinding)
+;;   (eaf-bind-key scroll_up_page "C-d" eaf-pdf-viewer-keybinding)
+;;   )

@@ -59,7 +59,15 @@
   :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 (package! kubel)
 (package! kubel-evil)
-;; (package! ox-gfm)
-
-;; FIXME currently not working
 (package! leetcode)
+;; (when (package! eaf :recipe (:host github
+;;                              :repo "manateelazycat/emacs-application-framework"
+;;                              :files ("*.el" "*.py" "app" "core")
+;;                              :build (:not compile)))
+
+;;   )
+
+;; (package! ctable :recipe (:host github :repo "kiwanami/emacs-ctable"))
+;; (package! deferred :recipe (:host github :repo "kiwanami/emacs-deferred"))
+;; (package! epc :recipe (:host github :repo "kiwanami/emacs-epc"))
+;; (package! s)

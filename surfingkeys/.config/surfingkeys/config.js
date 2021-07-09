@@ -10,7 +10,7 @@ settings.hintAlign = "left";
 // -----------------------------------------------------------------------------------------------------------------------
 // Change hints styles
 // -----------------------------------------------------------------------------------------------------------------------
-Hints.characters = "asdfzxcvqwer";
+Hints.characters = "casdfzxvqwer";
 // Nord
 Hints.style(
   "border: solid 2px #4C566A; color:#A3BE8C; background: initial; background-color: #3B4252;"

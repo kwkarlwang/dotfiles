@@ -14,9 +14,10 @@ Setting name and email address
 ** Font
 Setting font family
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Fira Code Retina"
+(setq doom-font (font-spec :family "Fira Code"
                            :size 13
                            ))
+(setq ns-use-thin-smoothing t)
 #+end_src
 
 Disable bold numbers
@@ -78,6 +79,8 @@ Use relative line number
 ;; Also in visual mode
 (define-key evil-visual-state-map "j" 'evil-next-visual-line)
 (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+;; Scroll off
+(setq scroll-margin 3)
 #+end_src
 
 ** Keybindings
@@ -149,6 +152,16 @@ Disable spell checking by default
 (remove-hook 'text-mode-hook #'spell-fu-mode)
 #+end_src
 
+Disable titlebar message
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
+(setq ns-use-proxy-icon nil
+      frame-title-format nil
+      )
+#+end_src
+
+
 Other defaults
 #+begin_src emacs-lisp
 (setq-default delete-by-moving-to-trash t
@@ -164,7 +177,7 @@ Setting company, the completion engine
   (setq company-minimum-prefix-length 2
         company-idle-delay 0.0)
   ;; (add-to-list 'company--disabled-backends 'company-ispell)
-  (set-company-backend! '(text-mode)
+  (set-company-backend! '(text-mode org-mode)
     '(:separate company-yasnippet company-files company-dabbrev))
   )
 #+end_src
@@ -528,4 +541,36 @@ Disable long summary warning
         leetcode-directory "~/leetcode"
         )
   )
+#+end_src
+
+** EAF
+Not using it as it is slow to startup. PDF viewer and browser.
+#+begin_src emacs-lisp
+;; (use-package! eaf
+;;   :load-path "/Users/kwkarlwang/.emacs.d/.local/straight/repos/emacs-application-framework"
+;;   :init
+;;   (use-package! ctable :defer t)
+;;   (use-package! deferred :defer t)
+;;   (use-package! epc :defer t)
+;;   (use-package! s :defer t)
+;;   :custom
+;;   (setq eaf-browser-continue-where-left-off t)
+;;   :config
+;;   (require 'eaf-evil)
+
+;;   (define-key key-translation-map (kbd "SPC")
+;;     (lambda (prompt)
+;;       (if (derived-mode-p 'eaf-mode)
+;;           (pcase eaf--buffer-app-name
+;;             ("browser" (if  (string= (eaf-call-sync "call_function" eaf--buffer-id "is_focus") "True")
+;;                            (kbd "SPC")
+;;                          (kbd eaf-evil-leader-key)))
+;;             ("pdf-viewer" (kbd eaf-evil-leader-key))
+;;             ("image-viewer" (kbd eaf-evil-leader-key))
+;;             (_  (kbd "SPC")))
+;;         (kbd "SPC"))))
+
+;;   (eaf-bind-key scroll_down_page "C-u" eaf-pdf-viewer-keybinding)
+;;   (eaf-bind-key scroll_up_page "C-d" eaf-pdf-viewer-keybinding)
+;;   )
 #+end_src
