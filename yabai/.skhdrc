@@ -85,9 +85,11 @@ rshift + lshift - 7 : yabai -m window --space 7
 
 ## toggle window zoom
 rshift - f : yabai -m window --toggle zoom-fullscreen
+lctrl - 3 : yabai -m window --toggle zoom-fullscreen
 
 ## zoom parent (allow vertical split)
 rshift + lshift - f : yabai -m window --toggle zoom-parent
+
 
 
 ## toggle floating

@@ -53,18 +53,31 @@ determine the exact padding."
    (fg         '("#f8f8f2" "#ffffff" "white"        ))
    (fg-alt     '("#e2e2dc" "#bfbfbf" "brightwhite"  ))
 
+   ;; (grey       base4)
+   ;; (red        '("#ff5555" "red" "red"          ))
+   ;; (orange     '("#ffb86c" "brightred" "brightred"    ))
+   ;; (green      '("#50fa7b" "green" "green"        ))
+   ;; (teal       '("#0189cc" "#0088cc" "brightgreen"  ))
+   ;; (yellow     '("#f1fa8c" "yellow" "yellow"       ))
+   ;; (blue       '("#61bfff" "#66bbff" "brightblue"   ))
+   ;; (dark-blue  '("#0189cc" "#0088cc" "blue"         ))
+   ;; (magenta    '("#ff79c6" "magenta" "magenta"      ))
+   ;; (violet     '("#bd93f9" "brightmagenta" "brightmagenta"))
+   ;; (cyan       '("#8be9fd" "cyan" "brightcyan"   ))
+   ;; (dark-cyan  '("#8be9fd" "cyan" "cyan"         ))
+
    (grey       base4)
-   (red        '("#ff5555" "red" "red"          ))
-   (orange     '("#ffb86c" "brightred" "brightred"    ))
-   (green      '("#50fa7b" "green" "green"        ))
+   (red        '("#ee766d" "red" "red"          ))
+   (orange     '("#f4b26d" "brightred" "brightred"    ))
+   (green      '("#88f298" "green" "green"        ))
    (teal       '("#0189cc" "#0088cc" "brightgreen"  ))
-   (yellow     '("#f1fa8c" "yellow" "yellow"       ))
+   (yellow     '("#f5f7a8" "yellow" "yellow"       ))
    (blue       '("#61bfff" "#66bbff" "brightblue"   ))
    (dark-blue  '("#0189cc" "#0088cc" "blue"         ))
-   (magenta    '("#ff79c6" "magenta" "magenta"      ))
-   (violet     '("#bd93f9" "brightmagenta" "brightmagenta"))
-   (cyan       '("#8be9fd" "cyan" "brightcyan"   ))
-   (dark-cyan  '("#8be9fd" "cyan" "cyan"         ))
+   (magenta    '("#f199ce" "magenta" "magenta"      ))
+   (violet     '("#bf9eee" "brightmagenta" "brightmagenta"))
+   (cyan       '("#acebfb" "cyan" "brightcyan"   ))
+   (dark-cyan  '("#acebfb" "cyan" "cyan"         ))
 
    ;; face categories -- required for all themes
    (highlight      violet)
@@ -260,26 +273,7 @@ determine the exact padding."
    (tree-sitter-hl-face:type.builtin :foreground cyan)
    (tree-sitter-hl-face:function.builtin :foreground cyan)
    (tree-sitter-hl-face:constant.builtin :foreground violet)
-   ;; (unless (display-graphic-p)
-     ;; (font-lock-comment-face :foreground "#a8a8a8")
-     ;; (line-number :foreground "#a8a8a8")
-     ;; (font-lock-doc-face :foreground "#c6c6c6")
-     ;; (default :foreground "unspecfied")
-     ;; (region :background "#524867")
-     ;; (set-face-foreground 'font-lock-comment-face "#a8a8a8")
-     ;; (set-face-foreground 'line-number "#a8a8a8")
-     ;; (set-face-foreground 'font-lock-doc-face "#c6c6c6")
-     ;; (set-face-background 'default "unspecfied")
-
-     ;; (set-face-attribute 'region nil :background "#524867")
-
-     ;; )
    )
-
-
-
-
-
 
   ;;;; Base theme variable overrides-
   ()

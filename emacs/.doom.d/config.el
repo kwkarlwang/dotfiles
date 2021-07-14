@@ -26,25 +26,25 @@
   (setq doom-themes-enable-bold nil)
   )
 
-(unless (display-graphic-p)
-  (set-face-foreground 'font-lock-comment-face "#a8a8a8")
-  (set-face-foreground 'line-number "#a8a8a8")
-  (set-face-foreground 'font-lock-doc-face "#c6c6c6")
-  (set-face-background 'default "unspecfied")
+;;(unless (display-graphic-p)
+  ;; (set-face-foreground 'font-lock-comment-face "#a8a8a8")
+  ;; (set-face-foreground 'line-number "#a8a8a8")
+  ;; (set-face-foreground 'font-lock-doc-face "#c6c6c6")
+  ;; (set-face-background 'default "unspecfied")
 
-  (set-face-attribute 'region nil :background "#524867")
-  (set-face-attribute 'lazy-highlight nil :foreground "#f8f8f2" :background "#524867")
-  (after! lsp-mode
-    (set-face-attribute 'lsp-face-highlight-textual nil :foreground "#f8f8f2" :background "#524867" :weight 'normal)
-    (set-face-background 'markdown-code-face "unspecified")
-    )
-  (after! magit
-    (set-face-background 'magit-diff-removed-highlight "unspecified")
-    (set-face-background 'magit-diff-added-highlight "unspecified")
-    (set-face-background 'magit-diff-removed "unspecified")
-    (set-face-background 'magit-diff-added "unspecified")
-    )
-  )
+  ;; (set-face-attribute 'region nil :background "#524867")
+  ;; (set-face-attribute 'lazy-highlight nil :foreground "#f8f8f2" :background "#524867")
+  ;; (after! lsp-mode
+  ;;   (set-face-attribute 'lsp-face-highlight-textual nil :foreground "#f8f8f2" :background "#524867" :weight 'normal)
+  ;;   (set-face-background 'markdown-code-face "unspecified")
+  ;;   )
+  ;; (after! magit
+  ;;   (set-face-background 'magit-diff-removed-highlight "unspecified")
+  ;;   (set-face-background 'magit-diff-added-highlight "unspecified")
+  ;;   (set-face-background 'magit-diff-removed "unspecified")
+  ;;   (set-face-background 'magit-diff-added "unspecified")
+  ;;   )
+  ;;)
 
 (setq display-line-numbers-type 'visual)
 ;; Make evil-mode up/down operate in screen lines instead of logical lines
@@ -315,9 +315,13 @@
 
 (set-popup-rule! "^\\*format-all" :size 0.01 :ttl 0 :modeline nil)
 
-;; (after! format-all
-;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
-;;   )
+(after! format-all
+  ;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+  (add-hook 'python-mode-hook #'format-all-mode)
+  (add-hook 'emacs-lisp-mode #'format-all-mode)
+  (add-hook 'tex-mode #'format-all-mode)
+  (add-hook 'latex-mode #'format-all-mode)
+  )
 
 (use-package! tree-sitter
   :init
@@ -382,7 +386,9 @@
 ;;   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 (after! magit
-  (setq git-commit-style-convention-checks nil)
+  (setq git-commit-style-convention-checks nil
+        magit-diff-hide-trailing-cr-characters t
+        )
   )
 
 (after! leetcode

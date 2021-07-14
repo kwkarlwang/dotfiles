@@ -14,3 +14,4 @@ kubernetes/*/config
 /kubernetes/.kube/cache/
 /zsh/.config/zsh/.zcompcache/
 /vim/.config/nvim/*.json
+/karabiner/.config/karabiner/automatic_backups/
