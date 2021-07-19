@@ -1,0 +1,3 @@
+[submodule "kitty/matplotlib-backend-kitty"]
+	path = kitty/matplotlib-backend-kitty
+	url = https://github.com/jktr/matplotlib-backend-kitty.git

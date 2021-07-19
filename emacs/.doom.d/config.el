@@ -3,7 +3,7 @@
 (setq user-full-name "Karl Wang"
       user-mail-address "kwkarlwang@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code"
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font"
                            :size 13
                            ))
 (setq ns-use-thin-smoothing t)
@@ -87,11 +87,11 @@
 
 (remove-hook 'text-mode-hook #'spell-fu-mode)
 
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
 (setq ns-use-proxy-icon nil
       frame-title-format nil
       )
+;; Helps disable the annoying titlebar dimension
+(add-to-list 'initial-frame-alist '(fullscreen . fullheight))
 
 (setq-default delete-by-moving-to-trash t
               window-combination-resize t)
@@ -315,12 +315,12 @@
 
 (set-popup-rule! "^\\*format-all" :size 0.01 :ttl 0 :modeline nil)
 
+(add-hook 'python-mode-hook #'format-all-mode)
+(add-hook 'emacs-lisp-mode #'format-all-mode)
+(add-hook 'tex-mode #'format-all-mode)
+(add-hook 'latex-mode #'format-all-mode)
 (after! format-all
   ;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
-  (add-hook 'python-mode-hook #'format-all-mode)
-  (add-hook 'emacs-lisp-mode #'format-all-mode)
-  (add-hook 'tex-mode #'format-all-mode)
-  (add-hook 'latex-mode #'format-all-mode)
   )
 
 (use-package! tree-sitter
