@@ -58,3 +58,9 @@ cmd 'set noshowcmd'
 --------Disable 'pattern not found'-----------
 cmd 'set shortmess+=c'
 
+
+--------Set splitting-----------
+o.splitbelow = true
+o.splitright = true
+
+
