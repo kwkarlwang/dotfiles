@@ -63,4 +63,3 @@ cmd 'set shortmess+=c'
 o.splitbelow = true
 o.splitright = true
 
-

@@ -147,8 +147,8 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/Cellar/libpng/1.6.37/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig:/usr/local/Cellar/libffi/3.3_3/lib/pkgconfig:/usr/local/Cellar/poppler/21.07.0/lib/pkgconfig:$PKG_CONFIG_PATH"
-#export PYTHONPATH="/Users/kwkarlwang/matplotlib-backend-kitty"
-#export MPLBACKEND="module://matplotlib-backend-kitty"
+export EDITOR=nvim
+export PAGER=nvimpager
 
 
 

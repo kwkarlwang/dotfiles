@@ -118,7 +118,7 @@
 
   )
 (after! lsp-ui
-  (lsp-ui-sideline-mode -1) ; flycheck is better
+  ;; (lsp-ui-sideline-mode -1) ; flycheck is better
   (setq
    lsp-ui-sideline-enable nil
    lsp-ui-doc-enable nil

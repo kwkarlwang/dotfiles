@@ -87,6 +87,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kwkarlwang/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
   },
+  ["nvim-colorizer.lua"] = {
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14colorizer\frequire\0" },
+    loaded = true,
+    path = "/Users/kwkarlwang/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
   ["nvim-compe"] = {
     config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins/compe\frequire\0" },
     loaded = true,
@@ -101,6 +106,11 @@ _G.packer_plugins = {
     config = { "\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17plugins/term\frequire\0" },
     loaded = true,
     path = "/Users/kwkarlwang/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua"
+  },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\2\n¢\2\0\0\a\0\18\0\0306\0\0\0'\2\1\0B\0\2\0029\0\2\0006\1\3\0'\3\4\0'\4\5\0'\5\6\0005\6\a\0B\1\5\0016\1\b\0004\2\3\0005\3\v\0005\4\n\0=\4\f\3\18\4\0\0'\6\r\0B\4\2\2=\4\14\3>\3\1\0025\3\16\0005\4\15\0=\4\f\3\18\4\0\0'\6\17\0B\4\2\2=\4\14\3>\3\2\2=\2\t\1K\0\1\0\15close_node\1\0\0\1\2\0\0\6h\acb\tedit\bkey\1\0\0\1\2\0\0\6l\23nvim_tree_bindings\6g\1\0\2\fnoremap\2\vsilent\2\24:NvimTreeToggle<cr>\15<leader>op\6n\bmap\23nvim_tree_callback\21nvim-tree.config\frequire\0" },
+    loaded = true,
+    path = "/Users/kwkarlwang/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     config = { "\27LJ\2\n√\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\frainbow\1\0\1\venable\1\14highlight\1\0\1\venable\2\19ignore_install\1\2\0\0\fhaskell\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\0" },
@@ -133,6 +143,7 @@ _G.packer_plugins = {
     path = "/Users/kwkarlwang/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["vim-fugitive"] = {
+    config = { "\27LJ\2\nI\0\0\6\0\5\0\a6\0\0\0'\2\1\0'\3\2\0'\4\3\0005\5\4\0B\0\5\1K\0\1\0\1\0\1\fnoremap\2\r:Git<cr>\15<leader>gg\6n\bmap\0" },
     loaded = true,
     path = "/Users/kwkarlwang/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
@@ -143,34 +154,46 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16plugins/lsp\frequire\0", "config", "nvim-lspconfig")
-time([[Config for nvim-lspconfig]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\n√\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\frainbow\1\0\1\venable\1\14highlight\1\0\1\venable\2\19ignore_install\1\2\0\0\fhaskell\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n\\\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\2B\0\2\1K\0\1\0\21disable_filetype\1\0\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-toggleterm.lua
-time([[Config for nvim-toggleterm.lua]], true)
-try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17plugins/term\frequire\0", "config", "nvim-toggleterm.lua")
-time([[Config for nvim-toggleterm.lua]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins/telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-compe
-time([[Config for nvim-compe]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins/compe\frequire\0", "config", "nvim-compe")
-time([[Config for nvim-compe]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins/lualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins/telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n¢\2\0\0\a\0\18\0\0306\0\0\0'\2\1\0B\0\2\0029\0\2\0006\1\3\0'\3\4\0'\4\5\0'\5\6\0005\6\a\0B\1\5\0016\1\b\0004\2\3\0005\3\v\0005\4\n\0=\4\f\3\18\4\0\0'\6\r\0B\4\2\2=\4\14\3>\3\1\0025\3\16\0005\4\15\0=\4\f\3\18\4\0\0'\6\17\0B\4\2\2=\4\14\3>\3\2\2=\2\t\1K\0\1\0\15close_node\1\0\0\1\2\0\0\6h\acb\tedit\bkey\1\0\0\1\2\0\0\6l\23nvim_tree_bindings\6g\1\0\2\fnoremap\2\vsilent\2\24:NvimTreeToggle<cr>\15<leader>op\6n\bmap\23nvim_tree_callback\21nvim-tree.config\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: vim-fugitive
+time([[Config for vim-fugitive]], true)
+try_loadstring("\27LJ\2\nI\0\0\6\0\5\0\a6\0\0\0'\2\1\0'\3\2\0'\4\3\0005\5\4\0B\0\5\1K\0\1\0\1\0\1\fnoremap\2\r:Git<cr>\15<leader>gg\6n\bmap\0", "config", "vim-fugitive")
+time([[Config for vim-fugitive]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\n√\1\0\0\4\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\2B\0\2\1K\0\1\0\frainbow\1\0\1\venable\1\14highlight\1\0\1\venable\2\19ignore_install\1\2\0\0\fhaskell\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-compe
+time([[Config for nvim-compe]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins/compe\frequire\0", "config", "nvim-compe")
+time([[Config for nvim-compe]], false)
+-- Config for: nvim-toggleterm.lua
+time([[Config for nvim-toggleterm.lua]], true)
+try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17plugins/term\frequire\0", "config", "nvim-toggleterm.lua")
+time([[Config for nvim-toggleterm.lua]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n\\\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\2B\0\2\1K\0\1\0\21disable_filetype\1\0\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16plugins/lsp\frequire\0", "config", "nvim-lspconfig")
+time([[Config for nvim-lspconfig]], false)
 if should_profile then save_profiles() end
 
 end)

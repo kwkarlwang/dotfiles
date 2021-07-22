@@ -81,7 +81,8 @@ end
       require 'plugins/term'
   end
   }
-
+  
+  -- tree structure
   use {"kyazdani42/nvim-tree.lua",
       config = function()
           local tree_cb = require'nvim-tree.config'.nvim_tree_callback
@@ -92,6 +93,13 @@ end
           }
       end
   }
+
+  use {"norcalli/nvim-colorizer.lua",
+    config = function()
+        require'colorizer'.setup()
+    end
+  }
+
 
 
 
