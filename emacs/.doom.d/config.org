@@ -199,7 +199,7 @@ Setting LSP
 (after! lsp-ui
   ;; (lsp-ui-sideline-mode -1) ; flycheck is better
   (setq
-   lsp-ui-sideline-enable nil
+   lsp-ui-sideline-enable 1
    lsp-ui-doc-enable nil
    lsp-ui-doc-max-width 150
    lsp-ui-doc-max-height 30
@@ -443,12 +443,9 @@ Minimized the popup factor of format error
 
 Enabled formatting for the following modes. Use yapf formatting for python
 #+begin_src emacs-lisp
-(add-hook 'python-mode-hook #'format-all-mode)
-(add-hook 'emacs-lisp-mode #'format-all-mode)
-(add-hook 'tex-mode #'format-all-mode)
-(add-hook 'latex-mode #'format-all-mode)
 (after! format-all
-  ;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+  (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+  (add-to-list '+format-on-save-enabled-modes 'yaml-mode t)
   )
 #+end_src
 

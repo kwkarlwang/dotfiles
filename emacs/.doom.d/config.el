@@ -120,7 +120,7 @@
 (after! lsp-ui
   ;; (lsp-ui-sideline-mode -1) ; flycheck is better
   (setq
-   lsp-ui-sideline-enable nil
+   lsp-ui-sideline-enable 1
    lsp-ui-doc-enable nil
    lsp-ui-doc-max-width 150
    lsp-ui-doc-max-height 30
@@ -315,12 +315,9 @@
 
 (set-popup-rule! "^\\*format-all" :size 0.01 :ttl 0 :modeline nil)
 
-(add-hook 'python-mode-hook #'format-all-mode)
-(add-hook 'emacs-lisp-mode #'format-all-mode)
-(add-hook 'tex-mode #'format-all-mode)
-(add-hook 'latex-mode #'format-all-mode)
 (after! format-all
-  ;;   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+  (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
+  (add-to-list '+format-on-save-enabled-modes 'yaml-mode t)
   )
 
 (use-package! tree-sitter
