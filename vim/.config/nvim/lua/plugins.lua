@@ -9,6 +9,11 @@ return require("packer").startup(
         require "plugins/lsp"
       end
     }
+    -- TODO: add lsp install
+    --use {
+
+    --}
+    -- completion
     use {
       "hrsh7th/nvim-compe",
       config = function()
@@ -16,6 +21,7 @@ return require("packer").startup(
       end
     }
 
+    -- theme
     use {"kwkarlwang/vim-dracula", as = "dracula"}
 
     -- comment function
@@ -66,14 +72,29 @@ return require("packer").startup(
         require("nvim-autopairs").setup {
           disable_filetype = {}
         }
+        require("nvim-autopairs.completion.compe").setup(
+          {
+            map_cr = true, --  map <CR> on insert mode
+            map_complete = true -- it will auto insert `(` after select function or method item
+          }
+        )
       end
     }
 
-    -- fugitive
+    -- git
+    --use {
+    --"tpope/vim-fugitive",
+    --config = function()
+    --map("n", "<leader>gg", ":Git<cr>", {noremap = true})
+    --end
+    --}
+
     use {
-      "tpope/vim-fugitive",
+      "TimUntersberger/neogit",
+      requires = "nvim-lua/plenary.nvim",
       config = function()
-        map("n", "<leader>gg", ":Git<cr>", {noremap = true})
+        require("neogit").setup {}
+        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true})
       end
     }
 
@@ -94,7 +115,7 @@ return require("packer").startup(
         g.nvim_tree_bindings = {
           {key = {"l"}, cb = tree_cb("edit")},
           {key = {"h"}, cb = tree_cb("close_node")},
-          {key = {"L"}, cb = tree_cb("cd")}
+          {key = {"o"}, cb = tree_cb("cd")}
         }
       end
     }
@@ -109,9 +130,8 @@ return require("packer").startup(
 
     -- change root to git repo
     use {
-      "/airblade/vim-rooter",
+      "airblade/vim-rooter",
       config = function()
-        --g.rooter_silent_chdir=1
         g.rooter_manual_only = 1
       end
     }
@@ -121,7 +141,6 @@ return require("packer").startup(
       "mhartington/formatter.nvim",
       config = function()
         require "plugins/formatter"
-        map("n", "<leader>cf", ":Format<cr>", {noremap = true, silent = true})
       end
     }
   end

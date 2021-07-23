@@ -1,43 +1,50 @@
 ------ FORMAT ON SAVE
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+  autocmd BufWritePost * FormatWrite
 augroup END
-]], true)
-require('formatter').setup({
-  logging = false,
-  filetype = {
-    python = {
+]],
+  true
+)
+
+--autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+map("n", "<leader>cf", ":Format<cr>", {noremap = true, silent = true})
+require("formatter").setup(
+  {
+    logging = false,
+    filetype = {
+      python = {
         function()
-            return {
-                exe = "yapf",
-                args = {},
-                stdin = true
-            }
-        end
-    },
-    javascript = {
-        -- prettier
-       function()
           return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+            exe = "yapf",
+            args = {},
             stdin = true
           }
         end
-    },
-    rust = {
-      -- Rustfmt
-      function()
-        return {
-          exe = "rustfmt",
-          args = {"--emit=stdout"},
-          stdin = true
-        }
-      end
-    },
-    lua = {
+      },
+      javascript = {
+        -- prettier
+        function()
+          return {
+            exe = "prettier",
+            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
+            stdin = true
+          }
+        end
+      },
+      rust = {
+        -- Rustfmt
+        function()
+          return {
+            exe = "rustfmt",
+            args = {"--emit=stdout"},
+            stdin = true
+          }
+        end
+      },
+      lua = {
         -- luafmt
         function()
           return {
@@ -46,17 +53,18 @@ require('formatter').setup({
             stdin = true
           }
         end
-    },
-    cpp = {
+      },
+      cpp = {
         -- clang-format
-       function()
+        function()
           return {
             exe = "clang-format",
             args = {},
             stdin = true,
-            cwd = vim.fn.expand('%:p:h')  -- Run clang-format in cwd of the file.
+            cwd = vim.fn.expand("%:p:h") -- Run clang-format in cwd of the file.
           }
         end
+      }
     }
   }
-})
+)
