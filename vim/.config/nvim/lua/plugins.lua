@@ -136,11 +136,11 @@ return require("packer").startup(
     }
 
     -- dashboard
-    use {
-      "glepnir/dashboard-nvim",
-      config = function()
-        require("plugins/dashboard")
-      end
-    }
+    --use {
+    --"glepnir/dashboard-nvim",
+    --config = function()
+    --require("plugins/dashboard")
+    --end
+    --}
   end
 )
