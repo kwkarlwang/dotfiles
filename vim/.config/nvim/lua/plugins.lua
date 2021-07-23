@@ -82,12 +82,9 @@ return require("packer").startup(
     }
 
     -- git
-    --use {
-    --"tpope/vim-fugitive",
-    --config = function()
-    --map("n", "<leader>gg", ":Git<cr>", {noremap = true})
-    --end
-    --}
+    use {
+      "tpope/vim-fugitive"
+    }
 
     use {
       "TimUntersberger/neogit",
