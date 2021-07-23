@@ -135,12 +135,31 @@ return require("packer").startup(
       end
     }
 
-    -- dashboard
+    -- dashboard, disbale for now
     --use {
     --"glepnir/dashboard-nvim",
     --config = function()
     --require("plugins/dashboard")
     --end
     --}
+
+    -- mutlicurosr
+    use {
+      "mg979/vim-visual-multi",
+      config = function()
+        cmd [[
+            let g:VM_default_mappings = 0
+            let g:VM_maps = {}
+            let g:VM_maps['Find Under'] = '<M-d>'
+            let g:VM_maps['Find Subword Under'] = '<M-d>'
+            let g:VM_maps['Select All'] = '<C-M-d>'
+            let g:VM_maps['Find Next'] = 'n'
+            let g:VM_maps['Find Prev'] = 'N'
+            let g:VM_maps["Undo"] = 'u'
+            let g:VM_maps["Redo"] = '<C-r>'
+            let g:VM_maps["Skip Region"] = '<cr>'
+        ]]
+      end
+    }
   end
 )
