@@ -248,6 +248,19 @@ Setting lsp settings for pyright
   )
 #+end_src
 
+Disable triggering characters
+#+begin_src emacs-lisp
+(add-hook! 'lsp-pyright-after-open-hook
+
+           (lsp:set-completion-options-trigger-characters?
+            (lsp:server-capabilities-completion-provider?
+             (lsp--workspace-server-capabilities (cl-first
+                                                  (lsp-workspaces)
+                                                  )))
+            [])
+ )
+#+end_src
+
 *** Latex
 Disable SPC as a trigger key and annoying eldoc
 #+begin_src emacs-lisp
@@ -314,9 +327,15 @@ General python settings and keybindings
    :n "<" #'python-indent-shift-left
    :n ">" #'python-indent-shift-right
    (:localleader
-    :desc "New cell" "s" (lambda() (interactive) (insert "\n# %%\n"))
+    :desc "New cell" "s" (lambda() (interactive)
+                           (+evil/insert-newline-below)
+                           (next-line)
+                           (insert "# %%\n")
+                           )
     :desc "New cell below" "S" (lambda() (interactive)
-                                 (insert "\n# %%\n")
+                                 (+evil/insert-newline-below)
+                                 (next-line)
+                                 (insert "# %%\n")
                                  (previous-line)
                                  (previous-line))
     )

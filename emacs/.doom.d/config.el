@@ -164,6 +164,16 @@
   ;;                                   ("pyright/endProgress" 'lsp-pyright--end-progress-callback))))
   )
 
+(add-hook! 'lsp-pyright-after-open-hook
+
+           (lsp:set-completion-options-trigger-characters?
+            (lsp:server-capabilities-completion-provider?
+             (lsp--workspace-server-capabilities (cl-first
+                                                  (lsp-workspaces)
+                                                  )))
+            [])
+ )
+
 (add-hook! 'lsp-texlab-after-open-hook (eldoc-mode -1)
            (lsp:set-completion-options-trigger-characters?
             (lsp:server-capabilities-completion-provider?
@@ -213,9 +223,15 @@
    :n "<" #'python-indent-shift-left
    :n ">" #'python-indent-shift-right
    (:localleader
-    :desc "New cell" "s" (lambda() (interactive) (insert "\n# %%\n"))
+    :desc "New cell" "s" (lambda() (interactive)
+                           (+evil/insert-newline-below)
+                           (next-line)
+                           (insert "# %%\n")
+                           )
     :desc "New cell below" "S" (lambda() (interactive)
-                                 (insert "\n# %%\n")
+                                 (+evil/insert-newline-below)
+                                 (next-line)
+                                 (insert "# %%\n")
                                  (previous-line)
                                  (previous-line))
     )
