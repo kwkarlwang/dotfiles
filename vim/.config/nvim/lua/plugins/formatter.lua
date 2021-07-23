@@ -3,14 +3,14 @@ vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost * FormatWrite
+  autocmd BufWritePost * :silent FormatWrite
 augroup END
 ]],
   true
 )
 
 --autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
-map("n", "<leader>cf", ":Format<cr>", {noremap = true, silent = true})
+map("n", "<leader>cf", ":silent Format<cr>", {noremap = true, silent = true})
 require("formatter").setup(
   {
     logging = false,

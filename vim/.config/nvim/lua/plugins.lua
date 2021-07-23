@@ -5,14 +5,14 @@ return require("packer").startup(
     -- lsp
     use {
       "neovim/nvim-lspconfig",
+      requires = {
+        "kabouzeid/nvim-lspinstall"
+      },
       config = function()
         require "plugins/lsp"
       end
     }
-    -- TODO: add lsp install
-    --use {
 
-    --}
     -- completion
     use {
       "hrsh7th/nvim-compe",
@@ -107,13 +107,7 @@ return require("packer").startup(
     use {
       "kyazdani42/nvim-tree.lua",
       config = function()
-        local tree_cb = require "nvim-tree.config".nvim_tree_callback
-        map("n", "<leader>op", ":NvimTreeToggle<cr>", {noremap = true, silent = true})
-        g.nvim_tree_bindings = {
-          {key = {"l"}, cb = tree_cb("edit")},
-          {key = {"h"}, cb = tree_cb("close_node")},
-          {key = {"o"}, cb = tree_cb("cd")}
-        }
+        require "plugins/tree"
       end
     }
 
@@ -138,6 +132,14 @@ return require("packer").startup(
       "mhartington/formatter.nvim",
       config = function()
         require "plugins/formatter"
+      end
+    }
+
+    -- dashboard
+    use {
+      "glepnir/dashboard-nvim",
+      config = function()
+        require("plugins/dashboard")
       end
     }
   end
