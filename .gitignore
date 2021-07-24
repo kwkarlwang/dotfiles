@@ -15,3 +15,5 @@ kubernetes/*/config
 /zsh/.config/zsh/.zcompcache/
 /vim/.config/nvim/*.json
 /karabiner/.config/karabiner/automatic_backups/
+
+vim/.config/nvim/plugin/packer_compiled.lua

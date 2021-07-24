@@ -58,3 +58,22 @@ cmd "set shortmess+=c"
 --------Set splitting-----------
 o.splitbelow = true
 o.splitright = true
+
+--------Netrw mapping-----------
+--cmd [[
+--function! NetrwMapping()
+--nnoremap <buffer>h -^
+--nnoremap <buffer>l <CR>
+
+--nnoremap <buffer>. gh
+--nnoremap <buffer>P <C-w>z
+
+--nnoremap <buffer><silent>q :bw<CR>
+--nnoremap <buffer><silent><esc> :bw<CR>
+--endfunction
+
+--augroup netrw_mapping
+--autocmd!
+--autocmd filetype netrw call NetrwMapping()
+--augroup END
+--]]

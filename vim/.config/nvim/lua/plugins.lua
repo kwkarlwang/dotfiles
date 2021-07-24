@@ -33,7 +33,6 @@ return require("packer").startup(
         require "plugins/lualine"
       end
     }
-
     -- for telescope
     use {
       "nvim-telescope/telescope.nvim",

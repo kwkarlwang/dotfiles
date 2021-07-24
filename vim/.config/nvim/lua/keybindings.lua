@@ -7,7 +7,6 @@ map("v", ">", ">gv", {noremap = true})
 map("i", "jk", "<Esc>", {noremap = true})
 map("c", "<Down>", 'wildmenumode() ? "<C-n>" : "\\<Down>"', {expr = true, noremap = true})
 map("c", "<Up>", 'wildmenumode() ? "<C-p>" : "\\<Up>"', {expr = true, noremap = true})
-map("t", "<Esc>", "<C-\\><C-n>", {noremap = true})
 -- HELP
 map("n", "<leader>hs", ":so %<cr>", {noremap = true, silent = true})
 map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", {noremap = true, silent = true})
@@ -35,3 +34,8 @@ map("n", "<leader>bk", ":bw!<cr>", {noremap = true, silent = true})
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", {noremap = true, silent = true})
+map("t", "<Esc>", "<C-\\><C-n>", {noremap = true})
+map("t", "<C-c>", "<Esc>", {noremap = true, silent = true})
+
+-- File manager
+map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})
