@@ -40,12 +40,6 @@ o.cursorline = true
 -- not working
 cmd "autocmd! BufEnter * set fo-=r fo-=o"
 
---------Theme-----------
-cmd "colorscheme dracula"
-g.dracula_italic = true
-g.dracula_underline = true
-g.dracula_colorterm = true
-
 --------Status line-----------
 cmd "set noshowmode"
 g.ruler = false
@@ -58,6 +52,15 @@ cmd "set shortmess+=c"
 --------Set splitting-----------
 o.splitbelow = true
 o.splitright = true
+
+--------Auto revert-----------
+cmd [[
+     " trigger `autoread` when files changes on disk
+      set autoread
+      autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+    " notification after file change
+      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+]]
 
 --------Netrw mapping-----------
 --cmd [[

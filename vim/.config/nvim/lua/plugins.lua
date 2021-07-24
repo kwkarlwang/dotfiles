@@ -22,7 +22,17 @@ return require("packer").startup(
     }
 
     -- theme
-    use {"kwkarlwang/vim-dracula", as = "dracula"}
+    use {
+      "kwkarlwang/vim-dracula",
+      as = "dracula",
+      config = function()
+        --------Theme-----------
+        cmd "colorscheme dracula"
+        g.dracula_italic = true
+        g.dracula_underline = true
+        g.dracula_colorterm = true
+      end
+    }
 
     -- comment function
     use "preservim/nerdcommenter"
@@ -44,7 +54,7 @@ return require("packer").startup(
         require "plugins/telescope"
       end
     }
-
+    -- make color brackets
     use "p00f/nvim-ts-rainbow"
     --------Tree Sitter-----------
     use {
@@ -54,10 +64,9 @@ return require("packer").startup(
         require "nvim-treesitter.configs".setup {
           ensure_installed = "maintained",
           ignore_install = {"haskell"},
+          indent = {enable = true},
           highlight = {enable = true},
-          rainbow = {
-            enable = false
-          }
+          rainbow = {enable = false}
         }
       end
     }
@@ -67,6 +76,7 @@ return require("packer").startup(
     -- pair brackets
     use {
       "windwp/nvim-autopairs",
+      requires = {"hrsh7th/nvim-compe"},
       config = function()
         require("nvim-autopairs").setup {
           disable_filetype = {}
@@ -74,7 +84,7 @@ return require("packer").startup(
         require("nvim-autopairs.completion.compe").setup(
           {
             map_cr = true, --  map <CR> on insert mode
-            map_complete = true -- it will auto insert `(` after select function or method item
+            map_complete = false -- it will auto insert `(` after select function or method item
           }
         )
       end
@@ -159,6 +169,10 @@ return require("packer").startup(
             let g:VM_maps["Skip Region"] = '<cr>'
         ]]
       end
+    }
+    -- leetcode
+    use {
+      "ianding1/leetcode.vim"
     }
   end
 )
