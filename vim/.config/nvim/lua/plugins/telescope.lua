@@ -5,9 +5,11 @@ require("telescope").setup {
       i = {
         ["<esc>"] = actions.close,
         ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev
+        ["<C-p>"] = actions.cycle_history_prev,
+        ["<C-c>"] = false
       }
-    }
+    },
+    selection_strategy = "reset"
   },
   pickers = {
     buffers = {
@@ -21,7 +23,6 @@ require("telescope").setup {
     },
     find_files = {
       previewer = false,
-      sort_lastused = true,
       theme = "ivy"
     },
     current_buffer_fuzzy_find = {
@@ -47,6 +48,12 @@ require("telescope").setup {
     },
     live_grep = {
       theme = "ivy"
+    }
+  },
+  extensions = {
+    fzy_native = {
+      override_generic_sorter = false,
+      override_file_sorter = true
     }
   }
 }
