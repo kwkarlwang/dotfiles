@@ -14,20 +14,14 @@ map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", {noremap = true, silent = tru
 map("n", "<leader>fs", ":w<cr>", {noremap = true, silent = true})
 
 -- WINDOWS
-map("n", "<leader>ws", ":split<cr>", {noremap = true, silent = true})
-map("n", "<leader>wv", ":vsplit<cr>", {noremap = true, silent = true})
 map("n", "<leader>wd", "<C-w>c", {noremap = true, silent = true})
-map("n", "<leader>w=", "<C-w>=", {noremap = true, silent = true})
 map("n", "<leader>w<", "30<C-w><", {noremap = true, silent = true})
 map("n", "<leader>w>", "30<C-w>>", {noremap = true, silent = true})
 map("n", "<leader>w+", "5<C-w>+", {noremap = true, silent = true})
 map("n", "<leader>w-", "5<C-w>-", {noremap = true, silent = true})
 map("n", "<leader>wm", "<C-w>o", {noremap = true, silent = true})
 
-map("n", "<leader>wh", "<C-w>h", {noremap = true, silent = true})
-map("n", "<leader>wj", "<C-w>j", {noremap = true, silent = true})
-map("n", "<leader>wk", "<C-w>k", {noremap = true, silent = true})
-map("n", "<leader>wl", "<C-w>l", {noremap = true, silent = true})
+map("n", "<leader>w", "<C-w>", {noremap = true, silent = true})
 
 -- buffer
 map("n", "<leader>bk", ":bw!<cr>", {noremap = true, silent = true})
@@ -39,3 +33,7 @@ map("t", "<C-c>", "<Esc>", {noremap = true, silent = true})
 
 -- File manager
 map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})
+
+-- search result appear in the middle of screen
+map("n", "n", "nzz", {noremap = true, silent = true})
+map("n", "N", "Nzz", {noremap = true, silent = true})

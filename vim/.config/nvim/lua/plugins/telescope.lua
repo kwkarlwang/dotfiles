@@ -1,6 +1,15 @@
 local actions = require("telescope.actions")
 require("telescope").setup {
   defaults = {
+    find_command = {
+      "rg",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden"
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -9,7 +18,8 @@ require("telescope").setup {
         ["<C-c>"] = false
       }
     },
-    selection_strategy = "reset"
+    selection_strategy = "reset",
+    file_ignore_patterns = {"node_modules", ".git"}
   },
   pickers = {
     buffers = {
@@ -28,6 +38,7 @@ require("telescope").setup {
     current_buffer_fuzzy_find = {
       theme = "ivy"
     },
+    -- TODO: can revise to looklike counsel
     file_browser = {
       theme = "ivy"
     },
@@ -57,15 +68,20 @@ require("telescope").setup {
     }
   }
 }
+
 local opts = {noremap = true, silent = true}
-map("n", "<leader><space>", "<cmd>Telescope find_files hidden=true<cr>", opts)
+map("n", "<leader><space>", "<cmd>Telescope find_files<cr>", opts)
 map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", opts)
 map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 map("n", "<leader>,", "<cmd>Telescope buffers<cr>", opts)
 map("n", "<M-x>", "<cmd>Telescope commands<cr>", opts)
 map("n", "<leader>:", "<cmd>Telescope commands<cr>", opts)
-map("n", "<leader>.", "<cmd>Telescope file_browser<cr>", opts)
+-- index into current directory
+--map("n", "<leader>.", "<cmd>Telescope file_browser<cr>", opts)
+map("n", "<leader>.", ":lua require('telescope.builtin').file_browser({cwd=vim.fn.expand('%:p:h')})<cr>", opts)
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", opts)
 map("n", "gD", "<Cmd>Telescope lsp_references<CR>", opts)
 map("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", opts)
+
+require("telescope").load_extension("fzy_native")

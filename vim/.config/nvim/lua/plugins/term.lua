@@ -23,3 +23,4 @@ require("toggleterm").setup {
   --}
   --}
 }
+map("n", "<leader>ot", ":ToggleTerm<cr>", {noremap = true, silent = true})

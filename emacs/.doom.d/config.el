@@ -305,7 +305,7 @@
 
 (after! org
   ;;adjust the scale of latex preview
-  (plist-put org-format-latex-options :scale 1.1)
+  (plist-put org-format-latex-options :scale 1.7)
   ;; higher resolution preview
   (setq org-preview-latex-default-process 'dvisvgm)
 

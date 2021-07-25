@@ -48,7 +48,8 @@ return require("packer").startup(
       "nvim-telescope/telescope.nvim",
       requires = {
         {"nvim-lua/popup.nvim"},
-        {"nvim-lua/plenary.nvim"}
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-telescope/telescope-fzy-native.nvim"}
       },
       config = function()
         require "plugins/telescope"
@@ -64,7 +65,7 @@ return require("packer").startup(
         require "nvim-treesitter.configs".setup {
           ensure_installed = "maintained",
           ignore_install = {"haskell"},
-          indent = {enable = true},
+          indent = {enable = false},
           highlight = {enable = true},
           rainbow = {enable = false}
         }
@@ -172,7 +173,12 @@ return require("packer").startup(
     }
     -- leetcode
     use {
-      "ianding1/leetcode.vim"
+      "ianding1/leetcode.vim",
+      config = function()
+        g.leetcode_browser = "chrome"
+        g.leetcode_hide_paid_only = 1
+        g.leetcode_solution_filetype = "python3"
+      end
     }
   end
 )
