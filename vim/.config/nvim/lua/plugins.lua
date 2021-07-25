@@ -35,15 +35,37 @@ return require("packer").startup(
     }
 
     -- comment function
-    use "preservim/nerdcommenter"
     use {
-      "hoob3rt/lualine.nvim",
-      requires = {"kyazdani42/nvim-web-devicons", opt = true},
+      "b3nj5m1n/kommentary",
       config = function()
-        require "plugins/lualine"
+        g.kommentary_create_default_mappings = false
+        map("n", "<leader>c<leader>", "<Plug>kommentary_line_default", {})
+        map("v", "<leader>c<leader>", "<Plug>kommentary_visual_default o<Esc>", {})
+        require("kommentary.config").configure_language(
+          "default",
+          {
+            prefer_single_line_comments = true
+          }
+        )
       end
     }
+    use "kyazdani42/nvim-web-devicons"
+    -- line
+    use {
+      "glepnir/galaxyline.nvim",
+      config = function()
+        require("plugins/galaxyline")
+      end
+    }
+    -- use {
+    --   "hoob3rt/lualine.nvim",
+    --   requires = {"kyazdani42/nvim-web-devicons", opt = true},
+    --   config = function()
+    --     require "plugins/lualine"
+    --   end
+    -- }
     -- for telescope
+
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -67,7 +89,16 @@ return require("packer").startup(
           ignore_install = {"haskell"},
           indent = {enable = false},
           highlight = {enable = true},
-          rainbow = {enable = false}
+          rainbow = {
+            enable = true,
+            extended_modes = false,
+            colors = {
+              "#88f298",
+              "#f199ce",
+              "#f8f8f2",
+              "#acebfb"
+            }
+          }
         }
       end
     }
@@ -81,12 +112,6 @@ return require("packer").startup(
         require("nvim-autopairs").setup {
           disable_filetype = {}
         }
-        require("nvim-autopairs.completion.compe").setup(
-          {
-            map_cr = true, --  map <CR> on insert mode
-            map_complete = false -- it will auto insert `(` after select function or method item
-          }
-        )
       end
     }
 
