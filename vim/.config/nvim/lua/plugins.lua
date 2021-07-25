@@ -77,7 +77,6 @@ return require("packer").startup(
     -- pair brackets
     use {
       "windwp/nvim-autopairs",
-      requires = {"hrsh7th/nvim-compe"},
       config = function()
         require("nvim-autopairs").setup {
           disable_filetype = {}

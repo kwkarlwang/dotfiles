@@ -18,7 +18,6 @@ require("telescope").setup {
         ["<C-c>"] = false
       }
     },
-    selection_strategy = "reset",
     file_ignore_patterns = {"node_modules", ".git"}
   },
   pickers = {
@@ -59,6 +58,9 @@ require("telescope").setup {
     },
     live_grep = {
       theme = "ivy"
+    },
+    grep_string = {
+      theme = "ivy"
     }
   },
   extensions = {
@@ -70,7 +72,7 @@ require("telescope").setup {
 }
 
 local opts = {noremap = true, silent = true}
-map("n", "<leader><space>", "<cmd>Telescope find_files<cr>", opts)
+map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", opts)
 map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", opts)
 map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
