@@ -93,7 +93,10 @@ return require("packer").startup(
 
     -- git
     use {
-      "tpope/vim-fugitive"
+      "tpope/vim-fugitive",
+      config = function()
+        map("n", "<leader>gp", ":Git push", {noremap = true})
+      end
     }
 
     use {
