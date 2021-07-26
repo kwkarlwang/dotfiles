@@ -17,3 +17,4 @@ kubernetes/*/config
 /karabiner/.config/karabiner/automatic_backups/
 
 vim/.config/nvim/plugin/packer_compiled.lua
+.zim

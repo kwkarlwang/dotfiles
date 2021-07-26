@@ -131,7 +131,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Alias
 # ------------------------------
 
-alias szsh="source $ZDOTDIR/.zshrc"
+alias szsh="source $HOME/.zshrc"
 alias vim="nvim"
 alias mas="cd ~/Desktop/Master/"
 alias k="kubectl"
