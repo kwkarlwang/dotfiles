@@ -42,6 +42,7 @@ local function setup_servers()
       flags = {
         debounce_text_changes = 150
       },
+      -- make the lsp start at cwd instead of git dir
       root_dir = function()
         return vim.loop.cwd()
       end

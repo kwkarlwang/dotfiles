@@ -12,7 +12,7 @@ o.autoindent = true
 o.incsearch = true
 o.hlsearch = true
 o.backspace = "indent,eol,start"
-o.showcmd = true
+o.showcmd = false
 o.tabstop = 4
 o.softtabstop = 4
 o.shiftwidth = 4
@@ -29,10 +29,7 @@ cmd "set nobackup"
 cmd "set undodir=~/.vim/undodir"
 o.undofile = true
 
---o.signcolumn = 'yes'
---o.colorcolumn = 110
 cmd "set signcolumn=yes"
---cmd 'set colorcolumn=110'
 
 o.clipboard = "unnamedplus"
 o.cursorline = true
@@ -41,10 +38,9 @@ o.cursorline = true
 cmd "autocmd! BufEnter * set fo-=r fo-=o"
 
 --------Status line-----------
-cmd "set noshowmode"
+o.showmode = false
 g.ruler = false
 g.laststatus = 0
-cmd "set noshowcmd"
 
 --------Disable 'pattern not found'-----------
 cmd "set shortmess+=c"
@@ -54,9 +50,9 @@ o.splitbelow = true
 o.splitright = true
 
 --------Auto revert-----------
+o.autoread = true
 cmd [[
      " trigger `autoread` when files changes on disk
-      set autoread
       autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
     " notification after file change
       autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None

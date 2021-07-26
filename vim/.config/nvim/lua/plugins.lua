@@ -216,5 +216,10 @@ return require("packer").startup(
         g.leetcode_solution_filetype = "python3"
       end
     }
+
+    -- automatic adjust indentation
+    use {
+      "tpope/vim-sleuth"
+    }
   end
 )
