@@ -37,12 +37,27 @@ local function setup_servers()
   require "lspinstall".setup()
   local servers = require "lspinstall".installed_servers()
   for _, server in pairs(servers) do
-    require "lspconfig"[server].setup {
+    local config = {
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150
-      }
+      },
+      root_dir = function()
+        return vim.loop.cwd()
+      end
     }
+    -- if server == "python" then
+    --   config["settings"] = {
+    --     python = {
+    --       analysis = {
+    --         autoSearchPaths = false,
+    --         useLibraryCodeForTypes = true,
+    --         diagnosticMode = "workspace"
+    --       }
+    --     }
+    --   }
+    -- end
+    require "lspconfig"[server].setup(config)
   end
 end
 
