@@ -1,17 +1,9 @@
 local actions = require("telescope.actions")
 require("telescope").setup {
   defaults = {
-    find_command = {
-      "rg",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--hidden"
-    },
     vimgrep_arguments = {
       "rg",
+      "--color=never",
       "--no-heading",
       "--with-filename",
       "--line-number",
@@ -27,8 +19,7 @@ require("telescope").setup {
         ["<C-c>"] = false
       }
     },
-    file_ignore_patterns = {"node_modules", ".git"},
-    hidden = true
+    file_ignore_patterns = {"node_modules", ".git"}
   },
   pickers = {
     buffers = {
@@ -42,10 +33,22 @@ require("telescope").setup {
     },
     find_files = {
       previewer = false,
-      theme = "ivy"
+      theme = "ivy",
+      hidden = true
     },
     current_buffer_fuzzy_find = {
-      theme = "ivy"
+      theme = "ivy",
+      vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+        "--hidden",
+        "--fixed-strings"
+      }
     },
     -- TODO: can revise to looklike counsel
     file_browser = {
@@ -77,18 +80,21 @@ require("telescope").setup {
 }
 
 local opts = {noremap = true, silent = true}
-map("n", "<leader><leader>", "<cmd>Telescope find_files hidden=true<cr>", opts)
-map("n", "<leader>sp", "<cmd>Telescope live_grep hidden=true<cr>", opts)
+map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", opts)
+map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", opts)
 map("n", "<leader>sp", "<cmd>Telescope live_grep hidden=true<cr>", opts)
 map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+
+map("n", "<leader>hh", "<cmd>Telescope help_tags<cr>", opts)
+
 map("n", "<leader>,", "<cmd>Telescope buffers<cr>", opts)
+
 map("n", "<M-x>", "<cmd>Telescope commands<cr>", opts)
 map("n", "<leader>:", "<cmd>Telescope commands<cr>", opts)
 -- index into current directory
---map("n", "<leader>.", "<cmd>Telescope file_browser<cr>", opts)
 map("n", "<leader>.", ":lua require('telescope.builtin').file_browser({cwd=vim.fn.expand('%:p:h')})<cr>", opts)
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", opts)
+
 map("n", "gD", "<Cmd>Telescope lsp_references<CR>", opts)
 map("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", opts)
 
