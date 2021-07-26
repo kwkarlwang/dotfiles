@@ -100,7 +100,9 @@ source ${ZIM_HOME}/init.zsh
 # ------------------------------
 # Post-init module configuration
 # ------------------------------
+eval "$(starship init zsh)"
 
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
 #
 # zsh-history-substring-search
 #
@@ -145,7 +147,7 @@ alias icat="kitty +kitten icat"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 # For HomeBrew
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
 #export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/Cellar/libpng/1.6.37/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig:/usr/local/Cellar/libffi/3.3_3/lib/pkgconfig:/usr/local/Cellar/poppler/21.07.0/lib/pkgconfig:$PKG_CONFIG_PATH"
 export EDITOR=nvim
 export PAGER=nvimpager
@@ -171,3 +173,4 @@ export PAGER=nvimpager
 #fi
 #unset __conda_setup
 # <<< conda initialize <<<
+

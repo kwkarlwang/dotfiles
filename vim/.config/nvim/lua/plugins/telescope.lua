@@ -95,7 +95,7 @@ map("n", "<leader>:", "<cmd>Telescope commands<cr>", opts)
 map("n", "<leader>.", ":lua require('telescope.builtin').file_browser({cwd=vim.fn.expand('%:p:h')})<cr>", opts)
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", opts)
 
-map("n", "gD", "<Cmd>Telescope lsp_references<CR>", opts)
 map("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", opts)
+map("n", "gD", "<Cmd>Telescope lsp_references<CR>", opts)
 
 require("telescope").load_extension("fzy_native")

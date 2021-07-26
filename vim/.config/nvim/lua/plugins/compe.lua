@@ -34,10 +34,3 @@ require "compe".setup {
 }
 
 map("i", "<CR>", "compe#confirm({ 'keys': '<CR>' })", {expr = true, silent = true})
-
-require("nvim-autopairs.completion.compe").setup(
-  {
-    map_cr = true, --  map <CR> on insert mode
-    map_complete = false -- it will auto insert `(` after select function or method item
-  }
-)
