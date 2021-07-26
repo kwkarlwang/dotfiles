@@ -51,19 +51,20 @@ return require("packer").startup(
     }
     use "kyazdani42/nvim-web-devicons"
     -- line
-    use {
-      "glepnir/galaxyline.nvim",
-      config = function()
-        require("plugins/galaxyline")
-      end
-    }
     -- use {
-    --   "hoob3rt/lualine.nvim",
-    --   requires = {"kyazdani42/nvim-web-devicons", opt = true},
+    --   "glepnir/galaxyline.nvim",
     --   config = function()
-    --     require "plugins/lualine"
+    --     require("plugins/galaxyline")
     --   end
     -- }
+
+    use {
+      "hoob3rt/lualine.nvim",
+      requires = {"kyazdani42/nvim-web-devicons", opt = true},
+      config = function()
+        require "plugins/lualine"
+      end
+    }
     -- for telescope
 
     use {
@@ -82,6 +83,7 @@ return require("packer").startup(
     --------Tree Sitter-----------
     use {
       "nvim-treesitter/nvim-treesitter",
+      branch = "0.5-compat",
       run = ":TSUpdate",
       config = function()
         require "nvim-treesitter.configs".setup {
@@ -110,7 +112,7 @@ return require("packer").startup(
       "windwp/nvim-autopairs",
       config = function()
         require("nvim-autopairs").setup {
-          disable_filetype = {}
+          disable_filetype = {"TelescopePrompt"}
         }
       end
     }
@@ -128,7 +130,7 @@ return require("packer").startup(
       requires = "nvim-lua/plenary.nvim",
       config = function()
         require("neogit").setup {}
-        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true})
+        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true, silent = true})
       end
     }
 
@@ -160,7 +162,7 @@ return require("packer").startup(
     use {
       "airblade/vim-rooter",
       config = function()
-        g.rooter_manual_only = 1
+        g.rooter_manual_only = 0
       end
     }
 

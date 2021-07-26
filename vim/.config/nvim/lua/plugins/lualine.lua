@@ -1,36 +1,3 @@
---require'lualine'.setup {
---options = {
---icons_enabled = true,
---theme = 'dracula',
---component_separators = {'', ''},
---section_separators = {'', ''},
---disabled_filetypes = {}
---},
---sections = {
-----lualine_a = {'mode'},
---lualine_a = {},
---lualine_b = {'branch'},
---lualine_c = {'filename'},
-----lualine_x = {'encoding', 'fileformat', 'filetype'},
---lualine_x = {'filetype'},
---lualine_y = {'progress'},
-----lualine_z = {'location'}
---lualine_z = {}
---},
---inactive_sections = {
---lualine_a = {},
---lualine_b = {},
---lualine_c = {'filename'},
---lualine_x = {'location'},
---lualine_y = {},
---lualine_z = {}
---},
---tabline = {},
---extensions = {}
---}
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local lualine = require "lualine"
 
 -- Color table for highlights
@@ -100,11 +67,13 @@ local config = {
 -- Inserts a component in lualine_c at left section
 local function ins_left(component)
   table.insert(config.sections.lualine_c, component)
+  table.insert(config.inactive_sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x ot right section
 local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
+  table.insert(config.inactive_sections.lualine_x, component)
 end
 
 ins_left {
@@ -120,13 +89,13 @@ ins_left {
   function()
     -- auto change color according to neovims mode
     local mode_color = {
-      n = colors.red,
-      i = colors.green,
-      v = colors.blue,
-      [""] = colors.blue,
-      V = colors.blue,
-      c = colors.magenta,
-      no = colors.red,
+      n = colors.green,
+      i = colors.magenta,
+      v = colors.yellow,
+      [""] = colors.yellow,
+      V = colors.yellow,
+      c = colors.red,
+      no = colors.magenta,
       s = colors.orange,
       S = colors.orange,
       [""] = colors.orange,
@@ -176,7 +145,7 @@ ins_left {
 ins_left {
   "filename",
   condition = conditions.buffer_not_empty,
-  color = {fg = colors.magenta, gui = "bold"}
+  color = {fg = colors.yellow, gui = "bold"}
 }
 
 ins_left {"location"}
@@ -203,7 +172,7 @@ ins_left {
 ins_right {
   -- Lsp server name .
   function()
-    local msg = "No Active Lsp"
+    local msg = ""
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
     local clients = vim.lsp.get_active_clients()
     if next(clients) == nil then
@@ -212,13 +181,12 @@ ins_right {
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
+        return " LSP:" .. client.name
       end
     end
     return msg
   end,
-  icon = " LSP:",
-  color = {fg = "#ffffff", gui = "bold"}
+  color = {fg = colors.fg, gui = "bold"}
 }
 
 -- Add components to right sections

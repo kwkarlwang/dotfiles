@@ -40,7 +40,7 @@ gls.left[2] = {
         i = colors.magenta,
         v = colors.yellow,
         [""] = colors.yellow,
-        V = colors.blue,
+        V = colors.yellow,
         c = colors.red,
         no = colors.magenta,
         s = colors.orange,
@@ -173,14 +173,6 @@ gls.right[2] = {
     highlight = {colors.green, colors.bg, "bold"}
   }
 }
-
-local checkwidth = function()
-  local squeeze_width = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
 
 gls.right[3] = {
   DiffAdd = {

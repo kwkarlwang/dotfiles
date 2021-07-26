@@ -10,6 +10,15 @@ require("telescope").setup {
       "--smart-case",
       "--hidden"
     },
+    vimgrep_arguments = {
+      "rg",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden"
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -18,7 +27,8 @@ require("telescope").setup {
         ["<C-c>"] = false
       }
     },
-    file_ignore_patterns = {"node_modules", ".git"}
+    file_ignore_patterns = {"node_modules", ".git"},
+    hidden = true
   },
   pickers = {
     buffers = {
@@ -56,12 +66,7 @@ require("telescope").setup {
     help_tags = {
       theme = "ivy"
     },
-    live_grep = {
-      theme = "ivy"
-    },
-    grep_string = {
-      theme = "ivy"
-    }
+    live_grep = {}
   },
   extensions = {
     fzy_native = {
@@ -72,8 +77,9 @@ require("telescope").setup {
 }
 
 local opts = {noremap = true, silent = true}
-map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", opts)
-map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "<leader><leader>", "<cmd>Telescope find_files hidden=true<cr>", opts)
+map("n", "<leader>sp", "<cmd>Telescope live_grep hidden=true<cr>", opts)
+map("n", "<leader>sp", "<cmd>Telescope live_grep hidden=true<cr>", opts)
 map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 map("n", "<leader>,", "<cmd>Telescope buffers<cr>", opts)
