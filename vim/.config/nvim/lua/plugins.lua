@@ -169,7 +169,7 @@ return require("packer").startup(
     use {
       "airblade/vim-rooter",
       config = function()
-        g.rooter_manual_only = 0
+        g.rooter_manual_only = 1
       end
     }
 
