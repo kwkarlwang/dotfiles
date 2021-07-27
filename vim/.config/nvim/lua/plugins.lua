@@ -79,7 +79,10 @@ return require("packer").startup(
       end
     }
     -- make color brackets
-    use "p00f/nvim-ts-rainbow"
+    use {
+      "p00f/nvim-ts-rainbow",
+      after = "nvim-treesitter"
+    }
     --------Tree Sitter-----------
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -193,8 +196,10 @@ return require("packer").startup(
     use {
       "mg979/vim-visual-multi",
       config = function()
+        g.VM_silent_exit = 1
+        g.VM_show_warnings = 0
+        g.VM_default_mappings = 0
         cmd [[
-            let g:VM_default_mappings = 0
             let g:VM_maps = {}
             let g:VM_maps['Find Under'] = '<M-d>'
             let g:VM_maps['Find Subword Under'] = '<M-d>'
@@ -218,8 +223,6 @@ return require("packer").startup(
     }
 
     -- automatic adjust indentation
-    use {
-      "tpope/vim-sleuth"
-    }
+    use "tpope/vim-sleuth"
   end
 )

@@ -24,8 +24,10 @@ o.hidden = true
 o.smartcase = true
 o.ignorecase = true
 
-cmd "set noswapfile"
-cmd "set nobackup"
+o.swapfile = false
+o.backup = false
+-- cmd "set noswapfile"
+-- cmd "set nobackup"
 cmd "set undodir=~/.vim/undodir"
 o.undofile = true
 
