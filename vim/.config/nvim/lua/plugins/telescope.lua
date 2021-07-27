@@ -92,7 +92,7 @@ map("n", "<leader>,", "<cmd>Telescope buffers<cr>", opts)
 map("n", "<M-x>", "<cmd>Telescope commands<cr>", opts)
 map("n", "<leader>:", "<cmd>Telescope commands<cr>", opts)
 -- index into current directory
-map("n", "<leader>.", ":lua require('telescope.builtin').file_browser({cwd=vim.fn.expand('%:p:h')})<cr>", opts)
+-- map("n", "<leader>.", ":lua require('telescope.builtin').file_browser({cwd=vim.fn.expand('%:p:h')})<cr>", opts)
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", opts)
 
 map("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", opts)

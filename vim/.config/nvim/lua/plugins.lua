@@ -100,8 +100,9 @@ return require("packer").startup(
             colors = {
               "#88f298",
               "#f199ce",
-              "#f8f8f2",
-              "#acebfb"
+              "#a3c4ef",
+              "#acebfb",
+              "#ee766d"
             }
           }
         }
@@ -205,11 +206,11 @@ return require("packer").startup(
             let g:VM_maps['Find Under'] = '<M-d>'
             let g:VM_maps['Find Subword Under'] = '<M-d>'
             let g:VM_maps['Select All'] = '<C-M-d>'
-            let g:VM_maps['Find Next'] = 'n'
-            let g:VM_maps['Find Prev'] = 'N'
+            let g:VM_maps['Seek Next'] = 'n'
+            let g:VM_maps['Seek Prev'] = 'N'
             let g:VM_maps["Undo"] = 'u'
             let g:VM_maps["Redo"] = '<C-r>'
-            let g:VM_maps["Skip Region"] = '<cr>'
+            let g:VM_maps["Remove Region"] = '<cr>'
         ]]
       end
     }
@@ -225,5 +226,25 @@ return require("packer").startup(
 
     -- automatic adjust indentation
     use "tpope/vim-sleuth"
+
+    -- maximize window
+    use {
+      "szw/vim-maximizer",
+      config = function()
+        map("n", "<leader>wo", ":MaximizerToggle!<cr>", {noremap = true, silent = true})
+      end
+    }
+
+    -- ranger
+    use {
+      "kevinhwang91/rnvimr",
+      config = function()
+        map("n", "<leader>.", ":RnvimrToggle<cr>", {noremap = true, silent = true})
+        g.rnvimr_enable_ex = 1
+        g.rnvimr_enable_picker = 1
+        g.rnvimr_enable_bw = 1
+        cmd "let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]"
+      end
+    }
   end
 )

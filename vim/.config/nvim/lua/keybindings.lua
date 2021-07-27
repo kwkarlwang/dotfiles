@@ -1,39 +1,50 @@
+local opts = {noremap = true, silent = true}
 --------Mappings-----------
-map("n", "j", "gj", {noremap = true})
-map("n", "k", "gk", {noremap = true})
-map("n", "<Esc>", ":noh<cr>:echo ''<cr>", {noremap = true, silent = true})
-map("v", "<", "<gv", {noremap = true})
-map("v", ">", ">gv", {noremap = true})
-map("i", "jk", "<Esc>", {noremap = true})
-map("c", "<Down>", 'wildmenumode() ? "<C-n>" : "\\<Down>"', {expr = true, noremap = true})
-map("c", "<Up>", 'wildmenumode() ? "<C-p>" : "\\<Up>"', {expr = true, noremap = true})
+map("n", "j", "gj", opts)
+map("n", "k", "gk", opts)
+map("n", "<Esc>", ":noh<cr>:echo ''<cr>", opts)
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
+map("i", "jk", "<Esc>", opts)
+map("c", "<Down>", 'wildmenumode() ? "<C-n>" : "\\<Down>"', opts)
+map("c", "<Up>", 'wildmenumode() ? "<C-p>" : "\\<Up>"', opts)
 -- HELP
-map("n", "<leader>hs", ":so %<cr>", {noremap = true, silent = true})
-map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", {noremap = true, silent = true})
+map("n", "<leader>hs", ":so %<cr>", opts)
+map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", opts)
 -- FILE
-map("n", "<leader>fs", ":w<cr>", {noremap = true, silent = true})
+map("n", "<leader>fs", ":silent w<cr>", opts)
 
 -- WINDOWS
-map("n", "<leader>wd", "<C-w>c", {noremap = true, silent = true})
-map("n", "<leader>w<", "30<C-w><", {noremap = true, silent = true})
-map("n", "<leader>w>", "30<C-w>>", {noremap = true, silent = true})
-map("n", "<leader>w+", "5<C-w>+", {noremap = true, silent = true})
-map("n", "<leader>w-", "5<C-w>-", {noremap = true, silent = true})
-map("n", "<leader>wm", "<C-w>o", {noremap = true, silent = true})
+map("n", "<leader>wd", "<C-w>c", opts)
+map("n", "<leader>w<", "30<C-w><", opts)
+map("n", "<leader>w>", "30<C-w>>", opts)
+map("n", "<leader>w+", "10<C-w>+", opts)
+map("n", "<leader>w-", "10<C-w>-", opts)
 
-map("n", "<leader>w", "<C-w>", {noremap = true, silent = true})
+map("n", "<leader>w", "<C-w>", opts)
+map("n", "<leader>wm", ":tabnew %<cr>", opts)
 
 -- buffer
-map("n", "<leader>bk", ":bw!<cr>", {noremap = true, silent = true})
+map("n", "<leader>bk", ":bw!<cr>", opts)
 
 -- terminal
-map("n", "<leader>oT", ":terminal<cr>", {noremap = true, silent = true})
-map("t", "<Esc>", "<C-\\><C-n>", {noremap = true})
-map("t", "<C-c>", "<Esc>", {noremap = true, silent = true})
+map("n", "<leader>oT", ":terminal<cr>", opts)
+map("t", "<Esc>", "<C-\\><C-n>", opts)
+map("t", "<Esc><Esc>", "<Esc>", opts)
+map("t", "<C-c>", "<Esc>", opts)
+map("t", "<M-c>", "<C-c>", opts)
 
 -- File manager
-map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})
+-- map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})
 
 -- search result appear in the middle of screen
-map("n", "n", "nzz", {noremap = true, silent = true})
-map("n", "N", "Nzz", {noremap = true, silent = true})
+map("n", "n", "nzz", opts)
+map("n", "N", "Nzz", opts)
+
+-- move line up and down
+map("i", "<M-Down>", "<Esc>:m .+1<cr>gi", opts)
+map("i", "<M-Up>", "<Esc>:m .-2<cr>gi", opts)
+map("n", "<M-Down>", ":m .+1<cr>", opts)
+map("n", "<M-Up>", ":m .-2<cr>", opts)
+map("v", "<M-Down>", ":m '>+1<cr>gv-gv", opts)
+map("v", "<M-Up>", ":m '<-2<cr>gv-gv", opts)

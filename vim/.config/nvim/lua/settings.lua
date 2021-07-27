@@ -60,6 +60,10 @@ cmd [[
       autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]]
 
+
+--------Terminal-----------
+cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
+
 --------Netrw mapping-----------
 --cmd [[
 --function! NetrwMapping()
