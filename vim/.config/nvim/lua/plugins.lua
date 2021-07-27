@@ -131,18 +131,19 @@ return require("packer").startup(
     use {
       "tpope/vim-fugitive",
       config = function()
+        map("n", "<leader>gg", ":Git<cr>", {noremap = true, silent = true})
         map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
       end
     }
 
-    use {
-      "TimUntersberger/neogit",
-      requires = "nvim-lua/plenary.nvim",
-      config = function()
-        require("neogit").setup {}
-        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true, silent = true})
-      end
-    }
+    -- use {
+    --   "TimUntersberger/neogit",
+    --   requires = "nvim-lua/plenary.nvim",
+    --   config = function()
+    --     require("neogit").setup {}
+    --     map("n", "<leader>gg", ":Neogit<cr>", {noremap = true, silent = true})
+    --   end
+    -- }
 
     -- terminal
     use {
