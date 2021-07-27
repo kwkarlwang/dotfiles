@@ -427,7 +427,7 @@ Org settings. Make sure the latex preview is high definition SVG
   (plist-put org-format-latex-options :scale 1.7)
   ;; higher resolution preview
   (setq org-preview-latex-default-process 'dvisvgm)
-
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
   ;; markdown export
   ;; (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
   (map!
@@ -435,6 +435,8 @@ Org settings. Make sure the latex preview is high definition SVG
    :localleader
    :desc "Latex preview" "m" #'org-latex-preview))
 #+end_src
+
+#+RESULTS:
 
 ** Latex
 Setting latex. Make <return> as latex preview

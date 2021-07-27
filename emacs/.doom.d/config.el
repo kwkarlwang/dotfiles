@@ -308,7 +308,7 @@
   (plist-put org-format-latex-options :scale 1.7)
   ;; higher resolution preview
   (setq org-preview-latex-default-process 'dvisvgm)
-
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
   ;; markdown export
   ;; (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
   (map!
