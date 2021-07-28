@@ -115,6 +115,35 @@ if (( $+commands[exa])); then
   alias la='exa -lba --icons'
   alias lt='exa --icons --tree --level=2'
   alias lta='exa -a --icons --tree --level=2'
+else
+  case "$(uname -s)" in
+
+     Darwin)
+       # echo 'Mac OS X'
+      alias ls='ls -1 -G'
+      alias lsa='ls -1a -G'
+      alias l='ls -lb -G'
+      alias la='ls -lba -G'
+      alias lt='tree -L 2'
+      alias lta='tree -La 2'
+       ;;
+
+     Linux)
+      alias ls='ls -1 --color=auto'
+      alias lsa='ls -1a --color=auto'
+      alias l='ls -lb --color=auto'
+      alias la='ls -lba --color=auto'
+      alias lt='tree -L 2'
+      alias lta='tree -La 2'
+       ;;
+
+     CYGWIN*|MINGW32*|MSYS*|MINGW*)
+       # echo 'MS Windows'
+       ;;
+     *)
+       # echo 'Other OS' 
+       ;;
+  esac
 fi
 # ------------------------------
 # Export

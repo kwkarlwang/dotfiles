@@ -14,36 +14,43 @@ if [ "$TERM" = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
 fi
 alias icat="kitty +kitten icat"
-
+alias lg="lazygit"
 # general use
-alias ls='exa'  # ls
-alias lsa='exa'  # ls
-alias l='exa -lbF --git' # list, size, type, git
-alias ll='exa -lbGF --git' # long list
-alias llm='exa -lbGd --git --sort=modified' # long list, modified date sort
-alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 
-# specialty views
-alias lS='exa -1'   # one column, just names
-alias lSa='exa -1 --all'   # one column, just names
-alias lt='exa --tree --level=2'                                       
+if (( $+commands[exa])); then
+  alias ls='exa -1 --icons'
+  alias lsa='exa -1a --icons'
+  alias l='exa -lb --icons'
+  alias la='exa -lba --icons'
+  alias lt='exa --icons --tree --level=2'
+  alias lta='exa -a --icons --tree --level=2'
+else
+  case "$(uname -s)" in
 
-# case "$(uname -s)" in
+     Darwin)
+       # echo 'Mac OS X'
+      alias ls='ls -1 -G'
+      alias lsa='ls -1a -G'
+      alias l='ls -lb -G'
+      alias la='ls -lba -G'
+      alias lt='tree -L 2'
+      alias lta='tree -La 2'
+       ;;
 
-#    Darwin)
-#      # echo 'Mac OS X'
-# 	alias ls='ls -G'
-#      ;;
+     Linux)
+      alias ls='ls -1 --color=auto'
+      alias lsa='ls -1a --color=auto'
+      alias l='ls -lb --color=auto'
+      alias la='ls -lba --color=auto'
+      alias lt='tree -L 2'
+      alias lta='tree -La 2'
+       ;;
 
-#    Linux)
-# 	alias ls='ls --color=auto'
-#      ;;
-
-#    CYGWIN*|MINGW32*|MSYS*|MINGW*)
-#      # echo 'MS Windows'
-#      ;;
-#    *)
-#      # echo 'Other OS' 
-#      ;;
-# esac
+     CYGWIN*|MINGW32*|MSYS*|MINGW*)
+       # echo 'MS Windows'
+       ;;
+     *)
+       # echo 'Other OS' 
+       ;;
+  esac
+fi
