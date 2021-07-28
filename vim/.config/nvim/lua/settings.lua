@@ -5,7 +5,8 @@ g.mapleader = " "
 o.mouse = "a"
 o.number = true
 o.relativenumber = true
-o.scrolloff = 3
+o.scrolloff = 8
+o.sidescrolloff = 8
 o.background = "dark"
 o.termguicolors = true
 o.autoindent = true
@@ -26,17 +27,21 @@ o.ignorecase = true
 
 o.swapfile = false
 o.backup = false
--- cmd "set noswapfile"
--- cmd "set nobackup"
-cmd "set undodir=~/.vim/undodir"
+o.completeopt = "menuone,noselect"
+-- cmd "set undodir=~/.vim/undodir"
+o.undodir = "~/.vim/undodir"
 o.undofile = true
 
-cmd "set signcolumn=yes"
+o.signcolumn = "yes"
 
 o.clipboard = "unnamedplus"
 o.cursorline = true
 
--- not working
+o.signcolumn = "yes"
+o.numberwidth = 2
+o.wrap = false
+o.spell = false
+
 cmd "autocmd! BufEnter * set fo-=r fo-=o"
 
 --------Status line-----------
@@ -65,6 +70,12 @@ cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
 
 --------Auto Resize-----------
 cmd "autocmd VimResized * wincmd ="
+
+--------Menu Height-----------
+o.pumheight = 10
+
+--------Keyboard waiting time-----------
+o.timeoutlen = 300
 --------Netrw mapping-----------
 --cmd [[
 --function! NetrwMapping()
