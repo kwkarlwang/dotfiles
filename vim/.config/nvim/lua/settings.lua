@@ -9,7 +9,6 @@ o.scrolloff = 8
 o.sidescrolloff = 8
 o.background = "dark"
 o.termguicolors = true
-o.autoindent = true
 o.incsearch = true
 o.hlsearch = true
 o.backspace = "indent,eol,start"
@@ -50,7 +49,7 @@ g.ruler = false
 g.laststatus = 0
 
 --------Disable 'pattern not found'-----------
-cmd "set shortmess+=c"
+o.shortmess:append "c"
 
 --------Set splitting-----------
 o.splitbelow = true

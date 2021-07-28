@@ -19,7 +19,6 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -89,6 +88,8 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
+# use vim
+bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
@@ -96,6 +97,7 @@ ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
 # ------------------------------
 # Alias
 # ------------------------------
+
 
 alias szsh="source $HOME/.zshrc"
 alias vim="nvim"
@@ -145,6 +147,11 @@ else
        ;;
   esac
 fi
+
+# ------------------------------
+# Keybindings
+# ------------------------------
+bindkey -s '^o' 'ranger^M'
 # ------------------------------
 # Export
 # ------------------------------

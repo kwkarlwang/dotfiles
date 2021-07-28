@@ -56,5 +56,4 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit

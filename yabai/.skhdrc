@@ -94,6 +94,7 @@ rshift + lshift - f : yabai -m window --toggle zoom-parent
 
 ## toggle floating
 rshift - t : yabai -m window --toggle float
+lctrl - 4 : yabai -m window --toggle float
 
 ## toggle split
 rshift - v : yabai -m window --toggle split
