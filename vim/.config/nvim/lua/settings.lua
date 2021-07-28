@@ -28,8 +28,8 @@ o.ignorecase = true
 o.swapfile = false
 o.backup = false
 o.completeopt = "menuone,noselect"
--- cmd "set undodir=~/.vim/undodir"
-o.undodir = "~/.vim/undodir"
+cmd "set undodir=~/.vim/undodir"
+-- o.undodir = "~/.vim/undodir"
 o.undofile = true
 
 o.signcolumn = "yes"
