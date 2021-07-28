@@ -1,176 +1,59 @@
-# Start configuration added by Zim install {{{
-#
-# User configuration sourced by interactive shells
-#
-
-# -----------------
-# Zsh configuration
-# -----------------
-
-#
-# History
-#
-
-# Remove older command from the history if a duplicate is to be added.
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
 setopt HIST_IGNORE_ALL_DUPS
 
-#
-# Input/output
-#
-
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
-
-# Prompt for spelling correction of commands.
-#setopt CORRECT
-
-# Customize spelling correction prompt.
-#SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
-
-# Remove path separator from WORDCHARS.
-WORDCHARS=${WORDCHARS//[\/]}
-
-
-# --------------------
-# Module configuration
-# --------------------
-
-#
-# completion
-#
-
-# Set a custom path for the completion dump file.
-# If none is provided, the default ${ZDOTDIR:-${HOME}}/.zcompdump is used.
-#zstyle ':zim:completion' dumpfile "${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
-
-#
-# git
-#
-
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-#zstyle ':zim:git' aliases-prefix 'g'
-
-#
-# input
-#
-
-# Append `../` to your input for each `.` you type after an initial `..`
-#zstyle ':zim:input' double-dot-expand yes
-
-#
-# termtitle
-#
-
-# Set a custom terminal title format using prompt expansion escape sequences.
-# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
-# If none is provided, the default '%n@%m: %~' is used.
-#zstyle ':zim:termtitle' format '%1~'
-
-#
-# zsh-autosuggestions
-#
-
-# Customize the style that the suggestions are shown with.
-# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
-
-#
-# zsh-syntax-highlighting
-#
-
-# Set what highlighters will be used.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+stty stop undef		# Disable ctrl-s to freeze terminal.
+zle_highlight=('paste:none')
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+WORDCHARS=${WORDCHARS//[\/]}
+# beeping is annoying
+unsetopt BEEP
 
-# Customize the main highlighter styles.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
-#typeset -A ZSH_HIGHLIGHT_STYLES
-#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
 
-# ------------------
-# Initialize modules
-# ------------------
+# completions
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
 
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  # Update static initialization script if it does not exist or it's outdated, before sourcing it
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-source ${ZIM_HOME}/init.zsh
+# compinit
+_comp_options+=(globdots)		# Include hidden files.
 
-# ------------------------------
-# Post-init module configuration
-# ------------------------------
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Colors
+autoload -Uz colors && colors
+
+# Useful Functions
+source "$HOME/zsh/zsh-functions"
+
+# Normal files to source
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-aliases"
 eval "$(starship init zsh)"
 
+# Plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "hlissner/zsh-autopair"
+zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "agkozak/zsh-z"
+
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
+# More completions https://github.com/zsh-users/zsh-completions
 ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
-#
-# zsh-history-substring-search
-#
-
-# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# Bind up and down keys
-zmodload -F zsh/terminfo +p:terminfo
-if [[ -n ${terminfo[kcuu1]} && -n ${terminfo[kcud1]} ]]; then
-  bindkey ${terminfo[kcuu1]} history-substring-search-up
-  bindkey ${terminfo[kcud1]} history-substring-search-down
-fi
-
+# Key-bindings
+bindkey -s '^o' 'ranger^M'
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-# }}} End configuration added by Zim install
 
+# FZF 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-# ------------------------------
-# Alias
-# ------------------------------
-
-alias szsh="source $HOME/.zshrc"
-alias vim="nvim"
-alias mas="cd ~/Desktop/Master/"
-alias k="kubectl"
-if [ "$TERM" = "xterm-kitty" ]; then
-  alias ssh="kitty +kitten ssh"
-fi
-alias icat="kitty +kitten icat"
-
-# ------------------------------
-# Export
-# ------------------------------
-
-export PATH="$HOME/.emacs.d/bin:$PATH"
-# For HomeBrew
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/anaconda3/bin:$PATH"
-#export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/Cellar/libpng/1.6.37/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig:/usr/local/Cellar/libffi/3.3_3/lib/pkgconfig:/usr/local/Cellar/poppler/21.07.0/lib/pkgconfig:$PKG_CONFIG_PATH"
-export EDITOR=nvim
-export PAGER=nvimpager
-
-
-
-# Comment out the following as it slows down the startup signficiantly
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('~/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-##if [ 0 -eq 0 ]; then
-    #echo "first"
-    #eval "$__conda_setup"
-#else
-    #if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
-        #echo "second"
-        #. "~/anaconda3/etc/profile.d/conda.sh"
-    #else
-        #echo "third"
-        #export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
-    #fi
-#fi
-#unset __conda_setup
-# <<< conda initialize <<<
-
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+compinit
