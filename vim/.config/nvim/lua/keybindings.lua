@@ -31,8 +31,9 @@ map("n", "<leader>bk", ":bw!<cr>", opts)
 map("n", "<leader>oT", ":terminal<cr>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
 map("t", "<Esc><Esc>", "<Esc>", opts)
+map("t", "<Esc>b", "<Esc>b", opts)
 map("t", "<C-c>", "<Esc>", opts)
-map("t", "<M-c>", "<C-c>", opts)
+map("t", "<C-c><C-c>", "<C-c>", opts)
 
 -- File manager
 -- map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})

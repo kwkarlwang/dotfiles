@@ -42,6 +42,8 @@ local config = {
       normal = {c = {fg = colors.fg, bg = colors.bg}},
       inactive = {c = {fg = colors.fg, bg = colors.bg}}
     }
+    -- :lua print(vim.bo.filetype)
+    -- disabled_filetypes = {"toggleterm"}
   },
   sections = {
     -- these are to remove the defaults
