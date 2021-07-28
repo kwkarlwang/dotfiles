@@ -38,7 +38,7 @@ o.cursorline = true
 
 o.signcolumn = "yes"
 o.numberwidth = 2
-o.wrap = false
+o.wrap = true
 o.spell = false
 
 cmd "autocmd! BufEnter * set fo-=r fo-=o"

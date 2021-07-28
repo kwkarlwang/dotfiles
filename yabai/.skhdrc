@@ -7,7 +7,7 @@ lctrl + lcmd + lshift - a : "${HOME}"/scripts/SwitchAudio.sh
 lctrl + lcmd + lshift - d : osascript "${HOME}"/scripts/Sidecar.js
 lctrl + lcmd + lshift - e : emacsclient -c -a 'emacs'
 # lctrl + lcmd + lshift - return : "${HOME}"/scripts/iTerm.sh
-#lctrl + lcmd + lshift - return : open -n /Applications/Alacritty.app
+# lctrl + lcmd + lshift - return : open -n /Applications/Alacritty.app
 lctrl + lcmd + lshift - return : open -n /Applications/kitty.app
 lctrl + lcmd + lshift - b : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
 lctrl + lcmd + lshift - m : open /System/Applications/Music.app
