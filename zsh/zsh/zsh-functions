@@ -1,6 +1,7 @@
 # Function to source files if they exist
 function zsh_add_file() {
-    [ -f "$HOME/zsh/$1" ] && source "$HOME/zsh/$1"
+    # [ -f "$HOME/zsh/$1" ] && source "$HOME/zsh/$1"
+    source "$HOME/zsh/$1"
 }
 
 function zsh_add_plugin() {
