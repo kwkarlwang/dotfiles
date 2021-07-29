@@ -19,6 +19,7 @@ require("toggleterm").setup {
 map("n", "<leader>j", ":ToggleTerm<cr>", {noremap = true, silent = true})
 map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>", {noremap = true, silent = true})
 map("n", "<leader>J", ":ToggleTerm direction=vertical<cr>", {noremap = true, silent = true})
+map("t", "<Esc><leader>j", "<C-\\><C-n>:ToggleTerm<cr>", {noremap = true, silent = true})
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit =
