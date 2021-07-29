@@ -20,7 +20,6 @@ map("n", "<leader>w<", "30<C-w><", opts)
 map("n", "<leader>w>", "30<C-w>>", opts)
 map("n", "<leader>w+", "10<C-w>+", opts)
 map("n", "<leader>w-", "10<C-w>-", opts)
-
 map("n", "<leader>w", "<C-w>", opts)
 map("n", "<leader>wm", ":tabnew %<cr>", opts)
 
@@ -37,10 +36,6 @@ map("t", "<Esc><leader>w>", "<C-\\><C-n>30<C-w>>", opts)
 map("t", "<Esc><leader>w+", "<C-\\><C-n>10<C-w>+", opts)
 map("t", "<Esc><leader>w-", "<C-\\><C-n>10<C-w>-", opts)
 map("t", "<Esc><leader>bk", "<C-\\><C-n>:bw!<cr>", opts)
--- map("t", "<Esc><Esc>", "<Esc>", opts)
--- map("t", "<Esc>b", "<Esc>b", opts)
--- map("t", "<C-c>", "<Esc>", opts)
--- map("t", "<C-c><C-c>", "<C-c>", opts)
 
 -- File manager
 -- map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})

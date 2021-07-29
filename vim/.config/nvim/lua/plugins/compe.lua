@@ -17,19 +17,25 @@ require "compe".setup {
     winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
     max_width = 120,
     min_width = 60,
-    max_height = math.floor(vim.o.lines * 0.3),
+    max_height = math.floor(vim.o.lines * 0.5),
     min_height = 1
   },
   source = {
-    path = true,
-    buffer = true,
-    calc = true,
-    nvim_lsp = true,
+    path = {kind = "   (Path)"},
+    buffer = {kind = "   (Buffer)"},
+    calc = {kind = "   (Calc)"},
+    vsnip = {kind = "   (Snippet)"},
+    nvim_lsp = {kind = "   (LSP)"},
     nvim_lua = true,
-    vsnip = true,
     ultisnips = true,
     luasnip = true
   }
 }
 
 map("i", "<CR>", "compe#confirm({ 'keys': '<CR>' })", {expr = true, silent = true})
+
+-- snippets
+bufmap(0, "i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+bufmap(0, "s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+bufmap(0, "i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+bufmap(0, "s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})

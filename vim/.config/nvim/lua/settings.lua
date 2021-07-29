@@ -18,7 +18,6 @@ o.softtabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 o.smartindent = true
---cmd 'set hidden'
 o.hidden = true
 
 o.smartcase = true
@@ -68,28 +67,10 @@ cmd [[
 cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
 
 --------Auto Resize-----------
-cmd "autocmd VimResized * wincmd ="
+-- cmd "autocmd VimResized * wincmd ="
 
 --------Menu Height-----------
 o.pumheight = 10
 
 --------Keyboard waiting time-----------
 o.timeoutlen = 300
---------Netrw mapping-----------
---cmd [[
---function! NetrwMapping()
---nnoremap <buffer>h -^
---nnoremap <buffer>l <CR>
-
---nnoremap <buffer>. gh
---nnoremap <buffer>P <C-w>z
-
---nnoremap <buffer><silent>q :bw<CR>
---nnoremap <buffer><silent><esc> :bw<CR>
---endfunction
-
---augroup netrw_mapping
---autocmd!
---autocmd filetype netrw call NetrwMapping()
---augroup END
---]]

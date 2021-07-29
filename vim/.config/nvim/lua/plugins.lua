@@ -16,9 +16,18 @@ return require("packer").startup(
     -- completion
     use {
       "hrsh7th/nvim-compe",
+      event = "InsertEnter",
       config = function()
         require "plugins/compe"
       end
+    }
+    use {
+      "hrsh7th/vim-vsnip",
+      event = "InsertCharPre"
+    }
+    use {
+      "rafamadriz/friendly-snippets",
+      event = "InsertCharPre"
     }
 
     -- theme
@@ -225,7 +234,12 @@ return require("packer").startup(
     }
 
     -- automatic adjust indentation
-    use "tpope/vim-sleuth"
+    use {
+      "editorconfig/editorconfig-vim",
+      config = function()
+        g.EditorConfig_exclude_patterns = {"fugitive://.*"}
+      end
+    }
 
     -- maximize window
     use {
