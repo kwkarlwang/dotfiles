@@ -16,8 +16,8 @@ require("toggleterm").setup {
   close_on_exit = false -- close the terminal window when the process exits
   --shell = vim.o.shell, -- change the default shell
 }
-map("n", "<leader>ot", ":ToggleTerm<cr>", {noremap = true, silent = true})
-map("n", "<leader>j", ":ToggleTerm direction=horizontal<cr>", {noremap = true, silent = true})
+map("n", "<leader>j", ":ToggleTerm<cr>", {noremap = true, silent = true})
+map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>", {noremap = true, silent = true})
 map("n", "<leader>J", ":ToggleTerm direction=vertical<cr>", {noremap = true, silent = true})
 
 local Terminal = require("toggleterm.terminal").Terminal

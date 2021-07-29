@@ -183,7 +183,8 @@ return require("packer").startup(
     use {
       "airblade/vim-rooter",
       config = function()
-        g.rooter_manual_only = 1
+        g.rooter_silent_chdir = 1
+        g.rooter_manual_only = 0
       end
     }
 
@@ -258,6 +259,15 @@ return require("packer").startup(
         g.rnvimr_enable_picker = 1
         g.rnvimr_enable_bw = 1
         cmd "let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]"
+      end
+    }
+
+    use {
+      "jpalardy/vim-slime",
+      config = function()
+        g.slime_target = "neovim"
+        g.slime_cell_delimiter = "#%%"
+        map("n", "<C-cr>", "<Plug>SlimeSendCell", {noremap = true, silent = true})
       end
     }
   end
