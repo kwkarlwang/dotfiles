@@ -101,7 +101,7 @@ ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
 
 alias szsh="source $HOME/.zshrc"
 
-if [ -n "$NVIM_LISTEN_ADDRESS"]; then
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     alias vim=nvr -cc split --remote-wait +'set bufhidden=wipe'
 else
     alias vim="nvim"
