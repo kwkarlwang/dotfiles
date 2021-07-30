@@ -280,9 +280,9 @@ return require("packer").startup(
       config = function()
         map("n", "<leader>og", ":LazyGit<cr>", {noremap = true, silent = true})
         cmd [[
-            if has('nvim') && executable('nvr')
-              let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-            endif
+        if has('nvim') && executable('nvr')
+          let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+        endif
         ]]
       end
     }
