@@ -52,10 +52,12 @@ map("i", "?", "?<C-g>u", opts)
 map("i", "[", "[<C-g>u", opts)
 map("i", " ", " <C-g>u", opts)
 
--- don't lose indent
-map("i", "<cr>", "<cr>x<bs>", opts)
-map("n", "o", "ox<bs>", opts)
-map("n", "O", "Ox<bs>", opts)
+-- don't lose indent with esc
+map("i", "<esc>", "x<bs><esc>", opts)
+-- map("i", "<cr>", "<cr>x<bs>", opts)
+-- map("n", "o", "ox<bs>", opts)
+-- map("n", "O", "Ox<bs>", opts)
+-- map("n", "S", "Sx<bs>", opts)
 --navigation
 cmd [[
     tnoremap <A-h> <C-\><C-N><C-w>h
