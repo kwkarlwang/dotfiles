@@ -28,26 +28,42 @@ map("n", "<leader>bk", ":bw!<cr>", opts)
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", opts)
-map("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
-map("t", "<Esc><leader>w", "<C-\\><C-n><C-w>", opts)
-map("t", "<Esc><leader>wd", "<C-\\><C-n><C-w>c", opts)
-map("t", "<Esc><leader>w<", "<C-\\><C-n>30<C-w><", opts)
-map("t", "<Esc><leader>w>", "<C-\\><C-n>30<C-w>>", opts)
-map("t", "<Esc><leader>w+", "<C-\\><C-n>10<C-w>+", opts)
-map("t", "<Esc><leader>w-", "<C-\\><C-n>10<C-w>-", opts)
-map("t", "<Esc><leader>bk", "<C-\\><C-n>:bw!<cr>", opts)
-
--- File manager
--- map("n", "<leader>.", ":Explore<cr>", {noremap = true, silent = true})
+map("t", "<Esc>", "<C-\\><C-n>", opts)
+map("t", "<C-s>", "<Esc>", opts)
 
 -- search result appear in the middle of screen
 map("n", "n", "nzz", opts)
 map("n", "N", "Nzz", opts)
-
 -- move line up and down
-map("i", "<M-Down>", "<Esc>:m .+1<cr>gi", opts)
-map("i", "<M-Up>", "<Esc>:m .-2<cr>gi", opts)
-map("n", "<M-Down>", ":m .+1<cr>", opts)
-map("n", "<M-Up>", ":m .-2<cr>", opts)
-map("v", "<M-Down>", ":m '>+1<cr>gv-gv", opts)
-map("v", "<M-Up>", ":m '<-2<cr>gv-gv", opts)
+map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", opts)
+map("i", "<M-Up>", "<Esc>:m .-2<cr>==gi", opts)
+map("n", "<M-Down>", ":m .+1<cr>==", opts)
+map("n", "<M-Up>", ":m .-2<cr>==", opts)
+map("v", "<M-Down>", ":m '>+1<cr>gv=gv", opts)
+map("v", "<M-Up>", ":m '<-2<cr>gv=gv", opts)
+-- make y copy
+map("n", "Y", "y$", opts)
+
+-- undo break point
+map("i", ",", ",<C-g>u", opts)
+map("i", ".", ".<C-g>u", opts)
+map("i", "!", "!<C-g>u", opts)
+map("i", "?", "?<C-g>u", opts)
+map("i", "[", "[<C-g>u", opts)
+map("i", " ", " <C-g>u", opts)
+
+--navigation
+cmd [[
+    tnoremap <A-h> <C-\><C-N><C-w>h
+    tnoremap <A-j> <C-\><C-N><C-w>j
+    tnoremap <A-k> <C-\><C-N><C-w>k
+    tnoremap <A-l> <C-\><C-N><C-w>l
+    inoremap <A-h> <C-\><C-N><C-w>h
+    inoremap <A-j> <C-\><C-N><C-w>j
+    inoremap <A-k> <C-\><C-N><C-w>k
+    inoremap <A-l> <C-\><C-N><C-w>l
+    nnoremap <A-h> <C-w>h
+    nnoremap <A-j> <C-w>j
+    nnoremap <A-k> <C-w>k
+    nnoremap <A-l> <C-w>l
+]]

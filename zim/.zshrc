@@ -54,7 +54,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
 #typeset -A ZSH_HIGHLIGHT_STYLES
 #ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
-
+KEYTIMEOUT=1
 # ------------------
 # Initialize modules
 # ------------------
@@ -100,7 +100,13 @@ ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
 
 
 alias szsh="source $HOME/.zshrc"
-alias vim="nvim"
+
+if [ -n "$NVIM_LISTEN_ADDRESS"]; then
+    alias vim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+else
+    alias vim="nvim"
+fi
+
 alias mas="cd ~/Desktop/Master/"
 alias k="kubectl"
 if [ "$TERM" = "xterm-kitty" ]; then
@@ -160,8 +166,14 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 # For HomeBrew
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
-#export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/Cellar/libpng/1.6.37/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig:/usr/local/Cellar/libffi/3.3_3/lib/pkgconfig:/usr/local/Cellar/poppler/21.07.0/lib/pkgconfig:$PKG_CONFIG_PATH"
-export EDITOR=nvim
+# For lazygit.nvim
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+else
+    export VISUAL="nvim"
+    export EDITOR="nvim"
+fi
 export PAGER=nvimpager
 
 

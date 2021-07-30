@@ -17,7 +17,8 @@ o.tabstop = 4
 o.softtabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
-o.smartindent = true
+-- o.smartindent = true
+o.cindent = true
 o.hidden = true
 
 o.smartcase = true

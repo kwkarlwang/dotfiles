@@ -18,33 +18,33 @@ require("toggleterm").setup {
 }
 map("n", "<leader>j", ":ToggleTerm<cr>", {noremap = true, silent = true})
 map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>", {noremap = true, silent = true})
-map("n", "<leader>J", ":ToggleTerm direction=vertical<cr>", {noremap = true, silent = true})
+map("n", "<leader>ol", ":ToggleTerm direction=vertical<cr>", {noremap = true, silent = true})
 map("t", "<Esc><leader>j", "<C-\\><C-n>:ToggleTerm<cr>", {noremap = true, silent = true})
 
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit =
-  Terminal:new(
-  {
-    cmd = "lazygit",
-    dir = "git_dir",
-    direction = "float",
-    float_opts = {
-      border = "double"
-    },
-    -- function to run on opening the terminal
-    on_open = function(term)
-      cmd("startinsert!")
-      bufmap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
-    end
-    -- function to run on closing the terminal
-    -- on_close = function(term)
-    --     cmd("Closing terminal")
-    -- end
-  }
-)
+-- local Terminal = require("toggleterm.terminal").Terminal
+-- local lazygit =
+--   Terminal:new(
+--   {
+--     cmd = "lazygit",
+--     dir = "git_dir",
+--     direction = "float",
+--     float_opts = {
+--       border = "double"
+--     },
+--     -- function to run on opening the terminal
+--     on_open = function(term)
+--       cmd("startinsert!")
+--       bufmap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+--     end
+--     -- function to run on closing the terminal
+--     -- on_close = function(term)
+--     --     cmd("Closing terminal")
+--     -- end
+--   }
+-- )
 
-function _lazygit_toggle()
-  lazygit:toggle()
-end
+-- function _lazygit_toggle()
+--   lazygit:toggle()
+-- end
 
-map("n", "<leader>G", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+-- map("n", "<leader>og", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})

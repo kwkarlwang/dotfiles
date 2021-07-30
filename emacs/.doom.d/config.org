@@ -447,6 +447,7 @@ Enabled formatting for the following modes. Use yapf formatting for python
 (after! format-all
   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
   (add-to-list '+format-on-save-enabled-modes 'yaml-mode t)
+  (add-hook! before-save '+format/buffer)
   )
 #+end_src
 

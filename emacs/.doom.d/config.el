@@ -314,6 +314,7 @@
 (after! format-all
   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
   (add-to-list '+format-on-save-enabled-modes 'yaml-mode t)
+  (add-hook! before-save '+format/buffer)
   )
 
 (use-package! tree-sitter
