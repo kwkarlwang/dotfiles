@@ -54,7 +54,7 @@ map("i", " ", " <C-g>u", opts)
 
 -- don't lose indent
 map("i", "<cr>", "<cr>x<bs>", opts)
-map("o", "o", "ox<bs>", opts)
+map("i", "o", "ox<bs>", opts)
 map("i", "O", "Ox<bs>", opts)
 --navigation
 cmd [[
