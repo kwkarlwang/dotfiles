@@ -1,7 +1,5 @@
 local opts = {noremap = true, silent = true}
 --------Mappings-----------
-map("n", "j", "gj", opts)
-map("n", "k", "gk", opts)
 map("n", "<Esc>", ":noh<cr>:echo ''<cr>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
@@ -54,10 +52,10 @@ map("i", " ", " <C-g>u", opts)
 
 -- don't lose indent with esc
 map("i", "<esc>", "x<bs><esc>", opts)
--- map("i", "<cr>", "<cr>x<bs>", opts)
--- map("n", "o", "ox<bs>", opts)
--- map("n", "O", "Ox<bs>", opts)
--- map("n", "S", "Sx<bs>", opts)
+map("i", "<cr>", "<cr>x<bs>", opts)
+map("n", "o", "ox<bs>", opts)
+map("n", "O", "Ox<bs>", opts)
+map("n", "S", "Sx<bs>", opts)
 --navigation
 cmd [[
     tnoremap <A-h> <C-\><C-N><C-w>h
