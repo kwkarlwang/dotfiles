@@ -1,15 +1,17 @@
 return require("packer").startup(
   function(use)
     use "wbthomason/packer.nvim"
+    use {
+      "kabouzeid/nvim-lspinstall",
+      event = "BufRead"
+    }
 
     -- lsp
     use {
       "neovim/nvim-lspconfig",
-      requires = {
-        "kabouzeid/nvim-lspinstall"
-      },
+      after = "nvim-lspinstall",
       config = function()
-        require "plugins/lsp"
+        require "plugins.lsp"
       end
     }
 
@@ -18,7 +20,7 @@ return require("packer").startup(
       "hrsh7th/nvim-compe",
       event = "InsertEnter",
       config = function()
-        require "plugins/compe"
+        require "plugins.compe".setup()
       end
     }
     use {
@@ -63,7 +65,7 @@ return require("packer").startup(
     -- use {
     --   "glepnir/galaxyline.nvim",
     --   config = function()
-    --     require("plugins/galaxyline")
+    --     require("plugins.galaxyline")
     --   end
     -- }
 
@@ -71,7 +73,7 @@ return require("packer").startup(
       "hoob3rt/lualine.nvim",
       requires = {"kyazdani42/nvim-web-devicons", opt = true},
       config = function()
-        require "plugins/lualine"
+        require "plugins.lualine"
       end
     }
     -- for telescope
@@ -83,8 +85,11 @@ return require("packer").startup(
         {"nvim-lua/plenary.nvim"},
         {"nvim-telescope/telescope-fzy-native.nvim"}
       },
+      setup = function()
+        require "plugins.telescope".keymap()
+      end,
       config = function()
-        require "plugins/telescope"
+        require "plugins.telescope".setup()
       end
     }
     -- make color brackets
@@ -97,6 +102,7 @@ return require("packer").startup(
       "nvim-treesitter/nvim-treesitter",
       branch = "0.5-compat",
       run = ":TSUpdate",
+      event = "BufRead",
       config = function()
         require "nvim-treesitter.configs".setup {
           ensure_installed = "maintained",
@@ -149,9 +155,12 @@ return require("packer").startup(
     use {
       "TimUntersberger/neogit",
       requires = "nvim-lua/plenary.nvim",
+      cmd = {"Neogit"},
+      setup = function()
+        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true, silent = true})
+      end,
       config = function()
         require("neogit").setup {}
-        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true, silent = true})
       end
     }
 
@@ -159,15 +168,19 @@ return require("packer").startup(
     use {
       "akinsho/nvim-toggleterm.lua",
       config = function()
-        require "plugins/term"
+        require "plugins.term"
       end
     }
 
     -- tree structure
     use {
       "kyazdani42/nvim-tree.lua",
+      cmd = "NvimTreeToggle",
+      setup = function()
+        require "plugins.tree".keymap()
+      end,
       config = function()
-        require "plugins/tree"
+        require "plugins.tree".setup()
       end
     }
 
@@ -192,7 +205,7 @@ return require("packer").startup(
     use {
       "mhartington/formatter.nvim",
       config = function()
-        require "plugins/formatter"
+        require "plugins.formatter"
       end
     }
 
@@ -200,7 +213,7 @@ return require("packer").startup(
     --use {
     --"glepnir/dashboard-nvim",
     --config = function()
-    --require("plugins/dashboard")
+    --require("plugins.dashboard")
     --end
     --}
 
