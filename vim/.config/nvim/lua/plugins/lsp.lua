@@ -101,3 +101,20 @@ vim.lsp.protocol.CompletionItemKind = {
 -- show line diagnostic automatically in hover window
 -- vim.o.updatetime = 250
 -- cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
+
+fn.sign_define(
+  "LspDiagnosticsSignError",
+  {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
+)
+fn.sign_define(
+  "LspDiagnosticsSignWarning",
+  {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"}
+)
+fn.sign_define(
+  "LspDiagnosticsSignHint",
+  {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"}
+)
+fn.sign_define(
+  "LspDiagnosticsSignInformation",
+  {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
+)

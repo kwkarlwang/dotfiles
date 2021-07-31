@@ -1,16 +1,19 @@
 local opts = {noremap = true, silent = true}
+local expr = {noremap = true, silent = true, expr = true}
 --------Mappings-----------
 map("n", "<Esc>", ":noh<cr>:echo ''<cr>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 map("i", "jk", "<Esc>", opts)
--- map("c", "<Down>", 'wildmenumode() ? "<C-n>" : "\\<Down>"', opts)
--- map("c", "<Up>", 'wildmenumode() ? "<C-p>" : "\\<Up>"', opts)
+map("c", "<Down>", "wildmenumode() ? '<C-n>' : '\\<Down>'", expr)
+map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
+-- map("c", "<Down>", "<C-n>", opts)
+-- map("c", "<Up>", "<C-p>", opts)
 -- HELP
 map("n", "<leader>hs", ":so %<cr>", opts)
 map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", opts)
 -- FILE
-map("n", "<leader>fs", ":silent w<cr>", opts)
+map("n", "<leader>fs", ":silent up<cr>", opts)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", opts)
@@ -22,7 +25,7 @@ map("n", "<leader>w", "<C-w>", opts)
 map("n", "<leader>wm", ":tabnew %<cr>", opts)
 
 -- buffer
-map("n", "<leader>bk", ":bw!<cr>", opts)
+-- map("n", "<leader>bk", ":bw!<cr>", opts)
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", opts)
