@@ -81,7 +81,7 @@ M.setup = function()
   }
   require("telescope").load_extension("fzy_native")
 end
-M.keymap = function()
+M.init = function()
   local opts = {noremap = true, silent = true}
   map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", opts)
   map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", opts)

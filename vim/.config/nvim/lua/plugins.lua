@@ -15,6 +15,25 @@ return require("packer").startup(
       end
     }
 
+    use {
+      "ray-x/lsp_signature.nvim",
+      after = "nvim-lspconfig",
+      config = function()
+        require "lsp_signature".setup(
+          {
+            bind = true,
+            doc_lines = 0,
+            floating_window = true,
+            hi_parameter = "Visual",
+            handler_opts = {
+              border = "none"
+            },
+            hint_enable = false
+          }
+        )
+      end
+    }
+
     -- completion
     use {
       "hrsh7th/nvim-compe",
@@ -85,8 +104,9 @@ return require("packer").startup(
         {"nvim-lua/plenary.nvim"},
         {"nvim-telescope/telescope-fzy-native.nvim"}
       },
+      cmd = "Telescope",
       setup = function()
-        require "plugins.telescope".keymap()
+        require "plugins.telescope".init()
       end,
       config = function()
         require "plugins.telescope".setup()
@@ -146,8 +166,8 @@ return require("packer").startup(
     -- git
     use {
       "tpope/vim-fugitive",
-      config = function()
-        -- map("n", "<leader>gg", ":Git<cr>", {noremap = true, silent = true})
+      cmd = "Git",
+      setup = function()
         map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
       end
     }
@@ -167,6 +187,7 @@ return require("packer").startup(
     -- terminal
     use {
       "akinsho/nvim-toggleterm.lua",
+      event = "BufWinEnter",
       config = function()
         require "plugins.term"
       end
@@ -177,16 +198,17 @@ return require("packer").startup(
       "kyazdani42/nvim-tree.lua",
       cmd = "NvimTreeToggle",
       setup = function()
-        require "plugins.tree".keymap()
+        require("plugins.tree").init()
       end,
       config = function()
-        require "plugins.tree".setup()
+        require("plugins.tree").setup()
       end
     }
 
     -- color hex code
     use {
       "norcalli/nvim-colorizer.lua",
+      event = "BufRead",
       config = function()
         require "colorizer".setup()
       end
@@ -299,26 +321,10 @@ return require("packer").startup(
         ]]
       end
     }
-    use {
-      "ray-x/lsp_signature.nvim",
-      config = function()
-        require "lsp_signature".setup(
-          {
-            bind = true,
-            doc_lines = 0,
-            floating_window = true,
-            hi_parameter = "Visual",
-            handler_opts = {
-              border = "none"
-            },
-            hint_enable = false
-          }
-        )
-      end
-    }
 
     use {
       "famiu/bufdelete.nvim",
+      event = "BufWinEnter",
       config = function()
         map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0)<cr>", {noremap = true, silent = true})
       end

@@ -17,7 +17,7 @@ M.setup = function()
   g.nvim_tree_disable_netrw = 0
   g.nvim_tree_hijack_netrw = 0
 end
-M.keymap = function()
+M.init = function()
   map("n", "<leader>op", ":NvimTreeToggle<cr>", {noremap = true, silent = true})
 end
 return M

@@ -14,6 +14,8 @@ map("n", "<leader>hs", ":so %<cr>", opts)
 map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", opts)
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", opts)
+-- save all files
+map("n", "<leader>bs", ":wa <cr>", opts)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", opts)
