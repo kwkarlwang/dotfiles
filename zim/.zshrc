@@ -93,6 +93,7 @@ bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
+ulimit -S -n 200048
 
 # ------------------------------
 # Alias

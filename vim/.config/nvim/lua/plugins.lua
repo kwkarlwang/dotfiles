@@ -1,9 +1,9 @@
 return require("packer").startup(
   function(use)
     use "wbthomason/packer.nvim"
+
     use {
-      "kabouzeid/nvim-lspinstall",
-      event = "BufRead"
+      "kabouzeid/nvim-lspinstall"
     }
 
     -- lsp
@@ -122,7 +122,6 @@ return require("packer").startup(
       "nvim-treesitter/nvim-treesitter",
       branch = "0.5-compat",
       run = ":TSUpdate",
-      event = "BufRead",
       config = function()
         require "nvim-treesitter.configs".setup {
           ensure_installed = "maintained",
@@ -145,6 +144,7 @@ return require("packer").startup(
     }
 
     use "tpope/vim-surround"
+    use "tpope/vim-repeat"
 
     -- pair brackets
     use {
@@ -177,10 +177,10 @@ return require("packer").startup(
       requires = "nvim-lua/plenary.nvim",
       cmd = {"Neogit"},
       setup = function()
-        map("n", "<leader>gg", ":Neogit<cr>", {noremap = true, silent = true})
+        map("n", "<leader>gg", ":Neogit<cr>", NS)
       end,
       config = function()
-        require("neogit").setup {}
+        require("neogit").setup()
       end
     }
 
@@ -281,7 +281,7 @@ return require("packer").startup(
     use {
       "szw/vim-maximizer",
       config = function()
-        map("n", "<leader>wo", ":MaximizerToggle!<cr>", {noremap = true, silent = true})
+        map("n", "<leader>wo", ":MaximizerToggle!<cr>", NS)
       end
     }
 
@@ -289,7 +289,7 @@ return require("packer").startup(
     use {
       "kevinhwang91/rnvimr",
       config = function()
-        map("n", "<leader>.", ":RnvimrToggle<cr>", {noremap = true, silent = true})
+        map("n", "<leader>.", ":RnvimrToggle<cr>", NS)
         g.rnvimr_enable_ex = 1
         g.rnvimr_enable_picker = 1
         g.rnvimr_enable_bw = 1
@@ -313,7 +313,7 @@ return require("packer").startup(
     use {
       "kdheepak/lazygit.nvim",
       config = function()
-        map("n", "<leader>og", ":LazyGit<cr>", {noremap = true, silent = true})
+        map("n", "<leader>og", ":LazyGit<cr>", NS)
         cmd [[
         if has('nvim') && executable('nvr')
           let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
@@ -326,7 +326,21 @@ return require("packer").startup(
       "famiu/bufdelete.nvim",
       event = "BufWinEnter",
       config = function()
-        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0)<cr>", {noremap = true, silent = true})
+        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0)<cr>", NS)
+      end
+    }
+    use {
+      "justinmk/vim-sneak",
+      event = "BufWinEnter",
+      config = function()
+        map("", "f", "<Plug>Sneak_f", {})
+        map("", "F", "<Plug>Sneak_F", {})
+        map("", "t", "<Plug>Sneak_t", {})
+        map("", "T", "<Plug>Sneak_T", {})
+        cmd [[
+            let g:sneak#use_ic_scs = 1
+            highlight Sneak guifg=fg guibg=#ee766d
+        ]]
       end
     }
   end

@@ -1,7 +1,7 @@
 local opts = {noremap = true, silent = true}
 local expr = {noremap = true, silent = true, expr = true}
 --------Mappings-----------
-map("n", "<Esc>", ":noh<cr>:echo ''<cr>", opts)
+map("n", "<Esc>", ":noh<cr>:echo ''<cr> i<Esc>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 map("i", "jk", "<Esc>", opts)
@@ -12,6 +12,7 @@ map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
 -- HELP
 map("n", "<leader>hs", ":so %<cr>", opts)
 map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", opts)
+map("n", "<leader>hc", ":so %<cr>:PackerSync<cr>", opts)
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", opts)
 -- save all files

@@ -3,10 +3,10 @@
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
+    api.nvim_buf_set_keymap(bufnr, ...)
   end
   local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
+    api.nvim_buf_set_option(bufnr, ...)
   end
 
   --Enable completion triggered by <c-x><c-o>
@@ -67,10 +67,10 @@ setup_servers()
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 require "lspinstall".post_install_hook = function()
   setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+  cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-vim.lsp.protocol.CompletionItemKind = {
+lsp.protocol.CompletionItemKind = {
   "   (Text) ",
   "   (Method)",
   "   (Function)",
@@ -97,10 +97,6 @@ vim.lsp.protocol.CompletionItemKind = {
   "   (Operator)",
   "   (TypeParameter)"
 }
-
--- show line diagnostic automatically in hover window
--- vim.o.updatetime = 250
--- cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
 fn.sign_define(
   "LspDiagnosticsSignError",
