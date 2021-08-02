@@ -1,3 +1,4 @@
+vim = vim
 cmd = vim.cmd
 fn = vim.fn
 g = vim.g
