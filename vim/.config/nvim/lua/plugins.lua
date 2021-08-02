@@ -80,23 +80,26 @@ return require("packer").startup(
       end
     }
     use "kyazdani42/nvim-web-devicons"
-    -- line
+
+    -- statusline
+    use {
+      "glepnir/galaxyline.nvim",
+      branc = "main",
+      requires = {"kyazdani42/nvim-web-devicons", opt = true},
+      config = function()
+        require("plugins.galaxyline")
+      end
+    }
+
     -- use {
-    --   "glepnir/galaxyline.nvim",
+    --   "hoob3rt/lualine.nvim",
+    --   requires = {"kyazdani42/nvim-web-devicons", opt = true},
     --   config = function()
-    --     require("plugins.galaxyline")
+    --     require "plugins.lualine"
     --   end
     -- }
 
-    use {
-      "hoob3rt/lualine.nvim",
-      requires = {"kyazdani42/nvim-web-devicons", opt = true},
-      config = function()
-        require "plugins.lualine"
-      end
-    }
     -- for telescope
-
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -341,6 +344,15 @@ return require("packer").startup(
             let g:sneak#use_ic_scs = 1
             highlight Sneak guifg=fg guibg=#ee766d
         ]]
+      end
+    }
+    use {
+      "lewis6991/gitsigns.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim"
+      },
+      config = function()
+        require "plugins.gitsigns"
       end
     }
   end

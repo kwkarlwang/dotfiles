@@ -14,7 +14,7 @@ local colors = {
 
 local gl = require("galaxyline")
 local gls = gl.section
-gl.short_line_list = {"NvimTree", "vista", "dbui"}
+gl.short_line_list = {"NvimTree", "toggleterm"}
 
 local buffer_not_empty = function()
   if vim.fn.empty(vim.fn.expand("%:t")) ~= 1 then
@@ -63,6 +63,7 @@ gls.left[2] = {
     highlight = {colors.red, colors.bg, "bold"}
   }
 }
+
 gls.left[3] = {
   FileSize = {
     provider = "FileSize",
@@ -70,33 +71,34 @@ gls.left[3] = {
     highlight = {colors.fg, colors.bg}
   }
 }
-gls.left[4] = {
-  FileIcon = {
-    provider = "FileIcon",
-    condition = buffer_not_empty,
-    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
-  }
-}
+-- gls.left[4] = {
+--   FileIcon = {
+--     provider = "FileIcon",
+--     condition = buffer_not_empty,
+--     highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
+--   }
+-- }
 
 gls.left[5] = {
   FileName = {
     provider = {"FileName"},
     separator = " ",
-    condition = buffer_not_empty,
-    highlight = {colors.green, colors.bg, "bold"}
-  }
-}
-
-gls.left[6] = {
-  LineInfo = {
-    provider = "LineColumn",
-    separator = " ",
     separator_highlight = {"NONE", colors.bg},
-    highlight = {colors.fg, colors.bg}
+    condition = buffer_not_empty,
+    highlight = {colors.yellow, colors.bg, "bold"}
   }
 }
 
 gls.left[7] = {
+  LineInfo = {
+    provider = "LineColumn",
+    -- separator = "",
+    -- separator_highlight = {"NONE", colors.bg},
+    highlight = {colors.fg, colors.bg}
+  }
+}
+
+gls.left[8] = {
   PerCent = {
     provider = "LinePercent",
     separator = " ",
@@ -105,14 +107,14 @@ gls.left[7] = {
   }
 }
 
-gls.left[8] = {
+gls.left[9] = {
   DiagnosticError = {
     provider = "DiagnosticError",
     icon = "  ",
     highlight = {colors.red, colors.bg}
   }
 }
-gls.left[9] = {
+gls.left[10] = {
   DiagnosticWarn = {
     provider = "DiagnosticWarn",
     icon = "  ",
@@ -120,7 +122,7 @@ gls.left[9] = {
   }
 }
 
-gls.left[10] = {
+gls.left[11] = {
   DiagnosticHint = {
     provider = "DiagnosticHint",
     icon = "  ",
@@ -128,7 +130,7 @@ gls.left[10] = {
   }
 }
 
-gls.left[11] = {
+gls.left[12] = {
   DiagnosticInfo = {
     provider = "DiagnosticInfo",
     icon = "  ",
@@ -201,7 +203,9 @@ gls.right[6] = {
     provider = function()
       return " ▊"
     end,
-    highlight = {colors.blue, colors.bg}
+    highlight = {colors.violet, colors.bg},
+    separator = " ",
+    separator_highlight = {"NONE", colors.bg}
   }
 }
 

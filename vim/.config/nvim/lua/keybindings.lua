@@ -10,9 +10,9 @@ map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
 -- map("c", "<Down>", "<C-n>", opts)
 -- map("c", "<Up>", "<C-p>", opts)
 -- HELP
-map("n", "<leader>hs", ":so %<cr>", opts)
-map("n", "<leader>hr", ":so %<cr>:PackerSync<cr>", opts)
-map("n", "<leader>hc", ":so %<cr>:PackerSync<cr>", opts)
+map("n", "<leader>hs", ":so $MYVIMRC<cr>", opts)
+map("n", "<leader>hr", ":so $MYVIMRC<cr>:PackerSync<cr>", opts)
+map("n", "<leader>hc", ":so $MYVIMRC<cr>:PackerCompile profile=true<cr>", {noremap = true})
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", opts)
 -- save all files
