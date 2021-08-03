@@ -329,7 +329,7 @@ return require("packer").startup(
       "famiu/bufdelete.nvim",
       event = "BufWinEnter",
       config = function()
-        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0)<cr>", NS)
+        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)
       end
     }
     use {
@@ -342,7 +342,7 @@ return require("packer").startup(
         map("", "T", "<Plug>Sneak_T", {})
         cmd [[
             let g:sneak#use_ic_scs = 1
-            highlight Sneak guifg=fg guibg=#ee766d
+            highlight Sneak guifg=#ee766d 
         ]]
       end
     }

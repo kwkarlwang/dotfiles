@@ -11,7 +11,7 @@ map("n", "]c", ":IPythonCellNextCell<cr>", {noremap = true, silent = true})
 cmd [[
 function! IPythonOpen()
     " open a new terminal in vertical split and run IPython
-    vnew|call termopen('ipython --matplotlib')
+    vnew|call termopen('ipython --matplotlib=qt')
     file ipython " name the new buffer
 
     " set slime target to new terminal
