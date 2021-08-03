@@ -1,66 +1,65 @@
-local opts = {noremap = true, silent = true}
 local expr = {noremap = true, silent = true, expr = true}
 --------Mappings-----------
-map("v", "<", "<gv", opts)
-map("v", ">", ">gv", opts)
-map("i", "jk", "<Esc>", opts)
+map("n", "<Esc>", ":noh<cr>:echo ''<cr>", NS)
+map("v", "<", "<gv", NS)
+map("v", ">", ">gv", NS)
+map("i", "jk", "<Esc>", NS)
 map("c", "<Down>", "wildmenumode() ? '<C-n>' : '\\<Down>'", expr)
 map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
--- map("c", "<Down>", "<C-n>", opts)
--- map("c", "<Up>", "<C-p>", opts)
+-- map("c", "<Down>", "<C-n>", NS)
+-- map("c", "<Up>", "<C-p>", NS)
 -- HELP
-map("n", "<leader>hrs", ":so $MYVIMRC<cr>", opts)
-map("n", "<leader>hrr", ":so $MYVIMRC<cr>:PackerSync<cr>", opts)
+map("n", "<leader>hrs", ":so $MYVIMRC<cr>", NS)
+map("n", "<leader>hrr", ":so $MYVIMRC<cr>:PackerSync<cr>", NS)
 map("n", "<leader>hrc", ":so $MYVIMRC<cr>:PackerCompile profile=true<cr>", {noremap = true})
 -- FILE
-map("n", "<leader>fs", ":silent up<cr>", opts)
+map("n", "<leader>fs", ":silent up<cr>", NS)
 -- save all files
-map("n", "<leader>bs", ":wa <cr>", opts)
+map("n", "<leader>bs", ":wa <cr>", NS)
 
 -- WINDOWS
-map("n", "<leader>wd", "<C-w>c", opts)
-map("n", "<leader>w<", "30<C-w><", opts)
-map("n", "<leader>w>", "30<C-w>>", opts)
-map("n", "<leader>w+", "10<C-w>+", opts)
-map("n", "<leader>w-", "10<C-w>-", opts)
-map("n", "<leader>w", "<C-w>", opts)
-map("n", "<leader>wm", ":tabnew %<cr>", opts)
+map("n", "<leader>wd", "<C-w>c", NS)
+map("n", "<leader>w<", "30<C-w><", NS)
+map("n", "<leader>w>", "30<C-w>>", NS)
+map("n", "<leader>w+", "10<C-w>+", NS)
+map("n", "<leader>w-", "10<C-w>-", NS)
+map("n", "<leader>w", "<C-w>", NS)
+map("n", "<leader>wm", ":tabnew %<cr>", NS)
 
 -- buffer
--- map("n", "<leader>bk", ":bw!<cr>", opts)
+-- map("n", "<leader>bk", ":bw!<cr>", NS)
 
 -- terminal
-map("n", "<leader>oT", ":terminal<cr>", opts)
-map("t", "<Esc>", "<C-\\><C-n>", opts)
-map("t", "<C-s>", "<Esc>", opts)
+map("n", "<leader>oT", ":terminal<cr>", NS)
+map("t", "<Esc>", "<C-\\><C-n>", NS)
+map("t", "<C-s>", "<Esc>", NS)
 
 -- search result appear in the middle of screen
-map("n", "n", "nzz", opts)
-map("n", "N", "Nzz", opts)
+map("n", "n", "nzz", NS)
+map("n", "N", "Nzz", NS)
 -- move line up and down
-map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", opts)
-map("i", "<M-Up>", "<Esc>:m .-2<cr>==gi", opts)
-map("n", "<M-Down>", ":m .+1<cr>==", opts)
-map("n", "<M-Up>", ":m .-2<cr>==", opts)
-map("v", "<M-Down>", ":m '>+1<cr>gv=gv", opts)
-map("v", "<M-Up>", ":m '<-2<cr>gv=gv", opts)
+map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", NS)
+map("i", "<M-Up>", "<Esc>:m .-2<cr>==gi", NS)
+map("n", "<M-Down>", ":m .+1<cr>==", NS)
+map("n", "<M-Up>", ":m .-2<cr>==", NS)
+map("v", "<M-Down>", ":m '>+1<cr>gv=gv", NS)
+map("v", "<M-Up>", ":m '<-2<cr>gv=gv", NS)
 -- make y copy
-map("n", "Y", "y$", opts)
+map("n", "Y", "y$", NS)
 
 -- undo break point
-map("i", ",", ",<C-g>u", opts)
-map("i", ".", ".<C-g>u", opts)
-map("i", "!", "!<C-g>u", opts)
-map("i", "?", "?<C-g>u", opts)
-map("i", "[", "[<C-g>u", opts)
-map("i", " ", " <C-g>u", opts)
+map("i", ",", ",<C-g>u", NS)
+map("i", ".", ".<C-g>u", NS)
+map("i", "!", "!<C-g>u", NS)
+map("i", "?", "?<C-g>u", NS)
+map("i", "[", "[<C-g>u", NS)
+map("i", " ", " <C-g>u", NS)
 
 -- don't lose indent with esc
-map("i", "<esc>", "x<bs><esc>", opts)
-map("i", "<cr>", "<cr>x<bs>", opts)
-map("n", "o", "ox<bs>", opts)
-map("n", "O", "Ox<bs>", opts)
-map("n", "S", "Sx<bs>", opts)
+map("i", "<cr>", "<cr>x<bs>", NS)
+map("n", "o", "ox<bs>", NS)
+map("n", "O", "Ox<bs>", NS)
+map("n", "S", "Sx<bs>", NS)
 --navigation
 cmd [[
     tnoremap <A-h> <C-\><C-N><C-w>h
