@@ -12,6 +12,7 @@ map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
 map("n", "<leader>hrs", ":so $MYVIMRC<cr>", NS)
 map("n", "<leader>hrr", ":so $MYVIMRC<cr>:PackerSync<cr>", NS)
 map("n", "<leader>hrc", ":so $MYVIMRC<cr>:PackerCompile profile=true<cr>", {noremap = true})
+map("n", "<leader>hrp", ":so $MYVIMRC<cr>:PackerProfile<cr>", {noremap = true})
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", NS)
 -- save all files
@@ -75,3 +76,6 @@ cmd [[
     nnoremap <A-k> <C-w>k
     nnoremap <A-l> <C-w>l
 ]]
+
+-- terminal git push
+map("n", "<leader>gp", "sp term://git push", NS)

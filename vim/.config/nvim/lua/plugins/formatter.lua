@@ -1,18 +1,3 @@
------- FORMAT ON SAVE
-vim.api.nvim_exec(
-  [[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost * :silent FormatWrite
-augroup END
-]],
-  true
-)
-
--- autocmd BufWritePost *.js *.tsx *.ts *jsx *.py *.lua :silent FormatWrite
-
---autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
-map("n", "<leader>cf", ":silent Format<cr>", {noremap = true, silent = true})
 require("formatter").setup(
   {
     logging = false,

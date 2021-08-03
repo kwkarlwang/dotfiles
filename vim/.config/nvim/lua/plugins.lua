@@ -168,13 +168,13 @@ return require("packer").startup(
     }
 
     -- git
-    use {
-      "tpope/vim-fugitive",
-      cmd = "Git",
-      setup = function()
-        map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
-      end
-    }
+    -- use {
+    --   "tpope/vim-fugitive",
+    --   cmd = "Git",
+    --   setup = function()
+    --     map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
+    --   end
+    -- }
 
     use {
       "TimUntersberger/neogit",
@@ -231,20 +231,25 @@ return require("packer").startup(
     -- Formatter.nvim
     use {
       "mhartington/formatter.nvim",
+      cmd = {"Format", "FormatWrite"},
+      setup = function()
+        ------ FORMAT ON SAVE
+        vim.api.nvim_exec(
+          [[
+            augroup FormatAutogroup
+              autocmd!
+              autocmd BufWritePost * :silent FormatWrite
+            augroup END
+            ]],
+          true
+        )
+        map("n", "<leader>cf", ":silent Format<cr>", {noremap = true, silent = true})
+      end,
       config = function()
         require "plugins.formatter"
       end
     }
 
-    -- dashboard, disbale for now
-    --use {
-    --"glepnir/dashboard-nvim",
-    --config = function()
-    --require("plugins.dashboard")
-    --end
-    --}
-
-    -- mutlicurosr
     use {
       "mg979/vim-visual-multi",
       config = function()
