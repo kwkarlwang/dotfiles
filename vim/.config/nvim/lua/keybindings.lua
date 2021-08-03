@@ -1,7 +1,6 @@
 local opts = {noremap = true, silent = true}
 local expr = {noremap = true, silent = true, expr = true}
 --------Mappings-----------
-map("n", "<Esc>", ":noh<cr>:echo ''<cr> i<Esc>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 map("i", "jk", "<Esc>", opts)
