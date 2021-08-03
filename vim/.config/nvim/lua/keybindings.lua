@@ -79,4 +79,4 @@ cmd [[
 ]]
 
 -- terminal git push
-map("n", "<leader>gp", "sp term://git push", NS)
+map("n", "<leader>gp", "sp term://git push<cr>", NS)
