@@ -84,7 +84,8 @@ return require("packer").startup(
     -- statusline
     use {
       "glepnir/galaxyline.nvim",
-      branc = "main",
+      branch = "main",
+      event = "BufWinEnter",
       requires = {"kyazdani42/nvim-web-devicons", opt = true},
       config = function()
         require("plugins.galaxyline")
@@ -220,6 +221,7 @@ return require("packer").startup(
     -- change root to git repo
     use {
       "airblade/vim-rooter",
+      event = "BufReadPre",
       config = function()
         g.rooter_silent_chdir = 1
         g.rooter_manual_only = 0
@@ -265,6 +267,7 @@ return require("packer").startup(
     -- leetcode
     use {
       "ianding1/leetcode.vim",
+      cmd = {"LeetCodeList", "LeetCodeSignIn"},
       config = function()
         g.leetcode_browser = "chrome"
         g.leetcode_hide_paid_only = 1
@@ -283,7 +286,8 @@ return require("packer").startup(
     -- maximize window
     use {
       "szw/vim-maximizer",
-      config = function()
+      cmd = "MaximizerToggle",
+      setup = function()
         map("n", "<leader>wo", ":MaximizerToggle!<cr>", NS)
       end
     }
@@ -291,8 +295,11 @@ return require("packer").startup(
     -- ranger
     use {
       "kevinhwang91/rnvimr",
-      config = function()
+      cmd = "RnvimrToggle",
+      setup = function()
         map("n", "<leader>.", ":RnvimrToggle<cr>", NS)
+      end,
+      config = function()
         g.rnvimr_enable_ex = 1
         g.rnvimr_enable_picker = 1
         g.rnvimr_enable_bw = 1
@@ -300,23 +307,30 @@ return require("packer").startup(
       end
     }
 
+    -- use {
+    --   "jpalardy/vim-slime",
+    --   ft = "python"
+    -- }
+    -- use {
+    --   "hanschen/vim-ipython-cell",
+    --   ft = "python",
+    --   after = "vim-slime",
+    --   config = function()
+    --     require("plugins.ipython")
+    --   end
+    -- }
+
     use {
-      "jpalardy/vim-slime",
-      ft = "python"
-    }
-    use {
-      "hanschen/vim-ipython-cell",
-      ft = "python",
-      after = "vim-slime",
-      config = function()
-        require("plugins.ipython")
-      end
+      "jupyter-vim/jupyter-vim"
     }
 
     use {
       "kdheepak/lazygit.nvim",
-      config = function()
+      setup = function()
         map("n", "<leader>og", ":LazyGit<cr>", NS)
+      end,
+      cmd = "LazyGit",
+      config = function()
         cmd [[
         if has('nvim') && executable('nvr')
           let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
@@ -348,6 +362,7 @@ return require("packer").startup(
     }
     use {
       "lewis6991/gitsigns.nvim",
+      event = "BufRead",
       requires = {
         "nvim-lua/plenary.nvim"
       },

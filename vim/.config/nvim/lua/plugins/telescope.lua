@@ -13,6 +13,15 @@ M.setup = function()
         "--smart-case",
         "--hidden"
       },
+      find_command = {
+        "rg",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+        "--hidden"
+      },
       mappings = {
         i = {
           ["<esc>"] = actions.close,
@@ -70,7 +79,9 @@ M.setup = function()
       help_tags = {
         theme = "ivy"
       },
-      live_grep = {}
+      live_grep = {
+        hidden = true
+      }
     },
     extensions = {
       fzy_native = {
@@ -84,8 +95,10 @@ end
 M.init = function()
   local opts = {noremap = true, silent = true}
   map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", opts)
+  map("n", "<leader>ff", "<cmd>Telescope find_files find=command=rg,--no-ignore,--hidden,--files<cr>", opts)
   map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", opts)
-  map("n", "<leader>sp", "<cmd>Telescope live_grep hidden=true<cr>", opts)
+
+  map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", opts)
   map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 
   map("n", "<leader>hh", "<cmd>Telescope help_tags<cr>", opts)
