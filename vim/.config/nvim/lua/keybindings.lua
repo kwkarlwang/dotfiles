@@ -61,6 +61,7 @@ map("i", "<cr>", "<cr>x<bs>", NS)
 map("n", "o", "ox<bs>", NS)
 map("n", "O", "Ox<bs>", NS)
 map("n", "S", "Sx<bs>", NS)
+
 --navigation
 cmd [[
     tnoremap <A-h> <C-\><C-N><C-w>h
