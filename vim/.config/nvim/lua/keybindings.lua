@@ -34,7 +34,7 @@ map("n", "<leader>wm", ":tabnew %<cr>", NS)
 map("n", "<leader>oT", ":terminal<cr>", NS)
 -- map("t", "<Esc>", "<C-\\><C-n>", NS)
 -- map("t", "<C-s>", "<Esc>", NS)
-map("t", "<C-w>", "<C-\\><C-n><C-w>", NS)
+-- map("t", "<C-w>", "<C-\\><C-n><C-w>", NS)
 map("t", "jk", "<C-\\><C-n>", NS)
 
 -- search result appear in the middle of screen
