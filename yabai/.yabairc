@@ -26,6 +26,7 @@ yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
 # yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^console$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
 
 
 ## global settings
