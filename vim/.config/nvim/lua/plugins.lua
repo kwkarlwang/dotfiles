@@ -184,7 +184,11 @@ return require("packer").startup(
         map("n", "<leader>gg", ":Neogit<cr>", NS)
       end,
       config = function()
-        require("neogit").setup()
+        require("neogit").setup(
+          {
+            disable_commit_confirmation = true
+          }
+        )
       end
     }
 
@@ -330,7 +334,6 @@ return require("packer").startup(
       cmd = "JupyterConnect",
       setup = function()
         map("n", "<leader>mjj", ":vsp <cr>:terminal<cr>ijupyter console<cr><C-\\><C-n><C-w>h:JupyterConnect<cr>", NS)
-
         map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
         map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)
         map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
@@ -362,20 +365,22 @@ return require("packer").startup(
         map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)
       end
     }
+    -- search highlight and wrap
     use {
       "justinmk/vim-sneak",
-      event = "BufWinEnter",
       config = function()
         map("", "f", "<Plug>Sneak_f", {})
         map("", "F", "<Plug>Sneak_F", {})
         map("", "t", "<Plug>Sneak_t", {})
         map("", "T", "<Plug>Sneak_T", {})
         cmd [[
-            let g:sneak#use_ic_scs = 1
-            highlight Sneak guifg=#ee766d 
+            highlight Sneak guifg=#ee766d gui=underline,bold
+            let g:sneak#use_ic_scs=1 
         ]]
       end
     }
+
+    -- show galaxyline git
     use {
       "lewis6991/gitsigns.nvim",
       event = "BufRead",
@@ -384,6 +389,20 @@ return require("packer").startup(
       },
       config = function()
         require "plugins.gitsigns"
+      end
+    }
+
+    -- easymotion
+    use {
+      "phaazon/hop.nvim",
+      as = "hop",
+      cmd = {"HopLineStart", "HopWord"},
+      setup = function()
+        require "plugins.hop".init()
+      end,
+      config = function()
+        -- you can configure Hop the way you like here; see :h hop-config
+        require "plugins.hop".setup()
       end
     }
   end

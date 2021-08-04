@@ -9,10 +9,10 @@ map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
 -- map("c", "<Down>", "<C-n>", NS)
 -- map("c", "<Up>", "<C-p>", NS)
 -- HELP
-map("n", "<leader>hrs", ":so $MYVIMRC<cr>", NS)
-map("n", "<leader>hrr", ":so $MYVIMRC<cr>:PackerSync<cr>", NS)
-map("n", "<leader>hrc", ":so $MYVIMRC<cr>:PackerCompile profile=true<cr>", {noremap = true})
-map("n", "<leader>hrp", ":so $MYVIMRC<cr>:PackerProfile<cr>", {noremap = true})
+map("n", "<leader>hrs", ":source $MYVIMRC<cr>", {noremap = true})
+map("n", "<leader>hrr", ":source $MYVIMRC<cr>:PackerSync<cr>", NS)
+map("n", "<leader>hrc", ":source $MYVIMRC<cr>:PackerCompile profile=true<cr>", {noremap = true})
+map("n", "<leader>hrp", ":source $MYVIMRC<cr>:PackerProfile<cr>", {noremap = true})
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", NS)
 -- save all files
@@ -32,8 +32,10 @@ map("n", "<leader>wm", ":tabnew %<cr>", NS)
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", NS)
-map("t", "<Esc>", "<C-\\><C-n>", NS)
-map("t", "<C-s>", "<Esc>", NS)
+-- map("t", "<Esc>", "<C-\\><C-n>", NS)
+-- map("t", "<C-s>", "<Esc>", NS)
+map("t", "<C-w>", "<C-\\><C-n><C-w>", NS)
+map("t", "jk", "<C-\\><C-n>", NS)
 
 -- search result appear in the middle of screen
 map("n", "n", "nzz", NS)
@@ -63,20 +65,15 @@ map("n", "O", "Ox<bs>", NS)
 map("n", "S", "Sx<bs>", NS)
 
 --navigation
-cmd [[
-    tnoremap <A-h> <C-\><C-N><C-w>h
-    tnoremap <A-j> <C-\><C-N><C-w>j
-    tnoremap <A-k> <C-\><C-N><C-w>k
-    tnoremap <A-l> <C-\><C-N><C-w>l
-    inoremap <A-h> <C-\><C-N><C-w>h
-    inoremap <A-j> <C-\><C-N><C-w>j
-    inoremap <A-k> <C-\><C-N><C-w>k
-    inoremap <A-l> <C-\><C-N><C-w>l
-    nnoremap <A-h> <C-w>h
-    nnoremap <A-j> <C-w>j
-    nnoremap <A-k> <C-w>k
-    nnoremap <A-l> <C-w>l
-]]
+map("n", "sh", "<C-w>h", NS)
+map("n", "sj", "<C-w>j", NS)
+map("n", "sk", "<C-w>k", NS)
+map("n", "sl", "<C-w>l", NS)
+
+map("t", "sh", "<C-\\><C-n><C-w>h", NS)
+map("t", "sj", "<C-\\><C-n><C-w>j", NS)
+map("t", "sk", "<C-\\><C-n><C-w>k", NS)
+map("t", "sl", "<C-\\><C-n><C-w>l", NS)
 
 -- terminal git push
 map("n", "<leader>gp", ":sp term://git push origin HEAD<cr>", NS)
