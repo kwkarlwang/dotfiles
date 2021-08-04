@@ -108,7 +108,7 @@ return require("packer").startup(
         {"nvim-lua/plenary.nvim"},
         {"nvim-telescope/telescope-fzy-native.nvim"}
       },
-      cmd = "Telescope",
+      -- cmd = "Telescope",
       setup = function()
         require "plugins.telescope".init()
       end,
@@ -326,7 +326,18 @@ return require("packer").startup(
     -- }
 
     use {
-      "jupyter-vim/jupyter-vim"
+      "jupyter-vim/jupyter-vim",
+      cmd = "JupyterConnect",
+      setup = function()
+        map("n", "<leader>mjj", ":vsp <cr>:terminal<cr>ijupyter console<cr><C-\\><C-n><C-w>h:JupyterConnect<cr>", NS)
+
+        map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
+        map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)
+        map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
+        map("i", "<S-cr>", "<esc>:JupyterSendCell<cr>/# %%<cr>:noh<cr>i", NS)
+
+        map("n", "<leader>ms", "o# %%<cr><esc>", NS)
+      end
     }
 
     use {

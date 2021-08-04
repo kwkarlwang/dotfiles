@@ -101,3 +101,6 @@ o.pumheight = 10
 
 --------Keyboard waiting time-----------
 o.timeoutlen = 300
+
+--------Turn off scan search-----------
+-- o.wrapscan = false

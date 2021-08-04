@@ -13,15 +13,6 @@ M.setup = function()
         "--smart-case",
         "--hidden"
       },
-      find_command = {
-        "rg",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-        "--hidden"
-      },
       mappings = {
         i = {
           ["<esc>"] = actions.close,
@@ -30,7 +21,7 @@ M.setup = function()
           ["<C-c>"] = false
         }
       },
-      file_ignore_patterns = {"node_modules", ".git"}
+      file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/"}
     },
     pickers = {
       buffers = {
@@ -94,7 +85,7 @@ M.setup = function()
 end
 M.init = function()
   map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)
-  map("n", "<leader>ff", "<cmd>Telescope find_files find=command=rg,--no-ignore,--hidden,--files<cr>", NS)
+  map("n", "<leader>ff", "<cmd>Telescope find_files find_command=fd,--no-ignore,--hidden<cr>", NS)
   map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", NS)
 
   map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", NS)
