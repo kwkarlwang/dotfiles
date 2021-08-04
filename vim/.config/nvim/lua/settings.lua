@@ -100,7 +100,7 @@ cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
 o.pumheight = 10
 
 --------Keyboard waiting time-----------
-o.timeoutlen = 300
+o.timeoutlen = 400
 
 --------Turn off scan search-----------
 -- o.wrapscan = false

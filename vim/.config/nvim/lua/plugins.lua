@@ -108,7 +108,7 @@ return require("packer").startup(
         {"nvim-lua/plenary.nvim"},
         {"nvim-telescope/telescope-fzy-native.nvim"}
       },
-      -- cmd = "Telescope",
+      cmd = "Telescope",
       setup = function()
         require "plugins.telescope".init()
       end,
