@@ -7,6 +7,7 @@ M.init = function()
 
   map("n", "sa", ":HopChar1<cr>", NS)
   map("v", "sa", [[<cmd>lua require('hop').hint_char1()<cr>]], NS)
+
   -- map("n", "f", ":HopChar1<cr>", NS)
   -- map("v", "f", [[<cmd>lua require('hop').hint_char1()<cr>]], NS)
   -- map("n", "F", "f", NS)
