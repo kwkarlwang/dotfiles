@@ -29,8 +29,8 @@ g.mapleader = " "
 
 --------Options-----------
 o.mouse = "a"
-o.number = true
-o.relativenumber = true
+-- o.number = true
+-- o.relativenumber = true
 o.scrolloff = 8
 o.sidescrolloff = 8
 o.background = "dark"
@@ -46,7 +46,6 @@ o.expandtab = true
 o.smartindent = true
 -- o.cindent = true
 o.hidden = true
-cmd [[filetype indent plugin on]]
 
 o.smartcase = true
 o.ignorecase = true

@@ -375,7 +375,7 @@ return require("packer").startup(
         map("", "T", "<Plug>Sneak_T", {})
         cmd [[
             highlight Sneak guifg=#ee766d gui=underline,bold
-            let g:sneak#use_ic_scs=1 
+            let g:sneak#use_ic_scs=1
         ]]
       end
     }
@@ -396,7 +396,8 @@ return require("packer").startup(
     use {
       "phaazon/hop.nvim",
       as = "hop",
-      cmd = {"HopLineStart", "HopWord"},
+      -- cmd = {"HopLineStart", "HopWord", "HopChar1"},
+      event = "BufWinEnter",
       setup = function()
         require "plugins.hop".init()
       end,
