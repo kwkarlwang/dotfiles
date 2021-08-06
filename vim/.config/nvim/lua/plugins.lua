@@ -334,7 +334,12 @@ return require("packer").startup(
       "jupyter-vim/jupyter-vim",
       cmd = "JupyterConnect",
       setup = function()
-        map("n", "<leader>mjj", ":vsp <cr>:terminal<cr>ijupyter console<cr><C-\\><C-n><C-w>h:JupyterConnect<cr>", NS)
+        map(
+          "n",
+          "<leader>mjj",
+          ":vsp<cr>:terminal<cr>ijupyter qtconsole --style monokai &<cr><C-\\><C-n><C-w>c:JupyterConnect<cr>",
+          NS
+        )
         map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
         map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)
         map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
@@ -367,20 +372,19 @@ return require("packer").startup(
       end
     }
     -- search highlight and wrap
-    use {
-      "justinmk/vim-sneak",
-      config = function()
-        map("", "f", "<Plug>Sneak_f", {})
-        map("", "F", "<Plug>Sneak_F", {})
-        map("", "t", "<Plug>Sneak_t", {})
-        map("", "T", "<Plug>Sneak_T", {})
-        cmd [[
-            highlight Sneak guifg=#ee766d gui=underline,bold
-            let g:sneak#use_ic_scs=1
-        ]]
-      end
-    }
-
+    -- use {
+    --   "justinmk/vim-sneak",
+    --   config = function()
+    --     map("", "f", "<Plug>Sneak_f", {})
+    --     map("", "F", "<Plug>Sneak_F", {})
+    --     map("", "t", "<Plug>Sneak_t", {})
+    --     map("", "T", "<Plug>Sneak_T", {})
+    --     cmd [[
+    --         highlight Sneak guifg=#ee766d gui=underline,bold
+    --         let g:sneak#use_ic_scs=1
+    --     ]]
+    --   end
+    -- }
     -- show galaxyline git
     use {
       "lewis6991/gitsigns.nvim",
@@ -393,18 +397,31 @@ return require("packer").startup(
       end
     }
 
-    -- easymotion
+    -- motion related
     use {
       "phaazon/hop.nvim",
       as = "hop",
-      -- cmd = {"HopLineStart", "HopWord", "HopChar1"},
       event = "BufWinEnter",
       setup = function()
         require "plugins.hop".init()
       end,
       config = function()
-        -- you can configure Hop the way you like here; see :h hop-config
         require "plugins.hop".setup()
+      end
+    }
+    use {
+      "ggandor/lightspeed.nvim",
+      event = "BufWinEnter",
+      config = function()
+        require("plugins.lightspeed")
+      end
+    }
+
+    -- auto session
+    use {
+      "rmagatti/auto-session",
+      config = function()
+        require("auto-session").setup()
       end
     }
   end

@@ -21,7 +21,7 @@ M.setup = function()
           ["<C-c>"] = false
         }
       },
-      file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/"}
+      file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/", "cache"}
     },
     pickers = {
       buffers = {

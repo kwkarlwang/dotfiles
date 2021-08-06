@@ -91,10 +91,11 @@ cmd [[
 ]]
 
 --------Terminal-----------
-cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
+cmd "autocmd TermOpen * setlocal nonumber norelativenumber | startinsert"
+cmd "autocmd BufWinEnter,WinEnter term://* startinsert"
 
 --------Auto Resize-----------
--- cmd "autocmd VimResized * wincmd ="
+cmd "autocmd VimResized * wincmd ="
 
 --------Menu Height-----------
 o.pumheight = 10
