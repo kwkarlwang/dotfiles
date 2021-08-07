@@ -93,14 +93,24 @@ ins_left(
 --   }
 -- }
 
+local buffer_modified = function()
+  if vim.bo.modifiable then
+    if vim.bo.modified then
+      return {colors.red, colors.bg, "bold"}
+    end
+  end
+  return {colors.yellow, colors.bg, "bold"}
+end
 ins_left(
   {
     FileName = {
-      provider = {"FileName"},
+      provider = {"FileName", "FileIcon"},
       condition = buffer_not_empty,
       separator = " ",
       separator_highlight = {"NONE", colors.bg},
-      highlight = {colors.yellow, colors.bg, "bold"}
+      -- highlight = {colors.yellow, colors.bg, "bold"}
+      highlight = buffer_modified,
+      event = "BufModifiedSet"
     }
   }
 )
@@ -211,7 +221,8 @@ ins_right(
   {
     DiffAdd = {
       provider = "DiffAdd",
-      icon = "  ",
+      -- icon = "  ",
+      icon = "  ",
       separator = " ",
       separator_highlight = {"NONE", colors.bg},
       highlight = {colors.green, colors.bg}
@@ -222,7 +233,8 @@ ins_right(
   {
     DiffModified = {
       provider = "DiffModified",
-      icon = "  ",
+      -- icon = "  ",
+      icon = "  ",
       separator_highlight = {"NONE", colors.bg},
       highlight = {colors.orange, colors.bg}
     }
@@ -232,31 +244,33 @@ ins_right(
   {
     DiffRemove = {
       provider = "DiffRemove",
-      icon = "  ",
+      -- icon = "  ",
+      icon = "  ",
       separator_highlight = {"NONE", colors.bg},
       highlight = {colors.red, colors.bg}
     }
   }
 )
 
-ins_right(
-  {
-    GitIcon = {
-      provider = function()
-        return "  "
-      end,
-      condition = require("galaxyline.provider_vcs").check_git_workspace,
-      -- separator = " ",
-      -- separator_highlight = {"NONE", colors.bg},
-      highlight = {colors.green, colors.bg, "bold"}
-    }
-  }
-)
+-- ins_right(
+--   {
+--     GitIcon = {
+--       provider = function()
+--         return "  "
+--       end,
+--       condition = require("galaxyline.provider_vcs").check_git_workspace,
+--       -- separator = " ",
+--       -- separator_highlight = {"NONE", colors.bg},
+--       highlight = {colors.green, colors.bg, "bold"}
+--     }
+--   }
+-- )
 
 ins_right(
   {
     GitBranch = {
       provider = "GitBranch",
+      icon = "  ",
       condition = require("galaxyline.provider_vcs").check_git_workspace,
       highlight = {colors.green, colors.bg, "bold"}
     }
@@ -287,18 +301,21 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
   SFileName = {
-    provider = function()
-      local fileinfo = require("galaxyline.provider_fileinfo")
-      local fname = fileinfo.get_current_file_name()
-      for _, v in ipairs(gl.short_line_list) do
-        if v == vim.bo.filetype then
-          return ""
+    provider = {
+      function()
+        local fileinfo = require("galaxyline.provider_fileinfo")
+        local fname = fileinfo.get_current_file_name()
+        for _, v in ipairs(gl.short_line_list) do
+          if v == vim.bo.filetype then
+            return ""
+          end
         end
-      end
-      return fname
-    end,
+        return fname
+      end,
+      "FileIcon"
+    },
     condition = buffer_not_empty,
-    highlight = {colors.white, colors.bg, "bold"}
+    highlight = buffer_modified
   }
 }
 

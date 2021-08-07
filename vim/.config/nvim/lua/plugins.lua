@@ -84,7 +84,7 @@ return require("packer").startup(
 
     -- statusline
     use {
-      "glepnir/galaxyline.nvim",
+      "kwkarlwang/galaxyline.nvim",
       branch = "main",
       event = "BufWinEnter",
       requires = {"kyazdani42/nvim-web-devicons", opt = true},
