@@ -22,6 +22,7 @@ yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^FortiClient$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Font Book$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
 # yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^console$" manage=off

@@ -6,8 +6,6 @@ map("v", ">", ">gv", NS)
 map("i", "jk", "<Esc>", NS)
 map("c", "<Down>", "wildmenumode() ? '<C-n>' : '\\<Down>'", expr)
 map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
--- map("c", "<Down>", "<C-n>", NS)
--- map("c", "<Up>", "<C-p>", NS)
 -- HELP
 map("n", "<leader>hrs", ":source %<cr>", {noremap = true})
 map("n", "<leader>hrr", ":source %<cr>:PackerSync<cr>", NS)
@@ -24,7 +22,9 @@ map("n", "<leader>w<", "30<C-w><", NS)
 map("n", "<leader>w>", "30<C-w>>", NS)
 map("n", "<leader>w+", "10<C-w>+", NS)
 map("n", "<leader>w-", "10<C-w>-", NS)
-map("n", "<leader>w", "<C-w>", NS)
+-- map("n", "<leader>w", "<C-w>", NS)
+map("n", "<leader>wv", "<C-w>v", NS)
+map("n", "<leader>ws", "<C-w>s", NS)
 map("n", "<leader>wm", ":tabnew %<cr>", NS)
 
 --navigation
@@ -76,3 +76,4 @@ map("n", "S", "Sx<bs>", NS)
 
 -- terminal git push
 map("n", "<leader>gp", ":sp term://git push origin HEAD<cr>", NS)
+map("n", "<leader>gf", ":sp term://git pull origin HEAD<cr>", NS)

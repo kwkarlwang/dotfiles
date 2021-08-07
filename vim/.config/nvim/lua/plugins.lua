@@ -67,6 +67,7 @@ return require("packer").startup(
     -- comment function
     use {
       "b3nj5m1n/kommentary",
+      event = "BufWinEnter",
       config = function()
         g.kommentary_create_default_mappings = false
         map("n", "<leader>c<leader>", "<Plug>kommentary_line_default", {})
@@ -334,12 +335,7 @@ return require("packer").startup(
       "jupyter-vim/jupyter-vim",
       cmd = "JupyterConnect",
       setup = function()
-        map(
-          "n",
-          "<leader>mjj",
-          ":vsp<cr>:terminal<cr>ijupyter qtconsole --style monokai &<cr><C-\\><C-n><C-w>c:JupyterConnect<cr>",
-          NS
-        )
+        map("n", "<leader>mjj", ":!jupyter qtconsole --style monokai &<cr><cr>:JupyterConnect<cr>", NS)
         map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
         map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)
         map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
@@ -420,6 +416,7 @@ return require("packer").startup(
     -- auto session
     use {
       "rmagatti/auto-session",
+      event = "BufWinEnter",
       config = function()
         require("auto-session").setup()
       end
