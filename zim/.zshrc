@@ -92,8 +92,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
+# ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
 bindkey -v '^?' backward-delete-char
+bindkey -v '^W' backward-kill-word
 ulimit -S -n 200048
 
 # ------------------------------

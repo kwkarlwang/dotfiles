@@ -367,21 +367,6 @@ return require("packer").startup(
         map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)
       end
     }
-    -- search highlight and wrap
-    -- use {
-    --   "justinmk/vim-sneak",
-    --   config = function()
-    --     map("", "f", "<Plug>Sneak_f", {})
-    --     map("", "F", "<Plug>Sneak_F", {})
-    --     map("", "t", "<Plug>Sneak_t", {})
-    --     map("", "T", "<Plug>Sneak_T", {})
-    --     cmd [[
-    --         highlight Sneak guifg=#ee766d gui=underline,bold
-    --         let g:sneak#use_ic_scs=1
-    --     ]]
-    --   end
-    -- }
-    -- show galaxyline git
     use {
       "lewis6991/gitsigns.nvim",
       event = "BufRead",

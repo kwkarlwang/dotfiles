@@ -215,7 +215,7 @@ ins_right {
 
 ins_right {
   "diff",
-/cir  symbols = {added = " ", modified = "柳 ", removed = " "},
+  symbols = {added = " ", modified = "柳 ", removed = " "},
   color_added = colors.green,
   color_modified = colors.orange,
   color_removed = colors.red,

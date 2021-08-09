@@ -22,6 +22,32 @@ local buffer_not_empty = function()
   end
   return false
 end
+
+local lsp_active = function()
+  local clients = lsp.get_active_clients()
+  if next(clients) == nil then
+    return false
+  end
+  return true
+end
+
+local buffer_modified = function()
+  if vim.bo.modifiable then
+    if vim.bo.modified then
+      return {colors.red, colors.bg, "bold"}
+    end
+  end
+  return {colors.yellow, colors.bg, "bold"}
+end
+
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
+end
+
+local show_in_width = function()
+  return vim.fn.winwidth(0) <= 80
+end
+
 local function ins_left(component)
   table.insert(gls.left, component)
 end
@@ -78,42 +104,38 @@ ins_left(
   {
     FileSize = {
       provider = "FileSize",
-      condition = buffer_not_empty,
-      separator = " ",
-      separator_highlight = {"NONE", colors.bg},
+      condition = buffer_not_empty and hide_in_width,
+      -- separator = " ",
+      -- separator_highlight = {"NONE", colors.bg},
       highlight = {colors.fg, colors.bg}
     }
   }
 )
--- gls.left[4] = {
---   FileIcon = {
---     provider = "FileIcon",
---     condition = buffer_not_empty,
---     highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
---   }
--- }
 
-local buffer_modified = function()
-  if vim.bo.modifiable then
-    if vim.bo.modified then
-      return {colors.red, colors.bg, "bold"}
-    end
-  end
-  return {colors.yellow, colors.bg, "bold"}
-end
 ins_left(
   {
     FileName = {
-      provider = {"FileName", "FileIcon"},
-      condition = buffer_not_empty,
-      separator = " ",
-      separator_highlight = {"NONE", colors.bg},
-      -- highlight = {colors.yellow, colors.bg, "bold"}
-      highlight = buffer_modified,
-      event = "BufModifiedSet"
+      provider = "FileName",
+      condition = buffer_not_empty and show_in_width,
+      highlight = buffer_modified
+    },
+    FilePath = {
+      provider = "FilePath",
+      condition = buffer_not_empty and hide_in_width,
+      highlight = buffer_modified
     }
   }
 )
+
+ins_left {
+  FileIcon = {
+    provider = "FileIcon",
+    condition = lsp_active and buffer_not_empty and hide_in_width,
+    separator = " ",
+    separator_highlight = {"NONE", colors.bg},
+    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
+  }
+}
 
 ins_left(
   {
@@ -132,6 +154,7 @@ ins_left(
       provider = "LinePercent",
       separator = " ",
       separator_highlight = {"NONE", colors.bg},
+      condition = lsp_active and buffer_not_empty and hide_in_width,
       highlight = {colors.fg, colors.bg, "bold"}
     }
   }
@@ -143,6 +166,7 @@ ins_left(
       provider = "DiagnosticError",
       icon = "  ",
       highlight = {colors.red, colors.bg}
+      -- condition = hide_in_width
     }
   }
 )
@@ -152,6 +176,7 @@ ins_left(
       provider = "DiagnosticWarn",
       icon = "  ",
       highlight = {colors.yellow, colors.bg}
+      -- condition = hide_in_width
     }
   }
 )
@@ -162,6 +187,7 @@ ins_left(
       provider = "DiagnosticHint",
       icon = "  ",
       highlight = {colors.cyan, colors.bg}
+      -- condition = hide_in_width
     }
   }
 )
@@ -172,6 +198,7 @@ ins_left(
       provider = "DiagnosticInfo",
       icon = "  ",
       highlight = {colors.blue, colors.bg}
+      -- condition = hide_in_width
     }
   }
 )
@@ -201,9 +228,6 @@ ins_right(
         local msg = ""
         local buf_ft = api.nvim_buf_get_option(0, "filetype")
         local clients = lsp.get_active_clients()
-        if next(clients) == nil then
-          return msg
-        end
         for _, client in ipairs(clients) do
           local filetypes = client.config.filetypes
           if filetypes and fn.index(filetypes, buf_ft) ~= -1 then
@@ -212,6 +236,7 @@ ins_right(
         end
         return msg
       end,
+      condition = lsp_active and hide_in_width,
       highlight = {colors.fg, colors.bg, "bold"}
     }
   }
@@ -225,53 +250,34 @@ ins_right(
       icon = "  ",
       separator = " ",
       separator_highlight = {"NONE", colors.bg},
-      highlight = {colors.green, colors.bg}
-    }
-  }
-)
-ins_right(
-  {
+      highlight = {colors.green, colors.bg},
+      condition = hide_in_width
+    },
     DiffModified = {
       provider = "DiffModified",
       -- icon = "  ",
       icon = "  ",
       separator_highlight = {"NONE", colors.bg},
-      highlight = {colors.orange, colors.bg}
-    }
-  }
-)
-ins_right(
-  {
+      highlight = {colors.orange, colors.bg},
+      condition = hide_in_width
+    },
     DiffRemove = {
       provider = "DiffRemove",
       -- icon = "  ",
       icon = "  ",
       separator_highlight = {"NONE", colors.bg},
-      highlight = {colors.red, colors.bg}
+      highlight = {colors.red, colors.bg},
+      condition = hide_in_width
     }
   }
 )
-
--- ins_right(
---   {
---     GitIcon = {
---       provider = function()
---         return "  "
---       end,
---       condition = require("galaxyline.provider_vcs").check_git_workspace,
---       -- separator = " ",
---       -- separator_highlight = {"NONE", colors.bg},
---       highlight = {colors.green, colors.bg, "bold"}
---     }
---   }
--- )
 
 ins_right(
   {
     GitBranch = {
       provider = "GitBranch",
       icon = "  ",
-      condition = require("galaxyline.provider_vcs").check_git_workspace,
+      condition = require("galaxyline.provider_vcs").check_git_workspace and hide_in_width,
       highlight = {colors.green, colors.bg, "bold"}
     }
   }
@@ -311,11 +317,11 @@ gls.short_line_left[2] = {
           end
         end
         return fname
-      end,
-      "FileIcon"
+      end
     },
     condition = buffer_not_empty,
-    highlight = buffer_modified
+    highlight = buffer_modified,
+    event = "BufRead"
   }
 }
 
