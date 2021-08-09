@@ -44,7 +44,7 @@ return require("packer").startup(
     }
     use {
       "hrsh7th/vim-vsnip",
-      event = "InsertCharPre"
+      event = "InsertEnter"
     }
     use {
       "rafamadriz/friendly-snippets",
@@ -137,7 +137,7 @@ return require("packer").startup(
             enable = true,
             extended_modes = false,
             colors = {
-              "#88f298",
+              "#ffffe0",
               "#f199ce",
               "#a3c4ef",
               "#acebfb",

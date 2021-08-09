@@ -31,21 +31,22 @@ local lsp_active = function()
   return true
 end
 
-local buffer_modified = function()
-  if vim.bo.modifiable then
-    if vim.bo.modified then
-      return {colors.red, colors.bg, "bold"}
-    end
+local buffer_modified_path = function()
+  if vim.bo.modifiable and vim.bo.modified then
+    return {colors.red, colors.bg, "bold"}
   end
   return {colors.yellow, colors.bg, "bold"}
 end
 
-local hide_in_width = function()
-  return vim.fn.winwidth(0) > 80
+local buffer_modified_file = function()
+  if vim.bo.modifiable and vim.bo.modified then
+    return {colors.red, colors.bg, "bold"}
+  end
+  return {colors.fg, colors.bg, "bold"}
 end
 
-local show_in_width = function()
-  return vim.fn.winwidth(0) <= 80
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
 end
 
 local function ins_left(component)
@@ -111,18 +112,22 @@ ins_left(
     }
   }
 )
+ins_left(
+  {
+    FilePath = {
+      provider = "FilePath",
+      condition = buffer_not_empty and hide_in_width,
+      highlight = buffer_modified_path
+    }
+  }
+)
 
 ins_left(
   {
     FileName = {
       provider = "FileName",
-      condition = buffer_not_empty and show_in_width,
-      highlight = buffer_modified
-    },
-    FilePath = {
-      provider = "FilePath",
-      condition = buffer_not_empty and hide_in_width,
-      highlight = buffer_modified
+      condition = buffer_not_empty,
+      highlight = buffer_modified_file
     }
   }
 )
@@ -133,7 +138,8 @@ ins_left {
     condition = lsp_active and buffer_not_empty and hide_in_width,
     separator = " ",
     separator_highlight = {"NONE", colors.bg},
-    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
+    -- highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
+    highlight = {colors.cyan, colors.bg}
   }
 }
 
@@ -252,7 +258,11 @@ ins_right(
       separator_highlight = {"NONE", colors.bg},
       highlight = {colors.green, colors.bg},
       condition = hide_in_width
-    },
+    }
+  }
+)
+ins_right(
+  {
     DiffModified = {
       provider = "DiffModified",
       -- icon = "  ",
@@ -260,7 +270,11 @@ ins_right(
       separator_highlight = {"NONE", colors.bg},
       highlight = {colors.orange, colors.bg},
       condition = hide_in_width
-    },
+    }
+  }
+)
+ins_right(
+  {
     DiffRemove = {
       provider = "DiffRemove",
       -- icon = "  ",
@@ -271,7 +285,6 @@ ins_right(
     }
   }
 )
-
 ins_right(
   {
     GitBranch = {
@@ -320,7 +333,7 @@ gls.short_line_left[2] = {
       end
     },
     condition = buffer_not_empty,
-    highlight = buffer_modified,
+    highlight = buffer_modified_file,
     event = "BufRead"
   }
 }

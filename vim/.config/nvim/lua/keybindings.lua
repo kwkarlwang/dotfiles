@@ -1,11 +1,16 @@
 local expr = {noremap = true, silent = true, expr = true}
 --------Mappings-----------
+map("n", "j", "gj", NS)
+map("n", "k", "gk", NS)
 map("n", "<Esc>", ":noh<cr>:echo ''<cr>", NS)
 map("v", "<", "<gv", NS)
 map("v", ">", ">gv", NS)
 map("i", "jk", "<Esc>", NS)
-map("c", "<Down>", "wildmenumode() ? '<C-n>' : '\\<Down>'", expr)
-map("c", "<Up>", "wildmenumode() ? '<C-p>' : '\\<Up>'", expr)
+-- map("c", "<Down>", "wildmenumode() ? '<left>' : '\\<down>'", expr)
+-- map("c", "<Up>", "wildmenumode() ? '<right>' : '\\<up>'", expr)
+
+map("c", "<Down>", "<C-n>", {})
+map("c", "<Up>", "<C-p>", {})
 -- HELP
 map("n", "<leader>hrs", ":source %<cr>", {noremap = true})
 map("n", "<leader>hrr", ":source %<cr>:PackerSync<cr>", NS)
