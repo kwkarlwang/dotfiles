@@ -21,7 +21,20 @@ M.setup = function()
           ["<C-c>"] = false
         }
       },
-      file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/", "cache"}
+      file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/", "cache"},
+      layout_strategy = "horizontal",
+      sorting_strategy = "ascending",
+      layout_config = {
+        height = 100,
+        horizontal = {
+          prompt_position = "top",
+          mirror = false
+        },
+        vertical = {
+          mirror = false
+        }
+      },
+      borderchars = {"─", "│", "─", "│", "┌", "┐", "┘", "└"}
     },
     pickers = {
       buffers = {
@@ -39,18 +52,18 @@ M.setup = function()
         hidden = true
       },
       current_buffer_fuzzy_find = {
-        theme = "ivy",
-        vimgrep_arguments = {
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-          "--hidden",
-          "--fixed-strings"
-        }
+        theme = "ivy"
+        -- vimgrep_arguments = {
+        --   "rg",
+        --   "--color=never",
+        --   "--no-heading",
+        --   "--with-filename",
+        --   "--line-number",
+        --   "--column",
+        --   "--smart-case",
+        --   "--hidden",
+        --   "--fixed-strings"
+        -- }
       },
       file_browser = {
         theme = "ivy"
@@ -72,16 +85,19 @@ M.setup = function()
       },
       live_grep = {
         hidden = true
-      }
-    },
-    extensions = {
-      fzy_native = {
-        override_generic_sorter = false,
-        override_file_sorter = true
+      },
+      extensions = {
+        fzf = {
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = false, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
+          case_mode = "smart_case" -- or "ignore_case" or "respect_case"
+          -- the default case_mode is "smart_case"
+        }
       }
     }
   }
-  require("telescope").load_extension("fzy_native")
+  require("telescope").load_extension("fzf")
 end
 M.init = function()
   map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)

@@ -92,10 +92,26 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
 bindkey -v '^?' backward-delete-char
 bindkey -v '^W' backward-kill-word
+
+
+
+# This disable the vim too many open files error
 ulimit -S -n 200048
+
+# This automatically set window name
+function set-title-precmd() {
+  printf "\e]2;%s\a" "${PWD/#$HOME/~}"
+}
+
+# function set-title-preexec() {
+#   printf "\e]2;%s\a" "$1"
+# }
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd set-title-precmd
+# add-zsh-hook preexec set-title-preexec
 
 # ------------------------------
 # Alias
@@ -177,7 +193,6 @@ else
     export VISUAL="nvim"
     export EDITOR="nvim"
 fi
-export PAGER=nvimpager
 
 
 

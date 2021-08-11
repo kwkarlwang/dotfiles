@@ -105,3 +105,6 @@ o.timeoutlen = 400
 
 --------Turn off scan search-----------
 -- o.wrapscan = false
+
+--------Disable fold-----------
+o.foldenable = false
