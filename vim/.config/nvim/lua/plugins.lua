@@ -140,6 +140,7 @@ return require("packer").startup(
             colors = {
               "#ffcc66",
               "#f199ce",
+              "#569cd6",
               "#a3c4ef",
               "#acebfb",
               "#ee766d"
@@ -312,7 +313,6 @@ return require("packer").startup(
         map("n", "<leader>.", ":RnvimrToggle<cr>", NS)
       end,
       config = function()
-        print("here")
         g.rnvimr_enable_ex = 1
         g.rnvimr_enable_picker = 1
         g.rnvimr_enable_bw = 1

@@ -23,11 +23,10 @@ M.setup = function()
       },
       file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/", "cache"},
       layout_strategy = "horizontal",
-      sorting_strategy = "ascending",
+      sorting_strategy = "descending",
       layout_config = {
-        height = 100,
         horizontal = {
-          prompt_position = "top",
+          prompt_position = "bottom",
           mirror = false
         },
         vertical = {
