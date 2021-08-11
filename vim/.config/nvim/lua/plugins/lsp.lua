@@ -2,7 +2,7 @@
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-  local function buf_set_keymap(...)
+  local function bufmap(...)
     api.nvim_buf_set_keymap(bufnr, ...)
   end
   local function buf_set_option(...)
@@ -15,20 +15,26 @@ local on_attach = function(_, bufnr)
   -- Mappings.
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", NS)
-  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", NS)
-  --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- buf_set_keymap("n", "<space>wA", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", NS)
-  -- buf_set_keymap("n", "<space>wR", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", NS)
-  -- buf_set_keymap("n", "<space>wL", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", NS)
-  --buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", NS)
-  buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", NS)
-  buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header=false })<CR>", NS)
-  buf_set_keymap("n", "[e", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", NS)
-  buf_set_keymap("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", NS)
-  --buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  --buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  bufmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", NS)
+  --bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  -- bufmap("n", "<space>wA", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", NS)
+  -- bufmap("n", "<space>wR", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", NS)
+  -- bufmap("n", "<space>wL", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", NS)
+  --bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", NS)
+  bufmap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header=false })<CR>", NS)
+  bufmap("n", "[e", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", NS)
+  bufmap("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", NS)
+  --bufmap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  --bufmap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+  -- LSP RELATED
+  bufmap("n", "gi", "<cmd>Telescope lsp_implementation<CR>", NS)
+  bufmap("n", "<space>ca", "<cmd>Telescope lsp_code_actions<CR>", NS)
+  bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", NS)
+  bufmap("n", "gD", "<cmd>Telescope lsp_references<CR>", NS)
+  bufmap("n", "<leader>ld", "<cmd>Telescope lsp_workspace_diagnostics<cr>", NS)
+  bufmap("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", NS)
 end
 
 ------------- LSP INSTALL

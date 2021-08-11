@@ -79,6 +79,15 @@ M.setup = function()
       lsp_definitions = {
         theme = "ivy"
       },
+      lsp_document_symbols = {
+        theme = "ivy"
+      },
+      lsp_workspace_diagnostics = {
+        theme = "ivy"
+      },
+      lsp_code_actions = {
+        theme = "ivy"
+      },
       help_tags = {
         theme = "ivy"
       },
@@ -113,10 +122,5 @@ M.init = function()
   map("n", "<M-x>", "<cmd>Telescope commands<cr>", NS)
   map("n", "<leader>:", "<cmd>Telescope commands<cr>", NS)
   map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", NS)
-
-  map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", NS)
-  map("n", "gD", "<cmd>Telescope lsp_references<CR>", NS)
-
-  map("n", "<leader>sd", "<cmd>Telescope lsp_workspace_diagnostics<cr>", NS)
 end
 return M
