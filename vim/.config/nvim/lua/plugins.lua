@@ -138,7 +138,7 @@ return require("packer").startup(
             enable = true,
             extended_modes = false,
             colors = {
-              "#ffffe0",
+              "#ffcc66",
               "#f199ce",
               "#a3c4ef",
               "#acebfb",
@@ -151,6 +151,7 @@ return require("packer").startup(
 
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
+    use "tpope/vim-sleuth"
 
     -- pair brackets
     use {
