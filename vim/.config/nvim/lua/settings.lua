@@ -108,3 +108,6 @@ o.timeoutlen = 400
 
 --------Disable fold-----------
 o.foldenable = false
+
+--------Kitty-----------
+cmd "let &t_ut=''"

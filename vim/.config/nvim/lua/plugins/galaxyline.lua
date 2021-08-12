@@ -46,7 +46,7 @@ local buffer_modified_file = function()
 end
 
 local hide_in_width = function()
-  return vim.fn.winwidth(0) > 80
+  return vim.fn.winwidth(0) > 100
 end
 
 local function ins_left(component)
@@ -116,7 +116,7 @@ ins_left(
   {
     FilePath = {
       provider = "FilePath",
-      condition = buffer_not_empty and hide_in_width,
+      condition = buffer_not_empty,
       highlight = buffer_modified_path
     }
   }
@@ -135,7 +135,7 @@ ins_left(
 ins_left {
   FileIcon = {
     provider = "FileIcon",
-    condition = lsp_active and buffer_not_empty and hide_in_width,
+    condition = buffer_not_empty and hide_in_width,
     separator = " ",
     separator_highlight = {"NONE", colors.bg},
     -- highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
@@ -160,7 +160,7 @@ ins_left(
       provider = "LinePercent",
       separator = " ",
       separator_highlight = {"NONE", colors.bg},
-      condition = lsp_active and buffer_not_empty and hide_in_width,
+      condition = buffer_not_empty and hide_in_width,
       highlight = {colors.fg, colors.bg, "bold"}
     }
   }
@@ -171,8 +171,8 @@ ins_left(
     DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
-      highlight = {colors.red, colors.bg}
-      -- condition = hide_in_width
+      highlight = {colors.red, colors.bg},
+      condition = hide_in_width
     }
   }
 )
@@ -192,8 +192,8 @@ ins_left(
     DiagnosticHint = {
       provider = "DiagnosticHint",
       icon = "  ",
-      highlight = {colors.cyan, colors.bg}
-      -- condition = hide_in_width
+      highlight = {colors.cyan, colors.bg},
+      condition = hide_in_width
     }
   }
 )
@@ -203,8 +203,8 @@ ins_left(
     DiagnosticInfo = {
       provider = "DiagnosticInfo",
       icon = "  ",
-      highlight = {colors.blue, colors.bg}
-      -- condition = hide_in_width
+      highlight = {colors.blue, colors.bg},
+      condition = hide_in_width
     }
   }
 )
@@ -290,7 +290,8 @@ ins_right(
     GitBranch = {
       provider = "GitBranch",
       icon = "  ",
-      condition = require("galaxyline.provider_vcs").check_git_workspace and hide_in_width,
+      -- condition = require("galaxyline.provider_vcs").check_git_workspace and hide_in_width,
+      condition = hide_in_width,
       highlight = {colors.green, colors.bg, "bold"}
     }
   }
@@ -319,6 +320,25 @@ gls.short_line_left[1] = {
 }
 
 gls.short_line_left[2] = {
+  SFilePath = {
+    provider = {
+      function()
+        local fileinfo = require("galaxyline.provider_fileinfo")
+        local fname = fileinfo.get_current_file_name()
+        for _, v in ipairs(gl.short_line_list) do
+          if v == vim.bo.filetype then
+            return ""
+          end
+        end
+        return fileinfo.get_current_file_path()
+      end
+    },
+    condition = buffer_not_empty,
+    highlight = buffer_modified_path
+  }
+}
+
+gls.short_line_left[3] = {
   SFileName = {
     provider = {
       function()
