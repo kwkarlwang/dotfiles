@@ -324,7 +324,6 @@ gls.short_line_left[2] = {
     provider = {
       function()
         local fileinfo = require("galaxyline.provider_fileinfo")
-        local fname = fileinfo.get_current_file_name()
         for _, v in ipairs(gl.short_line_list) do
           if v == vim.bo.filetype then
             return ""

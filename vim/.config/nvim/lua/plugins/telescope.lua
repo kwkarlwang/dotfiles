@@ -1,6 +1,7 @@
 local M = {}
 M.setup = function()
   local actions = require("telescope.actions")
+  local telescope = require("telescope")
   require("telescope").setup {
     defaults = {
       vimgrep_arguments = {
@@ -23,15 +24,20 @@ M.setup = function()
       },
       file_ignore_patterns = {"node_modules/", ".git/", ".gitmodules/", "cache"},
       layout_strategy = "horizontal",
-      sorting_strategy = "descending",
+      -- sorting_strategy = "descending",
+      sorting_strategy = "ascending",
       layout_config = {
         horizontal = {
-          prompt_position = "bottom",
-          mirror = false
+          prompt_position = "top",
+          mirror = false,
+          preview_width = 0.6
         },
         vertical = {
+          prompt_position = "top",
           mirror = false
-        }
+        },
+        width = 0.75,
+        height = 0.4
       },
       borderchars = {"─", "│", "─", "│", "┌", "┐", "┘", "└"}
     },
@@ -92,6 +98,7 @@ M.setup = function()
         theme = "ivy"
       },
       live_grep = {
+        theme = "ivy",
         hidden = true
       },
       extensions = {
@@ -106,6 +113,7 @@ M.setup = function()
     }
   }
   require("telescope").load_extension("fzf")
+  require("telescope").load_extension("project")
 end
 M.init = function()
   map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)
@@ -122,5 +130,6 @@ M.init = function()
   map("n", "<M-x>", "<cmd>Telescope commands<cr>", NS)
   map("n", "<leader>:", "<cmd>Telescope commands<cr>", NS)
   map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", NS)
+  map("n", "<leader>pp", "<cmd>lua require'telescope'.extensions.project.project{}<cr>", NS)
 end
 return M

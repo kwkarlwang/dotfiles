@@ -107,10 +107,11 @@ return require("packer").startup(
       requires = {
         {"nvim-lua/popup.nvim"},
         {"nvim-lua/plenary.nvim"},
-        {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+        {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
+        {"nvim-telescope/telescope-project.nvim"}
         -- {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
       },
-      cmd = "Telescope",
+      event = "BufWinEnter",
       setup = function()
         require "plugins.telescope".init()
       end,
