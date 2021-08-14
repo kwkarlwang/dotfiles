@@ -173,13 +173,13 @@ return require("packer").startup(
     }
 
     -- git
-    use {
-      "tpope/vim-fugitive",
-      cmd = "Git"
-      -- setup = function()
-      --   map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
-      -- end
-    }
+    -- use {
+    --   "tpope/vim-fugitive",
+    --   cmd = "Git"
+    --   -- setup = function()
+    --   --   map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
+    --   -- end
+    -- }
 
     use {
       "TimUntersberger/neogit",
