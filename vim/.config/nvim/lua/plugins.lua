@@ -58,9 +58,6 @@ return require("packer").startup(
       config = function()
         --------Theme-----------
         cmd "colorscheme dracula"
-        g.dracula_italic = true
-        g.dracula_underline = true
-        g.dracula_colorterm = true
       end
     }
 

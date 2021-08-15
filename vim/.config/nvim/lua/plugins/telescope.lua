@@ -1,7 +1,6 @@
 local M = {}
 M.setup = function()
   local actions = require("telescope.actions")
-  local telescope = require("telescope")
   require("telescope").setup {
     defaults = {
       vimgrep_arguments = {
@@ -86,6 +85,12 @@ M.setup = function()
         theme = "ivy"
       },
       lsp_document_symbols = {
+        theme = "ivy"
+      },
+      lsp_workspace_symbols = {
+        theme = "ivy"
+      },
+      lsp_document_diagnostics = {
         theme = "ivy"
       },
       lsp_workspace_diagnostics = {

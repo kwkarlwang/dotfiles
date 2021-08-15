@@ -34,7 +34,9 @@ local on_attach = function(_, bufnr)
   bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", NS)
   bufmap("n", "gD", "<cmd>Telescope lsp_references<CR>", NS)
   bufmap("n", "<leader>ld", "<cmd>Telescope lsp_workspace_diagnostics<cr>", NS)
-  bufmap("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", NS)
+  bufmap("n", "<leader>lD", "<cmd>Telescope lsp_document_diagnostics<cr>", NS)
+  bufmap("n", "<leader>ls", "<cmd>Telescope lsp_workspace_symbols<cr>", NS)
+  bufmap("n", "<leader>lS", "<cmd>Telescope lsp_document_symbols<cr>", NS)
 end
 
 ------------- LSP INSTALL
@@ -118,4 +120,13 @@ fn.sign_define(
 fn.sign_define(
   "LspDiagnosticsSignInformation",
   {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
+)
+
+-- update in insert mode
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    update_in_insert = true
+  }
 )
