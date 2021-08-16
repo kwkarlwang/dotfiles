@@ -136,7 +136,7 @@ return require("packer").startup(
             enable = true,
             extended_modes = false,
             colors = {
-              "#ffcc66",
+              "#ebcb8b",
               "#f199ce",
               "#569cd6",
               "#a3c4ef",

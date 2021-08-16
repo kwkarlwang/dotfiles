@@ -20,6 +20,8 @@ M.init = function()
   -- map("v", "F", "f", NS)
 end
 M.setup = function()
-  require "hop".setup {keys = "asdfhjkl"}
+  require "hop".setup {
+    keys = "asdghklcvnmfj"
+  }
 end
 return M
