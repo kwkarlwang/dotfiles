@@ -106,8 +106,10 @@ o.timeoutlen = 400
 --------Turn off scan search-----------
 -- o.wrapscan = false
 
---------Disable fold-----------
+--------Fold-----------
+-- startup fold
 o.foldenable = false
+o.foldmethod = "indent"
 
 --------Kitty-----------
 cmd "let &t_ut=''"

@@ -418,8 +418,8 @@ return require("packer").startup(
     --   end
     -- }
     use {
-      event = "BufWinEnter",
       "kevinhwang91/nvim-hlslens",
+      event = "BufWinEnter",
       config = function()
         require("hlslens").setup(
           {
