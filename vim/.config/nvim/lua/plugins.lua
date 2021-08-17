@@ -398,6 +398,7 @@ return require("packer").startup(
       end
     }
 
+    -- NOTE: can consider https://github.com/folke/persistence.nvim
     -- auto session
     use {
       "rmagatti/auto-session",
