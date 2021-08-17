@@ -32,16 +32,16 @@ local lsp_active = function()
 end
 
 local buffer_modified_path = function()
-  if vim.bo.modifiable and vim.bo.modified then
-    return {colors.red, colors.bg, "bold"}
-  end
+  -- if vim.bo.modifiable and vim.bo.modified then
+  --   return {colors.red, colors.bg, "bold"}
+  -- end
   return {colors.yellow, colors.bg, "bold"}
 end
 
 local buffer_modified_file = function()
-  if vim.bo.modifiable and vim.bo.modified then
-    return {colors.red, colors.bg, "bold"}
-  end
+  -- if vim.bo.modifiable and vim.bo.modified then
+  --   return {colors.red, colors.bg, "bold"}
+  -- end
   return {colors.fg, colors.bg, "bold"}
 end
 

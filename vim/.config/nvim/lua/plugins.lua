@@ -409,12 +409,23 @@ return require("packer").startup(
     }
 
     -- highlight search
+    -- use {
+    --   "rktjmp/highlight-current-n.nvim",
+    --   event = "BufWinEnter",
+    --   config = function()
+    --     map("n", "n", "<Plug>(highlight-current-n-n)zz", {})
+    --     map("n", "N", "<Plug>(highlight-current-n-N)zz", {})
+    --   end
+    -- }
     use {
-      "rktjmp/highlight-current-n.nvim",
       event = "BufWinEnter",
+      "kevinhwang91/nvim-hlslens",
       config = function()
-        map("n", "n", "<Plug>(highlight-current-n-n)zz", {})
-        map("n", "N", "<Plug>(highlight-current-n-N)zz", {})
+        require("hlslens").setup(
+          {
+            nearest_only = true
+          }
+        )
       end
     }
   end
