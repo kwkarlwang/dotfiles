@@ -32,16 +32,16 @@ local lsp_active = function()
 end
 
 local buffer_modified_path = function()
-  -- if vim.bo.modifiable and vim.bo.modified then
-  --   return {colors.red, colors.bg, "bold"}
-  -- end
+  if vim.bo.modifiable and vim.bo.modified then
+    return {colors.red, colors.bg, "bold"}
+  end
   return {colors.yellow, colors.bg, "bold"}
 end
 
 local buffer_modified_file = function()
-  -- if vim.bo.modifiable and vim.bo.modified then
-  --   return {colors.red, colors.bg, "bold"}
-  -- end
+  if vim.bo.modifiable and vim.bo.modified then
+    return {colors.red, colors.bg, "bold"}
+  end
   return {colors.fg, colors.bg, "bold"}
 end
 
@@ -333,7 +333,8 @@ gls.short_line_left[2] = {
       end
     },
     condition = buffer_not_empty,
-    highlight = buffer_modified_path
+    highlight = {colors.yellow, colors.bg, "bold"},
+    event = "BufRead"
   }
 }
 
@@ -352,7 +353,7 @@ gls.short_line_left[3] = {
       end
     },
     condition = buffer_not_empty,
-    highlight = buffer_modified_file,
+    highlight = {colors.fg, colors.bg, "bold"},
     event = "BufRead"
   }
 }
