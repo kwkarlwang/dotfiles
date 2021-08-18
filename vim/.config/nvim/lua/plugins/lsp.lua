@@ -16,17 +16,10 @@ local on_attach = function(_, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   bufmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", NS)
-  --bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- bufmap("n", "<space>wA", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", NS)
-  -- bufmap("n", "<space>wR", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", NS)
-  -- bufmap("n", "<space>wL", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", NS)
-  --bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", NS)
   bufmap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header=false })<CR>", NS)
   bufmap("n", "[e", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", NS)
   bufmap("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", NS)
-  --bufmap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  --bufmap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   -- LSP RELATED
   bufmap("n", "gi", "<cmd>Telescope lsp_implementation<CR>", NS)

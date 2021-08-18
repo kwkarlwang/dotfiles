@@ -342,6 +342,7 @@ return require("packer").startup(
         map("i", "<S-cr>", "<esc>:JupyterSendCell<cr>/# %%<cr>:noh<cr>i", NS)
 
         map("n", "<leader>ms", "o# %%<cr><esc>", NS)
+        map("n", "<leader>mS", "o# %%<cr><esc>kk", NS)
       end
     }
 

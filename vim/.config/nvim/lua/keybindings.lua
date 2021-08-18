@@ -1,4 +1,3 @@
-local expr = {noremap = true, silent = true, expr = true}
 --------Mappings-----------
 map("n", "j", "gj", NS)
 map("n", "k", "gk", NS)
@@ -83,5 +82,5 @@ map("n", "S", "Sx<bs>", NS)
 map("n", "<leader>gp", ":sp term://git push origin $(git rev-parse --abbrev-ref HEAD)<cr>", NS)
 map("n", "<leader>gf", ":sp term://git pull origin $(git rev-parse --abbrev-ref HEAD)<cr>", NS)
 
-map("n", "<leader>wo", ":mksession! ~/session.vim<CR>:wincmd o<CR>", NS)
-map("n", "<leader>wu", ":source ~/session.vim<CR>", NS)
+-- map("n", "<leader>wo", ":mksession! ~/session.vim<CR>:wincmd o<CR>", NS)
+-- map("n", "<leader>wu", ":source ~/session.vim<CR>", NS)
