@@ -109,9 +109,9 @@ o.timeoutlen = 400
 --------Fold-----------
 -- startup fold
 o.foldenable = false
-wo.foldmethod = "expr"
+o.foldmethod = "expr"
 o.foldlevel = 20
-wo.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldexpr = "nvim_treesitter#foldexpr()"
 
 --------Kitty-----------
 cmd "let &t_ut=''"
