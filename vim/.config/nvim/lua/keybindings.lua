@@ -73,7 +73,7 @@ map("n", "Y", "y$", NS)
 -- map("i", " ", " <C-g>u", NS)
 
 -- don't lose indent with esc
--- map("i", "<cr>", "<cr>x<bs>", NS)
+map("i", "<cr>", "<cr>x<bs>", NS)
 -- map("n", "o", "ox<bs>", NS)
 -- map("n", "O", "Ox<bs>", NS)
 -- map("n", "S", "Sx<bs>", NS)

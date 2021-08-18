@@ -228,6 +228,7 @@ return require("packer").startup(
     -- terminal
     use {
       "akinsho/nvim-toggleterm.lua",
+      keys = {"n", "<C-s>"},
       cmd = {"ToggleTerm", "TermExec"},
       config = function()
         require "plugins.term"
@@ -418,7 +419,7 @@ return require("packer").startup(
       as = "hop",
       event = "BufWinEnter",
       -- cmd = {"HopLine", "HopWordBC", "HopWordAC", "HopChar1", "HopChar2"},
-      -- keys = {{"v", "<leader>l"}, {"v", "<leader>k"}, {"v", "<leader>j"}, {"v", "<leader>f"}, {"v", "<leader>s"}},
+      -- keys = {{"x", "sl"}, {"x", "sk"}, {"x", "sj"}, {"x", "sf"}, {"x", "ss"}},
       setup = function()
         require "plugins.hop".init()
       end,
@@ -428,7 +429,7 @@ return require("packer").startup(
     }
     use {
       "ggandor/lightspeed.nvim",
-      keys = {{"n", "f"}, {"n", "F"}},
+      keys = {{"n", "f"}, {"n", "F"}, {"x", "f"}, {"x", "F"}},
       config = function()
         require("plugins.lightspeed")
       end
