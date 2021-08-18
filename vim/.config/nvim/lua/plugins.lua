@@ -1,12 +1,19 @@
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
+  execute "packadd packer.nvim"
+end
 return require("packer").startup(
   function(use)
     use "wbthomason/packer.nvim"
 
+    -- lsp
     use {
       "kabouzeid/nvim-lspinstall"
     }
-
-    -- lsp
     use {
       "neovim/nvim-lspconfig",
       after = "nvim-lspinstall",
@@ -14,7 +21,6 @@ return require("packer").startup(
         require "plugins.lsp"
       end
     }
-
     use {
       "ray-x/lsp_signature.nvim",
       after = "nvim-lspconfig",
@@ -64,7 +70,10 @@ return require("packer").startup(
     -- comment function
     use {
       "b3nj5m1n/kommentary",
-      event = "BufWinEnter",
+      keys = {
+        {"n", "<leader>c<leader>"},
+        {"v", "<leader>c<leader>"}
+      },
       config = function()
         g.kommentary_create_default_mappings = false
         map("n", "<leader>c<leader>", "<Plug>kommentary_line_default", {})
@@ -77,6 +86,24 @@ return require("packer").startup(
         )
       end
     }
+    -- comment frame
+    use {
+      "s1n7ax/nvim-comment-frame",
+      requires = "nvim-treesitter",
+      keys = {
+        "n",
+        "<leader>cm"
+      },
+      config = function()
+        require("nvim-comment-frame").setup(
+          {
+            keymap = "<leader>cm",
+            multiline_keymap = "<leader>cm"
+          }
+        )
+      end
+    }
+
     use "kyazdani42/nvim-web-devicons"
 
     -- statusline
@@ -108,7 +135,8 @@ return require("packer").startup(
         {"nvim-telescope/telescope-project.nvim"}
         -- {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
       },
-      event = "BufWinEnter",
+      cmd = "Telescope",
+      -- event = "BufWinEnter",
       setup = function()
         require "plugins.telescope".init()
       end,
@@ -130,7 +158,10 @@ return require("packer").startup(
         require "nvim-treesitter.configs".setup {
           ensure_installed = "maintained",
           ignore_install = {"haskell"},
-          indent = {enable = false},
+          indent = {
+            enable = true,
+            disable = {"python"}
+          },
           highlight = {enable = true},
           rainbow = {
             enable = true,
@@ -181,7 +212,7 @@ return require("packer").startup(
     use {
       "TimUntersberger/neogit",
       requires = "nvim-lua/plenary.nvim",
-      cmd = {"Neogit"},
+      cmd = "Neogit",
       setup = function()
         map("n", "<leader>gg", ":Neogit<cr>", NS)
       end,
@@ -197,7 +228,7 @@ return require("packer").startup(
     -- terminal
     use {
       "akinsho/nvim-toggleterm.lua",
-      event = "BufWinEnter",
+      cmd = {"ToggleTerm", "TermExec"},
       config = function()
         require "plugins.term"
       end
@@ -333,6 +364,7 @@ return require("packer").startup(
 
     use {
       "jupyter-vim/jupyter-vim",
+      ft = "python",
       cmd = "JupyterConnect",
       setup = function()
         map("n", "<leader>mjj", ":!jupyter qtconsole --style monokai &<cr><cr>:JupyterConnect<cr>", NS)
@@ -364,6 +396,7 @@ return require("packer").startup(
     use {
       "famiu/bufdelete.nvim",
       event = "BufWinEnter",
+      keys = {"n", "<leader>bk"},
       config = function()
         map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)
       end
@@ -384,6 +417,8 @@ return require("packer").startup(
       "phaazon/hop.nvim",
       as = "hop",
       event = "BufWinEnter",
+      -- cmd = {"HopLine", "HopWordBC", "HopWordAC", "HopChar1", "HopChar2"},
+      -- keys = {{"v", "<leader>l"}, {"v", "<leader>k"}, {"v", "<leader>j"}, {"v", "<leader>f"}, {"v", "<leader>s"}},
       setup = function()
         require "plugins.hop".init()
       end,
@@ -393,7 +428,7 @@ return require("packer").startup(
     }
     use {
       "ggandor/lightspeed.nvim",
-      event = "BufWinEnter",
+      keys = {{"n", "f"}, {"n", "F"}},
       config = function()
         require("plugins.lightspeed")
       end
@@ -412,11 +447,25 @@ return require("packer").startup(
     -- highlight search
     use {
       "rktjmp/highlight-current-n.nvim",
-      event = "BufWinEnter",
+      keys = {{"n", "/"}, {"n", "*"}},
       config = function()
         map("n", "n", "<Plug>(highlight-current-n-n)zz", {})
         map("n", "N", "<Plug>(highlight-current-n-N)zz", {})
       end
     }
+
+    -- correct python indentation
+    use {
+      "Vimjas/vim-python-pep8-indent",
+      ft = "python"
+    }
+
+    -- Write Read without sudo permission
+    use(
+      {
+        "lambdalisue/suda.vim",
+        cmd = {"SudaRead", "SudaWrite"}
+      }
+    )
   end
 )

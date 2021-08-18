@@ -1,7 +1,6 @@
 local M = {}
 M.init = function()
   map("n", "sl", ":HopLine<cr>", NS)
-  map("n", "sl", ":HopLine<cr>", NS)
   map("v", "<leader>l", [[<cmd>lua require('hop').hint_lines()<cr>]], NS)
 
   map("n", "sk", ":HopWordBC<cr>", NS)
