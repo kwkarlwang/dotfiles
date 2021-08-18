@@ -326,15 +326,6 @@ return require("packer").startup(
       end
     }
 
-    -- maximize window
-    use {
-      "szw/vim-maximizer",
-      cmd = "MaximizerToggle",
-      setup = function()
-        map("n", "<leader>wo", ":MaximizerToggle!<cr>", NS)
-      end
-    }
-
     -- ranger
     use {
       "kevinhwang91/rnvimr",
