@@ -418,16 +418,5 @@ return require("packer").startup(
         map("n", "N", "<Plug>(highlight-current-n-N)zz", {})
       end
     }
-    -- use {
-    --   "kevinhwang91/nvim-hlslens",
-    --   event = "BufWinEnter",
-    --   config = function()
-    --     require("hlslens").setup(
-    --       {
-    --         nearest_only = true
-    --       }
-    --     )
-    --   end
-    -- }
   end
 )
