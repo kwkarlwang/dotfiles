@@ -177,6 +177,10 @@ fi
 # Keybindings
 # ------------------------------
 bindkey -s '^o' 'ranger^M'
+bindkey "\e[1;3D" backward-word # ⌥←
+bindkey "\e[1;3C" forward-word # ⌥→
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 # ------------------------------
 # Export
 # ------------------------------
@@ -216,4 +220,3 @@ fi
 #unset __conda_setup
 # <<< conda initialize <<<
 
--
