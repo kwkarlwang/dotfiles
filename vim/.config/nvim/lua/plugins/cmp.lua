@@ -70,3 +70,7 @@ cmp.setup {
 for index, value in ipairs(lsp.protocol.CompletionItemKind) do
   cmp.lsp.CompletionItemKind[index] = value
 end
+
+cmd [[
+  autocmd FileType * lua require'cmp'.setup.buffer { sources = { { name = 'buffer' } } }
+]]
