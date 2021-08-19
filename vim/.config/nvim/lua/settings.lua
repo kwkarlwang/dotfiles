@@ -91,8 +91,7 @@ cmd [[
 ]]
 
 --------Terminal-----------
-cmd "autocmd TermOpen * setlocal nonumber norelativenumber | startinsert"
-cmd "autocmd BufWinEnter,WinEnter term://* startinsert"
+cmd "autocmd TermOpen * setlocal nonumber norelativenumber"
 
 --------Auto Resize-----------
 cmd "autocmd VimResized * wincmd ="

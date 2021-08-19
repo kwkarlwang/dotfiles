@@ -8,14 +8,16 @@ require("toggleterm").setup {
   end,
   open_mapping = [[<C-s>]],
   shade_terminals = false,
-  start_in_insert = true,
+  start_in_insert = false,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = false,
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
-  direction = "horizontal",
+  direction = "vertical",
   close_on_exit = false -- close the terminal window when the process exits
   --shell = vim.o.shell, -- change the default shell
 }
 -- map("n", "<leader>j", ":ToggleTerm<cr>", {noremap = true, silent = true})
-map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>", {noremap = true, silent = true})
-map("n", "<leader>ol", ":ToggleTerm direction=vertical<cr>", {noremap = true, silent = true})
+map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>", NS)
+map("n", "<leader>ol", ":ToggleTerm direction=vertical<cr>", NS)
+map("n", "<C-s>", ":ToggleTerm<cr>i", NS)
+map("i", "<C-s>", "<esc>:ToggleTerm<cr>i", NS)
