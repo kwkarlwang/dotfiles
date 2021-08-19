@@ -25,4 +25,4 @@ map("x", ";", "<cmd>lua repeat_ft(false)<cr>", NS)
 map("n", ",", "<cmd>lua repeat_ft(true)<cr>", NS)
 map("x", ",", "<cmd>lua repeat_ft(true)<cr>", NS)
 -- cmd [[unmap s]]
-cmd [[unmap S]]
+cmd [[nunmap S]]

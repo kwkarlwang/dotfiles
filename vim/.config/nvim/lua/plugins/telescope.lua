@@ -118,7 +118,7 @@ M.setup = function()
     }
   }
   require("telescope").load_extension("fzf")
-  require("telescope").load_extension("project")
+  require("telescope").load_extension("projects")
 end
 M.init = function()
   map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)
@@ -135,6 +135,6 @@ M.init = function()
   map("n", "<M-x>", "<cmd>Telescope commands<cr>", NS)
   map("n", "<leader>:", "<cmd>Telescope commands<cr>", NS)
   map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", NS)
-  map("n", "<leader>pp", "<cmd>lua require'telescope'.extensions.project.project{}<cr>", NS)
+  map("n", "<leader>pp", "<cmd>Telescope projects<cr>", NS)
 end
 return M

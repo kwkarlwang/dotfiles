@@ -132,7 +132,13 @@ return require("packer").startup(
         {"nvim-lua/popup.nvim"},
         {"nvim-lua/plenary.nvim"},
         {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
-        {"nvim-telescope/telescope-project.nvim"}
+        {
+          "ahmedkhalf/project.nvim",
+          event = "BufRead",
+          config = function()
+            require("plugins.project")
+          end
+        }
         -- {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
       },
       cmd = "Telescope",
@@ -201,13 +207,13 @@ return require("packer").startup(
     }
 
     -- git
-    -- use {
-    --   "tpope/vim-fugitive",
-    --   cmd = "Git"
-    --   -- setup = function()
-    --   --   map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
-    --   -- end
-    -- }
+    use {
+      "tpope/vim-fugitive",
+      cmd = "Git"
+      -- setup = function()
+      --   map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
+      -- end
+    }
 
     use {
       "TimUntersberger/neogit",
@@ -253,16 +259,6 @@ return require("packer").startup(
       event = "BufRead",
       config = function()
         require "colorizer".setup()
-      end
-    }
-
-    -- change root to git repo
-    use {
-      "airblade/vim-rooter",
-      event = "BufReadPre",
-      config = function()
-        g.rooter_silent_chdir = 1
-        g.rooter_manual_only = 0
       end
     }
 
