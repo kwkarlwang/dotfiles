@@ -62,7 +62,9 @@ cmp.setup {
     {name = "emoji"}
   },
   completion = {
-    completeopt = "menu,menuone,noinsert"
+    completeopt = "menu,menuone,noinsert",
+    keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+    keyword_length = 2
   }
 }
 for index, value in ipairs(lsp.protocol.CompletionItemKind) do
