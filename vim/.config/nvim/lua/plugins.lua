@@ -44,13 +44,61 @@ return require("packer").startup(
     use {
       "hrsh7th/nvim-compe",
       event = "InsertEnter",
+      disable = true,
       config = function()
         require "plugins.compe".setup()
       end
     }
+
+    use {
+      "hrsh7th/cmp-vsnip",
+      after = "nvim-cmp"
+    }
+
+    use {
+      "hrsh7th/cmp-emoji",
+      after = "nvim-cmp"
+    }
+    use {
+      "hrsh7th/cmp-nvim-lua",
+      after = "nvim-cmp"
+    }
+    use {
+      "hrsh7th/cmp-calc",
+      after = "nvim-cmp"
+    }
+    use {
+      "hrsh7th/cmp-path",
+      after = "nvim-cmp"
+    }
+    use {
+      "hrsh7th/cmp-buffer",
+      after = "nvim-cmp"
+    }
+    use {
+      "hrsh7th/cmp-nvim-lsp",
+      after = "nvim-cmp",
+      config = function()
+        require("cmp_nvim_lsp").setup {}
+      end
+    }
+    use {
+      "hrsh7th/nvim-cmp",
+      event = "InsertEnter",
+      config = function()
+        require "plugins.cmp"
+      end
+    }
+
     use {
       "hrsh7th/vim-vsnip",
-      event = "InsertEnter"
+      event = "InsertEnter",
+      config = function()
+        map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+        map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+        map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+        map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+      end
     }
     use {
       "rafamadriz/friendly-snippets",
@@ -188,16 +236,21 @@ return require("packer").startup(
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
     use "tpope/vim-sleuth"
-
     -- pair brackets
     use {
       "windwp/nvim-autopairs",
-      after = "nvim-compe",
+      after = "nvim-cmp",
       config = function()
         require("nvim-autopairs").setup {
           disable_filetype = {"TelescopePrompt"}
         }
-        require("nvim-autopairs.completion.compe").setup(
+        -- require("nvim-autopairs.completion.compe").setup(
+        --   {
+        --     map_cr = true, --  map <CR> on insert mode
+        --     map_complete = false -- it will auto insert `(` after select function or method item
+        --   }
+        -- )
+        require("nvim-autopairs.completion.cmp").setup(
           {
             map_cr = true, --  map <CR> on insert mode
             map_complete = false -- it will auto insert `(` after select function or method item

@@ -81,4 +81,5 @@ map("i", "<cr>", "<cr>x<bs>", NS)
 map("n", "<leader>gp", ":sp term://git push origin $(git rev-parse --abbrev-ref HEAD)<cr>", NS)
 map("n", "<leader>gf", ":sp term://git pull origin $(git rev-parse --abbrev-ref HEAD)<cr>", NS)
 
+-- select non blank line
 map("n", "vv", "^vg_", NS)

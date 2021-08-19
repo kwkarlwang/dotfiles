@@ -333,7 +333,7 @@ gls.short_line_left[2] = {
       end
     },
     condition = buffer_not_empty,
-    highlight = {colors.yellow, colors.bg, "bold"},
+    highlight = {colors.yellow, colors.bg},
     event = "BufRead"
   }
 }
@@ -353,7 +353,7 @@ gls.short_line_left[3] = {
       end
     },
     condition = buffer_not_empty,
-    highlight = {colors.fg, colors.bg, "bold"},
+    highlight = {colors.fg, colors.bg},
     event = "BufRead"
   }
 }

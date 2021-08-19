@@ -70,34 +70,6 @@ require "lspinstall".post_install_hook = function()
   cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-lsp.protocol.CompletionItemKind = {
-  "   (Text) ",
-  "   (Method)",
-  "   (Function)",
-  "   (Constructor)",
-  " ﴲ  (Field)",
-  "[] (Variable)",
-  "   (Class)",
-  " ﰮ  (Interface)",
-  "   (Module)",
-  " 襁 (Property)",
-  "   (Unit)",
-  "   (Value)",
-  " 練 (Enum)",
-  "   (Keyword)",
-  "   (Snippet)",
-  "   (Color)",
-  "   (File)",
-  "   (Reference)",
-  "   (Folder)",
-  "   (EnumMember)",
-  " ﲀ  (Constant)",
-  " ﳤ  (Struct)",
-  "   (Event)",
-  "   (Operator)",
-  "   (TypeParameter)"
-}
-
 fn.sign_define(
   "LspDiagnosticsSignError",
   {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
