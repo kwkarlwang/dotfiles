@@ -84,7 +84,7 @@ return require("packer").startup(
     }
     use {
       "hrsh7th/nvim-cmp",
-      event = "BufRead",
+      after = "nvim-lspconfig",
       config = function()
         require "plugins.cmp"
       end
@@ -182,15 +182,14 @@ return require("packer").startup(
         {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
         {
           "ahmedkhalf/project.nvim",
-          event = "BufRead",
+          event = "BufWinEnter",
           config = function()
             require("plugins.project")
           end
         }
         -- {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
       },
-      cmd = "Telescope",
-      -- event = "BufWinEnter",
+      event = "BufWinEnter",
       setup = function()
         require "plugins.telescope".init()
       end,
