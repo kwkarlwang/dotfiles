@@ -44,7 +44,6 @@ o.softtabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 o.smartindent = true
--- o.cindent = true
 o.hidden = true
 
 o.smartcase = true
@@ -54,7 +53,6 @@ o.swapfile = false
 o.backup = false
 o.completeopt = "menuone,noselect"
 cmd "set undodir=~/.vim/undodir"
--- o.undodir = "~/.vim/undodir"
 o.undofile = true
 
 o.signcolumn = "yes"
