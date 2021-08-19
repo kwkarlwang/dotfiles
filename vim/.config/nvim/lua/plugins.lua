@@ -84,7 +84,7 @@ return require("packer").startup(
     }
     use {
       "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
+      event = "BufRead",
       config = function()
         require "plugins.cmp"
       end
@@ -158,7 +158,7 @@ return require("packer").startup(
     use {
       "kwkarlwang/galaxyline.nvim",
       branch = "main",
-      event = "BufWinEnter",
+      event = "BufRead",
       requires = {"kyazdani42/nvim-web-devicons", opt = true},
       config = function()
         require("plugins.galaxyline")
