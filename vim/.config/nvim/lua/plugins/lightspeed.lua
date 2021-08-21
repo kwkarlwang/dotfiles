@@ -24,5 +24,8 @@ map("n", ";", "<cmd>lua repeat_ft(false)<cr>", NS)
 map("x", ";", "<cmd>lua repeat_ft(false)<cr>", NS)
 map("n", ",", "<cmd>lua repeat_ft(true)<cr>", NS)
 map("x", ",", "<cmd>lua repeat_ft(true)<cr>", NS)
+
+map("", [[']], "<Plug>Lightspeed_s", {})
+map("", [["]], "<Plug>Lightspeed_S", {})
 -- cmd [[unmap s]]
 cmd [[nunmap S]]

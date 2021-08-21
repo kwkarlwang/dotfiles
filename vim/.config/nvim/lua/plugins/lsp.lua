@@ -47,17 +47,6 @@ local function setup_servers()
       --   return vim.loop.cwd()
       -- end
     }
-    -- if server == "python" then
-    --   config["settings"] = {
-    --     python = {
-    --       analysis = {
-    --         autoSearchPaths = false,
-    --         useLibraryCodeForTypes = true,
-    --         diagnosticMode = "workspace"
-    --       }
-    --     }
-    --   }
-    -- end
     require "lspconfig"[server].setup(config)
   end
 end

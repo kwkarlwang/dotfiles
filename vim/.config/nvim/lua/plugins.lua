@@ -41,19 +41,19 @@ return require("packer").startup(
     }
 
     -- completion
-    use {
-      "hrsh7th/nvim-compe",
-      event = "InsertEnter",
-      disable = true,
-      config = function()
-        require "plugins.compe".setup()
-      end
-    }
+    -- use {
+    --   "hrsh7th/nvim-compe",
+    --   event = "InsertEnter",
+    --   disable = true,
+    --   config = function()
+    --     require "plugins.compe".setup()
+    --   end
+    -- }
 
-    use {
-      "hrsh7th/cmp-vsnip",
-      after = "nvim-cmp"
-    }
+    -- use {
+    --   "hrsh7th/cmp-vsnip",
+    --   after = "nvim-cmp"
+    -- }
 
     use {
       "hrsh7th/cmp-emoji",
@@ -76,30 +76,38 @@ return require("packer").startup(
       after = "nvim-cmp"
     }
     use {
+      "saadparwaiz1/cmp_luasnip",
+      after = "nvim-cmp"
+    }
+    use {
       "hrsh7th/cmp-nvim-lsp",
       after = "nvim-cmp",
       config = function()
-        require("cmp_nvim_lsp").setup {}
+        require("cmp_nvim_lsp").setup()
       end
     }
+
     use {
       "hrsh7th/nvim-cmp",
-      after = "nvim-lspconfig",
+      after = {"nvim-lspconfig", "LuaSnip"},
+      requires = {
+        "L3MON4D3/LuaSnip"
+      },
       config = function()
         require "plugins.cmp"
       end
     }
 
-    use {
-      "hrsh7th/vim-vsnip",
-      event = "InsertEnter",
-      config = function()
-        map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-        map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-        map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-        map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-      end
-    }
+    -- use {
+    --   "hrsh7th/vim-vsnip",
+    --   event = "InsertEnter",
+    --   config = function()
+    --     map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+    --     map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+    --     map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+    --     map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+    --   end
+    -- }
     use {
       "rafamadriz/friendly-snippets",
       event = "InsertCharPre"
@@ -120,12 +128,14 @@ return require("packer").startup(
       "b3nj5m1n/kommentary",
       keys = {
         {"n", "<leader>c<leader>"},
-        {"v", "<leader>c<leader>"}
+        {"v", "<leader>c<leader>"},
+        {"v", "<leader>cc"}
       },
       config = function()
         g.kommentary_create_default_mappings = false
         map("n", "<leader>c<leader>", "<Plug>kommentary_line_default", {})
         map("v", "<leader>c<leader>", "<Plug>kommentary_visual_default o<Esc>", {})
+        map("v", "<leader>cc", "<Plug>kommentary_visual_default<Esc>", {})
         require("kommentary.config").configure_language(
           "default",
           {
@@ -182,14 +192,14 @@ return require("packer").startup(
         {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
         {
           "ahmedkhalf/project.nvim",
-          event = "BufWinEnter",
+          cmd = "Telescope",
           config = function()
             require("plugins.project")
           end
         }
         -- {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
       },
-      event = "BufWinEnter",
+      after = "project.nvim",
       setup = function()
         require "plugins.telescope".init()
       end,
@@ -233,7 +243,6 @@ return require("packer").startup(
     }
 
     use "tpope/vim-surround"
-    use "tpope/vim-repeat"
     use "tpope/vim-sleuth"
     -- pair brackets
     use {
@@ -468,7 +477,7 @@ return require("packer").startup(
     }
     use {
       "ggandor/lightspeed.nvim",
-      keys = {{"n", "f"}, {"n", "F"}, {"x", "f"}, {"x", "F"}},
+      event = "BufWinEnter",
       config = function()
         require("plugins.lightspeed")
       end
@@ -501,11 +510,12 @@ return require("packer").startup(
     }
 
     -- Write Read without sudo permission
-    use(
-      {
-        "lambdalisue/suda.vim",
-        cmd = {"SudaRead", "SudaWrite"}
-      }
-    )
+    use {
+      "lambdalisue/suda.vim",
+      cmd = {"SudaRead", "SudaWrite"}
+    }
+    -- use {
+    --   "tweekmonster/startuptime.vim"
+    -- }
   end
 )
