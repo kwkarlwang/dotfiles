@@ -41,11 +41,11 @@ local function setup_servers()
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150
-      }
+      },
       -- make the lsp start at cwd instead of git dir
-      -- root_dir = function()
-      --   return vim.loop.cwd()
-      -- end
+      root_dir = function()
+        return vim.loop.cwd()
+      end
     }
     require "lspconfig"[server].setup(config)
   end
