@@ -50,10 +50,10 @@ return require("packer").startup(
     --   end
     -- }
 
-    -- use {
-    --   "hrsh7th/cmp-vsnip",
-    --   after = "nvim-cmp"
-    -- }
+    use {
+      "hrsh7th/cmp-vsnip",
+      after = "nvim-cmp"
+    }
 
     use {
       "hrsh7th/cmp-emoji",
@@ -76,38 +76,28 @@ return require("packer").startup(
       after = "nvim-cmp"
     }
     use {
-      "saadparwaiz1/cmp_luasnip",
-      after = "nvim-cmp"
-    }
-    use {
       "hrsh7th/cmp-nvim-lsp",
-      after = "nvim-cmp",
-      config = function()
-        require("cmp_nvim_lsp").setup()
-      end
+      after = "nvim-cmp"
     }
 
     use {
       "hrsh7th/nvim-cmp",
-      after = {"nvim-lspconfig", "LuaSnip"},
-      requires = {
-        "L3MON4D3/LuaSnip"
-      },
+      after = "nvim-lspconfig",
       config = function()
         require "plugins.cmp"
       end
     }
 
-    -- use {
-    --   "hrsh7th/vim-vsnip",
-    --   event = "InsertEnter",
-    --   config = function()
-    --     map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-    --     map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-    --     map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-    --     map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-    --   end
-    -- }
+    use {
+      "hrsh7th/vim-vsnip",
+      event = "InsertEnter",
+      config = function()
+        map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+        map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+        map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+        map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+      end
+    }
     use {
       "rafamadriz/friendly-snippets",
       event = "InsertCharPre"
@@ -127,15 +117,13 @@ return require("packer").startup(
     use {
       "b3nj5m1n/kommentary",
       keys = {
-        {"n", "<leader>c<leader>"},
-        {"v", "<leader>c<leader>"},
-        {"v", "<leader>cc"}
+        {"n", "cc"},
+        {"v", "cc"}
       },
       config = function()
         g.kommentary_create_default_mappings = false
-        map("n", "<leader>c<leader>", "<Plug>kommentary_line_default", {})
-        map("v", "<leader>c<leader>", "<Plug>kommentary_visual_default o<Esc>", {})
-        map("v", "<leader>cc", "<Plug>kommentary_visual_default<Esc>", {})
+        map("n", "cc", "<Plug>kommentary_line_default", {})
+        map("v", "cc", "<Plug>kommentary_visual_default<Esc>", {})
         require("kommentary.config").configure_language(
           "default",
           {

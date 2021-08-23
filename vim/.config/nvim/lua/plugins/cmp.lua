@@ -1,6 +1,5 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
-local luasnip = require("luasnip")
 
 lsp.protocol.CompletionItemKind = {
   "   (Text) ",
@@ -35,7 +34,7 @@ cmp.setup {
   snippet = {
     expand = function(args)
       -- You must install `vim-vsnip` if you set up as same as the following.
-      require "luasnip".lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body)
     end
   },
   -- You must set mapping.
@@ -51,36 +50,12 @@ cmp.setup {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true
       }
-    ),
-    ["<Tab>"] = cmp.mapping.mode(
-      {"i", "s"},
-      function(_, fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
-        elseif luasnip.expand_or_jumpable() then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-        else
-          fallback()
-        end
-      end
-    ),
-    ["<S-Tab>"] = cmp.mapping.mode(
-      {"i", "s"},
-      function(_, fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
-        elseif luasnip.jumpable(-1) then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-        else
-          fallback()
-        end
-      end
     )
   },
   -- You should specify your *installed* sources.
   sources = {
     {name = "nvim_lsp"},
-    {name = "luasnip"},
+    {name = "vsnip"},
     {name = "nvim_lua"},
     {name = "buffer"},
     {name = "path"},
@@ -100,5 +75,3 @@ cmp.setup {
 for index, value in ipairs(lsp.protocol.CompletionItemKind) do
   cmp.lsp.CompletionItemKind[index] = value
 end
-
-require("luasnip/loaders/from_vscode").lazy_load()
