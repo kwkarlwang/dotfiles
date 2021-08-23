@@ -8,7 +8,10 @@ lctrl + lcmd + lshift - d : osascript "${HOME}"/scripts/Sidecar.js
 lctrl + lcmd + lshift - e : emacsclient -c -a 'emacs'
 # lctrl + lcmd + lshift - return : "${HOME}"/scripts/iTerm.sh
 # lctrl + lcmd + lshift - return : open -n /Applications/Alacritty.app
-lctrl + lcmd + lshift - return : open -n /Applications/kitty.app
+# lctrl + lcmd + lshift - return : open -n /Applications/kitty.app
+lctrl + lcmd + lshift - return : /Applications/kitty.app/Contents/MacOS/kitty \
+                                --single-instance \
+                                -d ~
 lctrl + lcmd + lshift - b : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
 lctrl + lcmd + lshift - m : open /System/Applications/Music.app
 
@@ -19,7 +22,7 @@ rshift - s : yabai -m window --focus south || yabai -m display --focus south
 rshift - d : yabai -m window --focus east || yabai -m display --focus east
 
 ## 0x30 is TAB
-rshift - 0x30 : yabai -m window --focus recent
+# rshift - 0x30 : yabai -m window --focus recent
 
 ## swap managed window or move to display
 rshift + lshift - w : yabai -m window --swap north || yabai -m window --display north

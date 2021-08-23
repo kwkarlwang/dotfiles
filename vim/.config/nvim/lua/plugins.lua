@@ -232,6 +232,7 @@ return require("packer").startup(
 
     use "tpope/vim-surround"
     use "tpope/vim-sleuth"
+    use "tpope/vim-repeat"
     -- pair brackets
     use {
       "windwp/nvim-autopairs",
