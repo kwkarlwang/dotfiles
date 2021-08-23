@@ -16,9 +16,10 @@ map("n", "<leader>hrr", ":source %<cr>:PackerSync<cr>", NS)
 map("n", "<leader>hrc", ":source %<cr>:PackerCompile profile=true<cr>", {noremap = true})
 map("n", "<leader>hrp", ":source %<cr>:PackerProfile<cr>", {noremap = true})
 -- FILE
-map("n", "<leader>fs", ":silent up<cr>", NS)
+-- map("n", "<leader>fs", ":silent up<cr>", NS)
+map("n", "ss", ":silent up<cr>", NS)
 -- save all files
-map("n", "<leader>bs", ":wa <cr>", NS)
+map("n", "<leader>bs", ":wa<cr>", NS)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", NS)
