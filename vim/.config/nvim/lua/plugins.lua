@@ -90,13 +90,13 @@ return require("packer").startup(
 
     use {
       "hrsh7th/vim-vsnip",
-      event = "InsertEnter",
-      config = function()
-        map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-        map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-        map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-        map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-      end
+      event = "InsertEnter"
+      -- config = function()
+      --   map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+      --   map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
+      --   map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+      --   map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
+      -- end
     }
     use {
       "rafamadriz/friendly-snippets",
