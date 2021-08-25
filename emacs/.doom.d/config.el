@@ -36,7 +36,8 @@
   ;;   )
   ;;)
 
-(setq display-line-numbers-type 'visual)
+;; (setq display-line-numbers-type 'visual)
+(setq display-line-numbers-type 'nil)
 ;; Make evil-mode up/down operate in screen lines instead of logical lines
 (define-key evil-motion-state-map "j" 'evil-next-visual-line)
 (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
@@ -65,6 +66,7 @@
     "l" #'evil-window-right
     )
   )
+(general-vmap "d" 'evil-delete)
 ;; FIXME: currently now working for some reason
 ;; (after! 'evil-org
 ;;   (general-nmap
@@ -82,13 +84,14 @@
 (general-nmap "s"
   (general-key-dispatch 'evil-substitute
     "d" #'evil-window-delete
-    "s" #'evil-save
+    "s" #'save-buffer
     )
   )
 
 (general-nmap "c" (general-key-dispatch 'evil-change
                     "c" #'evilnc-comment-or-uncomment-lines
                     ))
+(general-vmap "c" 'evil-change)
 
 (general-nmap "'" #'evil-avy-goto-char-2-below)
 (general-nmap "\"" #'evil-avy-goto-char-2-above)
