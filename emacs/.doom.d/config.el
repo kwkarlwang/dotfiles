@@ -8,21 +8,11 @@
                            ))
 (setq ns-use-thin-smoothing t)
 
-;; (after! highlight-numbers
-;;   (set-face-bold 'highlight-numbers-number nil)
-;;   )
-
 (setq doom-theme 'dracula)
 ;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-dracula-brighter-comments t)
 
 (after! doom-themes
-  ;; (set-face-attribute 'bold nil :weight 'normal)
-  ;; (mapc
-  ;;  (lambda (face)
-  ;;    (when (eq (face-attribute face :weight) 'bold)
-  ;;      (set-face-attribute face nil :weight 'normal)))
-   ;; (face-list))
   (setq doom-themes-enable-bold nil)
   )
 
@@ -53,18 +43,55 @@
 ;; Also in visual mode
 (define-key evil-visual-state-map "j" 'evil-next-visual-line)
 (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-;;(define-key evil-motion-state-map (kbd "cc") 'evilnc-comment-or-uncomment-lines)
 
 ;; Scroll off
 (setq scroll-margin 8)
 
 (map!
- :n "C-s" (cmd! (+vterm/toggle 1))
+ :n "C-s" #'+vterm/toggle
  :leader
  :desc "Toggle Comment" "c SPC" (lambda ()(interactive)(evilnc-comment-or-uncomment-lines -1))
  ;;:desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
  :desc "Toggle line highlight" "t h" #'global-hl-line-mode
  )
+
+(general-evil-setup)
+(general-auto-unbind-keys)
+(general-nmap "d"
+  (general-key-dispatch 'evil-delete
+    "h" #'evil-window-left
+    "j" #'evil-window-down
+    "k" #'evil-window-up
+    "l" #'evil-window-right
+    )
+  )
+;; FIXME: currently now working for some reason
+;; (after! 'evil-org
+;;   (general-nmap
+;;     :keymaps evil-org-mode-map
+;;     "d"
+;;     (general-key-dispatch 'evil-org-delete
+;;       "h" #'evil-window-left
+;;       "j" #'evil-window-down
+;;       "k" #'evil-window-up
+;;       "l" #'evil-window-right
+;;       )
+;;     )
+;;   )
+
+(general-nmap "s"
+  (general-key-dispatch 'evil-substitute
+    "d" #'evil-window-delete
+    "s" #'evil-save
+    )
+  )
+
+(general-nmap "c" (general-key-dispatch 'evil-change
+                    "c" #'evilnc-comment-or-uncomment-lines
+                    ))
+
+(general-nmap "'" #'evil-avy-goto-char-2-below)
+(general-nmap "\"" #'evil-avy-goto-char-2-above)
 
 (setq confirm-kill-emacs nil)
 
@@ -72,7 +99,7 @@
 
 (global-visual-line-mode)
 
-(global-visual-line-mode)
+(global-reveal-mode)
 
 (global-eldoc-mode -1)
 
@@ -88,7 +115,7 @@
 
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 
-(remove-hook 'text-mode-hook #'spell-fu-mode)
+;; (remove-hook 'text-mode-hook #'spell-fu-mode)
 
 (setq ns-use-proxy-icon nil
       frame-title-format nil
@@ -127,8 +154,8 @@
   (setq
    lsp-ui-sideline-enable 1
    lsp-ui-doc-enable nil
-   lsp-ui-doc-max-width 150
-   lsp-ui-doc-max-height 30
+   ;; lsp-ui-doc-max-width 150
+   ;; lsp-ui-doc-max-height 30
    )
 
   ;; show documentation
@@ -198,13 +225,11 @@
   (add-to-list 'python-shell-completion-native-disabled-interpreters "python3")
 
   ;; NOTE: reenable lsp after format, local hook
-  (add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
+  ;;(add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
 
   ;; keybindings
   (map!
    :map python-mode-map
-   :n "<" #'python-indent-shift-left
-   :n ">" #'python-indent-shift-right
    (:localleader
     :desc "New cell" "s" (lambda() (interactive)
                            (+evil/insert-newline-below)
@@ -302,7 +327,7 @@
 (after! tex
   (setq TeX-parse-self t
         TeX-auto-save t
-        LaTeX-indent-level 4
+        ;;LaTeX-indent-level 4
         )
   (map!
    :map LaTeX-mode-map
@@ -374,13 +399,7 @@
   (setq ispell-dictionary "en")
   )
 
-(add-hook! '(prog-mode-hook) #'rainbow-mode #'rainbow-delimiters-mode
-           )
-
-;; (setq enable-remote-dir-locals t)
-;; (setq enable-local-variables :all)
-;; (after! tramp
-;;   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+(add-hook! '(prog-mode-hook) #'rainbow-mode #'rainbow-delimiters-mode)
 
 (after! magit
   (setq git-commit-style-convention-checks nil
@@ -394,31 +413,3 @@
         leetcode-directory "~/leetcode"
         )
   )
-
-;; (use-package! eaf
-;;   :load-path "/Users/kwkarlwang/.emacs.d/.local/straight/repos/emacs-application-framework"
-;;   :init
-;;   (use-package! ctable :defer t)
-;;   (use-package! deferred :defer t)
-;;   (use-package! epc :defer t)
-;;   (use-package! s :defer t)
-;;   :custom
-;;   (setq eaf-browser-continue-where-left-off t)
-;;   :config
-;;   (require 'eaf-evil)
-
-;;   (define-key key-translation-map (kbd "SPC")
-;;     (lambda (prompt)
-;;       (if (derived-mode-p 'eaf-mode)
-;;           (pcase eaf--buffer-app-name
-;;             ("browser" (if  (string= (eaf-call-sync "call_function" eaf--buffer-id "is_focus") "True")
-;;                            (kbd "SPC")
-;;                          (kbd eaf-evil-leader-key)))
-;;             ("pdf-viewer" (kbd eaf-evil-leader-key))
-;;             ("image-viewer" (kbd eaf-evil-leader-key))
-;;             (_  (kbd "SPC")))
-;;         (kbd "SPC"))))
-
-;;   (eaf-bind-key scroll_down_page "C-u" eaf-pdf-viewer-keybinding)
-;;   (eaf-bind-key scroll_up_page "C-d" eaf-pdf-viewer-keybinding)
-;;   )

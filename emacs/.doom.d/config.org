@@ -3,7 +3,7 @@
 
 * Basic
 ** Personal Information
-Setting name and email address
+*** Setting name and email address
 #+begin_src emacs-lisp
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -12,7 +12,7 @@ Setting name and email address
 #+end_src
 
 ** Font
-Setting font family
+*** Setting font family
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font"
                            :size 12
@@ -20,34 +20,21 @@ Setting font family
 (setq ns-use-thin-smoothing t)
 #+end_src
 
-Disable bold numbers
-#+begin_src emacs-lisp
-;; (after! highlight-numbers
-;;   (set-face-bold 'highlight-numbers-number nil)
-;;   )
-#+end_src
-
 ** Theme
-Dracula is my personal favorite
+*** Dracula is my personal favorite
 #+begin_src emacs-lisp
 (setq doom-theme 'dracula)
 ;; (setq doom-theme 'doom-dracula)
 ;; (setq doom-dracula-brighter-comments t)
 
 (after! doom-themes
-  ;; (set-face-attribute 'bold nil :weight 'normal)
-  ;; (mapc
-  ;;  (lambda (face)
-  ;;    (when (eq (face-attribute face :weight) 'bold)
-  ;;      (set-face-attribute face nil :weight 'normal)))
-   ;; (face-list))
   (setq doom-themes-enable-bold nil)
   )
 #+end_src
 
-Change comment color and line number color for the TUI
+** TUI theme
+*** Change comment color and line number color for the TUI
 #+begin_src emacs-lisp
-
 ;;(unless (display-graphic-p)
   ;; (set-face-foreground 'font-lock-comment-face "#a8a8a8")
   ;; (set-face-foreground 'line-number "#a8a8a8")
@@ -70,7 +57,7 @@ Change comment color and line number color for the TUI
 #+end_src
 
 ** Line
-Use relative line number
+*** Use relative line number
 #+begin_src emacs-lisp
 (setq display-line-numbers-type 'visual)
 ;; Make evil-mode up/down operate in screen lines instead of logical lines
@@ -79,17 +66,16 @@ Use relative line number
 ;; Also in visual mode
 (define-key evil-visual-state-map "j" 'evil-next-visual-line)
 (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-;;(define-key evil-motion-state-map (kbd "cc") 'evilnc-comment-or-uncomment-lines)
 
 ;; Scroll off
 (setq scroll-margin 8)
 #+end_src
 
 ** Keybindings
-Toggle settings
+*** Toggle settings
 #+begin_src emacs-lisp
 (map!
- :n "C-s" (cmd! (+vterm/toggle 1))
+ :n "C-s" #'+vterm/toggle
  :leader
  :desc "Toggle Comment" "c SPC" (lambda ()(interactive)(evilnc-comment-or-uncomment-lines -1))
  ;;:desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
@@ -97,65 +83,118 @@ Toggle settings
  )
 #+end_src
 
+*** Buffer Navigation
+Use 'dh', 'dj', 'dk', 'dl' to navigate buffers
+#+begin_src emacs-lisp
+(general-evil-setup)
+(general-auto-unbind-keys)
+(general-nmap "d"
+  (general-key-dispatch 'evil-delete
+    "h" #'evil-window-left
+    "j" #'evil-window-down
+    "k" #'evil-window-up
+    "l" #'evil-window-right
+    )
+  )
+;; FIXME: currently now working for some reason
+;; (after! 'evil-org
+;;   (general-nmap
+;;     :keymaps evil-org-mode-map
+;;     "d"
+;;     (general-key-dispatch 'evil-org-delete
+;;       "h" #'evil-window-left
+;;       "j" #'evil-window-down
+;;       "k" #'evil-window-up
+;;       "l" #'evil-window-right
+;;       )
+;;     )
+;;   )
+#+end_src
+
+*** Save and delete buffer
+#+begin_src emacs-lisp
+(general-nmap "s"
+  (general-key-dispatch 'evil-substitute
+    "d" #'evil-window-delete
+    "s" #'evil-save
+    )
+  )
+
+#+end_src
+
+*** Toggle comment
+#+begin_src emacs-lisp
+(general-nmap "c" (general-key-dispatch 'evil-change
+                    "c" #'evilnc-comment-or-uncomment-lines
+                    ))
+#+end_src
+
+*** 2 Char Search
+#+begin_src emacs-lisp
+(general-nmap "'" #'evil-avy-goto-char-2-below)
+(general-nmap "\"" #'evil-avy-goto-char-2-above)
+#+end_src
+
+
 ** Better Defaults
-No confirmation about quitting
+*** Stop confirmation about quitting
 #+begin_src emacs-lisp
 (setq confirm-kill-emacs nil)
 #+end_src
 
-Set column line indicator
+*** Set column line indicator
 #+begin_src emacs-lisp
 (setq-default fill-column 100)
 #+end_src
 
-Make line wrap around
+*** Make line wrap around
 #+begin_src emacs-lisp
 (global-visual-line-mode)
 #+end_src
 
-Make document automatically refresh
+*** Make document automatically refresh
 #+begin_src emacs-lisp
-(global-visual-line-mode)
+(global-reveal-mode)
 #+end_src
 
-Disable the bottom documentation popup
+*** Disable the bottom documentation popup
 #+begin_src emacs-lisp
 (global-eldoc-mode -1)
 #+end_src
 
-Treat "_" as part of the word
+*** Treat "_" as part of the word
 #+begin_src emacs-lisp
 (modify-syntax-entry ?_ "w")
 #+end_src
 
-Better undo
+*** Better undo
 #+begin_src emacs-lisp
 (setq undo-limit 80000000
       evil-want-fine-undo t)
 #+end_src
 
-Split windows to the right and below
+*** Split windows to the right and below
 #+begin_src emacs-lisp
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 #+end_src
 
-No new line comment with "o"
+*** Stop new line comment with "o"
 #+begin_src emacs-lisp
 (setq +evil-want-o/O-to-continue-comments nil)
 #+end_src
 
-Make S work like before in vim
+*** Make S work like before in vim
 #+begin_src emacs-lisp
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
 #+end_src
 
-Disable spell checking by default
+*** Disable spell checking by default
 #+begin_src emacs-lisp
-(remove-hook 'text-mode-hook #'spell-fu-mode)
+;; (remove-hook 'text-mode-hook #'spell-fu-mode)
 #+end_src
 
-Disable titlebar message
+*** Disable titlebar message
 #+begin_src emacs-lisp
 (setq ns-use-proxy-icon nil
       frame-title-format nil
@@ -164,7 +203,7 @@ Disable titlebar message
 (add-to-list 'initial-frame-alist '(fullscreen . fullheight))
 #+end_src
 
-Other defaults
+*** Other defaults
 #+begin_src emacs-lisp
 (setq-default delete-by-moving-to-trash t
               window-combination-resize t)
@@ -206,8 +245,8 @@ Setting LSP
   (setq
    lsp-ui-sideline-enable 1
    lsp-ui-doc-enable nil
-   lsp-ui-doc-max-width 150
-   lsp-ui-doc-max-height 30
+   ;; lsp-ui-doc-max-width 150
+   ;; lsp-ui-doc-max-height 30
    )
 
   ;; show documentation
@@ -302,13 +341,11 @@ General python settings and keybindings
   (add-to-list 'python-shell-completion-native-disabled-interpreters "python3")
 
   ;; NOTE: reenable lsp after format, local hook
-  (add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
+  ;;(add-hook 'python-mode-hook (lambda() (add-hook 'after-save-hook #'lsp nil t)))
 
   ;; keybindings
   (map!
    :map python-mode-map
-   :n "<" #'python-indent-shift-left
-   :n ">" #'python-indent-shift-right
    (:localleader
     :desc "New cell" "s" (lambda() (interactive)
                            (+evil/insert-newline-below)
@@ -326,7 +363,7 @@ General python settings and keybindings
   )
 #+end_src
 *** Jupyter
-Jupyter is used for interactive shell, similar to VSCode
+Jupyter is used for interactive shell, similar to VSCode interactive
 #+begin_src emacs-lisp
 (use-package! jupyter
   :init
@@ -419,15 +456,13 @@ Org settings. Make sure the latex preview is high definition SVG
    :desc "Latex preview" "m" #'org-latex-preview))
 #+end_src
 
-#+RESULTS:
-
 ** Latex
 Setting latex. Make <return> as latex preview
 #+begin_src emacs-lisp
 (after! tex
   (setq TeX-parse-self t
         TeX-auto-save t
-        LaTeX-indent-level 4
+        ;;LaTeX-indent-level 4
         )
   (map!
    :map LaTeX-mode-map
@@ -440,12 +475,12 @@ Setting latex. Make <return> as latex preview
 
 * Utility
 ** Format
-Minimized the popup factor of format error
+*** Minimized the popup factor of format error
 #+begin_src emacs-lisp
 (set-popup-rule! "^\\*format-all" :size 0.01 :ttl 0 :modeline nil)
 #+end_src
 
-Enabled formatting for the following modes. Use yapf formatting for python
+*** Enabled formatting for the following modes. Use yapf formatting for python
 #+begin_src emacs-lisp
 (after! format-all
   (set-formatter! 'yapf "yapf -q " :modes'(python-mode))
@@ -520,15 +555,7 @@ Make sure the set dictionary. Otherwise, personal dictionary would not work.
 ** Rainbow mode
 Rainbow mode turns on the colored parentheses
 #+begin_src emacs-lisp
-(add-hook! '(prog-mode-hook) #'rainbow-mode #'rainbow-delimiters-mode
-           )
-#+end_src
-** TODO Tramp
-#+begin_src emacs-lisp
-;; (setq enable-remote-dir-locals t)
-;; (setq enable-local-variables :all)
-;; (after! tramp
-;;   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+(add-hook! '(prog-mode-hook) #'rainbow-mode #'rainbow-delimiters-mode)
 #+end_src
 
 ** Magit
@@ -551,34 +578,3 @@ Disable long summary warning
   )
 #+end_src
 
-** EAF
-Not using it as it is slow to startup. PDF viewer and browser.
-#+begin_src emacs-lisp
-;; (use-package! eaf
-;;   :load-path "/Users/kwkarlwang/.emacs.d/.local/straight/repos/emacs-application-framework"
-;;   :init
-;;   (use-package! ctable :defer t)
-;;   (use-package! deferred :defer t)
-;;   (use-package! epc :defer t)
-;;   (use-package! s :defer t)
-;;   :custom
-;;   (setq eaf-browser-continue-where-left-off t)
-;;   :config
-;;   (require 'eaf-evil)
-
-;;   (define-key key-translation-map (kbd "SPC")
-;;     (lambda (prompt)
-;;       (if (derived-mode-p 'eaf-mode)
-;;           (pcase eaf--buffer-app-name
-;;             ("browser" (if  (string= (eaf-call-sync "call_function" eaf--buffer-id "is_focus") "True")
-;;                            (kbd "SPC")
-;;                          (kbd eaf-evil-leader-key)))
-;;             ("pdf-viewer" (kbd eaf-evil-leader-key))
-;;             ("image-viewer" (kbd eaf-evil-leader-key))
-;;             (_  (kbd "SPC")))
-;;         (kbd "SPC"))))
-
-;;   (eaf-bind-key scroll_down_page "C-u" eaf-pdf-viewer-keybinding)
-;;   (eaf-bind-key scroll_up_page "C-d" eaf-pdf-viewer-keybinding)
-;;   )
-#+end_src
