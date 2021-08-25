@@ -26,8 +26,9 @@ yabai -m rule --add app="^Font Book$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
 # yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^console$" manage=off
-yabai -m rule --add app="^Logi Options$" manage=off
+yabai -m rule --add app="^Logi Options$" manage=off layer=above
 yabai -m rule --add app="^Preview$" manage=off
+yabai -m rule --add app="^WeChat$" manage=off
 
 
 ## global settings
