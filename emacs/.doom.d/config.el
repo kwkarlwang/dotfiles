@@ -4,7 +4,7 @@
       user-mail-address "kwkarlwang@gmail.com")
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font"
-                           :size 13
+                           :size 12
                            ))
 (setq ns-use-thin-smoothing t)
 
@@ -53,13 +53,16 @@
 ;; Also in visual mode
 (define-key evil-visual-state-map "j" 'evil-next-visual-line)
 (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+;;(define-key evil-motion-state-map (kbd "cc") 'evilnc-comment-or-uncomment-lines)
+
 ;; Scroll off
-(setq scroll-margin 3)
+(setq scroll-margin 8)
 
 (map!
+ :n "C-s" (cmd! (+vterm/toggle 1))
  :leader
  :desc "Toggle Comment" "c SPC" (lambda ()(interactive)(evilnc-comment-or-uncomment-lines -1))
- :desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
+ ;;:desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
  :desc "Toggle line highlight" "t h" #'global-hl-line-mode
  )
 
@@ -114,8 +117,8 @@
    lsp-idle-delay 0.5
    lsp-enable-symbol-highlighting nil
    lsp-eldoc-enable-hover nil
-   +lsp-company-backends
-   '(:separate company-capf company-yasnippet)
+   ;; +lsp-company-backends
+   ;; '(:separate company-capf company-yasnippet)
    )
 
   )
@@ -144,14 +147,14 @@
         )
   )
 
-(add-hook! 'lsp-pyright-after-open-hook
-           (lsp:set-completion-options-trigger-characters?
-            (lsp:server-capabilities-completion-provider?
-             (lsp--workspace-server-capabilities (cl-first
-                                                  (lsp-workspaces)
-                                                  )))
-            [])
- )
+;; (add-hook! 'lsp-pyright-after-open-hook
+;;            (lsp:set-completion-options-trigger-characters?
+;;             (lsp:server-capabilities-completion-provider?
+;;              (lsp--workspace-server-capabilities (cl-first
+;;                                                   (lsp-workspaces)
+;;                                                   )))
+;;             [])
+;;  )
 
 (add-hook! 'lsp-texlab-after-open-hook (eldoc-mode -1)
            (lsp:set-completion-options-trigger-characters?
