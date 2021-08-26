@@ -50,39 +50,17 @@ return require("packer").startup(
     --   end
     -- }
 
-    use {
-      "hrsh7th/cmp-vsnip",
-      after = "nvim-cmp"
-    }
-
-    use {
-      "hrsh7th/cmp-emoji",
-      after = "nvim-cmp"
-    }
-    use {
-      "hrsh7th/cmp-nvim-lua",
-      after = "nvim-cmp"
-    }
-    use {
-      "hrsh7th/cmp-calc",
-      after = "nvim-cmp"
-    }
-    use {
-      "hrsh7th/cmp-path",
-      after = "nvim-cmp"
-    }
-    use {
-      "hrsh7th/cmp-buffer",
-      after = "nvim-cmp"
-    }
-    use {
-      "hrsh7th/cmp-nvim-lsp",
-      after = "nvim-cmp"
-    }
+    use {"hrsh7th/cmp-vsnip", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-emoji", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-calc", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-path", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
 
     use {
       "hrsh7th/nvim-cmp",
-      after = "nvim-lspconfig",
+      event = "InsertEnter",
       config = function()
         require "plugins.cmp"
       end
@@ -91,12 +69,6 @@ return require("packer").startup(
     use {
       "hrsh7th/vim-vsnip",
       event = "InsertEnter"
-      -- config = function()
-      --   map("i", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-      --   map("s", "<Tab>", "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)':'<Tab>'", {expr = true})
-      --   map("i", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-      --   map("s", "<S-Tab>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)':'<S-Tab>'", {expr = true})
-      -- end
     }
     use {
       "rafamadriz/friendly-snippets",
@@ -436,7 +408,7 @@ return require("packer").startup(
       event = "BufWinEnter",
       keys = {"n", "<leader>bk"},
       config = function()
-        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)
+        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>:bprevious<cr>", NS)
       end
     }
     use {
@@ -455,8 +427,6 @@ return require("packer").startup(
       "phaazon/hop.nvim",
       as = "hop",
       event = "BufWinEnter",
-      -- cmd = {"HopLine", "HopWordBC", "HopWordAC", "HopChar1", "HopChar2"},
-      -- keys = {{"x", "sl"}, {"x", "sk"}, {"x", "sj"}, {"x", "sf"}, {"x", "ss"}},
       setup = function()
         require "plugins.hop".init()
       end,
