@@ -82,3 +82,6 @@ map("n", "<leader>gf", ":sp term://git pull origin $(git rev-parse --abbrev-ref 
 
 -- select non blank line
 map("n", "vv", "^vg_", NS)
+
+-- switch buffer
+map("n", "``", "<C-^>", NS)
