@@ -5,8 +5,6 @@ map("n", "<Esc>", ":noh<cr>:echo ''<cr>", NS)
 map("v", "<", "<gv", NS)
 map("v", ">", ">gv", NS)
 map("i", "jk", "<Esc>", NS)
--- map("c", "<Down>", "wildmenumode() ? '<left>' : '\\<down>'", expr)
--- map("c", "<Up>", "wildmenumode() ? '<right>' : '\\<up>'", expr)
 
 map("c", "<Down>", "<C-n>", {})
 map("c", "<Up>", "<C-p>", {})
@@ -16,7 +14,7 @@ map("n", "<leader>hrr", ":source %<cr>:PackerSync<cr>", NS)
 map("n", "<leader>hrc", ":source %<cr>:PackerCompile profile=true<cr>", {noremap = true})
 map("n", "<leader>hrp", ":source %<cr>:PackerProfile<cr>", {noremap = true})
 -- FILE
--- map("n", "<leader>fs", ":silent up<cr>", NS)
+map("n", "<leader>fs", ":silent up<cr>", NS)
 map("n", "ss", ":silent up<cr>", NS)
 -- save all files
 map("n", "<leader>bs", ":wa<cr>", NS)
