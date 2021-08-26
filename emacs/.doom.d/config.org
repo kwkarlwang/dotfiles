@@ -137,7 +137,6 @@ Use 'dh', 'dj', 'dk', 'dl' to navigate buffers
 (general-nmap "\"" #'evil-avy-goto-char-2-above)
 #+end_src
 
-
 ** Better Defaults
 *** Stop confirmation about quitting
 #+begin_src emacs-lisp
