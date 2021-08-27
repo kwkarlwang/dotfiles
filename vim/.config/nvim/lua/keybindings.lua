@@ -85,3 +85,4 @@ map("n", "vv", "^vg_", NS)
 
 -- switch buffer
 map("n", "``", "<C-^>", NS)
+map("n", "<leader>`", "<C-^>", NS)

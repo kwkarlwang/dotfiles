@@ -49,7 +49,7 @@
 (setq scroll-margin 8)
 
 (map!
- :n "C-s" #'+vterm/toggle
+ :n "C-s" #'+eshell/toggle
  :leader
  :desc "Toggle Comment" "c SPC" (lambda ()(interactive)(evilnc-comment-or-uncomment-lines -1))
  ;;:desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
@@ -66,6 +66,10 @@
     "l" #'evil-window-right
     )
   )
+(general-omap "h" #'evil-window-left)
+(general-omap "j" #'evil-window-down)
+(general-omap "k" #'evil-window-up)
+(general-omap "l" #'evil-window-right)
 (general-vmap "d" 'evil-delete)
 ;; FIXME: currently now working for some reason
 ;; (after! 'evil-org
@@ -81,6 +85,10 @@
 ;;     )
 ;;   )
 
+(general-nmap "`" (general-key-dispatch 'evil-goto-mark
+                    "`" #'evil-switch-to-windows-last-buffer
+                    ))
+
 (general-nmap "s"
   (general-key-dispatch 'evil-substitute
     "d" #'evil-window-delete
@@ -91,7 +99,7 @@
 (general-nmap "c" (general-key-dispatch 'evil-change
                     "c" #'evilnc-comment-or-uncomment-lines
                     ))
-(general-vmap "c" 'evil-change)
+;; (general-vmap "c" 'evil-change)
 
 (general-nmap "'" #'evil-avy-goto-char-2-below)
 (general-nmap "\"" #'evil-avy-goto-char-2-above)
@@ -133,6 +141,8 @@
   ;; Shortened keyboard typing auto complete delay
   (setq company-minimum-prefix-length 2
         company-idle-delay 0.0)
+  ;; disable in eshell mode
+  (add-to-list 'company-global-modes #'eshell-mode t)
   ;; (add-to-list 'company--disabled-backends 'company-ispell)
   (set-company-backend! '(text-mode org-mode)
     '(:separate company-yasnippet company-files company-dabbrev))

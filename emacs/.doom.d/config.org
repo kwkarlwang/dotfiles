@@ -1,4 +1,4 @@
-#+TITLE: Doom Emacs Config
+#+TITLE: Doom EmaConfig
 #+AUTHOR: Karl Wang
 
 * Basic
@@ -76,7 +76,7 @@
 *** Toggle settings
 #+begin_src emacs-lisp
 (map!
- :n "C-s" #'+vterm/toggle
+ :n "C-s" #'+eshell/toggle
  :leader
  :desc "Toggle Comment" "c SPC" (lambda ()(interactive)(evilnc-comment-or-uncomment-lines -1))
  ;;:desc "Toggle Terminal" "j" (lambda ()(interactive)(+popup/toggle))
@@ -84,7 +84,7 @@
  )
 #+end_src
 
-*** Buffer Navigation
+*** Buffer navigation
 Use 'dh', 'dj', 'dk', 'dl' to navigate buffers
 #+begin_src emacs-lisp
 (general-evil-setup)
@@ -97,6 +97,10 @@ Use 'dh', 'dj', 'dk', 'dl' to navigate buffers
     "l" #'evil-window-right
     )
   )
+(general-omap "h" #'evil-window-left)
+(general-omap "j" #'evil-window-down)
+(general-omap "k" #'evil-window-up)
+(general-omap "l" #'evil-window-right)
 (general-vmap "d" 'evil-delete)
 ;; FIXME: currently now working for some reason
 ;; (after! 'evil-org
@@ -111,6 +115,13 @@ Use 'dh', 'dj', 'dk', 'dl' to navigate buffers
 ;;       )
 ;;     )
 ;;   )
+#+end_src
+
+*** Switch buffer
+#+begin_src emacs-lisp
+(general-nmap "`" (general-key-dispatch 'evil-goto-mark
+                    "`" #'evil-switch-to-windows-last-buffer
+                    ))
 #+end_src
 
 *** Save and delete buffer
@@ -128,7 +139,7 @@ Use 'dh', 'dj', 'dk', 'dl' to navigate buffers
 (general-nmap "c" (general-key-dispatch 'evil-change
                     "c" #'evilnc-comment-or-uncomment-lines
                     ))
-(general-vmap "c" 'evil-change)
+;; (general-vmap "c" 'evil-change)
 #+end_src
 
 *** 2 Char Search
@@ -218,6 +229,8 @@ Setting company, the completion engine
   ;; Shortened keyboard typing auto complete delay
   (setq company-minimum-prefix-length 2
         company-idle-delay 0.0)
+  ;; disable in eshell mode
+  (add-to-list 'company-global-modes #'eshell-mode t)
   ;; (add-to-list 'company--disabled-backends 'company-ispell)
   (set-company-backend! '(text-mode org-mode)
     '(:separate company-yasnippet company-files company-dabbrev))
