@@ -72,6 +72,7 @@ cmp.setup {
   },
   -- You should specify your *installed* sources.
   sources = {
+    {name = "cmp_tabnine"},
     {name = "nvim_lsp"},
     {name = "vsnip"},
     {name = "nvim_lua"},

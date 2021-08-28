@@ -51,23 +51,12 @@ M.setup = function()
         theme = "ivy"
       },
       find_files = {
-        previewer = false,
+        -- previewer = false,
         theme = "ivy",
         hidden = true
       },
       current_buffer_fuzzy_find = {
         theme = "ivy"
-        -- vimgrep_arguments = {
-        --   "rg",
-        --   "--color=never",
-        --   "--no-heading",
-        --   "--with-filename",
-        --   "--line-number",
-        --   "--column",
-        --   "--smart-case",
-        --   "--hidden",
-        --   "--fixed-strings"
-        -- }
       },
       file_browser = {
         theme = "ivy"

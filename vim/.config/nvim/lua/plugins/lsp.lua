@@ -32,12 +32,51 @@ local on_attach = function(_, bufnr)
   bufmap("n", "<leader>lS", "<cmd>Telescope lsp_document_symbols<cr>", NS)
 end
 
+local if_nil = function(val, default)
+  if val == nil then
+    return default
+  end
+  return val
+end
+
+local update_capabilities = function(capabilities, override)
+  override = override or {}
+
+  local completionItem = capabilities.textDocument.completion.completionItem
+
+  completionItem.snippetSupport = if_nil(override.snippetSupport, true)
+  completionItem.preselectSupport = if_nil(override.preselectSupport, true)
+  completionItem.insertReplaceSupport = if_nil(override.insertReplaceSupport, true)
+  completionItem.labelDetailsSupport = if_nil(override.labelDetailsSupport, true)
+  completionItem.deprecatedSupport = if_nil(override.deprecatedSupport, true)
+  completionItem.commitCharactersSupport = if_nil(override.commitCharactersSupport, true)
+  completionItem.tagSupport = if_nil(override.tagSupport, {valueSet = {1}})
+  completionItem.resolveSupport =
+    if_nil(
+    override.resolveSupport,
+    {
+      properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits"
+      }
+    }
+  )
+
+  return capabilities
+end
+
 ------------- LSP INSTALL
 local function setup_servers()
   require "lspinstall".setup()
   local servers = require "lspinstall".installed_servers()
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  update_capabilities(capabilities)
+
   for _, server in pairs(servers) do
     local config = {
+      capabilities = capabilities,
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150
@@ -77,10 +116,11 @@ fn.sign_define(
 )
 
 -- update in insert mode
--- vim.lsp.handlers["textDocument/publishDiagnostics"] =
---   vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics,
---   {
---     update_in_insert = true
---   }
--- )
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    update_in_insert = true,
+    virtual_text = false
+  }
+)

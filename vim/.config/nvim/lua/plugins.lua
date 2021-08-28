@@ -41,15 +41,6 @@ return require("packer").startup(
     }
 
     -- completion
-    -- use {
-    --   "hrsh7th/nvim-compe",
-    --   event = "InsertEnter",
-    --   disable = true,
-    --   config = function()
-    --     require "plugins.compe".setup()
-    --   end
-    -- }
-
     use {"hrsh7th/cmp-vsnip", after = "nvim-cmp"}
     use {"hrsh7th/cmp-emoji", after = "nvim-cmp"}
     use {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"}
@@ -57,6 +48,8 @@ return require("packer").startup(
     use {"hrsh7th/cmp-path", after = "nvim-cmp"}
     use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
     use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
+
+    use {"tzachar/cmp-tabnine", run = "./install.sh", after = "nvim-cmp"}
 
     use {
       "hrsh7th/nvim-cmp",
@@ -210,15 +203,11 @@ return require("packer").startup(
       "windwp/nvim-autopairs",
       after = "nvim-cmp",
       config = function()
+        local ignored_next_char = string.gsub([[ [%w%%%%[%%.] ]], "%s+", "")
         require("nvim-autopairs").setup {
-          disable_filetype = {"TelescopePrompt"}
+          disable_filetype = {"TelescopePrompt"},
+          ignored_next_char = ignored_next_char
         }
-        -- require("nvim-autopairs.completion.compe").setup(
-        --   {
-        --     map_cr = true, --  map <CR> on insert mode
-        --     map_complete = false -- it will auto insert `(` after select function or method item
-        --   }
-        -- )
         require("nvim-autopairs.completion.cmp").setup(
           {
             map_cr = true, --  map <CR> on insert mode
@@ -232,9 +221,6 @@ return require("packer").startup(
     use {
       "tpope/vim-fugitive",
       cmd = "Git"
-      -- setup = function()
-      --   map("n", "<leader>gp", ":Git push<cr>", {noremap = true})
-      -- end
     }
 
     use {
@@ -256,7 +242,7 @@ return require("packer").startup(
     -- terminal
     use {
       "akinsho/nvim-toggleterm.lua",
-      keys = {"n", "<C-s>"},
+      keys = {{"n", "<C-s>"}, {"n", "<leader>ot"}, {"n", "<leader>ol"}},
       cmd = {"ToggleTerm", "TermExec"},
       config = function()
         require "plugins.term"
@@ -359,25 +345,26 @@ return require("packer").startup(
       end
     }
 
-    -- use {
-    --   "jpalardy/vim-slime",
-    --   ft = "python"
-    -- }
-    -- use {
-    --   "hanschen/vim-ipython-cell",
-    --   ft = "python",
-    --   after = "vim-slime",
-    --   config = function()
-    --     require("plugins.ipython")
-    --   end
-    -- }
+    use {
+      "jpalardy/vim-slime",
+      keys = {"n", "<leader>mi"},
+      ft = "python"
+    }
+    use {
+      "hanschen/vim-ipython-cell",
+      ft = "python",
+      after = "vim-slime",
+      config = function()
+        require("plugins.ipython")
+      end
+    }
 
     use {
       "jupyter-vim/jupyter-vim",
       ft = "python",
       cmd = "JupyterConnect",
       setup = function()
-        map("n", "<leader>mjj", ":!jupyter qtconsole --style monokai &<cr><cr>:JupyterConnect<cr>", NS)
+        map("n", "<leader>mj", ":!jupyter qtconsole --style monokai &<cr><cr>:JupyterConnect<cr>", NS)
         map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
         map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)
         map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
@@ -408,7 +395,7 @@ return require("packer").startup(
       event = "BufWinEnter",
       keys = {"n", "<leader>bk"},
       config = function()
-        map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>:bprevious<cr>", NS)
+        map("n", "<leader>bk", ":lua require('bufdelete').bufdelete(0, true)<cr>", NS)
       end
     }
     use {
@@ -473,8 +460,5 @@ return require("packer").startup(
       "lambdalisue/suda.vim",
       cmd = {"SudaRead", "SudaWrite"}
     }
-    -- use {
-    --   "tweekmonster/startuptime.vim"
-    -- }
   end
 )

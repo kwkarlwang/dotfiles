@@ -15,6 +15,7 @@ map("n", "<leader>hrc", ":source %<cr>:PackerCompile profile=true<cr>", {noremap
 map("n", "<leader>hrp", ":source %<cr>:PackerProfile<cr>", {noremap = true})
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", NS)
+map("n", "s", "<nop>", NS)
 map("n", "ss", ":silent up<cr>", NS)
 -- save all files
 map("n", "<leader>bs", ":wa<cr>", NS)

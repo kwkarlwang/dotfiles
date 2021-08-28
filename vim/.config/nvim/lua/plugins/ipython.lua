@@ -1,12 +1,12 @@
 g.slime_target = "neovim"
 -- g.slime_python_ipython = 1
 g.slime_dont_ask_default = 1
-map("n", "<C-cr>", ":IPythonCellExecuteCell<cr>", {noremap = true, silent = true})
-map("n", "<S-cr>", ":IPythonCellExecuteCellJump<cr>", {noremap = true, silent = true})
-map("n", "<leader>ms", ":IPythonCellInsertBelow<cr>", {noremap = true, silent = true})
-map("n", "<leader>mm", ":IPythonCellToMarkdown<cr>", {noremap = true, silent = true})
-map("n", "[c", ":IPythonCellPrevCell<cr>", {noremap = true, silent = true})
-map("n", "]c", ":IPythonCellNextCell<cr>", {noremap = true, silent = true})
+map("n", "<C-cr>", ":IPythonCellExecuteCell<cr>", NS)
+map("n", "<S-cr>", ":IPythonCellExecuteCellJump<cr>", NS)
+map("n", "<leader>ms", ":IPythonCellInsertBelow<cr>", NS)
+map("n", "<leader>mm", ":IPythonCellToMarkdown<cr>", NS)
+map("n", "[c", ":IPythonCellPrevCell<cr>", NS)
+map("n", "]c", ":IPythonCellNextCell<cr>", NS)
 
 cmd [[
 function! IPythonOpen()
@@ -22,5 +22,5 @@ function! IPythonOpen()
 
     wincmd p " switch to the previous buffer
 endfunction
-nnoremap <silent> <leader>mn :call IPythonOpen()<cr>
+nnoremap <silent> <leader>mi :call IPythonOpen()<cr>
 ]]
