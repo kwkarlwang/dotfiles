@@ -11,7 +11,7 @@ require("toggleterm").setup {
   shade_terminals = false,
   start_in_insert = false,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
-  persist_size = true,
+  persist_size = false,
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
   direction = "vertical",
   close_on_exit = false -- close the terminal window when the process exits

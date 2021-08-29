@@ -175,7 +175,7 @@ return require("packer").startup(
           ensure_installed = "maintained",
           ignore_install = {"haskell"},
           indent = {
-            enable = true,
+            enable = false,
             disable = {"python"}
           },
           highlight = {enable = true},
@@ -233,9 +233,19 @@ return require("packer").startup(
       config = function()
         require("neogit").setup(
           {
-            disable_commit_confirmation = true
+            disable_commit_confirmation = true,
+            integrations = {
+              diffview = true
+            }
           }
         )
+      end
+    }
+    use {
+      "sindrets/diffview.nvim",
+      after = "neogit",
+      config = function()
+        require("diffview").setup()
       end
     }
 
