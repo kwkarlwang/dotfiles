@@ -160,37 +160,15 @@ return require("packer").startup(
       end
     }
     -- make color brackets
-    use {
-      "p00f/nvim-ts-rainbow",
-      after = "nvim-treesitter"
-    }
+    use {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"}
+    use {"nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat"}
     --------Tree Sitter-----------
     use {
       "nvim-treesitter/nvim-treesitter",
       branch = "0.5-compat",
       run = ":TSUpdate",
       config = function()
-        require "nvim-treesitter.configs".setup {
-          ensure_installed = "maintained",
-          ignore_install = {"haskell"},
-          indent = {
-            enable = false,
-            disable = {"python"}
-          },
-          highlight = {enable = true},
-          rainbow = {
-            enable = true,
-            extended_modes = false,
-            colors = {
-              "#ebcb8b",
-              "#f199ce",
-              "#569cd6",
-              "#a3c4ef",
-              "#acebfb",
-              "#ee766d"
-            }
-          }
-        }
+        require("plugins.treesitter")
       end
     }
 
@@ -285,16 +263,17 @@ return require("packer").startup(
       cmd = {"Format", "FormatWrite"},
       setup = function()
         ------ FORMAT ON SAVE
-        vim.api.nvim_exec(
-          [[
-            augroup FormatAutogroup
-              autocmd!
-              autocmd BufWritePost * :silent FormatWrite
-            augroup END
-            ]],
-          true
-        )
+        -- vim.api.nvim_exec(
+        --   [[
+        --     augroup FormatAutogroup
+        --       autocmd!
+        --       autocmd BufWritePost * :silent FormatWrite
+        --     augroup END
+        --     ]],
+        --   true
+        -- )
         map("n", "<leader>cf", ":silent Format<cr>", {noremap = true, silent = true})
+        map("n", "ss", ":silent up<cr>:silent FormatWrite<cr>", NS)
       end,
       config = function()
         require "plugins.formatter"
