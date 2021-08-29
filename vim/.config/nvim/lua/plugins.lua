@@ -48,7 +48,6 @@ return require("packer").startup(
     use {"hrsh7th/cmp-path", after = "nvim-cmp"}
     use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
     use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
-
     use {"tzachar/cmp-tabnine", run = "./install.sh", after = "nvim-cmp"}
 
     use {
@@ -424,6 +423,7 @@ return require("packer").startup(
       "phaazon/hop.nvim",
       as = "hop",
       event = "BufWinEnter",
+      disable = true,
       setup = function()
         require "plugins.hop".init()
       end,
@@ -439,7 +439,6 @@ return require("packer").startup(
       end
     }
 
-    -- NOTE: can consider https://github.com/folke/persistence.nvim
     -- auto session
     use {
       "rmagatti/auto-session",

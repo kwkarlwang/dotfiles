@@ -29,15 +29,17 @@ lsp.protocol.CompletionItemKind = {
   "   (TypeParameter)"
 }
 
+local check_back_space = function()
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
 cmp.setup {
-  -- You should change this example to your chosen snippet engine.
   snippet = {
     expand = function(args)
       -- You must install `vim-vsnip` if you set up as same as the following.
       vim.fn["vsnip#anonymous"](args.body)
     end
   },
-  -- You must set mapping.
   mapping = {
     ["<Up>"] = cmp.mapping.select_prev_item(),
     ["<Down>"] = cmp.mapping.select_next_item(),
@@ -51,32 +53,39 @@ cmp.setup {
         select = true
       }
     ),
-    ["<Tab>"] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
-      elseif vim.fn["vsnip#available"]() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true), "")
-      else
-        fallback()
-      end
-    end,
-    ["<S-Tab>"] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
-      elseif vim.fn["vsnip#available"]() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-jump-prev)", true, true, true), "")
-      else
-        fallback()
-      end
-    end
+    ["<Tab>"] = cmp.mapping(
+      function(fallback)
+        if vim.fn.pumvisible() == 1 then
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
+        elseif check_back_space() then
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n")
+        elseif vim.fn["vsnip#available"]() == 1 then
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true), "")
+        else
+          fallback()
+        end
+      end,
+      {"i", "s", "n"}
+    ),
+    ["<S-Tab>"] = cmp.mapping(
+      function(fallback)
+        if vim.fn.pumvisible() == 1 then
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
+        elseif vim.fn["vsnip#available"]() == 1 then
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-jump-prev)", true, true, true), "")
+        else
+          fallback()
+        end
+      end,
+      {"i", "s", "n"}
+    )
   },
-  -- You should specify your *installed* sources.
   sources = {
-    {name = "cmp_tabnine"},
     {name = "nvim_lsp"},
-    {name = "vsnip"},
-    {name = "nvim_lua"},
     {name = "buffer"},
+    {name = "vsnip"},
+    {name = "cmp_tabnine"},
+    {name = "nvim_lua"},
     {name = "path"},
     {name = "calc"},
     {name = "emoji"}
@@ -88,6 +97,22 @@ cmp.setup {
     completeopt = "menu,menuone,noinsert",
     keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
     keyword_length = 1
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.menu =
+        ({
+        buffer = "[Buffer]",
+        path = "[Path]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Lua]",
+        calc = "[Calc]",
+        emoji = "[Emoji]",
+        vsnip = "[VSnip]",
+        cmp_tabnine = "[TabNine]"
+      })[entry.source.name]
+      return vim_item
+    end
   }
 }
 for index, value in ipairs(lsp.protocol.CompletionItemKind) do

@@ -60,8 +60,10 @@ map("n", "<M-Down>", ":m .+1<cr>==", NS)
 map("n", "<M-Up>", ":m .-2<cr>==", NS)
 map("v", "<M-Down>", ":m '>+1<cr>gv=gv", NS)
 map("v", "<M-Up>", ":m '<-2<cr>gv=gv", NS)
--- make y copy
+
+-- y/Y
 map("n", "Y", "y$", NS)
+map("v", "y", "ygv<esc>", NS)
 
 -- undo break point
 map("i", ",", ",<C-g>u", NS)
