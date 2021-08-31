@@ -270,7 +270,7 @@ return require("packer").startup(
         --       autocmd!
         --       autocmd BufWritePost * :silent FormatWrite
         --     augroup END
-        --     ]],
+        --     ]]--,
         --   true
         -- )
         map("n", "<leader>cf", ":silent Format<cr>", {noremap = true, silent = true})
