@@ -303,7 +303,7 @@ return require("packer").startup(
     -- leetcode
     use {
       "ianding1/leetcode.vim",
-      cmd = {"LeetCodeList", "LeetCodeSignIn"},
+      cmd = {"LeetCodeList", "LeetCodeSignIn", "LeetCodeSubmit", "LeetCodeTest"},
       config = function()
         g.leetcode_browser = "chrome"
         g.leetcode_hide_paid_only = 1
@@ -448,6 +448,15 @@ return require("packer").startup(
     use {
       "lambdalisue/suda.vim",
       cmd = {"SudaRead", "SudaWrite"}
+    }
+
+    -- peek number
+    use {
+      "nacro90/numb.nvim",
+      keys = {"n", ":"},
+      config = function()
+        require("numb").setup({show_numbers = false})
+      end
     }
   end
 )
