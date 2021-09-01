@@ -1,34 +1,36 @@
-map(">_w", "w");
-map("w", "R");
-map("q", "E");
-map("u", "e");
-map(">_F", "F");
-map("F", "C");
+map('>_w', 'w');
+map('w', 'R');
+map('q', 'E');
+map('u', 'e');
+map('>_F', 'F');
+map('F', 'C');
+map('s', '<right>');
+map('a', '<left>');
 
 // set hints to show on the left
-settings.hintAlign = "left";
+settings.hintAlign = 'left';
 // -----------------------------------------------------------------------------------------------------------------------
 // Change hints styles
 // -----------------------------------------------------------------------------------------------------------------------
-Hints.characters = "casdfzxvqwer";
+Hints.characters = 'casdfzxvqwer';
 // Nord
 Hints.style(
-  "border: solid 2px #4C566A; color:#A3BE8C; background: initial; background-color: #3B4252;"
+  'border: solid 2px #4C566A; color:#A3BE8C; background: initial; background-color: #3B4252;'
 );
 Hints.style(
-  "border: solid 2px #4C566A !important; padding: 1px !important; color: #E5E9F0 !important; background: #3B4252 !important;",
-  "text"
+  'border: solid 2px #4C566A !important; padding: 1px !important; color: #E5E9F0 !important; background: #3B4252 !important;',
+  'text'
 );
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Change search marks and cursor
 // -----------------------------------------------------------------------------------------------------------------------
-Visual.style("marks", "background-color: #A3BE8C99;");
-Visual.style("cursor", "background-color: #88C0D0;");
+Visual.style('marks', 'background-color: #A3BE8C99;');
+Visual.style('cursor', 'background-color: #88C0D0;');
 // -----------------------------------------------------------------------------------------------------------------------
 // Change position
 // -----------------------------------------------------------------------------------------------------------------------
-settings.omnibarPosition = "middle";
+settings.omnibarPosition = 'middle';
 
 // ---- Hints ----
 // Hints have to be defined separately

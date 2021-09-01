@@ -107,8 +107,8 @@ return require("packer").startup(
       config = function()
         require("nvim-comment-frame").setup(
           {
-            keymap = "<leader>cm",
-            multiline_keymap = "<leader>cm"
+            keymap = "cm",
+            multiline_keymap = "cm"
           }
         )
       end
@@ -352,7 +352,7 @@ return require("packer").startup(
       "jupyter-vim/jupyter-vim",
       ft = "python",
       cmd = "JupyterConnect",
-      setup = function()
+      config = function()
         map("n", "<leader>mj", ":!jupyter qtconsole --style monokai &<cr><cr>:JupyterConnect<cr>", NS)
         map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
         map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)

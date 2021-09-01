@@ -4,7 +4,8 @@ require("toggleterm").setup {
       -- return vim.fn.winheight(0) * 0.7
       return 20
     elseif term.direction == "vertical" then
-      return vim.o.columns * 0.4
+      return 100
+    -- return vim.o.columns * 0.4
     end
   end,
   open_mapping = [[<C-s>]],
