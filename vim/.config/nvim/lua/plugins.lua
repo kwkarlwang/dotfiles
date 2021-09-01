@@ -81,13 +81,15 @@ return require("packer").startup(
     use {
       "b3nj5m1n/kommentary",
       keys = {
-        {"n", "cc"},
-        {"v", "cc"}
+        "<Plug>kommentary_line_default",
+        "<Plug>kommentary_visual_default"
       },
-      config = function()
-        g.kommentary_create_default_mappings = false
+      setup = function()
         map("n", "cc", "<Plug>kommentary_line_default", {})
         map("v", "cc", "<Plug>kommentary_visual_default<Esc>", {})
+      end,
+      config = function()
+        g.kommentary_create_default_mappings = false
         require("kommentary.config").configure_language(
           "default",
           {
@@ -230,8 +232,13 @@ return require("packer").startup(
     -- terminal
     use {
       "akinsho/nvim-toggleterm.lua",
-      keys = {{"n", "<C-s>"}, {"n", "<leader>ot"}, {"n", "<leader>ol"}},
       cmd = {"ToggleTerm", "TermExec"},
+      setup = function()
+        map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>i", NS)
+        map("n", "<leader>ol", ":ToggleTerm direction=vertical<cr>i", NS)
+        map("n", "<C-s>", ":ToggleTerm<cr>i", NS)
+        map("i", "<C-s>", "<esc>:ToggleTerm<cr>i", NS)
+      end,
       config = function()
         require "plugins.term"
       end
@@ -359,8 +366,8 @@ return require("packer").startup(
         map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
         map("i", "<S-cr>", "<esc>:JupyterSendCell<cr>/# %%<cr>:noh<cr>i", NS)
 
-        map("n", "<leader>ms", "o# %%<cr><esc>", NS)
-        map("n", "<leader>mS", "o# %%<cr><esc>kk", NS)
+        map("n", "<leader>ms", "o<esc>0i# %%<cr><esc>", NS)
+        map("n", "<leader>mS", "o<esc>0i# %%<cr><esc>kk", NS)
       end
     }
 
@@ -431,7 +438,7 @@ return require("packer").startup(
     -- highlight search
     use {
       "rktjmp/highlight-current-n.nvim",
-      keys = {{"n", "/"}, {"n", "*"}},
+      keys = {{"n", "/"}, {"n", "*"}, {"n", "n"}, {"n", "N"}},
       config = function()
         map("n", "n", "<Plug>(highlight-current-n-n)zz", {})
         map("n", "N", "<Plug>(highlight-current-n-N)zz", {})
@@ -456,6 +463,28 @@ return require("packer").startup(
       keys = {"n", ":"},
       config = function()
         require("numb").setup({show_numbers = false})
+      end
+    }
+
+    -- code runner
+    use {
+      "michaelb/sniprun",
+      run = "bash ./install.sh",
+      setup = function()
+        map("v", "<C-f>", "<Plug>SnipRun", {silent = true})
+        map("n", "<C-f><C-f>", "mn?# %%<cr>V*k<C-f>`n:noh<cr>", {silent = true})
+        map("n", "<C-f><C-r>", "mn:%SnipRun<cr>`n", {silent = true})
+      end,
+      config = function()
+        require("sniprun").setup(
+          {
+            display = {
+              "VirtualTextOk",
+              "VirtualTextErr",
+              "Terminal"
+            }
+          }
+        )
       end
     }
   end

@@ -4,8 +4,8 @@ map('q', 'E');
 map('u', 'e');
 map('>_F', 'F');
 map('F', 'C');
-map('s', '<ArrowRight>');
-map('a', '<ArrowLeft>');
+unmap('s');
+unmap('a');
 
 // set hints to show on the left
 settings.hintAlign = 'left';

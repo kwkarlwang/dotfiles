@@ -46,12 +46,6 @@ map("t", "ss", "<C-\\><C-n>", NS)
 map("t", "sd", "<C-\\><C-n><C-w>c", NS)
 map("n", "sd", "<C-w>c", NS)
 
--- buffer
--- map("n", "<leader>bk", ":bw!<cr>", NS)
-
--- search result appear in the middle of screen
-map("n", "n", "nzz", NS)
-map("n", "N", "Nzz", NS)
 -- move line up and down
 map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", NS)
 map("i", "<M-Up>", "<Esc>:m .-2<cr>==gi", NS)
