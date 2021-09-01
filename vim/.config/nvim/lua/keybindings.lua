@@ -73,7 +73,7 @@ map("i", "<cr>", "<cr>x<bs>", NS)
 -- map("n", "S", "Sx<bs>", NS)
 
 -- terminal git push
-map("n", "<leader>gp", ":sp term://git push origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
+map("n", "<leader>gp", ":sp term://git push -u origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
 map("n", "<leader>gf", ":sp term://git pull origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
 
 -- select non blank line
