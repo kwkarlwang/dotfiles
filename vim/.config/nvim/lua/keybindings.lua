@@ -82,3 +82,7 @@ map("n", "vv", "^vg_", NS)
 -- switch buffer
 map("n", "``", "<C-^>", NS)
 map("n", "<leader>`", "<C-^>", NS)
+
+-- quit
+map("n", "<leader>qq", ":wa<cr>:qa<cr>", NS)
+map("n", "<leader>qQ", ":qa!<cr>", NS)

@@ -28,7 +28,7 @@ return require("packer").startup(
         require "lsp_signature".setup(
           {
             bind = true,
-            doc_lines = 0,
+            doc_lines = 1,
             floating_window = true,
             hi_parameter = "Visual",
             handler_opts = {
@@ -147,11 +147,12 @@ return require("packer").startup(
         {
           "ahmedkhalf/project.nvim",
           cmd = "Telescope",
+          module = "telescope",
           config = function()
             require("plugins.project")
           end
-        }
-        -- {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
+        },
+        {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sql.nvim"}}
       },
       after = "project.nvim",
       setup = function()
@@ -280,7 +281,7 @@ return require("packer").startup(
         --     ]]--,
         --   true
         -- )
-        map("n", "<leader>cf", ":silent Format<cr>", {noremap = true, silent = true})
+        map("n", "<leader>cf", ":silent Format<cr>", NS)
         map("n", "ss", ":silent up<cr>:silent FormatWrite<cr>", NS)
       end,
       config = function()
@@ -468,24 +469,55 @@ return require("packer").startup(
 
     -- code runner
     use {
-      "michaelb/sniprun",
-      run = "bash ./install.sh",
-      setup = function()
-        map("v", "<C-f>", "<Plug>SnipRun", {silent = true})
-        map("n", "<C-f><C-f>", "mn?# %%<cr>V*k<C-f>`n:noh<cr>", {silent = true})
-        map("n", "<C-f><C-r>", "mn:%SnipRun<cr>`n", {silent = true})
-      end,
+      "CRAG666/code_runner.nvim",
       config = function()
-        require("sniprun").setup(
+        require("code_runner").setup(
           {
-            display = {
-              "VirtualTextOk",
-              "VirtualTextErr",
-              "Terminal"
+            term = {
+              position = "vert",
+              size = 100
             }
           }
         )
       end
+    } -- docstring generator
+    use {
+      "danymat/neogen",
+      keys = {"n", "cd"},
+      config = function()
+        require("neogen").setup {
+          enable = true,
+          languages = {
+            python = {
+              template = {
+                annotation_convention = "numpydoc"
+              }
+            }
+          }
+        }
+        map("n", "cd", ":lua require('neogen').generate()<cr>", NS)
+      end
     }
+
+    -- use {
+    --   "michaelb/sniprun",
+    --   run = "bash ./install.sh",
+    --   setup = function()
+    --     map("v", "<C-f>", "<Plug>SnipRun", {silent = true})
+    --     map("n", "<C-f><C-f>", "mn?# %%<cr>V*k<C-f>`n:noh<cr>", {silent = true})
+    --     map("n", "<C-f><C-r>", "mn:%SnipRun<cr>`n", {silent = true})
+    --   end,
+    --   config = function()
+    --     require("sniprun").setup(
+    --       {
+    --         display = {
+    --           "VirtualTextOk",
+    --           "VirtualTextErr",
+    --           "Terminal"
+    --         }
+    --       }
+    --     )
+    --   end
+    -- }
   end
 )
