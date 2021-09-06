@@ -3,7 +3,6 @@
 
 
 ## Applications
-lctrl + lcmd + lshift - a : "${HOME}"/scripts/SwitchAudio.sh
 lctrl + lcmd + lshift - d : osascript "${HOME}"/scripts/Sidecar.js
 lctrl + lcmd + lshift - e : emacsclient -c -a 'emacs'
 # lctrl + lcmd + lshift - return : "${HOME}"/scripts/iTerm.sh
@@ -56,6 +55,10 @@ rshift + cmd + lshift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yab
 rshift - r : yabai -m space --rotate 270
 rshift + lshift - r : yabai -m space --rotate 90
 
+## cycle windows
+rshift - c : bash "${HOME}"/scripts/cycle_clockwise.sh
+rshift + lshift - c : bash "${HOME}"/scripts/cycle_counterclockwise.sh
+
 
 ## fast focus desktop
 lctrl - 1 : yabai -m space --focus prev || yabai -m space --focus last
@@ -92,8 +95,6 @@ lctrl - 3 : yabai -m window --toggle zoom-fullscreen
 
 ## zoom parent (allow vertical split)
 rshift + lshift - f : yabai -m window --toggle zoom-parent
-
-
 
 ## toggle floating
 rshift - t : yabai -m window --toggle float

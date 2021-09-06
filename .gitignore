@@ -16,3 +16,5 @@ vim/.config/nvim/plugin/packer_compiled.lua
 
 zsh/.zsh_history
 zsh/zsh/plugins
+
+forticlient.lua

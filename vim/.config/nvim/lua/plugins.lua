@@ -104,10 +104,7 @@ return require("packer").startup(function(use)
 	use({
 		"s1n7ax/nvim-comment-frame",
 		requires = "nvim-treesitter",
-		keys = {
-			"n",
-			"<leader>cm",
-		},
+		keys = { "n", "cm" },
 		config = function()
 			require("nvim-comment-frame").setup({
 				keymap = "cm",
@@ -474,7 +471,9 @@ return require("packer").startup(function(use)
 				},
 			})
 		end,
-	}) -- docstring generator
+	})
+
+	-- docstring generator
 	use({
 		"danymat/neogen",
 		keys = { "n", "cd" },
@@ -513,4 +512,27 @@ return require("packer").startup(function(use)
 	--     )
 	--   end
 	-- }
+
+	-- Debugger
+	use({
+		"mfussenegger/nvim-dap",
+		module = "dap",
+		setup = function()
+			require("plugins.dap").init()
+		end,
+	})
+	use({
+		"Pocco81/DAPInstall.nvim",
+		after = "nvim-dap",
+		config = function()
+			require("plugins.dap").setup()
+		end,
+	})
+	use({
+		"rcarriga/nvim-dap-ui",
+		after = "nvim-dap",
+		config = function()
+			require("dapui").setup()
+		end,
+	})
 end)

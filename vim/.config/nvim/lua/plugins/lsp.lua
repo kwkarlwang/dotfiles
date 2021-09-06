@@ -1,7 +1,7 @@
 --------LSP-----------
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	local function bufmap(...)
 		api.nvim_buf_set_keymap(bufnr, ...)
 	end
@@ -31,7 +31,9 @@ local on_attach = function(_, bufnr)
 	bufmap("n", "<leader>ls", "<cmd>Telescope lsp_workspace_symbols<cr>", NS)
 	bufmap("n", "<leader>lS", "<cmd>Telescope lsp_document_symbols<cr>", NS)
 	bufmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<cr>", NS)
-	bufmap("n", "ss", "<cmd>lua vim.lsp.buf.formatting_sync()<cr>:silent up<cr>", NS)
+
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
 end
 
 local if_nil = function(val, default)
