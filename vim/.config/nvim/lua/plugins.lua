@@ -425,7 +425,9 @@ return require("packer").startup(function(use)
 		"rmagatti/auto-session",
 		event = "BufWinEnter",
 		config = function()
-			require("auto-session").setup()
+			require("auto-session").setup({
+				log_level = "error",
+			})
 		end,
 	})
 
@@ -463,6 +465,7 @@ return require("packer").startup(function(use)
 	-- code runner
 	use({
 		"CRAG666/code_runner.nvim",
+		keys = { "n", "<leader>r" },
 		config = function()
 			require("code_runner").setup({
 				term = {

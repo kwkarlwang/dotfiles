@@ -216,7 +216,8 @@ ins_right({
 			for _, client in ipairs(clients) do
 				local filetypes = client.config.filetypes
 				if filetypes and fn.index(filetypes, buf_ft) ~= -1 then
-					return " LSP:" .. client.name
+					-- return " LSP:" .. client.name
+					return " LSP"
 				end
 			end
 			return msg

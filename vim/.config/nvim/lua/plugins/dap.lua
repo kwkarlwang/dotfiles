@@ -1,6 +1,5 @@
 local M = {}
 M.init = function()
-	print("hi")
 	map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", NS)
 	map("n", "<leader>dB", "<cmd>lua require'dap'.step_back()<cr>", NS)
 	map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", NS)
