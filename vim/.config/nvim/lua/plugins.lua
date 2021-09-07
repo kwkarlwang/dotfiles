@@ -34,7 +34,7 @@ return require("packer").startup(function(use)
 		config = function()
 			require("lsp_signature").setup({
 				bind = true,
-				doc_lines = 1,
+				doc_lines = 0,
 				floating_window = true,
 				hi_parameter = "Visual",
 				handler_opts = {
