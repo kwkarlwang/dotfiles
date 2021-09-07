@@ -114,15 +114,6 @@ o.foldexpr = "nvim_treesitter#foldexpr()"
 cmd("let &t_ut=''")
 
 --------disable cursor in inactvie pane-----------
--- cmd [[
--- augroup CursorLine
---     au!
---     au VimEnter * setlocal cursorline
---     au WinEnter * setlocal cursorline
---     au BufWinEnter * setlocal cursorline
---     au WinLeave * setlocal nocursorline
--- augroup END
--- ]]
 cmd([[
   autocmd BufEnter,WinEnter * setlocal cursorline
   autocmd BufLeave,WinLeave * setlocal nocursorline
