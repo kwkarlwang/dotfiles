@@ -162,12 +162,13 @@ return require("packer").startup(function(use)
 	})
 	-- make color brackets
 	use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat" })
+	use({ "nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat", after = "nvim-treesitter" })
 	--------Tree Sitter-----------
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		branch = "0.5-compat",
 		run = ":TSUpdate",
+
 		config = function()
 			require("plugins.treesitter")
 		end,
