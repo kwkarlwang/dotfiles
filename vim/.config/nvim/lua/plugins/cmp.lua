@@ -1,5 +1,6 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
+local luasnip = require("luasnip")
 
 local icons = {
 	Class = " ",
@@ -36,7 +37,8 @@ cmp.setup({
 	snippet = {
 		expand = function(args)
 			-- You must install `vim-vsnip` if you set up as same as the following.
-			vim.fn["vsnip#anonymous"](args.body)
+			-- vim.fn["vsnip#anonymous"](args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	mapping = {
@@ -53,10 +55,12 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if vim.fn.pumvisible() == 1 then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
+			elseif luasnip.expand_or_jumpable() then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
 			elseif check_back_space() then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n")
-			elseif vim.fn["vsnip#available"]() == 1 then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true), "")
+				-- elseif vim.fn["vsnip#available"]() == 1 then
+				-- 	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true), "")
 			else
 				fallback()
 			end
@@ -68,8 +72,10 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if vim.fn.pumvisible() == 1 then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
-			elseif vim.fn["vsnip#available"]() == 1 then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-jump-prev)", true, true, true), "")
+				-- elseif vim.fn["vsnip#available"]() == 1 then
+				-- 	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-jump-prev)", true, true, true), "")
+			elseif luasnip.jumpable(-1) then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
 			else
 				fallback()
 			end
@@ -82,12 +88,13 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
-		{ name = "vsnip" },
+		{ name = "luasnip" },
 		{ name = "cmp_tabnine" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "emoji" },
+		-- { name = "vsnip" },
 	},
 	completion = {
 		autocomplete = {
@@ -107,7 +114,8 @@ cmp.setup({
 				nvim_lua = "[Lua]",
 				calc = "[Calc]",
 				emoji = "[Emoji]",
-				vsnip = "[VSnip]",
+				-- vsnip = "[VSnip]",
+				luasnip = "[LuaSnip]",
 				cmp_tabnine = "[TabNine]",
 			})[entry.source.name]
 			return vim_item

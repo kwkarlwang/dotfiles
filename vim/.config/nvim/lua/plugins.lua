@@ -46,7 +46,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- completion
-	use({ "hrsh7th/cmp-vsnip", after = "nvim-cmp" })
+	use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-emoji", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
@@ -64,13 +64,14 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"hrsh7th/vim-vsnip",
-		event = "InsertEnter",
+		"L3MON4D3/LuaSnip",
+		requires = { "friendly-snippets" },
+		event = "BufWinEnter",
+		config = function()
+			require("plugins.luasnip")
+		end,
 	})
-	use({
-		"rafamadriz/friendly-snippets",
-		event = "InsertCharPre",
-	})
+	use({ "rafamadriz/friendly-snippets" })
 
 	-- theme
 	use({
