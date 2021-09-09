@@ -170,6 +170,18 @@ local function setup_servers()
 	end
 end
 
+-- add in emmet as well
+require("lspinstall/servers").emmet = {
+	install_script = [[
+	! test -f package.json && npm init -y --scope=lspinstall || true
+	npm install emmet-ls
+	]],
+	default_config = {
+		cmd = { "./node_modules/.bin/emmet-ls", "--stdio" },
+		filetypes = { "html", "css" },
+		root_dir = require("lspconfig").util.root_pattern(".git", vim.fn.getcwd()),
+	},
+}
 setup_servers()
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
