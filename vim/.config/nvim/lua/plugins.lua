@@ -474,14 +474,33 @@ return require("packer").startup(function(use)
 	})
 
 	-- code runner
+	-- use({
+	-- 	"CRAG666/code_runner.nvim",
+	-- 	keys = { "n", "<leader>r" },
+	-- 	config = function()
+	-- 		require("code_runner").setup({
+	-- 			term = {
+	-- 				position = "vert",
+	-- 				size = 100,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- })
 	use({
-		"CRAG666/code_runner.nvim",
-		keys = { "n", "<leader>r" },
+		"michaelb/sniprun",
+		run = "bash ./install.sh",
+		keys = { { "n", "<leader>rr" }, { "v", "<leader>rr" }, { "n", "<leader>rl" } },
+		setup = function()
+			map("v", "<leader>rr", "<Plug>SnipRun", { silent = true })
+			map("n", "<leader>rl", "mn?# %%<cr>V*k<leader>rr`n:noh<cr>", { silent = true })
+			map("n", "<leader>rr", "mn:%SnipRun<cr>`n", { silent = true })
+		end,
 		config = function()
-			require("code_runner").setup({
-				term = {
-					position = "vert",
-					size = 100,
+			require("sniprun").setup({
+				display = {
+					"VirtualTextOk",
+					"VirtualTextErr",
+					"Terminal",
 				},
 			})
 		end,
@@ -505,27 +524,6 @@ return require("packer").startup(function(use)
 			map("n", "cd", ":lua require('neogen').generate()<cr>", NS)
 		end,
 	})
-
-	-- use {
-	--   "michaelb/sniprun",
-	--   run = "bash ./install.sh",
-	--   setup = function()
-	--     map("v", "<C-f>", "<Plug>SnipRun", {silent = true})
-	--     map("n", "<C-f><C-f>", "mn?# %%<cr>V*k<C-f>`n:noh<cr>", {silent = true})
-	--     map("n", "<C-f><C-r>", "mn:%SnipRun<cr>`n", {silent = true})
-	--   end,
-	--   config = function()
-	--     require("sniprun").setup(
-	--       {
-	--         display = {
-	--           "VirtualTextOk",
-	--           "VirtualTextErr",
-	--           "Terminal"
-	--         }
-	--       }
-	--     )
-	--   end
-	-- }
 
 	-- Debugger
 	use({

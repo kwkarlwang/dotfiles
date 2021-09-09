@@ -155,7 +155,7 @@ local function setup_servers()
 			capabilities = capabilities,
 			on_attach = on_attach,
 			flags = {
-				debounce_text_changes = 300,
+				debounce_text_changes = 500,
 			},
 			-- make the lsp start at cwd instead of git dir
 			root_dir = function()
