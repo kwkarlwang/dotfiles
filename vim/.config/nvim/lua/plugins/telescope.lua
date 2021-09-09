@@ -108,18 +108,17 @@ M.setup = function()
 	})
 	require("telescope").load_extension("fzf")
 	require("telescope").load_extension("projects")
-	require("telescope").load_extension("frecency")
+	-- require("telescope").load_extension("frecency")
 end
 M.init = function()
-	-- map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)
+	map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)
 
-	map(
-		"n",
-		"<leader><leader>",
-		"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy())<cr>:CWD:",
-		-- "<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy())<cr>",
-		NS
-	)
+	-- map(
+	-- 	"n",
+	-- 	"<leader><leader>",
+	-- 	"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy())<cr>:CWD:",
+	-- 	NS
+	-- )
 	map("n", "<leader>ff", "<cmd>Telescope find_files find_command=fd,--no-ignore,--hidden<cr>", NS)
 	map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", NS)
 

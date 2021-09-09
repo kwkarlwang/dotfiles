@@ -15,7 +15,7 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"neovim/nvim-lspconfig",
-		after = "nvim-lspinstall",
+		after = { "nvim-lspinstall", "nvim-lsp-ts-utils" },
 		config = function()
 			require("plugins.lsp")
 		end,
@@ -27,6 +27,9 @@ return require("packer").startup(function(use)
 			require("plugins.null-ls")
 		end,
 		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	})
+	use({
+		"jose-elias-alvarez/nvim-lsp-ts-utils",
 	})
 	use({
 		"ray-x/lsp_signature.nvim",
@@ -150,7 +153,7 @@ return require("packer").startup(function(use)
 					require("plugins.project")
 				end,
 			},
-			{ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sql.nvim" } },
+			-- { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sql.nvim" } },
 		},
 		after = "project.nvim",
 		setup = function()
