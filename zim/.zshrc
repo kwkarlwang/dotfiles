@@ -91,6 +91,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # use vim
 bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "/Users/kwkarlwang/.ghcup/env" ] && source "/Users/kwkarlwang/.ghcup/env" # ghcup-env
 
 bindkey -v '^?' backward-delete-char
 bindkey -v '^W' backward-kill-word
@@ -189,6 +190,7 @@ bindkey '^E' end-of-line
 # Export
 # ------------------------------
 
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 # For HomeBrew
 export PATH="/usr/local/sbin:$PATH"
@@ -223,4 +225,3 @@ fi
 #fi
 #unset __conda_setup
 # <<< conda initialize <<<
-

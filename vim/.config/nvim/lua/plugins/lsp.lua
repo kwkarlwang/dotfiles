@@ -3,10 +3,6 @@ local on_attach = function(client, bufnr)
 	local function bufmap(...)
 		api.nvim_buf_set_keymap(bufnr, ...)
 	end
-	local function buf_set_option(...)
-		api.nvim_buf_set_option(bufnr, ...)
-	end
-
 	--Enable completion triggered by <c-x><c-o>
 	-- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -35,17 +31,8 @@ local on_attach = function(client, bufnr)
 end
 
 local ts_on_attach = function(client, bufnr)
-	local function bufmap(...)
-		api.nvim_buf_set_keymap(bufnr, ...)
-	end
-	local function buf_set_option(...)
-		api.nvim_buf_set_option(bufnr, ...)
-	end
-
+	on_attach(client, bufnr)
 	-- disable tsserver formatting if you plan on formatting via null-ls
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
-
 	local ts_utils = require("nvim-lsp-ts-utils")
 
 	-- defaults
@@ -94,22 +81,6 @@ local ts_on_attach = function(client, bufnr)
 	bufmap("n", "gs", ":TSLspOrganize<CR>", NS)
 	bufmap("n", "gr", ":TSLspRenameFile<CR>", NS)
 	bufmap("n", "gi", ":TSLspImportAll<CR>", NS)
-
-	bufmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", NS)
-	bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", NS)
-	bufmap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header=false })<cr>", NS)
-	bufmap("n", "[e", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", NS)
-	bufmap("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", NS)
-
-	-- LSP RELATED
-	bufmap("n", "<space>ca", "<cmd>Telescope lsp_code_actions<cr>", NS)
-	bufmap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", NS)
-	bufmap("n", "gD", "<cmd>Telescope lsp_references<cr>", NS)
-	bufmap("n", "<leader>ld", "<cmd>Telescope lsp_workspace_diagnostics<cr>", NS)
-	bufmap("n", "<leader>lD", "<cmd>Telescope lsp_document_diagnostics<cr>", NS)
-	bufmap("n", "<leader>ls", "<cmd>Telescope lsp_workspace_symbols<cr>", NS)
-	bufmap("n", "<leader>lS", "<cmd>Telescope lsp_document_symbols<cr>", NS)
-	bufmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<cr>", NS)
 end
 
 local if_nil = function(val, default)
@@ -149,6 +120,7 @@ local function setup_servers()
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	update_capabilities(capabilities)
+	local lspconfig = require("lspconfig")
 
 	for _, server in pairs(servers) do
 		local config = {
@@ -158,16 +130,18 @@ local function setup_servers()
 				debounce_text_changes = 500,
 			},
 			-- make the lsp start at cwd instead of git dir
-			root_dir = function()
-				return vim.loop.cwd()
-			end,
+			root_dir = vim.loop.cwd,
+			settings = {
+				rootMakers = { "" },
+			},
 		}
 
 		if server == "typescript" then
-			config["on_attach"] = ts_on_attach
+			config.on_attach = ts_on_attach
 		end
-		require("lspconfig")[server].setup(config)
+		lspconfig[server].setup(config)
 	end
+	-- lspconfig.hls.setup({})
 end
 
 setup_servers()

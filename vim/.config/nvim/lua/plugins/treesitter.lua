@@ -1,9 +1,9 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
-	ignore_install = { "haskell" },
+	ignore_install = {},
 	indent = {
 		enable = true,
-		disable = { "python" },
+		disable = { "python", "rust" },
 	},
 	highlight = { enable = true },
 	rainbow = {
@@ -55,5 +55,9 @@ require("nvim-treesitter.configs").setup({
 				["[L"] = "@loop.outer",
 			},
 		},
+	},
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
 	},
 })

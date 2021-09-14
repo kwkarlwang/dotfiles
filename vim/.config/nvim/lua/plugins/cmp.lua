@@ -102,7 +102,7 @@ cmp.setup({
 		},
 		completeopt = "menu,menuone,noinsert",
 		keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
-		keyword_length = 1,
+		keyword_length = 2,
 	},
 	formatting = {
 		format = function(entry, vim_item)

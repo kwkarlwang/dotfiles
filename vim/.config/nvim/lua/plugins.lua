@@ -9,6 +9,8 @@ end
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
+	use({ "lewis6991/impatient.nvim" })
+
 	-- lsp
 	use({
 		"kabouzeid/nvim-lspinstall",
@@ -94,25 +96,18 @@ return require("packer").startup(function(use)
 			"<Plug>kommentary_visual_default",
 		},
 		setup = function()
-			map("n", "cc", "<Plug>kommentary_line_default", {})
-			map("v", "cc", "<Plug>kommentary_visual_default<Esc>", {})
+			map("n", "cc", "<Plug>kommentary_line_default", { silent = true })
+			map("v", "cc", "<Plug>kommentary_visual_default<Esc>", { silent = true })
 		end,
 		config = function()
 			g.kommentary_create_default_mappings = false
 			require("kommentary.config").configure_language("default", {
 				prefer_single_line_comments = true,
-			})
-		end,
-	})
-	-- comment frame
-	use({
-		"s1n7ax/nvim-comment-frame",
-		requires = "nvim-treesitter",
-		keys = { "n", "cm" },
-		config = function()
-			require("nvim-comment-frame").setup({
-				keymap = "cm",
-				multiline_keymap = "cm",
+				single_line_comment_string = "auto",
+				multi_line_comment_strings = "auto",
+				hook_function = function()
+					require("ts_context_commentstring.internal").update_commentstring()
+				end,
 			})
 		end,
 	})
@@ -163,6 +158,8 @@ return require("packer").startup(function(use)
 			require("plugins.telescope").setup()
 		end,
 	})
+
+	-- Treesitter plugins
 	-- make color brackets
 	use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
 	use({ "nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat", after = "nvim-treesitter" })
@@ -172,6 +169,23 @@ return require("packer").startup(function(use)
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
+	})
+
+	use({
+		"s1n7ax/nvim-comment-frame",
+		after = "nvim-treesitter",
+		keys = { "n", "cm" },
+		config = function()
+			require("nvim-comment-frame").setup({
+				keymap = "cm",
+				multiline_keymap = "cm",
+			})
+		end,
+	})
+
+	use({
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		after = "nvim-treesitter",
 	})
 	--------Tree Sitter-----------
 	use({
@@ -435,6 +449,7 @@ return require("packer").startup(function(use)
 	use({
 		"rmagatti/auto-session",
 		event = "BufWinEnter",
+		-- disable = true,
 		config = function()
 			require("auto-session").setup({
 				log_level = "error",
@@ -489,7 +504,6 @@ return require("packer").startup(function(use)
 	use({
 		"michaelb/sniprun",
 		run = "bash ./install.sh",
-		keys = { { "n", "<leader>rr" }, { "v", "<leader>rr" }, { "n", "<leader>rl" } },
 		setup = function()
 			map("v", "<leader>rr", "<Plug>SnipRun", { silent = true })
 			map("n", "<leader>rl", "mn?# %%<cr>V*k<leader>rr`n:noh<cr>", { silent = true })
@@ -546,5 +560,23 @@ return require("packer").startup(function(use)
 		config = function()
 			require("dapui").setup()
 		end,
+	})
+	use({
+		"kwkarlwang/bufjump.nvim",
+		-- disable = true,
+		config = function()
+			require("bufjump").setup({
+				forward = "<C-n>",
+				backward = "<C-p>",
+				on_success = function()
+					vim.cmd([[execute "normal! g`\"zz"]])
+				end,
+			})
+		end,
+	})
+
+	-- markdown
+	use({
+		"ellisonleao/glow.nvim",
 	})
 end)
