@@ -10,7 +10,7 @@ bufmap = vim.api.nvim_buf_set_keymap
 
 NS = { noremap = true, silent = true }
 
-require("impatient")
+pcall(require("impatient"))
 require("settings")
 require("keybindings")
 require("plugins")

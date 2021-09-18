@@ -132,6 +132,7 @@ else
 fi
 
 alias mas="cd ~/Desktop/Master/"
+alias karl="cd ~/Desktop/Karl/"
 alias k="kubectl"
 if [ "$TERM" = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"

@@ -115,15 +115,14 @@ return require("packer").startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 
 	-- statusline
-	use({
-		"kwkarlwang/galaxyline.nvim",
-		branch = "main",
-		event = "BufRead",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		config = function()
-			require("plugins.galaxyline")
-		end,
-	})
+	-- use({
+	-- 	"kwkarlwang/galaxyline.nvim",
+	-- 	branch = "main",
+	-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	-- 	config = function()
+	-- 		require("plugins.galaxyline")
+	-- 	end,
+	-- })
 
 	-- use {
 	--   "hoob3rt/lualine.nvim",
@@ -132,6 +131,13 @@ return require("packer").startup(function(use)
 	--     require "plugins.lualine"
 	--   end
 	-- }
+
+	use({
+		"famiu/feline.nvim",
+		config = function()
+			require("plugins.feline")
+		end,
+	})
 
 	-- for telescope
 	use({
@@ -482,7 +488,7 @@ return require("packer").startup(function(use)
 	-- peek number
 	use({
 		"nacro90/numb.nvim",
-		keys = { "n", ":" },
+		keys = { { "n", ":" } },
 		config = function()
 			require("numb").setup({ show_numbers = false })
 		end,
@@ -578,5 +584,27 @@ return require("packer").startup(function(use)
 	-- markdown
 	use({
 		"ellisonleao/glow.nvim",
+		cmd = "Glow",
+	})
+
+	-- swap windows
+	use({
+		"sindrets/winshift.nvim",
+		after = "dracula",
+		cmd = "WinShift",
+		setup = function()
+			map("n", "<leader>ww", ":WinShift<cr>", NS)
+		end,
+		config = function()
+			require("winshift").setup({
+				highlight_moving_win = true,
+				focused_hl_group = "DraculaBgDark",
+				moving_win_options = {
+					wrap = false,
+					cursorline = false,
+					cursorcolumn = false,
+				},
+			})
+		end,
 	})
 end)
