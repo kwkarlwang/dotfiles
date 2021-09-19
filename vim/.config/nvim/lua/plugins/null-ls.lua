@@ -12,6 +12,16 @@ local haskellfmt = h.make_builtin({
 	factory = h.formatter_factory,
 })
 
+local latexfmt = h.make_builtin({
+	method = FORMATTING,
+	filetypes = { "tex" },
+	generator_opts = {
+		command = "latexindent",
+		to_stdin = true,
+	},
+	factory = h.formatter_factory,
+})
+
 local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 local sources = {
@@ -26,6 +36,7 @@ local sources = {
 	builtins.diagnostics.mypy,
 	builtins.code_actions.gitsigns,
 	haskellfmt,
+	latexfmt,
 }
 null_ls.config({
 	diagnostics_format = "#{s}: #{m}",

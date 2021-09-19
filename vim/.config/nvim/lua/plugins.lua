@@ -134,6 +134,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"famiu/feline.nvim",
+		branch = "develop",
 		config = function()
 			require("plugins.feline")
 		end,
