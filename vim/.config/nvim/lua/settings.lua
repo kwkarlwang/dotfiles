@@ -92,7 +92,7 @@ cmd([[
 cmd("autocmd TermOpen * setlocal nonumber norelativenumber")
 
 --------Auto Resize-----------
-cmd("autocmd VimResized * wincmd =")
+-- cmd("autocmd VimResized * wincmd =")
 
 --------Menu Height-----------
 o.pumheight = 10
@@ -115,9 +115,12 @@ cmd("let &t_ut=''")
 
 --------disable cursor in inactvie pane-----------
 cmd([[
+augroup CursorLine
+  autocmd!
   autocmd BufEnter,WinEnter * setlocal cursorline
   autocmd BufLeave,WinLeave * setlocal nocursorline
   autocmd FileType TelescopePrompt setlocal nocursorline
+augroup END
 ]])
 
 -- for auto-sessions

@@ -71,7 +71,6 @@ return require("packer").startup(function(use)
 	use({
 		"L3MON4D3/LuaSnip",
 		requires = { "friendly-snippets" },
-		event = "BufWinEnter",
 		config = function()
 			require("plugins.luasnip")
 		end,
@@ -103,11 +102,11 @@ return require("packer").startup(function(use)
 			g.kommentary_create_default_mappings = false
 			require("kommentary.config").configure_language("default", {
 				prefer_single_line_comments = true,
-				single_line_comment_string = "auto",
-				multi_line_comment_strings = "auto",
-				hook_function = function()
-					require("ts_context_commentstring.internal").update_commentstring()
-				end,
+				-- single_line_comment_string = "auto",
+				-- multi_line_comment_strings = "auto",
+				-- hook_function = function()
+				-- 	require("ts_context_commentstring.internal").update_commentstring()
+				-- end,
 			})
 		end,
 	})
@@ -115,23 +114,6 @@ return require("packer").startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 
 	-- statusline
-	-- use({
-	-- 	"kwkarlwang/galaxyline.nvim",
-	-- 	branch = "main",
-	-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	-- 	config = function()
-	-- 		require("plugins.galaxyline")
-	-- 	end,
-	-- })
-
-	-- use {
-	--   "hoob3rt/lualine.nvim",
-	--   requires = {"kyazdani42/nvim-web-devicons", opt = true},
-	--   config = function()
-	--     require "plugins.lualine"
-	--   end
-	-- }
-
 	use({
 		"famiu/feline.nvim",
 		branch = "develop",
@@ -190,10 +172,10 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		after = "nvim-treesitter",
-	})
+	-- use({
+	-- 	"JoosepAlviste/nvim-ts-context-commentstring",
+	-- 	after = "nvim-treesitter",
+	-- })
 	--------Tree Sitter-----------
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -291,29 +273,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- Formatter.nvim
-	-- use {
-	--   "mhartington/formatter.nvim",
-	--   cmd = {"Format", "FormatWrite"},
-	--   setup = function()
-	--     ------ FORMAT ON SAVE
-	--     -- vim.api.nvim_exec(
-	--     --   [[
-	--     --     augroup FormatAutogroup
-	--     --       autocmd!
-	--     --       autocmd BufWritePost * :silent FormatWrite
-	--     --     augroup END
-	--     --     ]]--,
-	--     --   true
-	--     -- )
-	--     map("n", "<leader>cf", ":silent Format<cr>", NS)
-	--     map("n", "ss", ":silent up<cr>:silent FormatWrite<cr>", NS)
-	--   end,
-	--   config = function()
-	--     require "plugins.formatter"
-	--   end
-	-- }
-
 	use({
 		"mg979/vim-visual-multi",
 		config = function()
@@ -321,16 +280,16 @@ return require("packer").startup(function(use)
 			g.VM_show_warnings = 0
 			g.VM_default_mappings = 0
 			cmd([[
-            let g:VM_maps = {}
-            let g:VM_maps['Find Under'] = '<M-d>'
-            let g:VM_maps['Find Subword Under'] = '<M-d>'
-            let g:VM_maps['Select All'] = '<C-M-d>'
-            let g:VM_maps['Seek Next'] = 'n'
-            let g:VM_maps['Seek Prev'] = 'N'
-            let g:VM_maps["Undo"] = 'u'
-            let g:VM_maps["Redo"] = '<C-r>'
-            let g:VM_maps["Remove Region"] = '<cr>'
-        ]])
+			    let g:VM_maps = {}
+			    let g:VM_maps['Find Under'] = '<M-d>'
+			    let g:VM_maps['Find Subword Under'] = '<M-d>'
+			    let g:VM_maps['Select All'] = '<C-M-d>'
+			    let g:VM_maps['Seek Next'] = 'n'
+			    let g:VM_maps['Seek Prev'] = 'N'
+			    let g:VM_maps["Undo"] = 'u'
+			    let g:VM_maps["Redo"] = '<C-r>'
+			    let g:VM_maps["Remove Region"] = '<cr>'
+			]])
 		end,
 	})
 	-- leetcode
@@ -405,19 +364,19 @@ return require("packer").startup(function(use)
 		cmd = "LazyGit",
 		config = function()
 			cmd([[
-        if has('nvim') && executable('nvr')
-          let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-        endif
-        ]])
+				if has('nvim') && executable('nvr')
+				  let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+				endif
+			]])
 		end,
 	})
 
 	use({
 		"famiu/bufdelete.nvim",
-		event = "BufWinEnter",
-		keys = { "n", "<leader>bk" },
-		config = function()
-			map("n", "<leader>bk", ":lua require('bufdelete').bufdelete(0, true)<cr>", NS)
+		-- keys = { "n", "<leader>bk" },
+		module = "bufdelete",
+		setup = function()
+			map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)
 		end,
 	})
 	use({
@@ -435,7 +394,6 @@ return require("packer").startup(function(use)
 	use({
 		"phaazon/hop.nvim",
 		as = "hop",
-		event = "BufWinEnter",
 		disable = true,
 		setup = function()
 			require("plugins.hop").init()
@@ -446,7 +404,6 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"ggandor/lightspeed.nvim",
-		event = "BufWinEnter",
 		config = function()
 			require("plugins.lightspeed")
 		end,
@@ -455,7 +412,6 @@ return require("packer").startup(function(use)
 	-- auto session
 	use({
 		"rmagatti/auto-session",
-		event = "BufWinEnter",
 		-- disable = true,
 		config = function()
 			require("auto-session").setup({
@@ -495,19 +451,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- code runner
-	-- use({
-	-- 	"CRAG666/code_runner.nvim",
-	-- 	keys = { "n", "<leader>r" },
-	-- 	config = function()
-	-- 		require("code_runner").setup({
-	-- 			term = {
-	-- 				position = "vert",
-	-- 				size = 100,
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- })
 	use({
 		"michaelb/sniprun",
 		run = "bash ./install.sh",
@@ -581,6 +524,26 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+	use({
+		"kwkarlwang/bufresize.nvim",
+		-- disable = true,
+		config = function()
+			require("bufresize").setup({
+				register = {
+					keys = {
+						{ "n", "<leader>w<", "30<C-w><", NS },
+						{ "n", "<leader>w>", "30<C-w>>", NS },
+						{ "n", "<leader>w+", "10<C-w>+", NS },
+						{ "n", "<leader>w-", "10<C-w>-", NS },
+						{ "n", "<leader>w_", "<C-w>_", NS },
+						{ "n", "<leader>w=", "<C-w>=", NS },
+						{ "n", "<leader>w|", "<C-w>|", NS },
+						{ "n", "<leader>wo", "<C-w>|<C-w>_", NS },
+					},
+				},
+			})
+		end,
+	})
 
 	-- markdown
 	use({
@@ -608,4 +571,7 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+
+	-- mathcup
+	use({ "andymass/vim-matchup" })
 end)

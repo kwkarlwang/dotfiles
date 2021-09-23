@@ -15,10 +15,23 @@ require("settings")
 require("keybindings")
 require("plugins")
 
--- cmd("set rtp+=~/projects/neovim/bufjump.nvim")
--- local cfg = {
--- 	on_success = function()
--- 		vim.cmd([[execute "normal! g`\"zz"]])
--- 	end,
--- }
--- require("bufjump").setup(cfg)
+-- cmd("set rtp+=~/projects/neovim/bufresize.nvim")
+-- require("bufresize").setup({
+-- 	register = {
+-- 		keys = {
+-- 			{ "n", "<leader>w<", "30<C-w><", NS },
+-- 			{ "n", "<leader>w>", "30<C-w>>", NS },
+-- 			{ "n", "<leader>w+", "10<C-w>+", NS },
+-- 			{ "n", "<leader>w-", "10<C-w>-", NS },
+-- 			{ "n", "<leader>w_", "<C-w>_", NS },
+-- 			{ "n", "<leader>w=", "<C-w>=", NS },
+-- 			{ "n", "<leader>w|", "<C-w>|", NS },
+-- 			{ "n", "<leader>wo", "<C-w>|<C-w>_", NS },
+-- 		},
+-- 		trigger_events = { "BufWinEnter", "WinEnter" },
+-- 	},
+-- 	resize = {
+-- 		keys = {},
+-- 		trigger_events = { "VimResized" },
+-- 	},
+-- })
