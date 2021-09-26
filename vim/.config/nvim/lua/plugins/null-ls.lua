@@ -22,21 +22,33 @@ local latexfmt = h.make_builtin({
 	factory = h.formatter_factory,
 })
 
+local systemverilogfmt = h.make_builtin({
+	method = FORMATTING,
+	filetypes = { "systemverilog" },
+	generator_opts = {
+		command = "verible-verilog-format",
+		args = {
+			"$FILENAME",
+		},
+		to_stdin = true,
+	},
+	factory = h.formatter_factory,
+})
+
 local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 local sources = {
 	builtins.formatting.stylua,
-	-- isort is slow
-	-- builtins.formatting.isort,
 	builtins.formatting.black,
 	builtins.formatting.rustfmt,
 	builtins.formatting.clang_format,
+	haskellfmt,
+	latexfmt,
+	systemverilogfmt,
 	builtins.formatting.prettier,
 	builtins.diagnostics.eslint_d,
 	builtins.diagnostics.mypy,
 	builtins.code_actions.gitsigns,
-	haskellfmt,
-	latexfmt,
 }
 null_ls.config({
 	diagnostics_format = "#{s}: #{m}",

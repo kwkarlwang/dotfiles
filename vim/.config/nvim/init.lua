@@ -16,6 +16,7 @@ require("keybindings")
 require("plugins")
 
 -- cmd("set rtp+=~/projects/neovim/bufresize.nvim")
+-- require("bufresize").setup()
 -- require("bufresize").setup({
 -- 	register = {
 -- 		keys = {

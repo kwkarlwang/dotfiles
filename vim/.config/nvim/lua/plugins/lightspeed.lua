@@ -8,6 +8,8 @@ require("lightspeed").setup({
 	match_only_the_start_of_same_char_seqs = true,
 	limit_ft_matches = 10,
 	full_inclusive_prefix_key = "<c-x>",
+	-- instant_repeat_fwd_key = ";",
+	-- instant_repeat_bwd_key = ",",
 	-- By default, the values of these will be decided at runtime,
 	-- based on `jump_to_first_match`.
 	labels = nil,
@@ -20,10 +22,14 @@ function RepeatFt(reverse)
 	ls.ft["instant-repeat?"] = true
 	ls.ft:to(reverse, ls.ft["prev-t-like?"])
 end
-map("n", ";", "<cmd>lua RepeatFt(false)<cr>", NS)
-map("x", ";", "<cmd>lua RepeatFt(false)<cr>", NS)
-map("n", ",", "<cmd>lua RepeatFt(true)<cr>", NS)
-map("x", ",", "<cmd>lua RepeatFt(true)<cr>", NS)
+-- map("n", ";", "<cmd>lua RepeatFt(false)<cr>", NS)
+-- map("x", ";", "<cmd>lua RepeatFt(false)<cr>", NS)
+-- map("n", ",", "<cmd>lua RepeatFt(true)<cr>", NS)
+-- map("x", ",", "<cmd>lua RepeatFt(true)<cr>", NS)
+map("n", ";", "<Plug>Lightspeed_;_ft", {})
+map("x", ";", "<Plug>Lightspeed_;_ft", {})
+map("n", ",", "<Plug>Lightspeed_,_ft", {})
+map("x", ",", "<Plug>Lightspeed_,_ft", {})
 
 map("", [[']], "<Plug>Lightspeed_s", {})
 map("", [["]], "<Plug>Lightspeed_S", {})

@@ -88,7 +88,7 @@ local vi_mode = {
 ins_left(vi_mode)
 
 local file_path = {
-	provider = function(_, winid)
+	provider = function(winid)
 		local filepath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)), ":~:.")
 		local splitpath = split(filepath, "/")
 		splitpath[#splitpath] = ""
@@ -107,7 +107,7 @@ local file_path = {
 ins_left(file_path)
 
 local file_name = {
-	provider = function(_, winid)
+	provider = function(winid)
 		return fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)), ":t")
 	end,
 	hl = function(winid)

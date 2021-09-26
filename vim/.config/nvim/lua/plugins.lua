@@ -30,9 +30,7 @@ return require("packer").startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	})
-	use({
-		"jose-elias-alvarez/nvim-lsp-ts-utils",
-	})
+	use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
 	use({
 		"ray-x/lsp_signature.nvim",
 		after = "nvim-lspconfig",
@@ -58,8 +56,6 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
-	use({ "tzachar/cmp-tabnine", run = "./install.sh", after = "nvim-cmp" })
-
 	use({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -116,7 +112,7 @@ return require("packer").startup(function(use)
 	-- statusline
 	use({
 		"famiu/feline.nvim",
-		branch = "develop",
+		-- branch = "develop",
 		config = function()
 			require("plugins.feline")
 		end,
@@ -202,6 +198,7 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs.completion.cmp").setup({
 				map_cr = true, --  map <CR> on insert mode
 				map_complete = false, -- it will auto insert `(` after select function or method item
+				insert = false,
 			})
 		end,
 	})
@@ -392,17 +389,6 @@ return require("packer").startup(function(use)
 
 	-- motion related
 	use({
-		"phaazon/hop.nvim",
-		as = "hop",
-		disable = true,
-		setup = function()
-			require("plugins.hop").init()
-		end,
-		config = function()
-			require("plugins.hop").setup()
-		end,
-	})
-	use({
 		"ggandor/lightspeed.nvim",
 		config = function()
 			require("plugins.lightspeed")
@@ -524,6 +510,7 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+
 	use({
 		"kwkarlwang/bufresize.nvim",
 		-- disable = true,
@@ -539,6 +526,8 @@ return require("packer").startup(function(use)
 						{ "n", "<leader>w=", "<C-w>=", NS },
 						{ "n", "<leader>w|", "<C-w>|", NS },
 						{ "n", "<leader>wo", "<C-w>|<C-w>_", NS },
+						{ "", "<LeftRelease>", "<LeftRelease>", NS },
+						{ "i", "<LeftRelease>", "<LeftRelease><C-o>", NS },
 					},
 				},
 			})
