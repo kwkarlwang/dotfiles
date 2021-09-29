@@ -1,4 +1,7 @@
 local ts_on_attach = function(client, bufnr)
+	local function bufmap(...)
+		api.nvim_buf_set_keymap(bufnr, ...)
+	end
 	require("plugins.lsp.config").on_attach(client, bufnr)
 	-- disable tsserver formatting if you plan on formatting via null-ls
 	local ts_utils = require("nvim-lsp-ts-utils")

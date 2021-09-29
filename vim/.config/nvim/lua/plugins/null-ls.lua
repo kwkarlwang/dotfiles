@@ -28,7 +28,7 @@ local systemverilogfmt = h.make_builtin({
 	generator_opts = {
 		command = "verible-verilog-format",
 		args = {
-			"$FILENAME",
+			"-",
 		},
 		to_stdin = true,
 	},
@@ -42,10 +42,10 @@ local sources = {
 	builtins.formatting.black,
 	builtins.formatting.rustfmt,
 	builtins.formatting.clang_format,
+	builtins.formatting.prettier,
 	haskellfmt,
 	latexfmt,
 	systemverilogfmt,
-	builtins.formatting.prettier,
 	builtins.diagnostics.eslint_d,
 	builtins.diagnostics.mypy,
 	builtins.code_actions.gitsigns,

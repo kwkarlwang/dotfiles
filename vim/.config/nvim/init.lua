@@ -16,7 +16,7 @@ require("keybindings")
 require("plugins")
 
 -- cmd("set rtp+=~/projects/neovim/bufresize.nvim")
--- require("bufresize").setup()
+-- -- require("bufresize").setup()
 -- require("bufresize").setup({
 -- 	register = {
 -- 		keys = {
@@ -29,6 +29,7 @@ require("plugins")
 -- 			{ "n", "<leader>w|", "<C-w>|", NS },
 -- 			{ "n", "<leader>wo", "<C-w>|<C-w>_", NS },
 -- 		},
+-- 		-- trigger_events = { "BufWinEnter", "WinEnter" },
 -- 		trigger_events = { "BufWinEnter", "WinEnter" },
 -- 	},
 -- 	resize = {

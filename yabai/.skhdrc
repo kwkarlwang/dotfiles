@@ -95,6 +95,7 @@ lctrl - 3 : yabai -m window --toggle zoom-fullscreen
 
 ## zoom parent (allow vertical split)
 rshift + lshift - f : yabai -m window --toggle zoom-parent
+lctrl - 5 : yabai -m window --toggle zoom-parent
 
 ## toggle floating
 rshift - t : yabai -m window --toggle float
@@ -102,3 +103,7 @@ lctrl - 4 : yabai -m window --toggle float
 
 ## toggle split
 rshift - v : yabai -m window --toggle split
+
+## toggle sticky
+lctrl - 6 : yabai -m window --toggle sticky; \
+            yabai -m window --toggle topmost

@@ -12,9 +12,7 @@ return require("packer").startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 
 	-- lsp
-	use({
-		"kabouzeid/nvim-lspinstall",
-	})
+	use({ "kabouzeid/nvim-lspinstall" })
 	use({
 		"neovim/nvim-lspconfig",
 		after = { "nvim-lspinstall", "nvim-lsp-ts-utils" },
@@ -59,6 +57,8 @@ return require("packer").startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
+		-- disable = true,
+		branch = "custom-menu",
 		config = function()
 			require("plugins.cmp")
 		end,
@@ -514,6 +514,8 @@ return require("packer").startup(function(use)
 	use({
 		"kwkarlwang/bufresize.nvim",
 		-- disable = true,
+		-- event = "VimEnter",
+		-- commit = "0d300e66fb553ad8c0bc5eaaf0f14c2dcba374e7",
 		config = function()
 			require("bufresize").setup({
 				register = {
