@@ -243,6 +243,7 @@ return require("packer").startup(function(use)
 			map("n", "<leader>ol", ":ToggleTerm direction=vertical<cr>i", NS)
 			map("n", "<C-s>", ":ToggleTerm<cr>i", NS)
 			map("i", "<C-s>", "<esc>:ToggleTerm<cr>i", NS)
+			map("t", "<C-s>", "<C-\\><C-n>:ToggleTerm<cr>", NS)
 		end,
 		config = function()
 			require("plugins.term")
@@ -442,7 +443,7 @@ return require("packer").startup(function(use)
 		run = "bash ./install.sh",
 		setup = function()
 			map("v", "<leader>rr", "<Plug>SnipRun", { silent = true })
-			map("n", "<leader>rl", "mn?# %%<cr>V*k<leader>rr`n:noh<cr>", { silent = true })
+			map("n", "<leader>rl", "mn?# %%<cr>V/# %%<cr><leader>rr`n:noh<cr>", { silent = true })
 			map("n", "<leader>rr", "mn:%SnipRun<cr>`n", { silent = true })
 		end,
 		config = function()
