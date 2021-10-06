@@ -205,6 +205,10 @@ else
 fi
 
 
+# For jetbot
+export ROS_HOSTNAME=macos.local
+export ROS_MASTER_URI=http://jetbot.local:11311
+
 
 # Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>

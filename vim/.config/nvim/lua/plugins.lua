@@ -324,19 +324,19 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"jpalardy/vim-slime",
-		keys = { "n", "<leader>mi" },
-		ft = "python",
-	})
-	use({
-		"hanschen/vim-ipython-cell",
-		ft = "python",
-		after = "vim-slime",
-		config = function()
-			require("plugins.ipython")
-		end,
-	})
+	-- use({
+	-- 	"jpalardy/vim-slime",
+	-- 	keys = { "n", "<leader>mi" },
+	-- 	ft = "python",
+	-- })
+	-- use({
+	-- 	"hanschen/vim-ipython-cell",
+	-- 	ft = "python",
+	-- 	after = "vim-slime",
+	-- 	config = function()
+	-- 		require("plugins.ipython")
+	-- 	end,
+	-- })
 
 	use({
 		"jupyter-vim/jupyter-vim",
@@ -444,14 +444,14 @@ return require("packer").startup(function(use)
 		setup = function()
 			map("v", "<leader>rr", "<Plug>SnipRun", { silent = true })
 			map("n", "<leader>rl", "mn?# %%<cr>V/# %%<cr><leader>rr`n:noh<cr>", { silent = true })
-			map("n", "<leader>rr", "mn:%SnipRun<cr>`n", { silent = true })
+			map("n", "<leader>rr", "mn:%SnipRun<cr>`nzz", { silent = true })
 		end,
 		config = function()
 			require("sniprun").setup({
 				display = {
 					"VirtualTextOk",
 					"VirtualTextErr",
-					"Terminal",
+					"Classic",
 				},
 			})
 		end,
