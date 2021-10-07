@@ -215,6 +215,8 @@ return require("packer").startup(function(use)
 		cmd = "Neogit",
 		setup = function()
 			map("n", "<leader>gg", ":Neogit<cr>", NS)
+
+			require("neogit").config.use_magit_keybindings()
 		end,
 		config = function()
 			require("neogit").setup({
