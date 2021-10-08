@@ -58,7 +58,6 @@ return require("packer").startup(function(use)
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		-- disable = true,
-		branch = "custom-menu",
 		config = function()
 			require("plugins.cmp")
 		end,

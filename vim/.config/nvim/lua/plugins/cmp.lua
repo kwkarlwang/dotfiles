@@ -36,8 +36,6 @@ end
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			-- You must install `vim-vsnip` if you set up as same as the following.
-			-- vim.fn["vsnip#anonymous"](args.body)
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
@@ -55,12 +53,10 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if luasnip.expand_or_jumpable() then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-			elseif vim.fn.pumvisible() == 1 then
+			elseif cmp.visible() then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
 			elseif check_back_space() then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n")
-				-- elseif vim.fn["vsnip#available"]() == 1 then
-				-- 	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true), "")
 			else
 				fallback()
 			end
@@ -70,10 +66,8 @@ cmp.setup({
 			"n",
 		}),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if vim.fn.pumvisible() == 1 then
+			if cmp.visible() then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
-				-- elseif vim.fn["vsnip#available"]() == 1 then
-				-- 	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-jump-prev)", true, true, true), "")
 			elseif luasnip.jumpable(-1) then
 				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
 			else
@@ -89,12 +83,10 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "luasnip" },
-		-- { name = "cmp_tabnine" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "emoji" },
-		-- { name = "vsnip" },
 	},
 	completion = {
 		autocomplete = {
@@ -114,7 +106,6 @@ cmp.setup({
 				nvim_lua = "[Lua]",
 				calc = "[Calc]",
 				emoji = "[Emoji]",
-				-- vsnip = "[VSnip]",
 				luasnip = "[LuaSnip]",
 				cmp_tabnine = "[TabNine]",
 			})[entry.source.name]
@@ -122,3 +113,5 @@ cmp.setup({
 		end,
 	},
 })
+cmd([[hi CmpItemKind guifg=#F5F7A8]])
+cmd([[hi CmpItemMenu guifg=#F4B26d]])
