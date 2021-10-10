@@ -4,7 +4,17 @@ local function setup_servers()
 	local lspconfig = require("lspconfig")
 	local config = require("plugins.lsp.config").config()
 	for _, server in pairs(servers) do
-		if server ~= "typescript" then
+		if server == "lua" then
+			local luaconfig = require("plugins.lsp.config").config()
+			luaconfig.settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+				},
+			}
+			lspconfig[server].setup(luaconfig)
+		elseif server ~= "typescript" then
 			lspconfig[server].setup(config)
 		end
 	end
