@@ -114,5 +114,5 @@ cmp.setup({
 		end,
 	},
 })
-cmd([[hi CmpItemKind guifg=#F5F7A8]])
+cmd([[hi CmpItemKind guifg=#a3c4ef]])
 cmd([[hi CmpItemMenu guifg=#F4B26d]])
