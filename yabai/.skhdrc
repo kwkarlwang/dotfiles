@@ -7,7 +7,6 @@ lctrl + lcmd + lshift - d : osascript "${HOME}"/scripts/Sidecar.js
 lctrl + lcmd + lshift - e : emacsclient -c -a 'emacs'
 # lctrl + lcmd + lshift - return : "${HOME}"/scripts/iTerm.sh
 # lctrl + lcmd + lshift - return : open -n /Applications/Alacritty.app
-# lctrl + lcmd + lshift - return : open -n /Applications/kitty.app
 lctrl + lcmd + lshift - return : /Applications/kitty.app/Contents/MacOS/kitty \
                                 --single-instance \
                                 -d ~
@@ -35,14 +34,20 @@ rshift + lshift - d : yabai -m window --swap east || $(yabai -m window --display
 
 
 ## adjust window size
+rshift + cmd - w : yabai -m window --resize top:0:-50; \
+                   yabai -m window --resize bottom:0:-50
 rshift + cmd - a : yabai -m window --resize left:-50:0; \
                    yabai -m window --resize right:-50:0
 rshift + cmd - s : yabai -m window --resize bottom:0:50; \
                    yabai -m window --resize top:0:50
-rshift + cmd - w : yabai -m window --resize top:0:-50; \
-                   yabai -m window --resize bottom:0:-50
 rshift + cmd - d : yabai -m window --resize right:50:0; \
                    yabai -m window --resize left:50:0
+
+## warp
+rshift + lctrl - w : yabai -m window --warp north
+rshift + lctrl - a : yabai -m window --warp west
+rshift + lctrl - s : yabai -m window --warp south
+rshift + lctrl - d : yabai -m window --warp east
 
 ## equal size
 rshift - 0 : yabai -m space --balance

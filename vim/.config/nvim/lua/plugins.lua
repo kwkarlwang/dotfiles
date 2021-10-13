@@ -221,6 +221,7 @@ return require("packer").startup(function(use)
 			require("neogit").setup({
 				disable_commit_confirmation = true,
 				disable_commit_notifications = true,
+				disable_hint = true,
 				integrations = {
 					diffview = true,
 				},
