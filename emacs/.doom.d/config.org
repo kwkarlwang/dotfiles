@@ -1,4 +1,4 @@
-#+TITLE: Doom EmaConfig
+#+TITLE: Doom Emacs Config
 #+AUTHOR: Karl Wang
 
 * Basic

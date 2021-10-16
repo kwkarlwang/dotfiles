@@ -12,10 +12,10 @@ return require("packer").startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 
 	-- lsp
-	use({ "kabouzeid/nvim-lspinstall" })
+	use({ "williamboman/nvim-lsp-installer" })
 	use({
 		"neovim/nvim-lspconfig",
-		after = { "nvim-lspinstall", "nvim-lsp-ts-utils" },
+		after = { "nvim-lsp-installer" },
 		config = function()
 			require("plugins.lsp")
 		end,
@@ -28,7 +28,6 @@ return require("packer").startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	})
-	use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
 	use({
 		"ray-x/lsp_signature.nvim",
 		after = "nvim-lspconfig",

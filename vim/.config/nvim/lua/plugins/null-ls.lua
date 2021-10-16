@@ -48,7 +48,6 @@ local sources = {
 	systemverilogfmt,
 	builtins.diagnostics.eslint_d,
 	builtins.diagnostics.mypy,
-	builtins.code_actions.gitsigns,
 }
 null_ls.config({
 	diagnostics_format = "#{s}: #{m}",
