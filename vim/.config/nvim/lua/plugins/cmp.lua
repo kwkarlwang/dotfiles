@@ -99,7 +99,7 @@ cmp.setup({
 	},
 	formatting = {
 		format = function(entry, vim_item)
-			vim_item.kind = icons[vim_item.kind] .. "(" .. vim_item.kind .. ")"
+			vim_item.kind = icons[vim_item.kind] .. vim_item.kind
 			-- vim_item.menu = ({
 			-- 	buffer = "[Buffer]",
 			-- 	path = "[Path]",
@@ -114,5 +114,7 @@ cmp.setup({
 		end,
 	},
 })
+-- cmd([[hi CmpItemAbbr guifg=#eceff4]])
+cmd([[hi CmpItemAbbrMatch guifg=#acebfb gui=bold]])
 cmd([[hi CmpItemKind guifg=#a3c4ef]])
 cmd([[hi CmpItemMenu guifg=#F4B26d]])
