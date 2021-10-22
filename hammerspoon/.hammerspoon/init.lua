@@ -56,7 +56,7 @@ end
 hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "a", toggleAirPods)
 
 ----------------------------------------------------------------------
---                        CHange resolution                         --
+--                        Change resolution                         --
 ----------------------------------------------------------------------
 
 -- function dump(o)
@@ -73,6 +73,7 @@ hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "a", toggleAirPods)
 -- 		return tostring(o)
 -- 	end
 -- end
+
 local toggleResolution = function()
 	local allScreens = hs.screen.allScreens()
 	local screen = nil
@@ -99,3 +100,27 @@ local toggleResolution = function()
 	end
 end
 hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "s", toggleResolution)
+----------------------------------------------------------------------
+--                            Open Gmail                            --
+----------------------------------------------------------------------
+local goToWebsite = function(website)
+	local app = hs.application.frontmostApplication()
+	local isBrave = string.find(tostring(app), "Brave") ~= nil
+	if isBrave == false then
+		return
+	end
+
+	hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["t"])
+	hs.eventtap.keyStrokes(website)
+	hs.eventtap.keyStroke({ "" }, hs.keycodes.map["return"])
+end
+local goToPersonal = function()
+	local email = "https://mail.google.com/mail/u/0/#inbox"
+	goToWebsite(email)
+end
+local goToSchool = function()
+	local email = "https://mail.google.com/mail/u/1/#inbox"
+	goToWebsite(email)
+end
+hs.hotkey.bind({ "cmd", "alt" }, "1", goToPersonal)
+hs.hotkey.bind({ "cmd", "alt" }, "2", goToSchool)
