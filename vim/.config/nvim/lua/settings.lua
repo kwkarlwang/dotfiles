@@ -125,3 +125,6 @@ augroup END
 
 -- for auto-sessions
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winpos,terminal"
+
+-- for non flickering
+o.lazyredraw = true

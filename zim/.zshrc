@@ -69,7 +69,7 @@ source ${ZIM_HOME}/init.zsh
 # Post-init module configuration
 # ------------------------------
 eval "$(starship init zsh)"
-
+eval "$(zoxide init zsh)"
 
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 bindkey '^[[A' history-substring-search-up
@@ -189,7 +189,6 @@ bindkey '^E' end-of-line
 # ------------------------------
 # Export
 # ------------------------------
-
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 # For HomeBrew
@@ -203,12 +202,6 @@ else
     export VISUAL="nvim"
     export EDITOR="nvim"
 fi
-
-
-# For jetbot
-export ROS_HOSTNAME=macos.local
-export ROS_MASTER_URI=http://jetbot.local:11311
-
 
 # Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>

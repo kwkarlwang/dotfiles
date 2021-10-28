@@ -57,8 +57,6 @@
 (package! solaire-mode :disable t)
 (package! pdf-continuous-scroll-mode
   :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
-(package! kubel)
-(package! kubel-evil)
 (package! leetcode)
 (package! org-fragtog)
 ;; (when (package! eaf :recipe (:host github

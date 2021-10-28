@@ -52,6 +52,7 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 	use({
 		"hrsh7th/nvim-cmp",
@@ -77,6 +78,7 @@ return require("packer").startup(function(use)
 		as = "dracula",
 		config = function()
 			--------Theme-----------
+			g.dracula_full_special_attrs_support = 1
 			cmd("colorscheme dracula")
 		end,
 	})
@@ -213,10 +215,9 @@ return require("packer").startup(function(use)
 		cmd = "Neogit",
 		setup = function()
 			map("n", "<leader>gg", ":Neogit<cr>", NS)
-
-			require("neogit").config.use_magit_keybindings()
 		end,
 		config = function()
+			require("neogit").config.use_magit_keybindings()
 			require("neogit").setup({
 				disable_commit_confirmation = true,
 				disable_commit_notifications = true,
@@ -341,14 +342,15 @@ return require("packer").startup(function(use)
 
 	use({
 		"jupyter-vim/jupyter-vim",
+		commit = "5500d4a6939038160326309c39550b9bf28915f5",
 		ft = "python",
 		cmd = "JupyterConnect",
 		config = function()
 			map("n", "<leader>mj", ":!jupyter qtconsole --style monokai &<cr><cr>:JupyterConnect<cr>", NS)
 			map("n", "<C-cr>", ":JupyterSendCell<cr>", NS)
-			map("i", "<C-cr>", "<esc>:JupyterSendCell<cr>i", NS)
+			map("i", "<C-cr>", "<C-o>:JupyterSendCell<cr>", NS)
 			map("n", "<S-cr>", ":JupyterSendCell<cr>/# %%<cr>:noh<cr>", NS)
-			map("i", "<S-cr>", "<esc>:JupyterSendCell<cr>/# %%<cr>:noh<cr>i", NS)
+			map("i", "<S-cr>", "<esc>:JupyterSendCell<cr>/# %%<cr>:noh<cr>a", NS)
 
 			map("n", "<leader>ms", "o<esc>0i# %%<cr><esc>", NS)
 			map("n", "<leader>mS", "o<esc>0i# %%<cr><esc>kk", NS)

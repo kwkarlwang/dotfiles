@@ -36,7 +36,7 @@ end
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
@@ -45,7 +45,7 @@ cmp.setup({
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-c>"] = function(fallback)
-			require("cmp").close()
+			cmp.close()
 			fallback()
 		end,
 		["<CR>"] = cmp.mapping.confirm({
@@ -114,6 +114,19 @@ cmp.setup({
 		end,
 	},
 })
+cmp.setup.cmdline("/", {
+	sources = {
+		{ name = "buffer" },
+	},
+})
+cmp.setup.cmdline(":", {
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})
+
 -- cmd([[hi CmpItemAbbr guifg=#eceff4]])
 cmd([[hi CmpItemAbbrMatch guifg=#acebfb gui=bold]])
 cmd([[hi CmpItemKind guifg=#a3c4ef]])
