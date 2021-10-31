@@ -22,10 +22,6 @@ function RepeatFt(reverse)
 	ls.ft["instant-repeat?"] = true
 	ls.ft:to(reverse, ls.ft["prev-t-like?"])
 end
--- map("n", ";", "<cmd>lua RepeatFt(false)<cr>", NS)
--- map("x", ";", "<cmd>lua RepeatFt(false)<cr>", NS)
--- map("n", ",", "<cmd>lua RepeatFt(true)<cr>", NS)
--- map("x", ",", "<cmd>lua RepeatFt(true)<cr>", NS)
 map("n", ";", "<Plug>Lightspeed_;_ft", {})
 map("x", ";", "<Plug>Lightspeed_;_ft", {})
 map("n", ",", "<Plug>Lightspeed_,_ft", {})
@@ -33,10 +29,12 @@ map("x", ",", "<Plug>Lightspeed_,_ft", {})
 
 map("", [[']], "<Plug>Lightspeed_s", {})
 map("", [["]], "<Plug>Lightspeed_S", {})
--- map("x", [[']], "<Plug>Lightspeed_s", {})
--- map("x", [["]], "<Plug>Lightspeed_S", {})
--- map("n", [[.]], "<Plug>Lightspeed_s<cr>", {})
--- map("", [[sh]], "<Plug>Lightspeed_S", {})
--- map("", [[sl]], "<Plug>Lightspeed_s", {})
 -- cmd [[unmap s]]
 cmd([[nunmap S]])
+
+-- cmd([[
+-- nmap <expr> f reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"
+-- nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
+-- nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
+-- nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
+-- ]])

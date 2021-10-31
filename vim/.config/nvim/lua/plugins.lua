@@ -121,6 +121,7 @@ return require("packer").startup(function(use)
 	-- for telescope
 	use({
 		"nvim-telescope/telescope.nvim",
+		-- commit = "02a02f7bcdfb1f207de6649c00701ee1fe13a420",
 		requires = {
 			{ "nvim-lua/popup.nvim" },
 			{ "nvim-lua/plenary.nvim" },
@@ -194,12 +195,11 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs").setup({
 				disable_filetype = { "TelescopePrompt" },
 				ignored_next_char = ignored_next_char,
+				map_c_w = true,
 			})
-			require("nvim-autopairs.completion.cmp").setup({
-				map_cr = true, --  map <CR> on insert mode
-				map_complete = false, -- it will auto insert `(` after select function or method item
-				insert = false,
-			})
+			-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			-- local cmp = require("cmp")
+			-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 		end,
 	})
 

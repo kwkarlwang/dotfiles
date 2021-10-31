@@ -10,7 +10,7 @@ lctrl + lcmd + lshift - e : emacsclient -c -a 'emacs'
 lctrl + lcmd + lshift - return : /Applications/kitty.app/Contents/MacOS/kitty \
                                 --single-instance \
                                 -d ~
-lctrl + lcmd + lshift - b : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
+lctrl + lcmd + lshift - b : open -n /Applications/Brave\ Browser.app --args --disable-smooth-scrolling
 lctrl + lcmd + lshift - m : open /System/Applications/Music.app
 
 ## focus window
