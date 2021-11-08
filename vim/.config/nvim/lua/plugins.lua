@@ -169,10 +169,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- use({
-	-- 	"JoosepAlviste/nvim-ts-context-commentstring",
-	-- 	after = "nvim-treesitter",
-	-- })
 	--------Tree Sitter-----------
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -518,8 +514,6 @@ return require("packer").startup(function(use)
 	use({
 		"kwkarlwang/bufresize.nvim",
 		-- disable = true,
-		-- event = "VimEnter",
-		-- commit = "0d300e66fb553ad8c0bc5eaaf0f14c2dcba374e7",
 		config = function()
 			require("bufresize").setup({
 				register = {
@@ -549,6 +543,7 @@ return require("packer").startup(function(use)
 	-- swap windows
 	use({
 		"sindrets/winshift.nvim",
+		commit = "e392fd5b3ca0ef8279a8230129695fc7a921f4c3",
 		after = "dracula",
 		cmd = "WinShift",
 		setup = function()

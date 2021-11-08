@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local mapping = require("cmp.config.mapping")
 local types = require("cmp.types")
 local luasnip = require("luasnip")
 
@@ -29,56 +30,53 @@ local icons = {
 	Value = " ",
 	Variable = " ",
 }
-local check_back_space = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
 cmp.setup({
+	enabled = function()
+		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+	end,
+	completion = {
+		autocomplete = {
+			types.cmp.TriggerEvent.TextChanged,
+		},
+		completeopt = "menu,menuone,noinsert",
+		keyword_length = 2,
+	},
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
-		["<Up>"] = cmp.mapping.select_prev_item(),
-		["<Down>"] = cmp.mapping.select_next_item(),
+		["<Down>"] = mapping({
+			i = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
+			c = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
+		}),
+		["<Up>"] = mapping({
+			i = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
+			c = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
+		}),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-c>"] = function(fallback)
-			cmp.close()
-			fallback()
-		end,
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
+		["<C-q>"] = cmp.config.disable,
+		["<C-e>"] = mapping.abort(),
+		["<CR>"] = mapping({
+			i = cmp.mapping.confirm({
+				behavior = cmp.ConfirmBehavior.Insert,
+				select = false,
+			}),
 		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_jumpable() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-			elseif cmp.visible() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
-			elseif check_back_space() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n")
-			else
-				fallback()
-			end
-		end, {
-			"i",
-			"s",
-			"n",
-		}),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
-			elseif luasnip.jumpable(-1) then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-			else
-				fallback()
-			end
-		end, {
-			"i",
-			"s",
-			"n",
+		["<Tab>"] = mapping({
+			c = function(fallback)
+				if #cmp.core:get_sources() > 0 and not cmp.get_config().experimental.native_menu then
+					cmp.select_next_item({ behavior = types.cmp.SelectBehavior.Insert })
+					-- end)
+					vim.schedule(function()
+						cmp.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert })
+					end)
+				else
+					fallback()
+				end
+			end,
 		}),
 	},
 	sources = {
@@ -89,13 +87,6 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "emoji" },
-	},
-	completion = {
-		autocomplete = {
-			types.cmp.TriggerEvent.TextChanged,
-		},
-		completeopt = "menu,menuone,noinsert",
-		keyword_length = 2,
 	},
 	formatting = {
 		format = function(entry, vim_item)
@@ -113,6 +104,7 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+	preselect = types.cmp.PreselectMode.None,
 })
 cmp.setup.cmdline("/", {
 	sources = {
