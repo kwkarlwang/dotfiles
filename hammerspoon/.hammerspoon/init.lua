@@ -103,10 +103,19 @@ hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "s", toggleResolution)
 ----------------------------------------------------------------------
 --                            Open Gmail                            --
 ----------------------------------------------------------------------
+local checkBrowser = function(app)
+	local listOfBrowsers = { "Chromium", "Brave" }
+	for _, v in pairs(listOfBrowsers) do
+		if string.find(app, v) ~= nil then
+			return true
+		end
+	end
+	return false
+end
 local goToWebsite = function(website)
 	local app = hs.application.frontmostApplication()
-	local isBrave = string.find(tostring(app), "Brave") ~= nil
-	if isBrave == false then
+	local isBrowser = checkBrowser(tostring(app))
+	if isBrowser == false then
 		return
 	end
 

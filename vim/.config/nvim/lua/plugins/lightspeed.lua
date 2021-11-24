@@ -15,6 +15,7 @@ require("lightspeed").setup({
 	labels = nil,
 	cycle_group_fwd_key = [[']],
 	cycle_group_bwd_key = [["]],
+	exit_after_idle_msecs = { labeled = nil, unlabeled = nil },
 })
 
 function RepeatFt(reverse)

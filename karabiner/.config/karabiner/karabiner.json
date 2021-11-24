@@ -36,7 +36,10 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": ["^com\\.brave\\.Browser$"]
+                    "bundle_identifiers": [
+                      "^com\\.brave\\.Browser$",
+                      "org.chromium.Chromium"
+                    ]
                   }
                 ]
               },
@@ -58,7 +61,10 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": ["^com\\.brave\\.Browser$"]
+                    "bundle_identifiers": [
+                      "^com\\.brave\\.Browser$",
+                      "org.chromium.Chromium"
+                    ]
                   }
                 ]
               },
@@ -80,7 +86,10 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": ["^com\\.brave\\.Browser$"]
+                    "bundle_identifiers": [
+                      "^com\\.brave\\.Browser$",
+                      "org.chromium.Chromium"
+                    ]
                   }
                 ]
               }

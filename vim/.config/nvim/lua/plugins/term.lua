@@ -10,7 +10,7 @@ require("toggleterm").setup({
 	end,
 	shade_terminals = false,
 	start_in_insert = false,
-	insert_mappings = true, -- whether or not the open mapping applies in insert mode
+	insert_mappings = false, -- whether or not the open mapping applies in insert mode
 	persist_size = false,
 	-- direction = 'vertical' | 'horizontal' | 'window' | 'float',
 	-- direction = "vertical",

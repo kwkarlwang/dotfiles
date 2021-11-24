@@ -1,3 +1,4 @@
+local null_ls = require("null-ls")
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 local FORMATTING = methods.internal.FORMATTING
@@ -35,7 +36,6 @@ local systemverilogfmt = h.make_builtin({
 	factory = h.formatter_factory,
 })
 
-local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 local sources = {
 	builtins.formatting.stylua,
@@ -47,7 +47,8 @@ local sources = {
 	latexfmt,
 	systemverilogfmt,
 	builtins.diagnostics.eslint_d,
-	builtins.diagnostics.mypy,
+	builtins.formatting.shfmt,
+	-- builtins.diagnostics.mypy,
 }
 null_ls.config({
 	diagnostics_format = "#{s}: #{m}",

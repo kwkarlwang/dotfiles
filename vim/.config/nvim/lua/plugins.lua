@@ -411,8 +411,8 @@ return require("packer").startup(function(use)
 		"rktjmp/highlight-current-n.nvim",
 		keys = { { "n", "/" }, { "n", "*" }, { "n", "n" }, { "n", "N" } },
 		config = function()
-			map("n", "n", "<Plug>(highlight-current-n-n)zz", {})
-			map("n", "N", "<Plug>(highlight-current-n-N)zz", {})
+			map("n", "n", "<Plug>(highlight-current-n-n)zz", { silent = true })
+			map("n", "N", "<Plug>(highlight-current-n-N)zz", { silent = true })
 		end,
 	})
 
@@ -543,7 +543,6 @@ return require("packer").startup(function(use)
 	-- swap windows
 	use({
 		"sindrets/winshift.nvim",
-		commit = "e392fd5b3ca0ef8279a8230129695fc7a921f4c3",
 		after = "dracula",
 		cmd = "WinShift",
 		setup = function()
@@ -564,4 +563,20 @@ return require("packer").startup(function(use)
 
 	-- mathcup
 	use({ "andymass/vim-matchup" })
+
+	-- haskell highlghting (tree sitter too slow)
+	use({
+		"neovimhaskell/haskell-vim",
+		config = function()
+			g.haskell_enable_quantification = 1
+			g.haskell_enable_recursivedo = 1
+			g.haskell_enable_arrowsyntax = 1
+			g.haskell_enable_pattern_synonyms = 1
+			g.haskell_enable_typeroles = 1
+			g.haskell_enable_static_pointers = 1
+			g.haskell_backpack = 1
+			g.haskell_classic_highlighting = 0
+			cmd([[hi link haskellIdentifier Tag]])
+		end,
+	})
 end)
