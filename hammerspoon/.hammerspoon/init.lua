@@ -119,9 +119,10 @@ local goToWebsite = function(website)
 		return
 	end
 
-	hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["t"])
+	hs.eventtap.keyStroke({ "cmd", "option" }, hs.keycodes.map["b"])
+	hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["l"])
 	hs.eventtap.keyStrokes(website)
-	hs.eventtap.keyStroke({ "" }, hs.keycodes.map["return"])
+	hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
 end
 local goToPersonal = function()
 	local email = "https://mail.google.com/mail/u/0/#inbox"

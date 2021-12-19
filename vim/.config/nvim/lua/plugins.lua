@@ -98,11 +98,6 @@ return require("packer").startup(function(use)
 			g.kommentary_create_default_mappings = false
 			require("kommentary.config").configure_language("default", {
 				prefer_single_line_comments = true,
-				-- single_line_comment_string = "auto",
-				-- multi_line_comment_strings = "auto",
-				-- hook_function = function()
-				-- 	require("ts_context_commentstring.internal").update_commentstring()
-				-- end,
 			})
 		end,
 	})
@@ -112,7 +107,6 @@ return require("packer").startup(function(use)
 	-- statusline
 	use({
 		"famiu/feline.nvim",
-		-- branch = "develop",
 		config = function()
 			require("plugins.feline")
 		end,
@@ -121,7 +115,6 @@ return require("packer").startup(function(use)
 	-- for telescope
 	use({
 		"nvim-telescope/telescope.nvim",
-		-- commit = "02a02f7bcdfb1f207de6649c00701ee1fe13a420",
 		requires = {
 			{ "nvim-lua/popup.nvim" },
 			{ "nvim-lua/plenary.nvim" },
@@ -148,7 +141,7 @@ return require("packer").startup(function(use)
 	-- Treesitter plugins
 	-- make color brackets
 	use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat", after = "nvim-treesitter" })
+	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
 	use({
 		"windwp/nvim-ts-autotag",
 		after = "nvim-treesitter",
@@ -172,7 +165,6 @@ return require("packer").startup(function(use)
 	--------Tree Sitter-----------
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		branch = "0.5-compat",
 		run = ":TSUpdate",
 		config = function()
 			require("plugins.treesitter")
@@ -217,11 +209,17 @@ return require("packer").startup(function(use)
 			require("neogit").setup({
 				disable_commit_confirmation = true,
 				disable_commit_notifications = true,
+				disable_context_highlighting = false,
 				disable_hint = true,
 				integrations = {
 					diffview = true,
 				},
 			})
+			cmd([[
+				hi NeogitDiffAddHighlight guibg=#1E2029 guifg=#88F298
+				hi NeogitDiffDeleteHighlight guibg=#1E2029 guifg=#EE766D
+				hi NeogitDiffContextHighlight guibg=#1E2029 
+			]])
 		end,
 	})
 	use({
@@ -237,11 +235,29 @@ return require("packer").startup(function(use)
 		"akinsho/nvim-toggleterm.lua",
 		cmd = { "ToggleTerm", "TermExec" },
 		setup = function()
-			map("n", "<leader>ot", ":ToggleTerm direction=horizontal<cr>i", NS)
-			map("n", "<leader>ol", ":ToggleTerm direction=vertical<cr>i", NS)
-			map("n", "<C-s>", ":ToggleTerm<cr>i", NS)
-			map("i", "<C-s>", "<esc>:ToggleTerm<cr>i", NS)
-			map("t", "<C-s>", "<C-\\><C-n>:ToggleTerm<cr>", NS)
+			ToggleTerm = function(direction)
+				local command = "ToggleTerm"
+				if direction == "horizontal" then
+					command = command .. " direction=horizontal"
+				elseif direction == "vertical" then
+					command = command .. " direction=vertical"
+				end
+				if vim.bo.filetype == "toggleterm" then
+					require("bufresize").block_register()
+					vim.api.nvim_command(command)
+					require("bufresize").resize_close()
+				else
+					require("bufresize").block_register()
+					vim.api.nvim_command(command)
+					require("bufresize").resize_open()
+					cmd([[execute "normal! i"]])
+				end
+			end
+			map("n", "<C-s>", ":lua ToggleTerm()<cr>", NS)
+			map("n", "<leader>ot", [[:lua ToggleTerm("horizontal")<cr>]], NS)
+			map("n", "<leader>ol", [[:lua ToggleTerm("vertical")<cr>]], NS)
+			map("i", "<C-s>", "<esc>:lua ToggleTerm()<cr>", NS)
+			map("t", "<C-s>", "<C-\\><C-n>:lua ToggleTerm()<cr>", NS)
 		end,
 		config = function()
 			require("plugins.term")
@@ -251,6 +267,7 @@ return require("packer").startup(function(use)
 	-- tree structure
 	use({
 		"kyazdani42/nvim-tree.lua",
+		disable = true,
 		cmd = "NvimTreeToggle",
 		setup = function()
 			require("plugins.tree").init()
@@ -439,6 +456,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"michaelb/sniprun",
+		disable = true,
 		run = "bash ./install.sh",
 		setup = function()
 			map("v", "<leader>rr", "<Plug>SnipRun", { silent = true })

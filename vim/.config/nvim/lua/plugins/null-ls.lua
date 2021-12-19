@@ -50,8 +50,8 @@ local sources = {
 	builtins.formatting.shfmt,
 	-- builtins.diagnostics.mypy,
 }
-null_ls.config({
+null_ls.setup({
 	diagnostics_format = "#{s}: #{m}",
 	sources = sources,
 })
-require("lspconfig")["null-ls"].setup({})
+-- require("lspconfig")["null-ls"].setup({})

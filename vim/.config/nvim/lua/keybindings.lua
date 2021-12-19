@@ -44,8 +44,21 @@ map("t", "dl", "<C-\\><C-n><C-w>l", NS)
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", NS)
 map("t", "ss", "<C-\\><C-n>", NS)
-map("t", "sd", "<C-\\><C-n><C-w>c", NS)
-map("n", "sd", "<C-w>c", NS)
+map(
+	"t",
+	"sd",
+	"<C-\\><C-n>"
+		.. ":lua require('bufresize').block_register()<cr>"
+		.. "<C-w>c"
+		.. ":lua require('bufresize').resize_close()<cr>",
+	NS
+)
+map(
+	"n",
+	"sd",
+	":lua require('bufresize').block_register()<cr>" .. "<C-w>c" .. ":lua require('bufresize').resize_close()<cr>",
+	NS
+)
 
 -- move line up and down
 map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", NS)
@@ -56,7 +69,6 @@ map("v", "<M-Down>", ":m '>+1<cr>gv=gv", NS)
 map("v", "<M-Up>", ":m '<-2<cr>gv=gv", NS)
 
 -- y/Y
-map("n", "Y", "y$", NS)
 map("v", "y", "ygv<esc>", NS)
 
 -- undo break point

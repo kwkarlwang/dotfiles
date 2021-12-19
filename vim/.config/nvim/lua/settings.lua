@@ -44,7 +44,6 @@ o.softtabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 o.cindent = true
-o.hidden = true
 
 o.smartcase = true
 o.ignorecase = true
@@ -126,11 +125,4 @@ augroup END
 -- for auto-sessions
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winpos,terminal"
 
--- for non flickering
-o.lazyredraw = true
-
--- syntax
--- cmd([[
--- syntax on
--- filetype plugin indent on
--- ]])
+o.equalalways = true

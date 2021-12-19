@@ -28,7 +28,6 @@ require("plugins")
 -- 			{ "n", "<leader>w|", "<C-w>|", NS },
 -- 			{ "n", "<leader>wo", "<C-w>|<C-w>_", NS },
 -- 		},
--- 		-- trigger_events = { "BufWinEnter", "WinEnter" },
 -- 		trigger_events = { "BufWinEnter", "WinEnter" },
 -- 	},
 -- 	resize = {
@@ -36,3 +35,4 @@ require("plugins")
 -- 		trigger_events = { "VimResized" },
 -- 	},
 -- })
+-- map("n", "<leader>p", ":lua require('bufresize').debug()<cr>", NS)

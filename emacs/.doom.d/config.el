@@ -336,6 +336,15 @@
    :map org-mode-map
    :localleader
    :desc "Latex preview" "m" #'org-latex-preview))
+(after! ox-latex
+  (add-to-list 'org-latex-classes '("IEEETran" "\\documentclass[conference]{IEEETran}"
+                                    ("\\section{%s}" . "\\section*{%s}")
+                                    ("\\subsection{%s}" . "\\subsection*{%s}")
+                                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+  )
 
 (after! tex
   (setq TeX-parse-self t
@@ -390,22 +399,6 @@
   :hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
   :hook (pdf-tools-enabled . hide-mode-line-mode)
   :hook (pdf-tools-enabled . pdf-continuous-scroll-mode)
-  :config
-  (map!
-   :map pdf-continuous-scroll-mode-map
-   :n "j" #'pdf-continuous-scroll-forward
-   :n "k" #'pdf-continuous-scroll-backward
-   :n "g g" #'pdf-cscroll-first-page
-   :n "G" #'pdf-cscroll-last-page
-   :n "l" #'pdf-cscroll-image-forward-hscroll
-   :n "h" #'pdf-cscroll-image-backward-hscroll
-   :n "C-d" #'pdf-view-scroll-down-or-previous-page
-   :n "C-u" #'pdf-view-scroll-up-or-next-page
-   )
-  (map!
-   :map pdf-view-mode-map
-   :n "c" #'pdf-continuous-scroll-mode
-   )
   )
 
 (after! ispell
