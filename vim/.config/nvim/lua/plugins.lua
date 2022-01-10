@@ -205,11 +205,11 @@ return require("packer").startup(function(use)
 			map("n", "<leader>gg", ":Neogit<cr>", NS)
 		end,
 		config = function()
-			require("neogit").config.use_magit_keybindings()
 			require("neogit").setup({
 				disable_commit_confirmation = true,
 				disable_commit_notifications = true,
 				disable_context_highlighting = false,
+				use_magit_keybindings = true,
 				disable_hint = true,
 				integrations = {
 					diffview = true,
