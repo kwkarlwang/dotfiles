@@ -106,7 +106,7 @@ return require("packer").startup(function(use)
 
 	-- statusline
 	use({
-		"famiu/feline.nvim",
+		"feline-nvim/feline.nvim",
 		config = function()
 			require("plugins.feline")
 		end,
@@ -597,4 +597,7 @@ return require("packer").startup(function(use)
 			cmd([[hi link haskellIdentifier Tag]])
 		end,
 	})
+
+	-- extend text objects
+	use({ "wellle/targets.vim" })
 end)

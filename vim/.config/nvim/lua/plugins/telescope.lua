@@ -3,16 +3,16 @@ M.setup = function()
 	local actions = require("telescope.actions")
 	require("telescope").setup({
 		defaults = {
-			vimgrep_arguments = {
-				"rg",
-				"--color=never",
-				"--no-heading",
-				"--with-filename",
-				"--line-number",
-				"--column",
-				"--smart-case",
-				"--hidden",
-			},
+			-- vimgrep_arguments = {
+			-- 	"rg",
+			-- 	"--color=never",
+			-- 	"--no-heading",
+			-- 	"--with-filename",
+			-- 	"--line-number",
+			-- 	"--column",
+			-- 	"--smart-case",
+			-- 	"--hidden",
+			-- },
 			mappings = {
 				i = {
 					["<esc>"] = actions.close,
@@ -79,10 +79,7 @@ M.setup = function()
 			lsp_workspace_symbols = {
 				theme = "ivy",
 			},
-			lsp_document_diagnostics = {
-				theme = "ivy",
-			},
-			lsp_workspace_diagnostics = {
+			diagnostics = {
 				theme = "ivy",
 			},
 			lsp_code_actions = {

@@ -156,16 +156,16 @@ ins_left(line_percentage)
 local diagnostic_error = {
 	provider = "diagnostic_errors",
 	enabled = function()
-		return lsp.diagnostics_exist("Error")
+		return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR)
 	end,
 	hl = { fg = colors.red, bg = colors.bgdark },
 }
 ins_left(diagnostic_error)
 
 local diagnostic_warnings = {
-	provider = "diagnostic_errors",
+	provider = "diagnostic_warnings",
 	enabled = function()
-		return lsp.diagnostics_exist("Warning")
+		return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
 	end,
 	hl = { fg = colors.orange, bg = colors.bgdark },
 }
@@ -174,7 +174,7 @@ ins_left(diagnostic_warnings)
 local diagnostic_hints = {
 	provider = "diagnostic_hints",
 	enabled = function()
-		return lsp.diagnostics_exist("Hint")
+		return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
 	end,
 	hl = { fg = colors.blue, bg = colors.bgdark },
 }
@@ -183,7 +183,7 @@ ins_left(diagnostic_hints)
 local diagnostic_info = {
 	provider = "diagnostic_info",
 	enabled = function()
-		return lsp.diagnostics_exist("Information")
+		return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
 	end,
 	hl = { fg = colors.blue, bg = colors.bgdark },
 }
