@@ -1,11 +1,32 @@
-api.map(">_w", "w");
-api.map("w", "R");
-api.map("q", "E");
-api.map("u", "e");
-api.map(">_F", "F");
-api.map("F", "C");
-api.unmap("s");
-api.unmap("a");
+const {
+  aceVimMap,
+  mapkey,
+  imap,
+  imapkey,
+  getClickableElements,
+  vmapkey,
+  map,
+  unmap,
+  vunmap,
+  cmap,
+  addSearchAlias,
+  removeSearchAlias,
+  tabOpenLink,
+  readText,
+  Clipboard,
+  Front,
+  Hints,
+  Visual,
+  RUNTIME,
+} = api;
+map(">_w", "w");
+map("w", "R");
+map("q", "E");
+map("u", "e");
+map(">_F", "F");
+map("F", "C");
+unmap("s");
+unmap("a");
 
 // set hints to show on the left
 settings.hintAlign = "left";
