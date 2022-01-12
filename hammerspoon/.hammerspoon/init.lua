@@ -125,12 +125,24 @@ local goToWebsite = function(website)
 	hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
 end
 local goToPersonal = function()
-	local email = "https://mail.google.com/mail/u/0/#inbox"
-	goToWebsite(email)
+	local url = "https://mail.google.com/mail/u/0/#inbox"
+	goToWebsite(url)
 end
 local goToSchool = function()
-	local email = "https://mail.google.com/mail/u/1/#inbox"
-	goToWebsite(email)
+	local url = "https://mail.google.com/mail/u/1/#inbox"
+	goToWebsite(url)
+end
+
+local goToWork = function()
+	local url = "https://mail.google.com/mail/u/2/#inbox"
+	goToWebsite(url)
+end
+
+local goToCalendar = function()
+	local url = "https://calendar.google.com/calendar/u/2/r"
+	goToWebsite(url)
 end
 hs.hotkey.bind({ "cmd", "alt" }, "1", goToPersonal)
 hs.hotkey.bind({ "cmd", "alt" }, "2", goToSchool)
+hs.hotkey.bind({ "cmd", "alt" }, "3", goToWork)
+hs.hotkey.bind({ "cmd", "alt" }, "4", goToCalendar)
