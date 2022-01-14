@@ -40,6 +40,7 @@ local builtins = null_ls.builtins
 local sources = {
 	builtins.formatting.stylua,
 	builtins.formatting.black,
+	-- builtins.formatting.yapf,
 	builtins.formatting.rustfmt,
 	builtins.formatting.clang_format,
 	builtins.formatting.prettier,

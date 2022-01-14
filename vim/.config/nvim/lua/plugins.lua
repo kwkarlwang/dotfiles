@@ -224,7 +224,6 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"sindrets/diffview.nvim",
-		after = "neogit",
 		config = function()
 			require("diffview").setup()
 		end,
