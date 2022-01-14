@@ -43,7 +43,7 @@ local sources = {
 	-- builtins.formatting.yapf,
 	builtins.formatting.rustfmt,
 	builtins.formatting.clang_format,
-	builtins.formatting.prettier,
+	builtins.formatting.prettierd,
 	haskellfmt,
 	latexfmt,
 	systemverilogfmt,
