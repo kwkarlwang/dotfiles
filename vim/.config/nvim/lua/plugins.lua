@@ -266,7 +266,6 @@ return require("packer").startup(function(use)
 	-- tree structure
 	use({
 		"kyazdani42/nvim-tree.lua",
-		disable = true,
 		cmd = "NvimTreeToggle",
 		setup = function()
 			require("plugins.tree").init()

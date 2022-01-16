@@ -3,7 +3,6 @@
 local keymap = hs.keycodes.map
 local path = os.getenv("HOME") .. "/dotfiles/hammerspoon/.hammerspoon/"
 hs.pathwatcher.new(path, hs.reload):start()
-require("forticlient")
 
 ----------------------------------------------------------------------
 --                          reload config                           --
@@ -146,3 +145,28 @@ hs.hotkey.bind({ "cmd", "alt" }, "1", goToPersonal)
 hs.hotkey.bind({ "cmd", "alt" }, "2", goToSchool)
 hs.hotkey.bind({ "cmd", "alt" }, "3", goToWork)
 hs.hotkey.bind({ "cmd", "alt" }, "4", goToCalendar)
+----------------------------------------------------------------------
+--                               Work                               --
+----------------------------------------------------------------------
+local status_ok, ignore = pcall(require, "ignore")
+if status_ok then
+	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "p", function()
+		hs.application.launchOrFocus("FortiClient")
+		-- wait two second
+		hs.timer.usleep(2e6)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
+		hs.eventtap.keyStrokes(ignore.fortiUsername)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
+		hs.eventtap.keyStrokes(ignore.fortiPassword)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+		hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["q"])
+	end)
+
+	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "o", function()
+		hs.eventtap.keyStrokes(ignore.gitUsername)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+		hs.eventtap.keyStrokes(ignore.gitPassword)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+	end)
+end

@@ -16,13 +16,13 @@
         },
         "rules": [
           {
-            "description": "Ctrl-a to left arrow, Ctrl-s to right arrow, Ctrl-f to enter in Brave",
+            "description": "Shift-Ctrl-a to left arrow, Shift-Ctrl-s to right arrow, Shift-Ctrl-f to enter in Brave",
             "manipulators": [
               {
                 "from": {
                   "key_code": "a",
                   "modifiers": {
-                    "mandatory": ["left_control"],
+                    "mandatory": ["left_control", "left_shift"],
                     "optional": ["any"]
                   }
                 },
@@ -47,7 +47,7 @@
                 "from": {
                   "key_code": "s",
                   "modifiers": {
-                    "mandatory": ["left_control"],
+                    "mandatory": ["left_control", "left_shift"],
                     "optional": ["any"]
                   }
                 },
@@ -72,7 +72,7 @@
                 "from": {
                   "key_code": "f",
                   "modifiers": {
-                    "mandatory": ["left_control"],
+                    "mandatory": ["left_control", "left_shift"],
                     "optional": ["any"]
                   }
                 },
