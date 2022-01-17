@@ -39,15 +39,16 @@ local systemverilogfmt = h.make_builtin({
 local builtins = null_ls.builtins
 local sources = {
 	builtins.formatting.stylua,
-	builtins.formatting.black,
-	-- builtins.formatting.yapf,
+	-- builtins.formatting.black,
+	builtins.formatting.yapf,
 	builtins.formatting.rustfmt,
 	builtins.formatting.clang_format,
 	builtins.formatting.prettierd,
+	builtins.diagnostics.eslint_d,
+	builtins.formatting.stylelint,
 	haskellfmt,
 	latexfmt,
 	systemverilogfmt,
-	builtins.diagnostics.eslint_d,
 	builtins.formatting.shfmt,
 	-- builtins.diagnostics.mypy,
 }
