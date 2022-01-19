@@ -166,6 +166,7 @@ return require("packer").startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		commit = "723d91e8217ae66ea75f809f404d801ed939f497",
 		config = function()
 			require("plugins.treesitter")
 		end,
@@ -235,13 +236,27 @@ return require("packer").startup(function(use)
 		cmd = { "ToggleTerm", "TermExec" },
 		setup = function()
 			ToggleTerm = function(direction)
+				local isOpen = function()
+					local comparator = function(buf)
+						return vim.bo[buf].filetype == "toggleterm"
+					end
+
+					local wins = api.nvim_list_wins()
+					for _, win in pairs(wins) do
+						local buf = vim.api.nvim_win_get_buf(win)
+						if comparator(buf) then
+							return true
+						end
+					end
+					return false
+				end
 				local command = "ToggleTerm"
 				if direction == "horizontal" then
 					command = command .. " direction=horizontal"
 				elseif direction == "vertical" then
 					command = command .. " direction=vertical"
 				end
-				if vim.bo.filetype == "toggleterm" then
+				if isOpen() then
 					require("bufresize").block_register()
 					vim.api.nvim_command(command)
 					require("bufresize").resize_close()

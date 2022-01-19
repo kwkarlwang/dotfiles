@@ -153,7 +153,7 @@ if status_ok then
 	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "p", function()
 		hs.application.launchOrFocus("FortiClient")
 		-- wait two second
-		hs.timer.usleep(2e6)
+		hs.timer.usleep(3e6)
 		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
 		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
 		hs.eventtap.keyStrokes(ignore.fortiUsername)
