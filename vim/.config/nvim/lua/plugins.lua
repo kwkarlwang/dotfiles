@@ -84,20 +84,60 @@ return require("packer").startup(function(use)
 	})
 
 	-- comment function
+	-- use({
+	-- 	"b3nj5m1n/kommentary",
+	-- 	keys = {
+	-- 		"<Plug>kommentary_line_default",
+	-- 		"<Plug>kommentary_visual_default",
+	-- 	},
+	-- 	setup = function()
+	-- 		map("n", "cc", "<Plug>kommentary_line_default", { silent = true })
+	-- 		map("v", "cc", "<Plug>kommentary_visual_default<Esc>", { silent = true })
+	-- 	end,
+	-- 	config = function()
+	-- 		g.kommentary_create_default_mappings = false
+	-- 		require("kommentary.config").configure_language("default", {
+	-- 			prefer_single_line_comments = true,
+	-- 		})
+	-- 	end,
+	-- })
 	use({
-		"b3nj5m1n/kommentary",
-		keys = {
-			"<Plug>kommentary_line_default",
-			"<Plug>kommentary_visual_default",
-		},
-		setup = function()
-			map("n", "cc", "<Plug>kommentary_line_default", { silent = true })
-			map("v", "cc", "<Plug>kommentary_visual_default<Esc>", { silent = true })
-		end,
+		"numToStr/Comment.nvim",
+		after = "nvim-ts-context-commentstring",
 		config = function()
-			g.kommentary_create_default_mappings = false
-			require("kommentary.config").configure_language("default", {
-				prefer_single_line_comments = true,
+			require("Comment").setup({
+				toggler = {
+					line = "cc",
+					block = "cb",
+				},
+				pre_hook = function(ctx)
+					local U = require("Comment.utils")
+
+					local location = nil
+					if ctx.ctype == U.ctype.block then
+						location = require("ts_context_commentstring.utils").get_cursor_location()
+					elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+						location = require("ts_context_commentstring.utils").get_visual_start_location()
+					end
+
+					return require("ts_context_commentstring.internal").calculate_commentstring({
+						key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
+						location = location,
+					})
+				end,
+			})
+			map("x", "cc", '<esc><cmd>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<cr>', NS)
+			map("x", "cb", '<esc><cmd>lua require("Comment.api").toggle_blockwise_op(vim.fn.visualmode())<cr>', NS)
+		end,
+	})
+	use({
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				context_commentstring = {
+					enable = true,
+					enable_autocmd = false,
+				},
 			})
 		end,
 	})
