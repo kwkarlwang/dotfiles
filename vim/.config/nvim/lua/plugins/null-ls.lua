@@ -45,12 +45,14 @@ local sources = {
 	builtins.formatting.clang_format,
 	builtins.formatting.prettierd,
 	builtins.diagnostics.eslint_d,
+	builtins.code_actions.eslint_d,
 	builtins.formatting.stylelint,
+	builtins.diagnostics.stylelint,
 	haskellfmt,
 	latexfmt,
 	systemverilogfmt,
 	builtins.formatting.shfmt,
-	-- builtins.diagnostics.mypy,
+	builtins.diagnostics.mypy,
 }
 null_ls.setup({
 	diagnostics_format = "#{s}: #{m}",
