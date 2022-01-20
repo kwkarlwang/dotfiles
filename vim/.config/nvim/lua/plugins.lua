@@ -209,10 +209,35 @@ return require("packer").startup(function(use)
 				disable_commit_confirmation = true,
 				disable_commit_notifications = true,
 				disable_context_highlighting = false,
-				use_magit_keybindings = true,
 				disable_hint = true,
 				integrations = {
 					diffview = true,
+				},
+				sections = {
+					untracked = {
+						folded = false,
+					},
+					unstaged = {
+						folded = false,
+					},
+					staged = {
+						folded = false,
+					},
+					stashes = {
+						folded = false,
+					},
+					unpulled = {
+						folded = false,
+					},
+					unmerged = {
+						folded = false,
+					},
+					recent = {
+						folded = false,
+					},
+				},
+				mappings = {
+					status = { ["p"] = "PushPopup", ["P"] = "", ["F"] = "PullPopup" },
 				},
 			})
 			cmd([[
