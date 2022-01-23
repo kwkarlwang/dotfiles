@@ -77,13 +77,9 @@ map("i", ".", ".<C-g>u", NS)
 map("i", "!", "!<C-g>u", NS)
 map("i", "?", "?<C-g>u", NS)
 map("i", "[", "[<C-g>u", NS)
--- map("i", " ", " <C-g>u", NS)
 
 -- don't lose indent with esc
 map("i", "<cr>", "<cr>x<bs>", NS)
--- map("n", "o", "ox<bs>", NS)
--- map("n", "O", "Ox<bs>", NS)
--- map("n", "S", "Sx<bs>", NS)
 
 -- terminal git push
 map("n", "<leader>gp", ":sp term://git push -u origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)

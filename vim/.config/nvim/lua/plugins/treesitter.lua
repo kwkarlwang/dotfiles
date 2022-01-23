@@ -3,7 +3,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
 	ignore_install = {},
 	indent = {
-		enable = false,
+		enable = true,
 		disable = { "python", "rust", "tex" },
 	},
 	highlight = { enable = true },
@@ -62,6 +62,9 @@ require("nvim-treesitter.configs").setup({
 		enable_autocmd = false,
 	},
 	matchup = {
+		enable = true,
+	},
+	autotag = {
 		enable = true,
 	},
 })

@@ -167,7 +167,6 @@ return require("packer").startup(function(use)
 					require("plugins.project")
 				end,
 			},
-			-- { "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sql.nvim" } },
 		},
 		after = "project.nvim",
 		setup = function()
@@ -219,15 +218,13 @@ return require("packer").startup(function(use)
 		"windwp/nvim-autopairs",
 		after = "nvim-cmp",
 		config = function()
-			local ignored_next_char = string.gsub([[ [%w%%%%[%%.] ]], "%s+", "")
+			-- local ignored_next_char = string.gsub([[ [%w%%%%[%%.] ]], "%s+", "")
+			local ignored_next_char = ""
 			require("nvim-autopairs").setup({
 				disable_filetype = { "TelescopePrompt" },
 				ignored_next_char = ignored_next_char,
 				map_c_w = true,
 			})
-			-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			-- local cmp = require("cmp")
-			-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 		end,
 	})
 
@@ -662,6 +659,7 @@ return require("packer").startup(function(use)
 	-- haskell highlghting (tree sitter too slow)
 	use({
 		"neovimhaskell/haskell-vim",
+		disable = true,
 		config = function()
 			g.haskell_enable_quantification = 1
 			g.haskell_enable_recursivedo = 1
