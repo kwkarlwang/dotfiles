@@ -38,24 +38,41 @@ local systemverilogfmt = h.make_builtin({
 
 local builtins = null_ls.builtins
 local sources = {
+	----------------------------------------------------------------------
+	--                               lua                                --
+	----------------------------------------------------------------------
 	builtins.formatting.stylua,
+	----------------------------------------------------------------------
+	--                              python                              --
+	----------------------------------------------------------------------
 	-- builtins.formatting.black,
 	builtins.formatting.yapf,
+	builtins.diagnostics.mypy,
+	----------------------------------------------------------------------
+	--                               rust                               --
+	----------------------------------------------------------------------
 	builtins.formatting.rustfmt,
+	----------------------------------------------------------------------
+	--                               c++                                --
+	----------------------------------------------------------------------
 	builtins.formatting.clang_format,
+	----------------------------------------------------------------------
+	--                            typescript                            --
+	----------------------------------------------------------------------
 	builtins.formatting.prettierd,
 	builtins.diagnostics.eslint_d,
 	builtins.code_actions.eslint_d,
 	builtins.formatting.stylelint,
 	builtins.diagnostics.stylelint,
+	----------------------------------------------------------------------
+	--                              other                               --
+	----------------------------------------------------------------------
 	haskellfmt,
 	latexfmt,
 	systemverilogfmt,
 	builtins.formatting.shfmt,
-	builtins.diagnostics.mypy,
 }
 null_ls.setup({
 	diagnostics_format = "#{s}: #{m}",
 	sources = sources,
 })
--- require("lspconfig")["null-ls"].setup({})

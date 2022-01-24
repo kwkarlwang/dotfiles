@@ -131,8 +131,6 @@
 (setq ns-use-proxy-icon nil
       frame-title-format nil
       )
-;; Helps disable the annoying titlebar dimension
-(add-to-list 'initial-frame-alist '(fullscreen . fullheight))
 
 (setq-default delete-by-moving-to-trash t
               window-combination-resize t)
