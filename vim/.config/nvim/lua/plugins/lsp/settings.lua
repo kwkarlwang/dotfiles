@@ -4,7 +4,7 @@ fn.sign_define("DiagnosticSignHint", { texthl = "DiagnosticSignHint", text = "ï 
 fn.sign_define("DiagnosticSignInfo", { texthl = "DiagnosticSignInfo", text = "ï‘‰", numhl = "DiagnosticSignInfo" })
 
 -- update in insert mode
-vim.lsp.handlers["textDocument/publishDiagnostic"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	update_in_insert = true,
 	virtual_text = true,
 })

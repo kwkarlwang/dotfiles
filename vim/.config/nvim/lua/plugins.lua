@@ -183,7 +183,6 @@ return require("packer").startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
 	use({
 		"windwp/nvim-ts-autotag",
-		after = "nvim-treesitter",
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
