@@ -56,7 +56,6 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 	use({
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
 		-- disable = true,
 		config = function()
 			require("plugins.cmp")
@@ -76,31 +75,16 @@ return require("packer").startup(function(use)
 	use({
 		"kwkarlwang/vim-dracula",
 		as = "dracula",
+		setup = function()
+			g.dracula_full_special_attrs_support = 1
+		end,
 		config = function()
 			--------Theme-----------
-			g.dracula_full_special_attrs_support = 1
 			cmd("colorscheme dracula")
 		end,
 	})
 
 	-- comment function
-	-- use({
-	-- 	"b3nj5m1n/kommentary",
-	-- 	keys = {
-	-- 		"<Plug>kommentary_line_default",
-	-- 		"<Plug>kommentary_visual_default",
-	-- 	},
-	-- 	setup = function()
-	-- 		map("n", "cc", "<Plug>kommentary_line_default", { silent = true })
-	-- 		map("v", "cc", "<Plug>kommentary_visual_default<Esc>", { silent = true })
-	-- 	end,
-	-- 	config = function()
-	-- 		g.kommentary_create_default_mappings = false
-	-- 		require("kommentary.config").configure_language("default", {
-	-- 			prefer_single_line_comments = true,
-	-- 		})
-	-- 	end,
-	-- })
 	use({
 		"numToStr/Comment.nvim",
 		after = "nvim-ts-context-commentstring",
@@ -553,7 +537,7 @@ return require("packer").startup(function(use)
 		keys = { "n", "cd" },
 		config = function()
 			require("neogen").setup({
-				enable = true,
+				enabled = true,
 				languages = {
 					python = {
 						template = {
