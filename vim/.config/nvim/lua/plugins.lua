@@ -214,7 +214,12 @@ return require("packer").startup(function(use)
 	-- git
 	use({
 		"tpope/vim-fugitive",
-		cmd = "Git",
+		cmd = { "Git", "Gdiffsplit!", "Gdiffsplit" },
+		setup = function()
+			map("n", "<leader>gd", ":Gdiffsplit!<cr>", NS)
+			map("n", "<leader>gh", ":diffget 2<cr>", NS)
+			map("n", "<leader>gl", ":diffget 3<cr>", NS)
+		end,
 	})
 
 	use({
@@ -534,16 +539,18 @@ return require("packer").startup(function(use)
 	-- docstring generator
 	use({
 		"danymat/neogen",
-		keys = { "n", "cd" },
 		config = function()
 			require("neogen").setup({
 				enabled = true,
+				input_after_comment = false,
 				languages = {
 					python = {
 						template = {
 							annotation_convention = "numpydoc",
 						},
 					},
+					typescriptreact = require("neogen.configurations.typescript"),
+					javascriptreact = require("neogen.configurations.javascript"),
 				},
 			})
 			map("n", "cd", ":lua require('neogen').generate()<cr>", NS)
@@ -658,4 +665,13 @@ return require("packer").startup(function(use)
 
 	-- extend text objects
 	use({ "wellle/targets.vim" })
+
+	-- vscode like rename
+	use({
+		"filipdutescu/renamer.nvim",
+		config = function()
+			require("renamer").setup()
+			map("n", "<leader>cr", "<cmd>lua require('renamer').rename()<cr>", NS)
+		end,
+	})
 end)

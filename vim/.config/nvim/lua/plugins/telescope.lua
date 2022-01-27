@@ -3,16 +3,16 @@ M.setup = function()
 	local actions = require("telescope.actions")
 	require("telescope").setup({
 		defaults = {
-			-- vimgrep_arguments = {
-			-- 	"rg",
-			-- 	"--color=never",
-			-- 	"--no-heading",
-			-- 	"--with-filename",
-			-- 	"--line-number",
-			-- 	"--column",
-			-- 	"--smart-case",
-			-- 	"--hidden",
-			-- },
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--hidden",
+			},
 			mappings = {
 				i = {
 					["<esc>"] = actions.close,
@@ -110,12 +110,6 @@ end
 M.init = function()
 	map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", NS)
 
-	-- map(
-	-- 	"n",
-	-- 	"<leader><leader>",
-	-- 	"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy())<cr>:CWD:",
-	-- 	NS
-	-- )
 	map("n", "<leader>ff", "<cmd>Telescope find_files find_command=fd,--no-ignore,--hidden<cr>", NS)
 	map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", NS)
 

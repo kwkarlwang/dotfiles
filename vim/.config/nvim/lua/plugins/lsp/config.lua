@@ -3,7 +3,6 @@ local on_attach = function(client, bufnr)
 		api.nvim_buf_set_keymap(bufnr, ...)
 	end
 	bufmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", NS)
-	bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", NS)
 	bufmap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float({ show_header=false })<cr>", NS)
 	bufmap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", NS)
 	bufmap("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", NS)
