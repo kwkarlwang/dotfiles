@@ -45,7 +45,7 @@ map("t", "dl", "<C-\\><C-n><C-w>l", NS)
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", NS)
-map("t", "<C-[>", "<C-\\><C-n>", NS)
+map("t", "<C-cr>", "<C-\\><C-n>", NS)
 -- map(
 -- 	"t",
 -- 	"sd",
