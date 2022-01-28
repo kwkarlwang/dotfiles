@@ -45,16 +45,16 @@ map("t", "dl", "<C-\\><C-n><C-w>l", NS)
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", NS)
-map("t", "ss", "<C-\\><C-n>", NS)
-map(
-	"t",
-	"sd",
-	"<C-\\><C-n>"
-		.. ":lua require('bufresize').block_register()<cr>"
-		.. "<C-w>c"
-		.. ":lua require('bufresize').resize_close()<cr>",
-	NS
-)
+map("t", "<C-[>", "<C-\\><C-n>", NS)
+-- map(
+-- 	"t",
+-- 	"sd",
+-- 	"<C-\\><C-n>"
+-- 		.. ":lua require('bufresize').block_register()<cr>"
+-- 		.. "<C-w>c"
+-- 		.. ":lua require('bufresize').resize_close()<cr>",
+-- 	NS
+-- )
 map(
 	"n",
 	"sd",
@@ -97,3 +97,7 @@ map("n", "<leader>`", "<C-^>", NS)
 -- quit
 map("n", "<leader>qq", ":wa<cr>:qa<cr>", NS)
 map("n", "<leader>qQ", ":qa!<cr>", NS)
+
+-- highlight
+map("n", "*", "*Nn", { silent = true })
+map("n", "gf", "*N", { silent = true })

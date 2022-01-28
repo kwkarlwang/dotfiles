@@ -175,7 +175,7 @@ return require("packer").startup(function(use)
 	use({
 		"s1n7ax/nvim-comment-frame",
 		after = "nvim-treesitter",
-		keys = { "n", "cm" },
+		keys = { { "n", "cm" } },
 		config = function()
 			require("nvim-comment-frame").setup({
 				keymap = "cm",
@@ -214,11 +214,12 @@ return require("packer").startup(function(use)
 	-- git
 	use({
 		"tpope/vim-fugitive",
-		cmd = { "Git", "Gdiffsplit!", "Gdiffsplit" },
+		cmd = { "Git", "Gdiffsplit!", "Gdiffsplit", "Git mergetool" },
 		setup = function()
 			map("n", "<leader>gd", ":Gdiffsplit!<cr>", NS)
 			map("n", "<leader>gh", ":diffget 2<cr>", NS)
 			map("n", "<leader>gl", ":diffget 3<cr>", NS)
+			map("n", "<leader>mt", ":Git mergetool", NS)
 		end,
 	})
 
@@ -488,10 +489,15 @@ return require("packer").startup(function(use)
 	-- highlight search
 	use({
 		"rktjmp/highlight-current-n.nvim",
-		keys = { { "n", "/" }, { "n", "*" }, { "n", "n" }, { "n", "N" } },
 		config = function()
-			map("n", "n", "<Plug>(highlight-current-n-n)zz", { silent = true })
 			map("n", "N", "<Plug>(highlight-current-n-N)zz", { silent = true })
+			map("n", "n", "<Plug>(highlight-current-n-n)zz", { silent = true })
+			cmd([[
+				augroup HighlightResult
+					autocmd!
+					autocmd CmdlineLeave /,\? lua require('highlight_current_n')['/,?']()
+				augroup END
+			]])
 		end,
 	})
 
