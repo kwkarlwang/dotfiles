@@ -100,4 +100,5 @@ map("n", "<leader>qQ", ":qa!<cr>", NS)
 
 -- highlight
 map("n", "*", "*Nn", { silent = true })
+map("n", "#", "#Nn", { silent = true })
 map("n", "gf", "*N", { silent = true })

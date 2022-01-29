@@ -18,3 +18,5 @@ zsh/.zsh_history
 zsh/zsh/plugins
 
 ignore.lua
+
+__pycache__
