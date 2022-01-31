@@ -655,17 +655,17 @@ return require("packer").startup(function(use)
 	-- haskell highlghting (tree sitter too slow)
 	use({
 		"neovimhaskell/haskell-vim",
-		disable = true,
+		-- disable = true,
 		config = function()
-			g.haskell_enable_quantification = 1
-			g.haskell_enable_recursivedo = 1
-			g.haskell_enable_arrowsyntax = 1
-			g.haskell_enable_pattern_synonyms = 1
-			g.haskell_enable_typeroles = 1
-			g.haskell_enable_static_pointers = 1
-			g.haskell_backpack = 1
+			g.haskell_enable_quantification = 0
+			g.haskell_enable_recursivedo = 0
+			g.haskell_enable_arrowsyntax = 0
+			g.haskell_enable_pattern_synonyms = 0
+			g.haskell_enable_typeroles = 0
+			g.haskell_enable_static_pointers = 0
+			g.haskell_backpack = 0
 			g.haskell_classic_highlighting = 0
-			cmd([[hi link haskellIdentifier Tag]])
+			-- cmd([[hi link haskellIdentifier Tag]])
 		end,
 	})
 
