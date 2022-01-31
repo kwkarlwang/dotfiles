@@ -202,7 +202,7 @@ return require("packer").startup(function(use)
 		after = "nvim-cmp",
 		config = function()
 			-- local ignored_next_char = string.gsub([[ [%w%%%%[%%.] ]], "%s+", "")
-			local ignored_next_char = ""
+			local ignored_next_char = "[%w%.]"
 			require("nvim-autopairs").setup({
 				disable_filetype = { "TelescopePrompt" },
 				ignored_next_char = ignored_next_char,

@@ -40,7 +40,7 @@ cmp.setup({
 			types.cmp.TriggerEvent.TextChanged,
 		},
 		completeopt = "menu,menuone,noinsert",
-		keyword_length = 2,
+		keyword_length = 1,
 	},
 	snippet = {
 		expand = function(args)
