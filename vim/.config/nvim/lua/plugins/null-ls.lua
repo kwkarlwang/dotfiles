@@ -47,7 +47,7 @@ local sources = {
 	----------------------------------------------------------------------
 	-- builtins.formatting.black,
 	builtins.formatting.yapf,
-	builtins.diagnostics.mypy,
+	-- builtins.diagnostics.mypy,
 	----------------------------------------------------------------------
 	--                               rust                               --
 	----------------------------------------------------------------------
@@ -59,10 +59,10 @@ local sources = {
 	----------------------------------------------------------------------
 	--                            typescript                            --
 	----------------------------------------------------------------------
-	-- builtins.formatting.prettierd,
+	builtins.formatting.prettierd,
 	-- builtins.diagnostics.eslint_d,
 	-- builtins.code_actions.eslint_d,
-	builtins.formatting.prettier,
+	-- builtins.formatting.prettier,
 	-- builtins.diagnostics.eslint,
 	-- builtins.code_actions.eslint,
 	-- builtins.formatting.stylelint,
