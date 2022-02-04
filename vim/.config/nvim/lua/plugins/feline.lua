@@ -76,16 +76,17 @@ local block = {
 	hl = { fg = colors.violet, bg = colors.bgdark },
 }
 ins_left(block)
-
-local vi_mode = {
-	provider = " ",
-	hl = function()
-		return { fg = require("feline.providers.vi_mode").get_mode_color(), bg = colors.bgdark }
-	end,
-	left_sep = " ",
-	right_sep = " ",
-}
-ins_left(vi_mode)
+--
+-- local vi_mode = {
+-- 	provider = " ",
+-- 	hl = function()
+-- 		return { fg = require("feline.providers.vi_mode").get_mode_color(), bg = colors.bgdark }
+-- 	end,
+-- 	left_sep = " ",
+-- 	right_sep = " ",
+-- }
+-- ins_left(vi_mode)
+ins_left({ provider = " " })
 
 local file_path = {
 	provider = function(winid)

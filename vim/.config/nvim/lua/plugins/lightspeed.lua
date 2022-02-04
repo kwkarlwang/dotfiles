@@ -13,8 +13,8 @@ require("lightspeed").setup({
 map("", [[']], "<Plug>Lightspeed_s", {})
 map("", [["]], "<Plug>Lightspeed_S", {})
 -- cmd [[unmap s]]
-cmd([[nunmap S]])
-cmd([[
+vim.cmd([[nunmap S]])
+vim.cmd([[
 let g:lightspeed_last_motion = ''
 augroup lightspeed_last_motion
 autocmd!

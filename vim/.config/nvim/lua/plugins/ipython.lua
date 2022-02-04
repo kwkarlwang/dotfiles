@@ -8,7 +8,7 @@ map("n", "<leader>mm", ":IPythonCellToMarkdown<cr>", NS)
 map("n", "[c", ":IPythonCellPrevCell<cr>", NS)
 map("n", "]c", ":IPythonCellNextCell<cr>", NS)
 
-cmd [[
+vim.cmd [[
 function! IPythonOpen()
     " open a new terminal in vertical split and run IPython
     vnew|call termopen('ipython --matplotlib=qt')

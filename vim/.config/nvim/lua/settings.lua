@@ -51,7 +51,7 @@ o.ignorecase = true
 o.swapfile = false
 o.backup = false
 o.completeopt = "menuone,noselect"
-cmd("set undodir=~/.vim/undodir")
+vim.cmd("set undodir=~/.vim/undodir")
 o.undofile = true
 
 o.signcolumn = "yes"
@@ -64,7 +64,7 @@ o.numberwidth = 2
 o.wrap = true
 o.spell = false
 
-cmd("autocmd! BufEnter * set fo-=r fo-=o")
+vim.cmd("autocmd! BufEnter * set fo-=r fo-=o")
 
 --------Status line-----------
 o.showmode = false
@@ -80,7 +80,7 @@ o.splitright = true
 
 --------Auto revert-----------
 o.autoread = true
-cmd([[
+vim.cmd([[
      " trigger `autoread` when files changes on disk
       autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
     " notification after file change
@@ -88,7 +88,7 @@ cmd([[
 ]])
 
 --------Terminal-----------
-cmd("autocmd TermOpen * setlocal nonumber norelativenumber")
+vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber")
 
 --------Auto Resize-----------
 -- cmd("autocmd VimResized * wincmd =")
@@ -110,10 +110,10 @@ o.foldlevel = 20
 o.foldexpr = "nvim_treesitter#foldexpr()"
 
 --------Kitty-----------
-cmd("let &t_ut=''")
+vim.cmd("let &t_ut=''")
 
 --------disable cursor in inactvie pane-----------
-cmd([[
+vim.cmd([[
 augroup CursorLine
   autocmd!
   autocmd BufEnter,WinEnter * setlocal cursorline
@@ -125,4 +125,11 @@ augroup END
 -- for auto-sessions
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winpos,terminal"
 
-o.equalalways = true
+-- Change file type
+vim.cmd([[
+augroup FiletypeChange
+  autocmd!
+  autocmd BufNewFile,BufRead *.xml setf html
+  autocmd BufNewFile,BufRead *.launch setf html
+augroup END
+]])

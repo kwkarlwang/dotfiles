@@ -80,7 +80,7 @@ return require("packer").startup(function(use)
 		end,
 		config = function()
 			--------Theme-----------
-			cmd("colorscheme dracula")
+			vim.cmd("colorscheme dracula")
 		end,
 	})
 
@@ -165,11 +165,15 @@ return require("packer").startup(function(use)
 	-- make color brackets
 	use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
 	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
+	-- use({
+	-- 	"windwp/nvim-ts-autotag",
+	-- 	disable = true,
+	-- 	config = function()
+	-- 		require("nvim-ts-autotag").setup()
+	-- 	end,
+	-- })
 	use({
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
+		"kwkarlwang/nvim-ts-autotag",
 	})
 
 	use({
@@ -266,7 +270,7 @@ return require("packer").startup(function(use)
 					status = { ["p"] = "PushPopup", ["P"] = "", ["F"] = "PullPopup" },
 				},
 			})
-			cmd([[
+			vim.cmd([[
 				hi NeogitDiffAddHighlight guibg=#1E2029 guifg=#88F298
 				hi NeogitDiffDeleteHighlight guibg=#1E2029 guifg=#EE766D
 				hi NeogitDiffContextHighlight guibg=#1E2029 
@@ -314,7 +318,7 @@ return require("packer").startup(function(use)
 					require("bufresize").block_register()
 					vim.api.nvim_command(command)
 					require("bufresize").resize_open()
-					cmd([[execute "normal! i"]])
+					vim.cmd([[execute "normal! i"]])
 				end
 			end
 			map("n", "<C-s>", ":lua ToggleTerm()<cr>", NS)
@@ -355,7 +359,7 @@ return require("packer").startup(function(use)
 			g.VM_silent_exit = 1
 			g.VM_show_warnings = 0
 			g.VM_default_mappings = 0
-			cmd([[
+			vim.cmd([[
 			    let g:VM_maps = {}
 			    let g:VM_maps['Find Under'] = '<M-d>'
 			    let g:VM_maps['Find Subword Under'] = '<M-d>'
@@ -398,7 +402,7 @@ return require("packer").startup(function(use)
 			g.rnvimr_enable_ex = 1
 			g.rnvimr_enable_picker = 1
 			g.rnvimr_enable_bw = 1
-			cmd("let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]")
+			vim.cmd("let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]")
 		end,
 	})
 
@@ -440,7 +444,7 @@ return require("packer").startup(function(use)
 		end,
 		cmd = "LazyGit",
 		config = function()
-			cmd([[
+			vim.cmd([[
 				if has('nvim') && executable('nvr')
 				  let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 				endif
@@ -492,7 +496,7 @@ return require("packer").startup(function(use)
 		config = function()
 			map("n", "N", "<Plug>(highlight-current-n-N)zz", { silent = true })
 			map("n", "n", "<Plug>(highlight-current-n-n)zz", { silent = true })
-			cmd([[
+			vim.cmd([[
 				augroup HighlightResult
 					autocmd!
 					autocmd CmdlineLeave /,\? lua require('highlight_current_n')['/,?']()
@@ -684,7 +688,7 @@ return require("packer").startup(function(use)
 	use({
 		"ojroques/vim-oscyank",
 		config = function()
-			cmd(
+			vim.cmd(
 				[[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif]]
 			)
 			g.oscyank_silent = true

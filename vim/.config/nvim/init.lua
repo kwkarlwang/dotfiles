@@ -1,5 +1,4 @@
 vim = vim
-cmd = vim.cmd
 fn = vim.fn
 g = vim.g
 map = vim.api.nvim_set_keymap
@@ -15,7 +14,7 @@ require("settings")
 require("keybindings")
 require("plugins")
 
--- cmd("set rtp+=~/projects/neovim/bufresize.nvim")
+-- cmd("set rtp+=~/projects/personal/nvim-ts-autotag")
 -- require("bufresize").setup({
 -- 	register = {
 -- 		keys = {
@@ -36,3 +35,4 @@ require("plugins")
 -- 	},
 -- })
 -- map("n", "<leader>p", ":lua require('bufresize').debug()<cr>", NS)
+-- require("nvim-ts-autotag").setup()
