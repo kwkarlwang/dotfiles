@@ -40,9 +40,9 @@ map("n", "dk", "<C-w>k", NS)
 map("n", "dl", "<C-w>l", NS)
 
 map("t", "dh", "<C-\\><C-n><C-w>h", NS)
-map("t", "dj", "<C-\\><C-n><C-w>j", NS)
+-- map("t", "dj", "<C-\\><C-n><C-w>j", NS)
 map("t", "dk", "<C-\\><C-n><C-w>k", NS)
-map("t", "dl", "<C-\\><C-n><C-w>l", NS)
+-- map("t", "dl", "<C-\\><C-n><C-w>l", NS)
 
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", NS)

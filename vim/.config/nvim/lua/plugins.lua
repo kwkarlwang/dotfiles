@@ -680,4 +680,14 @@ return require("packer").startup(function(use)
 			map("n", "<leader>cr", "<cmd>lua require('renamer').rename()<cr>", NS)
 		end,
 	})
+
+	use({
+		"ojroques/vim-oscyank",
+		config = function()
+			cmd(
+				[[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif]]
+			)
+			g.oscyank_silent = true
+		end,
+	})
 end)
