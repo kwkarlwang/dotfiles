@@ -61,7 +61,7 @@ settings.theme = `
 /* Edit these variables for easy theme making */
 :root {
   /* Font */
-  --font: 'Fira Code', Ubuntu, sans;
+  --font: 'JetBrains Mono', 'Fira Code', Menlo, Ubuntu, sans;
   --font-size: 14;
   /* -------------- */
   /* --- THEMES --- */
