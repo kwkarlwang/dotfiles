@@ -47,6 +47,7 @@ local sources = {
 	----------------------------------------------------------------------
 	-- builtins.formatting.black,
 	builtins.formatting.yapf,
+	builtins.formatting.reorder_python_imports,
 	-- builtins.diagnostics.mypy,
 	----------------------------------------------------------------------
 	--                               rust                               --
