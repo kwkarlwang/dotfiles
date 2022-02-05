@@ -83,8 +83,8 @@ o.autoread = true
 vim.cmd([[
      " trigger `autoread` when files changes on disk
       autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
-    " notification after file change
-      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+     " notification after file change
+      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | execute "normal! e" | echohl None
 ]])
 
 --------Terminal-----------
@@ -133,3 +133,6 @@ augroup FiletypeChange
   autocmd BufNewFile,BufRead *.launch setf html
 augroup END
 ]])
+
+-- slash diff instead of '-'
+o.fillchars:append("diff:╱")

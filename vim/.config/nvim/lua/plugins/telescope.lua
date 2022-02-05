@@ -39,6 +39,7 @@ M.setup = function()
 				height = 0.4,
 			},
 			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+			path_display = { "truncate" },
 		},
 		pickers = {
 			buffers = {
@@ -92,6 +93,10 @@ M.setup = function()
 				theme = "ivy",
 				hidden = true,
 			},
+			grep_string = {
+				theme = "ivy",
+				hidden = true,
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true, -- false will only do exact matching
@@ -114,6 +119,7 @@ M.init = function()
 	map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", NS)
 
 	map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", NS)
+	map("n", "<leader>gf", "<cmd>Telescope grep_string<cr>", NS)
 	map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", NS)
 
 	map("n", "<leader>hh", "<cmd>Telescope help_tags<cr>", NS)
@@ -124,5 +130,7 @@ M.init = function()
 	map("n", "<leader>:", "<cmd>Telescope commands<cr>", NS)
 	map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", NS)
 	map("n", "<leader>pp", "<cmd>Telescope projects<cr>", NS)
+
+	map("n", "<leader>v", "<cmd>Telescope registers<cr>", NS)
 end
 return M

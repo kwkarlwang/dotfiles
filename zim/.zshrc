@@ -125,11 +125,7 @@ function cpp {
 
 alias szsh="source $HOME/.zshrc"
 
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-    alias vim=nvr -cc split --remote-wait +'set bufhidden=wipe'
-else
-    alias vim="nvim"
-fi
+alias vim="nvim"
 
 alias mas="cd ~/Desktop/Master/"
 alias karl="cd ~/Desktop/Karl/"
@@ -193,32 +189,22 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 # For HomeBrew
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/anaconda3/bin:$PATH"
-# For lazygit.nvim
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-else
-    export VISUAL="nvim"
-    export EDITOR="nvim"
-fi
+export PATH="/opt/anaconda3/bin:$PATH"
+export VISUAL="nvim"
+export EDITOR="nvim"
 
 # Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('~/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-##if [ 0 -eq 0 ]; then
-    #echo "first"
-    #eval "$__conda_setup"
-#else
-    #if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
-        #echo "second"
-        #. "~/anaconda3/etc/profile.d/conda.sh"
-    #else
-        #echo "third"
-        #export PATH="/Users/kwkarlwang/anaconda3/bin:$PATH"
-    #fi
-#fi
-#unset __conda_setup
+# __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/opt/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<

@@ -16,13 +16,22 @@
         },
         "rules": [
           {
-            "description": "Shift-Ctrl-a to left arrow, Shift-Ctrl-s to right arrow, Shift-Ctrl-f to enter in Brave",
+            "description": "Ctrl-a to left arrow, Ctrl-s to right arrow, Ctrl-f to enter in Brave",
             "manipulators": [
               {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.brave\\.Browser$",
+                      "org.chromium.Chromium"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "from": {
                   "key_code": "a",
                   "modifiers": {
-                    "mandatory": ["left_control", "left_shift"],
+                    "mandatory": ["left_control"],
                     "optional": ["any"]
                   }
                 },
@@ -31,23 +40,22 @@
                     "key_code": "left_arrow"
                   }
                 ],
-                "type": "basic",
-
+                "type": "basic"
+              },
+              {
                 "conditions": [
                   {
-                    "type": "frontmost_application_if",
                     "bundle_identifiers": [
                       "^com\\.brave\\.Browser$",
                       "org.chromium.Chromium"
-                    ]
+                    ],
+                    "type": "frontmost_application_if"
                   }
-                ]
-              },
-              {
+                ],
                 "from": {
                   "key_code": "s",
                   "modifiers": {
-                    "mandatory": ["left_control", "left_shift"],
+                    "mandatory": ["left_control"],
                     "optional": ["any"]
                   }
                 },
@@ -56,23 +64,22 @@
                     "key_code": "right_arrow"
                   }
                 ],
-                "type": "basic",
-
+                "type": "basic"
+              },
+              {
                 "conditions": [
                   {
-                    "type": "frontmost_application_if",
                     "bundle_identifiers": [
                       "^com\\.brave\\.Browser$",
                       "org.chromium.Chromium"
-                    ]
+                    ],
+                    "type": "frontmost_application_if"
                   }
-                ]
-              },
-              {
+                ],
                 "from": {
                   "key_code": "f",
                   "modifiers": {
-                    "mandatory": ["left_control", "left_shift"],
+                    "mandatory": ["left_control"],
                     "optional": ["any"]
                   }
                 },
@@ -81,17 +88,7 @@
                     "key_code": "return_or_enter"
                   }
                 ],
-                "type": "basic",
-
-                "conditions": [
-                  {
-                    "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.brave\\.Browser$",
-                      "org.chromium.Chromium"
-                    ]
-                  }
-                ]
+                "type": "basic"
               }
             ]
           },
@@ -306,6 +303,50 @@
           "ignore": false,
           "manipulate_caps_lock_led": true,
           "simple_modifications": []
+        },
+        {
+          "disable_built_in_keyboard_if_exists": false,
+          "fn_function_keys": [],
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": false,
+            "product_id": 833,
+            "vendor_id": 1452
+          },
+          "ignore": false,
+          "manipulate_caps_lock_led": true,
+          "simple_modifications": [
+            {
+              "from": {
+                "key_code": "caps_lock"
+              },
+              "to": [
+                {
+                  "key_code": "left_control"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "left_control"
+              },
+              "to": [
+                {
+                  "key_code": "caps_lock"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "right_command"
+              },
+              "to": [
+                {
+                  "key_code": "right_control"
+                }
+              ]
+            }
+          ]
         }
       ],
       "fn_function_keys": [

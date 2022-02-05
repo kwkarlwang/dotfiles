@@ -90,6 +90,7 @@ return require("packer").startup(function(use)
 		after = "nvim-ts-context-commentstring",
 		config = function()
 			require("Comment").setup({
+				ignore = "^$",
 				toggler = {
 					line = "cc",
 					block = "cb",
@@ -273,7 +274,7 @@ return require("packer").startup(function(use)
 			vim.cmd([[
 				hi NeogitDiffAddHighlight guibg=#1E2029 guifg=#88F298
 				hi NeogitDiffDeleteHighlight guibg=#1E2029 guifg=#EE766D
-				hi NeogitDiffContextHighlight guibg=#1E2029 
+				hi NeogitDiffContextHighlight guibg=#1E2029
 			]])
 		end,
 	})
@@ -438,23 +439,7 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"kdheepak/lazygit.nvim",
-		setup = function()
-			map("n", "<leader>og", ":LazyGit<cr>", NS)
-		end,
-		cmd = "LazyGit",
-		config = function()
-			vim.cmd([[
-				if has('nvim') && executable('nvr')
-				  let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-				endif
-			]])
-		end,
-	})
-
-	use({
 		"famiu/bufdelete.nvim",
-		-- keys = { "n", "<leader>bk" },
 		module = "bufdelete",
 		setup = function()
 			map("n", "<leader>bk", ":lua require('bufdelete').bufwipeout(0, true)<cr>", NS)

@@ -21,7 +21,6 @@ map("n", "s", "<nop>", NS)
 -- save all files
 map("n", "sa", ":wa<cr>", NS)
 map("n", "ss", "<cmd>lua vim.lsp.buf.formatting_sync(nil, 3000)<cr>:silent up<cr>", NS)
--- map("n", "ss", ":silent up<cr>", NS)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", NS)
@@ -85,8 +84,8 @@ map("i", "[", "[<C-g>u", NS)
 map("i", "<cr>", "<cr>x<bs>", NS)
 
 -- terminal git push
-map("n", "<leader>gp", ":sp term://git push -u origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
-map("n", "<leader>gf", ":sp term://git pull origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
+-- map("n", "<leader>gp", ":sp term://git push -u origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
+-- map("n", "<leader>gf", ":sp term://git pull origin $(git rev-parse --abbrev-ref HEAD)<cr>i", NS)
 
 -- select non blank line
 map("n", "vv", "^vg_", NS)
@@ -103,3 +102,7 @@ map("n", "<leader>qQ", ":qa!<cr>", NS)
 map("n", "*", "*Nn", { silent = true })
 map("n", "#", "#Nn", { silent = true })
 map("n", "gf", "*N", { silent = true })
+
+-- Move to first and end
+map("n", "H", "g^", NS)
+map("n", "L", "g$", NS)

@@ -14,7 +14,8 @@ require("settings")
 require("keybindings")
 require("plugins")
 
--- cmd("set rtp+=~/projects/personal/nvim-ts-autotag")
+-- vim.cmd("set rtp+=~/projects/personal/vim-dracula")
+-- vim.cmd("colorscheme dracula")
 -- require("bufresize").setup({
 -- 	register = {
 -- 		keys = {
