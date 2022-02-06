@@ -53,6 +53,7 @@ M.setup = function()
 			},
 			find_files = {
 				-- previewer = false,
+				find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
 				theme = "ivy",
 				hidden = true,
 			},
