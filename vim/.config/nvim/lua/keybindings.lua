@@ -106,3 +106,5 @@ map("n", "gf", "*N", { silent = true })
 -- Move to first and end
 map("n", "H", "g^", NS)
 map("n", "L", "g$", NS)
+map("v", "H", "g^", NS)
+map("v", "L", "g$", NS)

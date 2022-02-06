@@ -140,20 +140,13 @@ return require("packer").startup(function(use)
 	-- for telescope
 	use({
 		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
+		module = "telescope",
 		requires = {
 			{ "nvim-lua/popup.nvim" },
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-			{
-				"ahmedkhalf/project.nvim",
-				cmd = "Telescope",
-				module = "telescope",
-				config = function()
-					require("plugins.project")
-				end,
-			},
 		},
-		after = "project.nvim",
 		setup = function()
 			require("plugins.telescope").init()
 		end,
@@ -164,22 +157,12 @@ return require("packer").startup(function(use)
 
 	-- Treesitter plugins
 	-- make color brackets
-	use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
-	-- use({
-	-- 	"windwp/nvim-ts-autotag",
-	-- 	disable = true,
-	-- 	config = function()
-	-- 		require("nvim-ts-autotag").setup()
-	-- 	end,
-	-- })
-	use({
-		"kwkarlwang/nvim-ts-autotag",
-	})
+	use({ "p00f/nvim-ts-rainbow" })
+	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
+	use({ "windwp/nvim-ts-autotag" })
 
 	use({
 		"s1n7ax/nvim-comment-frame",
-		after = "nvim-treesitter",
 		keys = { { "n", "cm" } },
 		config = function()
 			require("nvim-comment-frame").setup({
@@ -204,15 +187,17 @@ return require("packer").startup(function(use)
 	-- pair brackets
 	use({
 		"windwp/nvim-autopairs",
-		after = "nvim-cmp",
 		config = function()
+			local Rule = require("nvim-autopairs.rule")
+			local npairs = require("nvim-autopairs")
 			-- local ignored_next_char = string.gsub([[ [%w%%%%[%%.] ]], "%s+", "")
 			local ignored_next_char = "[%w%.]"
-			require("nvim-autopairs").setup({
+			npairs.setup({
 				disable_filetype = { "TelescopePrompt" },
 				ignored_next_char = ignored_next_char,
 				map_c_w = true,
 			})
+			npairs.add_rule(Rule("f'", "'", "python"))
 		end,
 	})
 
