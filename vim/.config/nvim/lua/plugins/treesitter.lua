@@ -4,7 +4,7 @@ require("nvim-treesitter.configs").setup({
 	ignore_install = {},
 	indent = {
 		enable = true,
-		disable = { "python", "rust", "tex", "lua", "markdown" },
+		disable = { "python", "rust", "tex", "lua", "markdown", "lisp" },
 	},
 	highlight = { enable = true },
 	rainbow = {
