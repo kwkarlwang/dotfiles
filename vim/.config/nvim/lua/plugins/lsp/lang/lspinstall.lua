@@ -8,12 +8,8 @@ lsp_installer.on_server_ready(function(server)
 				globals = { "vim" },
 			},
 		}
-		-- elseif server.name == "hls" then
-		-- 	config.settings.haskell = {
-		-- 		formattingProvider = "ormolu",
-
-		-- 		-- hlint = { globalOn = true },
-		-- 	}
+	elseif server.name == "clangd" then
+		config.capabilities.offsetEncoding = { "utf-16" }
 	elseif server.name == "tsserver" then
 		config.on_attach = function(client, bufnr)
 			local function bufmap(...)

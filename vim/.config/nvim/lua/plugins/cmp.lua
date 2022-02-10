@@ -82,6 +82,7 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp" },
+		-- { name = "nvim_lsp_signature_help" },
 		{ name = "buffer" },
 		{ name = "luasnip" },
 		{ name = "nvim_lua" },
@@ -119,15 +120,3 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
--- cmd([[hi CmpItemAbbr guifg=#eceff4]])
--- cmd([[hi CmpItemAbbrMatch guifg=#ACEBFB gui=bold]])
--- cmd([[hi CmpItemKind guifg=#a3c4ef]])
--- cmd([[hi CmpItemKindFunction guifg=#88F298]])
--- cmd([[hi CmpItemKindMethod guifg=#88F298]])
--- cmd([[hi CmpItemKindText guifg=#F5F7A8]])
--- cmd([[hi CmpItemKindField guifg=#Bf9EEE]])
--- cmd([[hi CmpItemKindValue guifg=#Bf9EEE]])
--- cmd([[hi CmpItemKindKeyword guifg=#ACEBFB]])
--- cmd([[hi CmpItemKindVariable guifg=#F199CE]])
--- cmd([[hi CmpItemKindSnippet guifg=#F8F8F2]])
--- cmd([[hi CmpItemMenu guifg=#F4B26D]])

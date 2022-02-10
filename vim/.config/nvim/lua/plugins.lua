@@ -54,6 +54,7 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
+	-- use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
 	use({
 		"hrsh7th/nvim-cmp",
 		-- disable = true,
