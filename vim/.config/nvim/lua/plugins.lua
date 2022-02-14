@@ -54,6 +54,14 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
+	use({ "f3fora/cmp-spell", after = "nvim-cmp" })
+	use({
+		"petertriho/cmp-git",
+		after = "nvim-cmp",
+		config = function()
+			require("cmp_git").setup()
+		end,
+	})
 	-- use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
 	use({
 		"hrsh7th/nvim-cmp",
@@ -664,6 +672,14 @@ return require("packer").startup(function(use)
 				[[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif]]
 			)
 			g.oscyank_silent = true
+		end,
+	})
+
+	-- spellcheck
+	use({
+		"lewis6991/spellsitter.nvim",
+		config = function()
+			require("spellsitter").setup()
 		end,
 	})
 end)

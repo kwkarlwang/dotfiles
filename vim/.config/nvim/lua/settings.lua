@@ -63,6 +63,7 @@ o.signcolumn = "yes"
 o.numberwidth = 2
 o.wrap = true
 o.spell = false
+o.spelllang = { "en_us" }
 
 vim.cmd("autocmd! BufEnter * set fo-=r fo-=o")
 
@@ -84,7 +85,7 @@ vim.cmd([[
      " trigger `autoread` when files changes on disk
       autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
      " notification after file change
-      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | execute "normal! e" | echohl None
+      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | edit | TSBufEnable highlight | echohl None
 ]])
 
 --------Terminal-----------

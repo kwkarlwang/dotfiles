@@ -91,7 +91,7 @@ cmp.setup({
 		{ name = "emoji" },
 	},
 	formatting = {
-		format = function(entry, vim_item)
+		format = function(_, vim_item)
 			vim_item.kind = icons[vim_item.kind] .. vim_item.kind
 			-- vim_item.menu = ({
 			-- 	buffer = "[Buffer]",
@@ -107,6 +107,24 @@ cmp.setup({
 		end,
 	},
 	preselect = types.cmp.PreselectMode.None,
+})
+cmp.setup.filetype({ "markdown" }, {
+	sources = {
+		{ name = "spell" },
+		{ name = "nvim_lsp" },
+		{ name = "buffer" },
+		{ name = "luasnip" },
+		{ name = "path" },
+		{ name = "calc" },
+		{ name = "emoji" },
+	},
+})
+
+cmp.setup.filetype("gitcommit", {
+	sources = {
+		{ name = "cmp_git" },
+		{ name = "buffer" },
+	},
 })
 cmp.setup.cmdline("/", {
 	sources = {
