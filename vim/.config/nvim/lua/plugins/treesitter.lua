@@ -3,8 +3,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
 	ignore_install = {},
 	indent = {
-		enable = true,
-		disable = { "python", "rust", "tex", "lua", "markdown", "lisp" },
+		enable = { "typescriptreact" },
 	},
 	highlight = { enable = true },
 	rainbow = {
