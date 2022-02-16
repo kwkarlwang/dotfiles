@@ -3,7 +3,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
 	ignore_install = {},
 	indent = {
-		enable = { "typescriptreact" },
+		enable = false,
 	},
 	highlight = { enable = true },
 	rainbow = {
@@ -67,3 +67,5 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 	},
 })
+
+vim.api.nvim_command("au Filetype javascriptreact,typescriptreact setlocal indentexpr=nvim_treesitter#indent()")
