@@ -61,7 +61,9 @@ local sources = {
 	----------------------------------------------------------------------
 	--                            typescript                            --
 	----------------------------------------------------------------------
-	builtins.formatting.prettierd,
+	builtins.formatting.prettierd.with({
+		disabled_filetypes = { "html" },
+	}),
 	-- builtins.diagnostics.eslint_d,
 	-- builtins.code_actions.eslint_d,
 	-- builtins.formatting.prettier,
@@ -69,6 +71,13 @@ local sources = {
 	-- builtins.code_actions.eslint,
 	-- builtins.formatting.stylelint,
 	-- builtins.diagnostics.stylelint,
+	----------------------------------------------------------------------
+	--                               html                               --
+	----------------------------------------------------------------------
+	builtins.formatting.prettier.with({
+		filetypes = { "html" },
+		extra_args = { "--parser", "html" },
+	}),
 	----------------------------------------------------------------------
 	--                              other                               --
 	----------------------------------------------------------------------

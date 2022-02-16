@@ -68,4 +68,4 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
-vim.api.nvim_command("au Filetype javascriptreact,typescriptreact setlocal indentexpr=nvim_treesitter#indent()")
+vim.api.nvim_command("au Filetype javascriptreact,typescriptreact,html setlocal indentexpr=nvim_treesitter#indent()")
