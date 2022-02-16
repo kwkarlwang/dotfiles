@@ -3,7 +3,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
 	ignore_install = {},
 	indent = {
-		enable = { "typescriptreact", "cpp" },
+		enable = { "typescriptreact" },
 	},
 	highlight = { enable = true },
 	rainbow = {
