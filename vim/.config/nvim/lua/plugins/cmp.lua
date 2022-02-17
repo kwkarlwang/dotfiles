@@ -35,6 +35,17 @@ local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+local super_tab = function(fallback)
+	if cmp.visible() then
+		cmp.select_next_item()
+	elseif luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	elseif has_words_before() then
+		cmp.complete()
+	else
+		fallback()
+	end
+end
 cmp.setup({
 	enabled = function()
 		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
@@ -70,17 +81,21 @@ cmp.setup({
 				select = false,
 			}),
 		}),
-		["<Tab>"] = mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif has_words_before() then
-				cmp.complete()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		["<Tab>"] = mapping({
+			i = super_tab,
+			s = super_tab,
+			c = function(fallback)
+				if #cmp.core:get_sources() > 0 and not cmp.get_config().experimental.native_menu then
+					cmp.select_next_item({ behavior = types.cmp.SelectBehavior.Insert })
+					-- end)
+					vim.schedule(function()
+						cmp.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert })
+					end)
+				else
+					fallback()
+				end
+			end,
+		}),
 
 		["<S-Tab>"] = mapping(function(fallback)
 			if cmp.visible() then
@@ -103,7 +118,11 @@ cmp.setup({
 		{ name = "emoji" },
 	},
 	formatting = {
-		format = function(_, vim_item)
+		format = function(entry, vim_item)
+			-- vim_item.abbr = string.gsub(vim_item.abbr, "%s+", "")
+			-- if entry.context.filetype == "cpp" and vim_item.kind == "Function" then
+			-- 	vim_item.abbr = vim_item.word
+			-- end
 			vim_item.kind = icons[vim_item.kind] .. vim_item.kind
 			-- vim_item.menu = ({
 			-- 	buffer = "[Buffer]",

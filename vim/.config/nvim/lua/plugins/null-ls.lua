@@ -56,7 +56,7 @@ local sources = {
 	----------------------------------------------------------------------
 	--                               c++                                --
 	----------------------------------------------------------------------
-	builtins.formatting.clang_format,
+	-- builtins.formatting.clang_format,
 	builtins.formatting.cmake_format,
 	----------------------------------------------------------------------
 	--                            typescript                            --
