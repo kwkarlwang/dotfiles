@@ -19,7 +19,7 @@ lsp_installer.on_server_ready(function(server)
 			"--clang-tidy",
 			"--fallback-style=Google",
 			"--pch-storage=memory",
-			"--header-insertion=iwyu",
+			"--header-insertion=never",
 			"--completion-style=bundled",
 			"--enable-config",
 			"--header-insertion-decorators",
