@@ -108,3 +108,6 @@ map("n", "H", "g^", NS)
 map("n", "L", "g$", NS)
 map("v", "H", "g^", NS)
 map("v", "L", "g$", NS)
+
+-- Toggle spell
+map("n", "<leader>ts", ":setlocal spell!", NS)
