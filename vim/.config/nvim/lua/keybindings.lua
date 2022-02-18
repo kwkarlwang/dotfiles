@@ -110,4 +110,4 @@ map("v", "H", "g^", NS)
 map("v", "L", "g$", NS)
 
 -- Toggle spell
-map("n", "<leader>ts", ":setlocal spell!", NS)
+map("n", "<leader>ts", ":setlocal spell!<cr>", NS)
