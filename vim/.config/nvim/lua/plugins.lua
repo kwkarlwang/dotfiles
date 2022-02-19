@@ -121,7 +121,6 @@ return require("packer").startup(function(use)
 				end,
 			})
 			map("x", "cc", '<esc><cmd>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<cr>', NS)
-			map("x", "cb", '<esc><cmd>lua require("Comment.api").toggle_blockwise_op(vim.fn.visualmode())<cr>', NS)
 		end,
 	})
 	use({

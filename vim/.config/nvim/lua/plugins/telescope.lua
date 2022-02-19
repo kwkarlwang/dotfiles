@@ -130,7 +130,6 @@ M.init = function()
 	map("n", "<M-x>", "<cmd>Telescope commands<cr>", NS)
 	map("n", "<leader>:", "<cmd>Telescope commands<cr>", NS)
 	map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", NS)
-	map("n", "<leader>pp", "<cmd>Telescope projects<cr>", NS)
 
 	map("n", "<leader>v", "<cmd>Telescope registers<cr>", NS)
 end

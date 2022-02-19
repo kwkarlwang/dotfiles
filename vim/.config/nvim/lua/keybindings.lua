@@ -11,16 +11,16 @@ map("i", "jk", "<Esc>", NS)
 map("c", "<Down>", "<C-n>", {})
 map("c", "<Up>", "<C-p>", {})
 -- HELP
-map("n", "<leader>hrs", ":source %<cr>", { noremap = true })
-map("n", "<leader>hrr", ":source %<cr>:PackerSync<cr>", NS)
-map("n", "<leader>hrc", ":source %<cr>:PackerCompile profile=true<cr>", { noremap = true })
-map("n", "<leader>hrp", ":source %<cr>:PackerProfile<cr>", { noremap = true })
+map("n", "<leader>ps", ":source %<cr>", { noremap = true })
+map("n", "<leader>pp", ":source %<cr>:PackerSync<cr>", NS)
+map("n", "<leader>pc", ":source %<cr>:PackerCompile profile=true<cr>", { noremap = true })
+map("n", "<leader>pP", ":source %<cr>:PackerProfile<cr>", { noremap = true })
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", NS)
 map("n", "s", "<nop>", NS)
 -- save all files
 map("n", "sa", ":wa<cr>", NS)
-map("n", "ss", "<cmd>lua vim.lsp.buf.formatting_sync(nil, 3000)<cr>:silent up<cr>", NS)
+map("n", "ss", ":silent up<cr>", NS)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", NS)
