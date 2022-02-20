@@ -32,15 +32,15 @@ map("n", "<leader>w", "<C-w>", NS)
 map("n", "<leader>wo", "<C-w>|<C-w>_", NS)
 map("n", "<leader>wm", ":tabnew %<cr>", NS)
 
---navigation
+-- navigation
 map("n", "dh", "<C-w>h", NS)
 map("n", "dj", "<C-w>j", NS)
 map("n", "dk", "<C-w>k", NS)
 map("n", "dl", "<C-w>l", NS)
 
-map("t", "dh", "<C-\\><C-n><C-w>h", NS)
+-- map("t", "dh", "<C-\\><C-n><C-w>h", NS)
 -- map("t", "dj", "<C-\\><C-n><C-w>j", NS)
-map("t", "dk", "<C-\\><C-n><C-w>k", NS)
+-- map("t", "dk", "<C-\\><C-n><C-w>k", NS)
 -- map("t", "dl", "<C-\\><C-n><C-w>l", NS)
 
 -- terminal

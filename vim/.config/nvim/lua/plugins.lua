@@ -283,8 +283,8 @@ return require("packer").startup(function(use)
 				},
 			})
 			vim.cmd([[
-				hi NeogitDiffAddHighlight guibg=#1E2029 guifg=#88F298
-				hi NeogitDiffDeleteHighlight guibg=#1E2029 guifg=#EE766D
+				hi! link NeogitDiffAddHighlight DiffAdd
+				hi! link NeogitDiffDeleteHighlight DiffDelete
 				hi NeogitDiffContextHighlight guibg=#1E2029
 			]])
 		end,
@@ -415,6 +415,14 @@ return require("packer").startup(function(use)
 			g.rnvimr_enable_picker = 1
 			g.rnvimr_enable_bw = 1
 			vim.cmd("let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]")
+			-- vim.cmd([[
+			-- 	augroup RnvimrKeybinding
+			-- 		autocmd! RnvimrKeybinding
+			-- 		autocmd Filetype rnvimr tnoremap <buffer> dh dh
+			-- 		autocmd Filetype rnvimr tnoremap <buffer> dk dk
+			-- 		autocmd Filetype rnvimr tnoremap <buffer> <C-s> <C-s>
+			-- 	augroup END
+			-- ]])
 		end,
 	})
 
@@ -593,7 +601,7 @@ return require("packer").startup(function(use)
 				forward = "<C-n>",
 				backward = "<C-p>",
 				on_success = function()
-					vim.cmd([[execute "normal! g`\"zz"]])
+					vim.cmd([[silent! execute "normal! g`\"zz"]])
 				end,
 			})
 		end,
