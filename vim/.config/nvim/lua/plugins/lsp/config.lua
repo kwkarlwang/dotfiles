@@ -22,43 +22,14 @@ local on_attach = function(client, bufnr)
 	client.resolved_capabilities.document_range_formatting = false
 end
 
-local if_nil = function(val, default)
-	if val == nil then
-		return default
-	end
-	return val
-end
-
-local update_capabilities = function(capabilities, override)
-	override = override or {}
-
-	local completionItem = capabilities.textDocument.completion.completionItem
-
-	completionItem.snippetSupport = if_nil(override.snippetSupport, true)
-	completionItem.preselectSupport = if_nil(override.preselectSupport, true)
-	completionItem.insertReplaceSupport = if_nil(override.insertReplaceSupport, true)
-	completionItem.labelDetailsSupport = if_nil(override.labelDetailsSupport, true)
-	completionItem.deprecatedSupport = if_nil(override.deprecatedSupport, true)
-	completionItem.commitCharactersSupport = if_nil(override.commitCharactersSupport, true)
-	completionItem.tagSupport = if_nil(override.tagSupport, { valueSet = { 1 } })
-	completionItem.resolveSupport = if_nil(override.resolveSupport, {
-		properties = {
-			"documentation",
-			"detail",
-			"additionalTextEdits",
-		},
-	})
-
-	return capabilities
-end
 local config = function()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	update_capabilities(capabilities)
+	capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 	local config = {
 		capabilities = capabilities,
 		on_attach = on_attach,
 		flags = {
-			debounce_text_changes = 500,
+			debounce_text_changes = 200,
 		},
 		-- make the lsp start at cwd instead of git dir
 		root_dir = vim.loop.cwd,

@@ -29,7 +29,7 @@ require("gitsigns").setup({
 		delay = false,
 	},
 	sign_priority = 6,
-	update_debounce = 200,
+	update_debounce = 500,
 	status_formatter = nil, -- Use default
 	word_diff = false,
 })

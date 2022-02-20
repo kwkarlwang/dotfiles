@@ -14,7 +14,7 @@ lsp_installer.on_server_ready(function(server)
 		config.capabilities.textDocument.completion.completionItem.snippetSupport = false
 		config.cmd = {
 			"clangd",
-			"--all-scopes-completion",
+			--"--all-scopes-completion",
 			"--background-index",
 			"--clang-tidy",
 			"--fallback-style=Google",
@@ -22,7 +22,6 @@ lsp_installer.on_server_ready(function(server)
 			"--header-insertion=never",
 			"--completion-style=bundled",
 			"--enable-config",
-			"--header-insertion-decorators",
 		}
 		config.on_attach = function(client, bufnr)
 			require("plugins.lsp.config").on_attach(client, bufnr)

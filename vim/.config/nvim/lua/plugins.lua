@@ -54,6 +54,7 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
+	use({ "kwkarlwang/cmp-nvim-insert-text-lsp", after = "nvim-cmp" })
 	use({ "f3fora/cmp-spell", after = "nvim-cmp" })
 	use({
 		"petertriho/cmp-git",

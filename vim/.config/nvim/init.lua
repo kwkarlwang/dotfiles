@@ -14,8 +14,9 @@ require("settings")
 require("keybindings")
 require("plugins")
 
--- vim.cmd("set rtp+=~/projects/personal/vim-dracula")
--- vim.cmd("colorscheme dracula")
+-- vim.cmd("set rtp+=~/projects/personal/cmp-nvim-insert-text-lsp/")
+-- require("cmp_nvim_insert_text_lsp").setup()
+
 -- require("bufresize").setup({
 -- 	register = {
 -- 		keys = {
@@ -36,4 +37,3 @@ require("plugins")
 -- 	},
 -- })
 -- map("n", "<leader>p", ":lua require('bufresize').debug()<cr>", NS)
--- require("nvim-ts-autotag").setup()
