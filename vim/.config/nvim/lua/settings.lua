@@ -114,14 +114,18 @@ o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.cmd("let &t_ut=''")
 
 --------disable cursor in inactvie pane-----------
-vim.cmd([[
-augroup CursorLine
-  autocmd!
-  autocmd BufEnter,WinEnter * setlocal cursorline
-  autocmd BufLeave,WinLeave * setlocal nocursorline
-  autocmd FileType TelescopePrompt setlocal nocursorline
-augroup END
-]])
+-- local canSetCursorline = true
+
+-- vim.cmd([[
+-- augroup CursorLine
+--   autocmd!
+--   autocmd BufEnter,WinEnter * setlocal cursorline
+--   autocmd BufLeave,WinLeave * setlocal nocursorline
+--   " autocmd FileType TelescopePrompt setlocal nocursorline
+--   " autocmd FileType TelescopePrompt autocmd BufLeave <buffer> echom 'leaving'
+-- augroup END
+-- ]])
+require("plugins.cursorline").setup()
 
 -- for auto-sessions
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winpos,terminal"

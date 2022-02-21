@@ -16,6 +16,7 @@ local colors = {
 
 local feline = require("feline")
 local lsp = require("feline.providers.lsp")
+local U = require("utils")
 
 local components = {
 	active = {},
@@ -45,17 +46,6 @@ table.insert(components.active, {})
 
 table.insert(components.inactive, {})
 table.insert(components.inactive, {})
-
-local split = function(inputstr, sep)
-	if sep == nil then
-		sep = "%s"
-	end
-	local t = {}
-	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
-		table.insert(t, str)
-	end
-	return t
-end
 
 local ins_left = function(component)
 	table.insert(components.active[1], component)
@@ -91,7 +81,7 @@ ins_left({ provider = " " })
 local file_path = {
 	provider = function(winid)
 		local filepath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)), ":~:.")
-		local splitpath = split(filepath, "/")
+		local splitpath = U.split(filepath, "/")
 		splitpath[#splitpath] = ""
 		filepath = table.concat(splitpath, "/")
 		return filepath
