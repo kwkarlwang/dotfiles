@@ -20,3 +20,5 @@ zsh/zsh/plugins
 ignore.lua
 
 __pycache__
+
+ranger/.config/ranger/plugins

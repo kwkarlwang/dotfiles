@@ -70,6 +70,8 @@ M.setup = function()
 			grep_string = {
 				hidden = true,
 			},
+			spell_suggest = {},
+			highlights = {},
 			extensions = {
 				fzf = {
 					fuzzy = true, -- false will only do exact matching
@@ -115,8 +117,10 @@ M.init = function()
 	map("n", "<leader>sp", "<cmd>lua require('telescope.builtin').live_grep()<cr>", NS)
 	map("n", "<leader>gf", "<cmd>Telescope grep_string<cr>", NS)
 	map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", NS)
+	map("n", "<leader>su", "<cmd>Telescope spell_suggest<cr>", NS)
 
 	map("n", "<leader>hh", "<cmd>Telescope help_tags<cr>", NS)
+	map("n", "<leader>hi", "<cmd>Telescope highlights<cr>", NS)
 
 	map("n", "<leader>,", "<cmd>Telescope buffers<cr>", NS)
 
