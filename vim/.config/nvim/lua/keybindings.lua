@@ -20,7 +20,7 @@ map("n", "<leader>fs", ":silent up<cr>", NS)
 map("n", "s", "<nop>", NS)
 -- save all files
 map("n", "sa", ":wa<cr>", NS)
-map("n", "ss", ":silent up<cr>", NS)
+map("n", "ss", "<cmd>lua vim.lsp.buf.formatting_sync(nil, 3000)<cr>:silent up<cr>", NS)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", NS)
