@@ -14,11 +14,10 @@ lsp_installer.on_server_ready(function(server)
 		config.capabilities.textDocument.completion.completionItem.snippetSupport = false
 		config.cmd = {
 			"clangd",
-			--"--all-scopes-completion",
 			"--background-index",
+			"--suggest-missing-includes",
 			"--clang-tidy",
 			"--fallback-style=Google",
-			"--pch-storage=memory",
 			"--header-insertion=never",
 			"--completion-style=bundled",
 			"--enable-config",
