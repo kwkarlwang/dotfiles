@@ -160,7 +160,7 @@ cmp.setup.filetype({ "cpp" }, {
 	},
 })
 
-cmp.setup.filetype({ "gitcommit" }, {
+cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
 	sources = {
 		{ name = "cmp_git" },
 		{ name = "buffer" },
