@@ -14,8 +14,8 @@ require("settings")
 require("keybindings")
 require("plugins")
 
--- vim.cmd("set rtp+=~/projects/personal/cmp-nvim-insert-text-lsp/")
--- require("cmp_nvim_insert_text_lsp").setup()
+--vim.cmd("set rtp+=~/projects/neovim/bufresize.nvim")
+--require("cmp_nvim_insert_text_lsp").setup()
 
 -- require("bufresize").setup({
 -- 	register = {
@@ -34,6 +34,7 @@ require("plugins")
 -- 	resize = {
 -- 		keys = {},
 -- 		trigger_events = { "VimResized" },
+-- 		increment = 5,
 -- 	},
 -- })
--- map("n", "<leader>p", ":lua require('bufresize').debug()<cr>", NS)
+--map("n", "<leader>p", ":lua require('bufresize').debug()<cr>", NS)

@@ -98,48 +98,7 @@ return require("packer").startup(function(use)
 		"numToStr/Comment.nvim",
 		after = "nvim-ts-context-commentstring",
 		config = function()
-			local config = {
-				ignore = "^$",
-				toggler = {
-					line = "cc",
-					block = "cb",
-				},
-				pre_hook = function(ctx)
-					if vim.bo.filetype ~= "typescriptreact" and vim.bo.filetype ~= "javascriptreact" then
-						return
-					end
-					local U = require("Comment.utils")
-					-- Detemine whether to use linewise or blockwise commentstring
-					local type = ctx.ctype == U.ctype.line and "__default" or "__multiline"
-					-- Determine the location where to calculate commentstring from
-					local location = nil
-					if ctx.ctype == U.ctype.block then
-						location = require("ts_context_commentstring.utils").get_cursor_location()
-					elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-						location = require("ts_context_commentstring.utils").get_visual_start_location()
-					end
-
-					return require("ts_context_commentstring.internal").calculate_commentstring({
-						key = type,
-						location = location,
-					})
-				end,
-			}
-			require("Comment").setup(config)
-			config.ignore = nil
-			ToggleLine = function(linewise)
-				local api = require("Comment.api")
-				if linewise == true then
-					api.toggle_linewise_op(nil, config)
-				else
-					api.toggle_blockwise_op(nil, config)
-				end
-				vim.cmd([[execute "normal! =="]])
-			end
-			map("n", "cc", "<cmd>lua ToggleLine(true)<cr>", NS)
-			map("n", "cb", "<cmd>lua ToggleLine(false)<cr>", NS)
-			map("x", "cc", '<esc><cmd>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<cr>', NS)
-			map("x", "cb", '<esc><cmd>lua require("Comment.api").toggle_blockwise_op(vim.fn.visualmode())<cr>', NS)
+			require("plugins.comment")
 		end,
 	})
 	use({
@@ -610,7 +569,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"kwkarlwang/bufresize.nvim",
-		-- disable = true,
+		--disable = true,
 		config = function()
 			require("bufresize").setup({
 				register = {
@@ -626,6 +585,9 @@ return require("packer").startup(function(use)
 						{ "", "<LeftRelease>", "<LeftRelease>", NS },
 						{ "i", "<LeftRelease>", "<LeftRelease><C-o>", NS },
 					},
+				},
+				resize = {
+					increment = 5,
 				},
 			})
 		end,
