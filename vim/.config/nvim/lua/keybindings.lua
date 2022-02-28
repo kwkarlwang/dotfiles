@@ -111,3 +111,21 @@ map("v", "L", "g$", NS)
 
 -- Toggle spell
 map("n", "<leader>ts", ":setlocal spell!<cr>", NS)
+
+-- Go to pair
+map("n", "q", "%", { silent = true })
+map("n", "]q", "]%", { silent = true })
+map("n", "[q", "[%", { silent = true })
+map("x", "q", "%", { silent = true })
+map("x", "aq", "a%", { silent = true })
+map("x", "iq", "i%", { silent = true })
+map("x", "]q", "]%", { silent = true })
+map("x", "[q", "[%", { silent = true })
+map("o", "q", "%", { silent = true })
+map("o", "aq", "a%", { silent = true })
+map("o", "iq", "i%", { silent = true })
+map("o", "]q", "]%", { silent = true })
+map("o", "[q", "[%", { silent = true })
+
+-- Record macro
+map("n", "Q", "q", NS)

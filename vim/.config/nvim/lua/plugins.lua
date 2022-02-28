@@ -402,6 +402,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"jupyter-vim/jupyter-vim",
+		disable = true,
 		commit = "5500d4a6939038160326309c39550b9bf28915f5",
 		ft = "python",
 		cmd = "JupyterConnect",
@@ -668,6 +669,13 @@ return require("packer").startup(function(use)
 		"lewis6991/spellsitter.nvim",
 		config = function()
 			require("spellsitter").setup()
+		end,
+	})
+	-- swap arguments, list elemtns
+	use({
+		"mizlan/iswap.nvim",
+		config = function()
+			map("n", "<leader>is", "<cmd>ISwapWith<cr>", NS)
 		end,
 	})
 end)
