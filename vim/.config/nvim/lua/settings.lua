@@ -85,7 +85,7 @@ vim.cmd([[
      " trigger `autoread` when files changes on disk
       autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
      " notification after file change
-      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | edit | TSBufEnable highlight | echohl None
+      autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]])
 
 --------Terminal-----------
@@ -114,17 +114,6 @@ o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.cmd("let &t_ut=''")
 
 --------disable cursor in inactvie pane-----------
--- local canSetCursorline = true
-
--- vim.cmd([[
--- augroup CursorLine
---   autocmd!
---   autocmd BufEnter,WinEnter * setlocal cursorline
---   autocmd BufLeave,WinLeave * setlocal nocursorline
---   " autocmd FileType TelescopePrompt setlocal nocursorline
---   " autocmd FileType TelescopePrompt autocmd BufLeave <buffer> echom 'leaving'
--- augroup END
--- ]])
 require("plugins.cursorline").setup()
 
 -- for auto-sessions
