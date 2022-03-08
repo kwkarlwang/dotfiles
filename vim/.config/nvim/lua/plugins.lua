@@ -678,4 +678,5 @@ return require("packer").startup(function(use)
 			map("n", "<leader>is", "<cmd>ISwapWith<cr>", NS)
 		end,
 	})
+	use({ "lukas-reineke/lsp-format.nvim" })
 end)
