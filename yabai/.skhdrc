@@ -21,7 +21,7 @@ rshift - s : yabai -m window --focus south || yabai -m display --focus south
 rshift - d : yabai -m window --focus east || yabai -m display --focus east
 
 ## 0x30 is TAB
-# rshift - 0x30 : yabai -m window --focus recent
+lalt - 0x30 : yabai -m window --focus recent
 
 ## swap managed window or move to display
 rshift + lshift - w : yabai -m window --swap north || yabai -m window --display north
@@ -80,6 +80,7 @@ rshift - 6 : yabai -m space --focus 6
 rshift - 7 : yabai -m space --focus 7
 ## 0x31 is SPC
 rshift - 0x31 : yabai -m space --focus recent
+lalt - 0x31 : yabai -m space --focus recent
 
 
 ## send window to desktop and follow focus

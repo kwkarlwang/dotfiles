@@ -20,7 +20,8 @@ map("n", "<leader>fs", ":silent up<cr>", NS)
 map("n", "s", "<nop>", NS)
 -- save all files
 map("n", "sa", ":wa<cr>", NS)
-map("n", "ss", "<cmd>lua vim.lsp.buf.formatting_sync(nil, 3000)<cr>:silent up<cr>", NS)
+-- map("n", "ss", "<cmd>lua vim.lsp.buf.formatting_sync(nil, 3000)<cr>:silent up<cr>", NS)
+map("n", "ss", "<cmd>silent up<cr><cmd>lua require('lsp-format').format()<cr>", NS)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", NS)
@@ -95,8 +96,7 @@ map("n", "``", "<C-^>", NS)
 map("n", "<leader>`", "<C-^>", NS)
 
 -- quit
-map("n", "<leader>qq", ":wa<cr>:qa<cr>", NS)
-map("n", "<leader>qQ", ":qa!<cr>", NS)
+map("n", "<leader>q", ":wa<cr>:qa<cr>", NS)
 
 -- highlight
 map("n", "*", "*Nn", { silent = true })
@@ -111,21 +111,6 @@ map("v", "L", "g$", NS)
 
 -- Toggle spell
 map("n", "<leader>ts", ":setlocal spell!<cr>", NS)
-
--- Go to pair
-map("n", "q", "%", { silent = true })
-map("n", "]q", "]%", { silent = true })
-map("n", "[q", "[%", { silent = true })
-map("x", "q", "%", { silent = true })
-map("x", "aq", "a%", { silent = true })
-map("x", "iq", "i%", { silent = true })
-map("x", "]q", "]%", { silent = true })
-map("x", "[q", "[%", { silent = true })
-map("o", "q", "%", { silent = true })
-map("o", "aq", "a%", { silent = true })
-map("o", "iq", "i%", { silent = true })
-map("o", "]q", "]%", { silent = true })
-map("o", "[q", "[%", { silent = true })
 
 -- Record macro
 map("n", "Q", "q", NS)
