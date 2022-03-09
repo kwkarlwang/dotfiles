@@ -375,6 +375,14 @@ return require("packer").startup(function(use)
 			g.rnvimr_enable_picker = 1
 			g.rnvimr_enable_bw = 1
 			vim.cmd("let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]")
+			-- vim.cmd([[
+			-- 	augroup RnvimrKeybinding
+			-- 		autocmd! RnvimrKeybinding
+			-- 		autocmd Filetype rnvimr tnoremap <buffer> dh dh
+			-- 		autocmd Filetype rnvimr tnoremap <buffer> dk dk
+			-- 		autocmd Filetype rnvimr tnoremap <buffer> <C-s> <C-s>
+			-- 	augroup END
+			-- ]])
 		end,
 	})
 
@@ -614,25 +622,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- mathcup
-	use({
-		"andymass/vim-matchup",
-		config = function()
-			-- Go to pair
-			map("n", "q", "%", { silent = true })
-			map("n", "]q", "]%", { silent = true })
-			map("n", "[q", "[%", { silent = true })
-			map("x", "q", "%", { silent = true })
-			map("x", "aq", "a%", { silent = true })
-			map("x", "iq", "i%", { silent = true })
-			map("x", "]q", "]%", { silent = true })
-			map("x", "[q", "[%", { silent = true })
-			map("o", "q", "%", { silent = true })
-			map("o", "aq", "a%", { silent = true })
-			map("o", "iq", "i%", { silent = true })
-			map("o", "]q", "]%", { silent = true })
-			map("o", "[q", "[%", { silent = true })
-		end,
-	})
+	use({ "andymass/vim-matchup" })
 
 	-- haskell highlghting (tree sitter too slow)
 	use({
