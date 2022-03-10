@@ -710,6 +710,7 @@ return require("packer").startup(function(use)
 	-- dim unused
 	use({
 		"narutoxy/dim.lua",
+		ft = { "typescriptreact", "typescript", "lua", "rust" },
 		config = function()
 			require("dim").setup({
 				disable_lsp_decorations = true,
