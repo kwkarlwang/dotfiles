@@ -4,6 +4,8 @@ local keymap = hs.keycodes.map
 local path = os.getenv("HOME") .. "/dotfiles/hammerspoon/.hammerspoon/"
 hs.pathwatcher.new(path, hs.reload):start()
 
+local browserName = "Brave Browser"
+
 ----------------------------------------------------------------------
 --                          reload config                           --
 ----------------------------------------------------------------------
@@ -118,10 +120,10 @@ local goToWebsite = function(website)
 		return
 	end
 
-	hs.eventtap.keyStroke({ "cmd", "option" }, hs.keycodes.map["b"])
-	hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["l"])
-	hs.eventtap.keyStrokes(website)
-	hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+	hs.eventtap.keyStroke({ "cmd", "option" }, hs.keycodes.map["b"], 5e4, app)
+	hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["l"], 5e4, app)
+	hs.eventtap.keyStrokes(website, app)
+	hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3, app)
 end
 local goToPersonal = function()
 	local url = "https://mail.google.com/mail/u/0/#inbox"
@@ -151,22 +153,41 @@ hs.hotkey.bind({ "cmd", "alt" }, "4", goToCalendar)
 local status_ok, ignore = pcall(require, "ignore")
 if status_ok then
 	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "p", function()
-		hs.application.launchOrFocus("FortiClient")
-		-- wait two second
-		hs.timer.usleep(3e6)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
-		hs.eventtap.keyStrokes(ignore.fortiUsername)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab)
-		hs.eventtap.keyStrokes(ignore.fortiPassword)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
-		hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["q"])
+		local fortiClient = hs.application.open("FortiClient", 3, true)
+		if fortiClient == nil then
+			hs.alert.show("failed to launch")
+			return
+		end
+		hs.timer.usleep(5e5)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStrokes(ignore.fortiUsername, fortiClient)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStrokes(ignore.fortiPassword, fortiClient)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["h"], 5e3, fortiClient)
 	end)
 
 	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "o", function()
-		hs.eventtap.keyStrokes(ignore.gitUsername)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
-		hs.eventtap.keyStrokes(ignore.gitPassword)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+		hs.eventtap.keyStrokes(ignore.gitUsername, 5e3)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3)
+		hs.eventtap.keyStrokes(ignore.gitPassword, 5e3)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3)
 	end)
 end
+----------------------------------------------------------------------
+--                          launch browser                          --
+----------------------------------------------------------------------
+hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "b", function()
+	local browserIsRunning = hs.application.find(browserName) ~= nil
+	if browserIsRunning then
+		hs.osascript.applescript([[tell application "]] .. browserName .. [["
+			make new window
+		end tell]])
+	else
+		hs.application.open(browserName)
+	end
+end)
