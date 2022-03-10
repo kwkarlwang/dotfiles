@@ -35,13 +35,13 @@ end)
 ----------------------------------------------------------------------
 local airpodsId = "ac-1d-06-ac-a7-29"
 local connectAirPods = function()
-	local cmd = "/usr/local/bin/blueutil --connect " .. airpodsId
-	hs.execute(cmd, false)
+	local cmd = "blueutil --connect " .. airpodsId
+	hs.execute(cmd, true)
 end
 
 local disconnectAirPods = function()
-	local cmd = "/usr/local/bin/blueutil --disconnect " .. airpodsId
-	hs.execute(cmd, false)
+	local cmd = "blueutil --disconnect " .. airpodsId
+	hs.execute(cmd, true)
 end
 local toggleAirPods = function()
 	local device = hs.audiodevice.defaultOutputDevice()

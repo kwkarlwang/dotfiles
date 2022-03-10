@@ -189,7 +189,11 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 # For HomeBrew
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/anaconda3/bin:$PATH"
+if [[ $(uname -p) == 'arm' ]]; then
+  export PATH="/opt/anaconda3/bin:$PATH"
+else
+  export PATH="$HOME/anaconda3/bin:$PATH"
+fi
 export VISUAL="nvim"
 export EDITOR="nvim"
 
