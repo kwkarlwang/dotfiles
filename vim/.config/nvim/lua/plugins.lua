@@ -707,4 +707,14 @@ return require("packer").startup(function(use)
 			"MunifTanjim/nui.nvim",
 		},
 	})
+	-- dim unused
+	use({
+		"narutoxy/dim.lua",
+		config = function()
+			require("dim").setup({
+				disable_lsp_decorations = true,
+				change_in_insert = true,
+			})
+		end,
+	})
 end)
