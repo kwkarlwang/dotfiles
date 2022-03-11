@@ -718,4 +718,12 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+	-- search and replace
+	use({
+		"nvim-pack/nvim-spectre",
+		config = function()
+			require("spectre").setup()
+			map("n", "<leader>S", "<cmd>lua require('spectre').open()<cr>")
+		end,
+	})
 end)
