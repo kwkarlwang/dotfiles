@@ -12,6 +12,6 @@ require("toggleterm").setup({
 	start_in_insert = false,
 	insert_mappings = false, -- whether or not the open mapping applies in insert mode
 	persist_size = false,
-	direction = "horizontal",
+	direction = "float",
 	close_on_exit = false, -- close the terminal window when the process exits
 })

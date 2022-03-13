@@ -277,10 +277,8 @@ return require("packer").startup(function(use)
 					return false
 				end
 				local command = "ToggleTerm"
-				if direction == "horizontal" then
-					command = command .. " direction=horizontal"
-				elseif direction == "vertical" then
-					command = command .. " direction=vertical"
+				if direction ~= nil then
+					command = command .. " direction=" .. direction
 				end
 				if isOpen() then
 					require("bufresize").block_register()
@@ -296,6 +294,7 @@ return require("packer").startup(function(use)
 			map("n", "<C-s>", ":lua ToggleTerm()<cr>", NS)
 			map("n", "<leader>ot", [[:lua ToggleTerm("horizontal")<cr>]], NS)
 			map("n", "<leader>ol", [[:lua ToggleTerm("vertical")<cr>]], NS)
+			map("n", "<leader>of", [[:lua ToggleTerm("float")<cr>]], NS)
 			map("i", "<C-s>", "<esc>:lua ToggleTerm()<cr>", NS)
 			map("t", "<C-s>", "<C-\\><C-n>:lua ToggleTerm()<cr>", NS)
 		end,
@@ -710,6 +709,7 @@ return require("packer").startup(function(use)
 	-- dim unused
 	use({
 		"narutoxy/dim.lua",
+		disable = true,
 		ft = { "typescriptreact", "typescript", "lua", "rust" },
 		config = function()
 			require("dim").setup({
