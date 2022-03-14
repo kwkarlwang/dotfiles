@@ -14,4 +14,8 @@ require("toggleterm").setup({
 	persist_size = false,
 	direction = "float",
 	close_on_exit = false, -- close the terminal window when the process exits
+	float_opts = {
+		width = 1e6,
+		height = 1e6,
+	},
 })
