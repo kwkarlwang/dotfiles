@@ -176,8 +176,7 @@ return require("packer").startup(function(use)
 		config = function()
 			local Rule = require("nvim-autopairs.rule")
 			local npairs = require("nvim-autopairs")
-			-- local ignored_next_char = string.gsub([[ [%w%%%%[%%.] ]], "%s+", "")
-			local ignored_next_char = "[%w%.]"
+			local ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]], "%s+", "")
 			npairs.setup({
 				disable_filetype = { "TelescopePrompt" },
 				ignored_next_char = ignored_next_char,

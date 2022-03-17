@@ -21,7 +21,7 @@ rshift - s : yabai -m window --focus south || yabai -m display --focus south
 rshift - d : yabai -m window --focus east || yabai -m display --focus east
 
 ## 0x30 is TAB
-lalt - 0x30 : yabai -m window --focus recent
+ctrl - 0x31 : yabai -m window --focus recent
 
 ## swap managed window or move to display
 rshift + lshift - w : yabai -m window --swap north || yabai -m window --display north
