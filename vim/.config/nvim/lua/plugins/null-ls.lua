@@ -36,25 +36,6 @@ local systemverilogfmt = h.make_builtin({
 	factory = h.formatter_factory,
 })
 
-local protofmt = h.make_builtin({
-	method = FORMATTING,
-	filetypes = { "proto" },
-	generator_opts = {
-		command = "protolint",
-		args = {
-			"-fix",
-			"$FILENAME",
-		},
-		to_stdin = false,
-		to_temp_file = false,
-		ignore_stderr = true,
-	},
-	factory = h.generator_factory,
-	on_output = function()
-		vim.cmd("edit")
-	end,
-})
-
 local builtins = null_ls.builtins
 local sources = {
 	----------------------------------------------------------------------
@@ -75,7 +56,6 @@ local sources = {
 	----------------------------------------------------------------------
 	--                               c++                                --
 	----------------------------------------------------------------------
-	-- builtins.formatting.clang_format,
 	builtins.formatting.cmake_format,
 	----------------------------------------------------------------------
 	--                            typescript                            --
@@ -91,7 +71,9 @@ local sources = {
 	----------------------------------------------------------------------
 	--                              proto                               --
 	----------------------------------------------------------------------
-	protofmt,
+	builtins.formatting.clang_format.with({
+		filetypes = { "proto" },
+	}),
 	builtins.diagnostics.protolint,
 	----------------------------------------------------------------------
 	--                              other                               --
