@@ -724,5 +724,5 @@ return require("packer").startup(function(use)
 		end,
 	})
 	-- protobuf highlighting
-	use({ "uarun/vim-protobuf" })
+	use({ "wfxr/protobuf.vim" })
 end)
