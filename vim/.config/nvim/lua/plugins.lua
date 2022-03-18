@@ -723,4 +723,6 @@ return require("packer").startup(function(use)
 			map("n", "<leader>S", "<cmd>lua require('spectre').open()<cr>", NS)
 		end,
 	})
+	-- protobuf highlighting
+	use({ "uarun/vim-protobuf" })
 end)
