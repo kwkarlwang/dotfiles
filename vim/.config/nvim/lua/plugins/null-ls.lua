@@ -70,6 +70,11 @@ local sources = {
 	-- builtins.formatting.stylelint,
 	-- builtins.diagnostics.stylelint,
 	----------------------------------------------------------------------
+	--                              proto                               --
+	----------------------------------------------------------------------
+	builtins.formatting.protolint,
+	builtins.diagnostics.protolint,
+	----------------------------------------------------------------------
 	--                              other                               --
 	----------------------------------------------------------------------
 	haskellfmt,
