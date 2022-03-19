@@ -183,6 +183,7 @@ return require("packer").startup(function(use)
 				map_c_w = true,
 			})
 			npairs.add_rule(Rule("f'", "'", "python"))
+			npairs.add_rule(Rule("%w<", ">", "cpp"):use_regex(true))
 		end,
 	})
 
