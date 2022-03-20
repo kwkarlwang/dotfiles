@@ -298,7 +298,7 @@ return require("packer").startup(function(use)
 			map("n", "<leader>ot", [[:lua ToggleTerm("horizontal")<cr>]], NS)
 			map("n", "<leader>ol", [[:lua ToggleTerm("vertical")<cr>]], NS)
 			map("n", "<leader>of", [[:lua ToggleTerm("float")<cr>]], NS)
-			map("i", "<C-s>", "<esc>:lua ToggleTerm()<cr>", NS)
+			map("i", "<C-s>", "<C-o>:lua ToggleTerm()<cr>", NS)
 			map("t", "<C-s>", "<C-\\><C-n>:lua ToggleTerm()<cr>", NS)
 		end,
 		config = function()

@@ -114,3 +114,7 @@ map("n", "<leader>ts", ":setlocal spell!<cr>", NS)
 
 -- Record macro
 map("n", "Q", "q", NS)
+
+-- Add ; to end of the line
+map("n", "<C-;>", "m`A;<esc>``", NS)
+map("i", "<C-;>", "<C-o>m`<C-o>A;<C-o>``", NS)
