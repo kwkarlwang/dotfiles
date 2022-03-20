@@ -176,6 +176,7 @@ return require("packer").startup(function(use)
 		config = function()
 			local Rule = require("nvim-autopairs.rule")
 			local npairs = require("nvim-autopairs")
+			local cond = require("nvim-autopairs.conds")
 			local ignored_next_char = string.gsub([[ [%w%%%[%.] ]], "%s+", "")
 			npairs.setup({
 				disable_filetype = { "TelescopePrompt" },
@@ -183,7 +184,9 @@ return require("packer").startup(function(use)
 				map_c_w = true,
 			})
 			npairs.add_rule(Rule("f'", "'", "python"))
-			npairs.add_rule(Rule("%w<", ">", "cpp"):use_regex(true))
+			npairs.add_rule(
+				Rule("<", ">", "cpp"):with_pair(cond.before_regex("%w")):with_pair(cond.not_after_text(">"))
+			)
 		end,
 	})
 
