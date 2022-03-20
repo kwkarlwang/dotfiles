@@ -255,7 +255,13 @@ return require("packer").startup(function(use)
 	use({
 		"sindrets/diffview.nvim",
 		config = function()
-			require("diffview").setup()
+			require("diffview").setup({
+				hooks = {
+					diff_buf_read = function()
+						vim.cmd([[set nocursorline]])
+					end,
+				},
+			})
 		end,
 	})
 
@@ -687,6 +693,7 @@ return require("packer").startup(function(use)
 	use({
 		"mizlan/iswap.nvim",
 		config = function()
+			require("iswap").setup({ autoswap = true })
 			map("n", "<leader>is", "<cmd>ISwapWith<cr>", NS)
 		end,
 	})
