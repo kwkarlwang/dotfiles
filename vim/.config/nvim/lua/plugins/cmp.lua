@@ -74,7 +74,8 @@ cmp.setup({
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-q>"] = cmp.config.disable,
-		["<C-e>"] = mapping.abort(),
+		["<C-e>"] = cmp.config.disable,
+		["<C-c>"] = mapping.abort(),
 		["<CR>"] = mapping({
 			i = cmp.mapping.confirm({
 				behavior = cmp.ConfirmBehavior.Insert,
