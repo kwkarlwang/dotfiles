@@ -117,4 +117,8 @@ map("n", "Q", "q", NS)
 
 -- Add ; to end of the line
 map("n", "<C-;>", "m`A;<esc>``", NS)
-map("i", "<C-;>", "<C-o>m`<C-o>A;<C-o>``", NS)
+map("i", "<C-;>", "<C-o>m`<C-o>A;<esc>``", NS)
+
+-- begin and end of line in insert mode
+map("i", "<C-a>", "<C-o>I")
+map("i", "<C-e>", "<C-o>A")
