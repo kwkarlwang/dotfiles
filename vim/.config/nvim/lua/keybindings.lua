@@ -106,8 +106,8 @@ map("n", "gf", "*N", { silent = true })
 -- Move to first and end
 map("n", "H", "g^", NS)
 map("n", "L", "g$", NS)
-map("v", "H", "g^", NS)
-map("v", "L", "g$", NS)
+map("x", "H", "g^", NS)
+map("x", "L", "g$", NS)
 
 -- Toggle spell
 map("n", "<leader>ts", ":setlocal spell!<cr>", NS)
