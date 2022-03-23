@@ -172,10 +172,10 @@ if status_ok then
 	end)
 
 	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "o", function()
-		hs.eventtap.keyStrokes(ignore.gitUsername, 5e3)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3)
-		hs.eventtap.keyStrokes(ignore.gitPassword, 5e3)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3)
+		hs.eventtap.keyStrokes(ignore.gitUsername)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+		hs.eventtap.keyStrokes(ignore.gitPassword)
+		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
 	end)
 end
 ----------------------------------------------------------------------

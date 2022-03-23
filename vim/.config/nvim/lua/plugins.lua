@@ -185,7 +185,10 @@ return require("packer").startup(function(use)
 			})
 			npairs.add_rule(Rule("f'", "'", "python"))
 			npairs.add_rule(
-				Rule("<", ">", "cpp"):with_pair(cond.before_regex("%w")):with_pair(cond.not_after_text(">"))
+				Rule("<", ">", "cpp")
+					:with_pair(cond.before_regex("%w"))
+					:with_pair(cond.not_after_text(">"))
+					:with_pair(cond.not_after_regex("%w"))
 			)
 		end,
 	})

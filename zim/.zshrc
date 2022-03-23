@@ -196,6 +196,9 @@ else
 fi
 export VISUAL="nvim"
 export EDITOR="nvim"
+if [ -f "$HOME/.zshrc.other" ]; then
+  source $HOME/.zshrc.other
+fi
 
 # Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>
