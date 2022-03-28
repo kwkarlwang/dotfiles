@@ -573,7 +573,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"kwkarlwang/bufresize.nvim",
-		--disable = true,
+		-- disable = true,
 		config = function()
 			require("bufresize").setup({
 				register = {
@@ -648,7 +648,6 @@ return require("packer").startup(function(use)
 	-- haskell highlghting (tree sitter too slow)
 	use({
 		"neovimhaskell/haskell-vim",
-		-- disable = true,
 		config = function()
 			g.haskell_enable_quantification = 0
 			g.haskell_enable_recursivedo = 0
