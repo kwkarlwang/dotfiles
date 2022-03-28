@@ -122,3 +122,6 @@ map("i", "<C-;>", "<C-o>m`<C-o>A;<esc>``", NS)
 -- begin and end of line in insert mode
 map("i", "<C-a>", "<C-o>I", NS)
 map("i", "<C-e>", "<C-o>A", NS)
+
+--
+map("n", "<leader>hg", [[:echo synIDattr(synID(line("."), col("."), 1), "name")<cr>]], {})
