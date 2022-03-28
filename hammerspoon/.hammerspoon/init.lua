@@ -120,10 +120,10 @@ local goToWebsite = function(website)
 		return
 	end
 
-	hs.eventtap.keyStroke({ "cmd", "option" }, hs.keycodes.map["b"], 2e5, app)
-	hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["l"], 2e5, app)
+	hs.eventtap.keyStroke({ "cmd", "option" }, "b", 2e5, app)
+	hs.eventtap.keyStroke({ "cmd" }, "l", 2e5, app)
 	hs.eventtap.keyStrokes(website, app)
-	hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 2e5, app)
+	hs.eventtap.keyStroke({}, keymap["return"], 2e5, app)
 end
 local goToPersonal = function()
 	local url = "https://mail.google.com/mail/u/0/#inbox"
@@ -159,23 +159,23 @@ if status_ok then
 			return
 		end
 		hs.timer.usleep(5e5)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap.tab, 5e3, fortiClient)
 		hs.eventtap.keyStrokes(ignore.fortiUsername, fortiClient)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap.tab, 5e3, fortiClient)
 		hs.eventtap.keyStrokes(ignore.fortiPassword, fortiClient)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"], 5e3, fortiClient)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
-		hs.eventtap.keyStroke({}, hs.keycodes.map.tab, 5e3, fortiClient)
-		hs.eventtap.keyStroke({ "cmd" }, hs.keycodes.map["h"], 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap["return"], 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({}, keymap.tab, 5e3, fortiClient)
+		hs.eventtap.keyStroke({ "cmd" }, "h", 5e3, fortiClient)
 	end)
 
 	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "o", function()
 		hs.eventtap.keyStrokes(ignore.gitUsername)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+		hs.eventtap.keyStroke({}, keymap["return"])
 		hs.eventtap.keyStrokes(ignore.gitPassword)
-		hs.eventtap.keyStroke({}, hs.keycodes.map["return"])
+		hs.eventtap.keyStroke({}, keymap["return"])
 	end)
 end
 ----------------------------------------------------------------------
@@ -191,3 +191,31 @@ hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "b", function()
 		hs.application.open(browserName)
 	end
 end)
+----------------------------------------------------------------------
+--                            remap keys                            --
+----------------------------------------------------------------------
+local enableHotkeyForApps = function(appNames, hotkeys)
+	local filter = hs.window.filter.new(appNames)
+	filter:subscribe(hs.window.filter.windowFocused, function()
+		for _, hotkey in pairs(hotkeys) do
+			hotkey:enable()
+		end
+	end)
+	filter:subscribe(hs.window.filter.windowUnfocused, function()
+		for _, hotkey in pairs(hotkeys) do
+			hotkey:disable()
+		end
+	end)
+end
+local goRight = function()
+	hs.eventtap.keyStroke({}, "Right", 1)
+end
+local goRightHotkey = hs.hotkey.new({ "ctrl" }, "s", goRight, nil, goRight)
+local goLeft = function()
+	hs.eventtap.keyStroke({}, "Left", 1)
+end
+local goLeftHotkey = hs.hotkey.new({ "ctrl" }, "a", goLeft, nil, goLeft)
+local leftClickHotkey = hs.hotkey.new({ "ctrl" }, "f", function()
+	hs.eventtap.leftClick(hs.mouse.absolutePosition())
+end)
+enableHotkeyForApps({ browserName }, { goRightHotkey, goLeftHotkey, leftClickHotkey })
