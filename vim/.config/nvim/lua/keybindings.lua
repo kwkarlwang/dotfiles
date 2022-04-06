@@ -1,8 +1,6 @@
 --------Mappings-----------
 map("n", "j", "gj", NS)
 map("n", "k", "gk", NS)
-map("n", "0", "g0", NS)
-map("n", "$", "g$", NS)
 map("n", "<Esc>", ":noh<cr>:echo ''<cr>", NS)
 map("v", "<", "<gv", NS)
 map("v", ">", ">gv", NS)

@@ -738,4 +738,5 @@ return require("packer").startup(function(use)
 	})
 	-- protobuf highlighting
 	use({ "wfxr/protobuf.vim" })
+	use({ "MTDL9/vim-log-highlighting" })
 end)
