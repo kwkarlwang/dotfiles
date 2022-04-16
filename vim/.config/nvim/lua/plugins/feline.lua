@@ -79,14 +79,15 @@ ins_left(block)
 ins_left({ provider = " " })
 
 local file_path = {
-	provider = function(winid)
-		local filepath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)), ":~:.")
+	provider = function()
+		local filepath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
 		local splitpath = U.split(filepath, "/")
 		splitpath[#splitpath] = ""
 		filepath = table.concat(splitpath, "/")
 		return filepath
 	end,
 	hl = function(winid)
+		winid = winid or 0
 		local bufnr = api.nvim_win_get_buf(winid)
 		local res = { fg = colors.yellow, bg = colors.bgdark, style = "bold" }
 		if vim.bo[bufnr].modifiable and vim.bo[bufnr].modified then
@@ -98,10 +99,11 @@ local file_path = {
 ins_left(file_path)
 
 local file_name = {
-	provider = function(winid)
-		return fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)), ":t")
+	provider = function()
+		return fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
 	end,
 	hl = function(winid)
+		winid = winid or 0
 		local bufnr = api.nvim_win_get_buf(winid)
 		local res = { fg = colors.fg, bg = colors.bgdark, style = "bold" }
 		if vim.bo[bufnr].modifiable and vim.bo[bufnr].modified then
@@ -244,10 +246,11 @@ local disable = {
 		"fugitiveblame",
 		"qf",
 		"help",
+		"TelescopePrompt",
 	},
 	buftypes = {
 		"terminal",
-		"TelescopePrompt",
+		"prompt",
 	},
 	bufnames = {},
 }

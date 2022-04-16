@@ -130,3 +130,6 @@ augroup END
 
 -- slash diff instead of '-'
 o.fillchars:append("diff:╱")
+
+-- global status line
+o.laststatus=3
