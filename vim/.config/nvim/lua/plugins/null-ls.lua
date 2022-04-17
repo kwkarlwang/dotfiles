@@ -72,7 +72,7 @@ local sources = {
 	--                              proto                               --
 	----------------------------------------------------------------------
 	builtins.formatting.clang_format.with({
-		filetypes = { "proto" },
+		filetypes = { "proto", "java" },
 	}),
 	builtins.diagnostics.protolint,
 	----------------------------------------------------------------------

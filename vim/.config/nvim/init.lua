@@ -14,6 +14,7 @@ pcall(require, "impatient")
 require("settings")
 require("keybindings")
 require("plugins")
+-- vim.lsp.set_log_level("debug")
 
 -- vim.cmd("set rtp+=~/projects/neovim/nvim-jupyter")
 -- require("nvim-jupyter").setup()
