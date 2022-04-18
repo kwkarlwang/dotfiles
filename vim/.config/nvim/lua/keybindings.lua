@@ -123,6 +123,3 @@ map("i", "<C-e>", "<C-o>A", NS)
 
 -- get highlight under cursor
 map("n", "<leader>hg", [[:echo synIDattr(synID(line("."), col("."), 1), "name")<cr>]], {})
-
--- get highlight under cursor
-map("n", "J", "gJ", NS)

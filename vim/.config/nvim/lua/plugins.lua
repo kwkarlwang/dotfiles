@@ -185,7 +185,7 @@ return require("packer").startup(function(use)
 			})
 			npairs.add_rule(Rule("'", "'", "python"):with_pair(cond.after_text("f")))
 			npairs.add_rule(
-				Rule("<", ">", "cpp")
+				Rule("<", ">", { "cpp", "java" })
 					:with_pair(cond.not_after_regex("%w"))
 					:with_pair(cond.before_regex("%w"))
 					:with_pair(cond.not_after_text(">"))
@@ -703,6 +703,7 @@ return require("packer").startup(function(use)
 	-- format async
 	use({
 		"lukas-reineke/lsp-format.nvim",
+		commit = "84e117b99bb2bc0d0c8122e2b256046f046f8aff",
 		config = function()
 			require("lsp-format").setup({})
 		end,
@@ -717,16 +718,6 @@ return require("packer").startup(function(use)
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		},
-	})
-	-- dim unused
-	use({
-		"narutoxy/dim.lua",
-		disable = true,
-		config = function()
-			require("dim").setup({
-				disable_lsp_decorations = true,
-			})
-		end,
 	})
 	-- search and replace
 	use({
