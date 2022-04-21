@@ -4,7 +4,7 @@ if not present then
 end
 
 luasnip.config.set_config({
-	history = true,
-	updateevents = "TextChanged,TextChangedI",
+	history = false,
+	-- update_events = "TextChanged,TextChangedI",
 })
 require("luasnip.loaders.from_vscode").lazy_load()

@@ -38,8 +38,8 @@ local icons = {
 local super_tab = function(fallback)
 	if cmp.visible() then
 		cmp.select_next_item()
-		-- elseif luasnip.expand_or_jumpable() then
-		-- 	luasnip.expand_or_jump()
+	elseif luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
 		-- elseif has_words_before() then
 		-- 	cmp.complete()
 	else
@@ -51,9 +51,6 @@ cmp.setup({
 		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
 	end,
 	completion = {
-		autocomplete = {
-			types.cmp.TriggerEvent.TextChanged,
-		},
 		completeopt = "menu,menuone,noinsert",
 		keyword_length = 1,
 	},
@@ -78,7 +75,7 @@ cmp.setup({
 		["<C-c>"] = mapping.abort(),
 		["<CR>"] = mapping({
 			i = cmp.mapping.confirm({
-				behavior = cmp.ConfirmBehavior.Insert,
+				behavior = cmp.ConfirmBehavior.Replace,
 				select = false,
 			}),
 		}),
