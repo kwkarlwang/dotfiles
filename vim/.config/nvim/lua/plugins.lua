@@ -355,16 +355,6 @@ return require("packer").startup(function(use)
 			]])
 		end,
 	})
-	-- leetcode
-	use({
-		"ianding1/leetcode.vim",
-		cmd = { "LeetCodeList", "LeetCodeSignIn", "LeetCodeSubmit", "LeetCodeTest" },
-		config = function()
-			g.leetcode_browser = "chrome"
-			g.leetcode_hide_paid_only = 1
-			g.leetcode_solution_filetype = "python3"
-		end,
-	})
 
 	-- automatic adjust indentation
 	use({
