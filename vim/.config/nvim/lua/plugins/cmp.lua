@@ -75,7 +75,7 @@ cmp.setup({
 		["<C-c>"] = mapping.abort(),
 		["<CR>"] = mapping({
 			i = cmp.mapping.confirm({
-				behavior = cmp.ConfirmBehavior.Replace,
+				behavior = cmp.ConfirmBehavior.Insert,
 				select = false,
 			}),
 		}),

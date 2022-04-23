@@ -665,13 +665,13 @@ return require("packer").startup(function(use)
 	use({ "wellle/targets.vim" })
 
 	-- vscode like rename
-	use({
-		"filipdutescu/renamer.nvim",
-		config = function()
-			require("renamer").setup()
-			map("n", "<leader>cr", "<cmd>lua require('renamer').rename()<cr>", NS)
-		end,
-	})
+	-- use({
+	-- 	"filipdutescu/renamer.nvim",
+	-- 	config = function()
+	-- 		require("renamer").setup()
+	-- 		map("n", "<leader>cr", "<cmd>lua require('renamer').rename()<cr>", NS)
+	-- 	end,
+	-- })
 
 	-- yank over ssh
 	use({
