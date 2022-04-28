@@ -21,7 +21,7 @@ M.setup = function()
 					["<C-c>"] = false,
 				},
 			},
-			file_ignore_patterns = { "node_modules/", ".git/", ".gitmodules/", "cache", "__pycache__/", ".gradle" },
+			file_ignore_patterns = { "node_modules/", ".git/", ".gitmodules/", "cache", "__pycache__/", ".gradle/" },
 			layout_strategy = "horizontal",
 			sorting_strategy = "ascending",
 			layout_config = {
