@@ -654,15 +654,6 @@ return require("packer").startup(function(use)
 	-- extend text objects
 	use({ "wellle/targets.vim" })
 
-	-- vscode like rename
-	-- use({
-	-- 	"filipdutescu/renamer.nvim",
-	-- 	config = function()
-	-- 		require("renamer").setup()
-	-- 		map("n", "<leader>cr", "<cmd>lua require('renamer').rename()<cr>", NS)
-	-- 	end,
-	-- })
-
 	-- yank over ssh
 	use({
 		"ojroques/vim-oscyank",
@@ -720,4 +711,7 @@ return require("packer").startup(function(use)
 	-- protobuf highlighting
 	use({ "wfxr/protobuf.vim" })
 	use({ "MTDL9/vim-log-highlighting" })
+
+	-- ui library
+	use({ "stevearc/dressing.nvim" })
 end)
