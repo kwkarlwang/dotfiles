@@ -1,6 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
-
-lsp_installer.on_server_ready(function(server)
+local lsp_config = require("lspconfig")
+for _, server in ipairs(lsp_installer.get_installed_servers()) do
 	local config = require("plugins.lsp.config").config()
 	if server.name == "sumneko_lua" then
 		config.settings.Lua = {
@@ -36,6 +36,7 @@ lsp_installer.on_server_ready(function(server)
 			bufmap("n", "go", ":lua require('nvim-lsp-installer.extras.tsserver').organize_imports()<CR>", NS)
 		end
 	end
-	server:setup(config)
-	vim.cmd([[ do User LspAttachBuffers ]])
-end)
+	lsp_config[server.name].setup(config)
+end
+local config = require("plugins.lsp.config").config()
+lsp_config.hls.setup(config)
