@@ -113,23 +113,23 @@ M.init = function()
 			.. "})<cr>",
 		NS
 	)
-	map("n", "<leader>fp", "<cmd>Telescope find_files search_dirs=~/.config/nvim<cr>", NS)
+	map("n", "<leader>fp", [[<cmd>lua require('telescope.builtin').find_files({cwd="~/.config/nvim"})<cr>]], NS)
 
 	map("n", "<leader>sp", "<cmd>lua require('telescope.builtin').live_grep()<cr>", NS)
-	map("n", "<leader>gf", "<cmd>Telescope grep_string<cr>", NS)
-	map("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>", NS)
-	map("n", "<leader>su", "<cmd>Telescope spell_suggest<cr>", NS)
+	map("n", "<leader>gf", "<cmd>lua require('telescope.builtin').grep_string()<cr>", NS)
+	map("n", "<leader>ss", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", NS)
+	map("n", "<leader>su", "<cmd>lua require('telescope.builtin').spell_suggest()<cr>", NS)
 
-	map("n", "<leader>hh", "<cmd>Telescope help_tags<cr>", NS)
-	map("n", "<leader>hi", "<cmd>Telescope highlights<cr>", NS)
-	map("n", "<leader>km", "<cmd>Telescope keymaps<cr>", NS)
+	map("n", "<leader>hh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", NS)
+	map("n", "<leader>hi", "<cmd>lua require('telescope.builtin').highlights()<cr>", NS)
+	map("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<cr>", NS)
 
-	map("n", "<leader>,", "<cmd>Telescope buffers<cr>", NS)
+	map("n", "<leader>,", "<cmd>lua require('telescope.builtin').buffers()<cr>", NS)
 
-	map("n", "<M-x>", "<cmd>Telescope commands<cr>", NS)
-	map("n", "<leader>:", "<cmd>Telescope commands<cr>", NS)
+	map("n", "<M-x>", "<cmd>lua require('telescope.builtin').commands()<cr>", NS)
+	map("n", "<leader>:", "<cmd>lua require('telescope.builtin').commands()<cr>", NS)
 	map("n", "<leader>fr", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", NS)
 
-	map("n", "<leader>v", "<cmd>Telescope registers<cr>", NS)
+	map("n", "<leader>v", "<cmd>lua require('telescope.builtin').registers()<cr>", NS)
 end
 return M
