@@ -133,3 +133,6 @@ o.fillchars:append("diff:╱")
 
 -- global status line
 o.laststatus=3
+
+-- shiftwidth default to 2
+o.shiftwidth=2
