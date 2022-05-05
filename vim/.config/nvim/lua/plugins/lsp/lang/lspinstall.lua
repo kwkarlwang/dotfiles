@@ -38,5 +38,5 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
 	end
 	lsp_config[server.name].setup(config)
 end
-local config = require("plugins.lsp.config").config()
-lsp_config.hls.setup(config)
+-- local config = require("plugins.lsp.config").config()
+-- lsp_config.hls.setup(config)
