@@ -22,3 +22,5 @@ ignore.lua
 __pycache__
 
 ranger/.config/ranger/plugins
+
+.zshrc.other
