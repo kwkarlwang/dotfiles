@@ -1,0 +1,8 @@
+{
+  "overrides": [
+    {
+      "files": "*.launch",
+      "options": { "parser": "html" }
+    }
+  ]
+}

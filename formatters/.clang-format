@@ -1,0 +1,24 @@
+# clang-format -i --style=file <file>
+# find . -iname '*.cpp' -o -iname '*.h' -o -iname '*.h.in' | xargs clang-format -i --style=file
+
+# For VS code user of remote development
+# find . -iname '*.cpp' -o -iname '*.h' -o -iname '*.h.in' | xargs ~/.vscode-server/extensions/ms-vscode.cpptools-1.*/LLVM/bin/clang-format -i --style=file
+
+# For VS code user of local development
+# find . -iname '*.cpp' -o -iname '*.h' -o -iname '*.h.in' | xargs ~/.vscode/extensions/ms-vscode.cpptools-1.*/LLVM/bin/clang-format -i --style=file
+
+---
+BasedOnStyle: Google
+ColumnLimit: 100
+
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Empty
+CompactNamespaces: false
+DerivePointerAlignment: false
+PointerAlignment: Left
+SortIncludes: false
+
+...
