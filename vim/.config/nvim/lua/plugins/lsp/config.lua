@@ -17,6 +17,7 @@ local on_attach = function(client, bufnr)
 	bufmap("n", "<leader>ls", "<cmd>lua require('telescope.builtin').lsp_document_symbols<cr>", NS)
 	bufmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<cr>", NS)
 	bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", NS)
+	bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>", NS)
 
 	client.resolved_capabilities.document_formatting = false
 	client.resolved_capabilities.document_range_formatting = false
