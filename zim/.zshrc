@@ -135,6 +135,7 @@ if [ "$TERM" = "xterm-kitty" ]; then
 fi
 alias icat="kitty +kitten icat"
 alias dot="cd ~/dotfiles"
+alias lc="cd ~/leetcode"
 alias lg="lazygit"
 # use exa if available
 if (( $+commands[exa])); then

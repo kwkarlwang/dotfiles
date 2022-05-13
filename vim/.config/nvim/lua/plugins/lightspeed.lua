@@ -10,8 +10,10 @@ require("lightspeed").setup({
 	exit_after_idle_msecs = { labeled = nil, unlabeled = nil },
 })
 
-map("", [[']], "<Plug>Lightspeed_s", {})
-map("", [["]], "<Plug>Lightspeed_S", {})
+map("n", [[']], "<Plug>Lightspeed_s", {})
+map("n", [["]], "<Plug>Lightspeed_S", {})
+map("v", [[']], "<Plug>Lightspeed_s", {})
+map("v", [["]], "<Plug>Lightspeed_S", {})
 -- cmd [[unmap s]]
 vim.cmd([[nunmap S]])
 vim.cmd([[
