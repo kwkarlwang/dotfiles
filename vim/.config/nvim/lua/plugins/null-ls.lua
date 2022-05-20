@@ -69,6 +69,11 @@ local sources = {
 	-- builtins.formatting.stylelint,
 	-- builtins.diagnostics.stylelint,
 	----------------------------------------------------------------------
+	--                                go                                --
+	----------------------------------------------------------------------
+	builtins.formatting.gofmt,
+	builtins.formatting.goimports,
+	----------------------------------------------------------------------
 	--                              proto                               --
 	----------------------------------------------------------------------
 	builtins.formatting.clang_format.with({

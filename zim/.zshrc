@@ -195,6 +195,9 @@ if [[ $(uname -p) == 'arm' ]]; then
 else
   export PATH="$HOME/anaconda3/bin:$PATH"
 fi
+# go path
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 export VISUAL="nvim"
 export EDITOR="nvim"
 if [ -f "$HOME/.zshrc.other" ]; then
