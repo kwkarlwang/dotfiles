@@ -358,12 +358,13 @@ return require("packer").startup(function(use)
 	})
 
 	-- automatic adjust indentation
-	use({
-		"editorconfig/editorconfig-vim",
-		config = function()
-			g.EditorConfig_exclude_patterns = { "fugitive://.*" }
-		end,
-	})
+	-- use({
+	-- 	"editorconfig/editorconfig-vim",
+	-- 	config = function()
+	-- 		g.EditorConfig_exclude_patterns = { "fugitive://.*" }
+	-- 	end,
+	-- })
+	use({ "gpanders/editorconfig.nvim" })
 
 	-- ranger
 	use({

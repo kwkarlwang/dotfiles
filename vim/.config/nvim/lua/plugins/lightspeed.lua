@@ -12,8 +12,8 @@ require("lightspeed").setup({
 
 map("n", [[']], "<Plug>Lightspeed_s", {})
 map("n", [["]], "<Plug>Lightspeed_S", {})
-map("v", [[']], "<Plug>Lightspeed_s", {})
-map("v", [["]], "<Plug>Lightspeed_S", {})
+map("x", [[']], "<Plug>Lightspeed_s", {})
+map("x", [["]], "<Plug>Lightspeed_S", {})
 -- cmd [[unmap s]]
 vim.cmd([[nunmap S]])
 vim.cmd([[
