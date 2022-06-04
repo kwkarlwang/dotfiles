@@ -16,13 +16,15 @@ local lambda = require("luasnip.extras").l
 ls.add_snippets("cpp", {
 	s("lc", {
 		t({
-			"#include<string>",
-			"#include<vector>",
-			"#include<queue>",
-			"#include<unordered_set>",
-			"#include<unordered_map>",
-			"#include<set>",
-			"#include<map>",
+			"#include <string>",
+			"#include <vector>",
+			"#include <queue>",
+			"#include <unordered_set>",
+			"#include <unordered_map>",
+			"#include <set>",
+			"#include <map>",
+			"#include <iostream>",
+			"#include <array>",
 			"using namespace std;",
 		}),
 	}),
