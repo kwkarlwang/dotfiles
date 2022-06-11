@@ -21,4 +21,5 @@ DerivePointerAlignment: false
 PointerAlignment: Left
 SortIncludes: false
 
+BreakAfterJavaFieldAnnotations: true
 ...

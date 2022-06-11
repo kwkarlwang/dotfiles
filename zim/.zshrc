@@ -204,6 +204,10 @@ if [ -f "$HOME/.zshrc.other" ]; then
   source $HOME/.zshrc.other
 fi
 
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
 # Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
