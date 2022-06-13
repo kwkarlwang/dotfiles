@@ -2,6 +2,7 @@ local on_attach = function(client, bufnr)
 	local function bufmap(...)
 		api.nvim_buf_set_keymap(bufnr, ...)
 	end
+
 	bufmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", NS)
 	bufmap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float({ show_header=false })<cr>", NS)
 	bufmap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", NS)
@@ -19,8 +20,8 @@ local on_attach = function(client, bufnr)
 	bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", NS)
 	bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>", NS)
 
-	-- client.resolved_capabilities.document_formatting = false
-	-- client.resolved_capabilities.document_range_formatting = false
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
 end
 
 local config = function()

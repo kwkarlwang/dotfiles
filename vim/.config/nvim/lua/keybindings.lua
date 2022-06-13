@@ -118,7 +118,7 @@ map("n", "<C-;>", "m`A;<esc>``", NS)
 map("i", "<C-;>", "<C-o>m`<C-o>A;<esc>``", NS)
 
 -- begin and end of line in insert mode
-map("i", "<C-i>", "<C-o>I", NS)
+map("i", "<C-q>", "<C-o>I", NS)
 map("i", "<C-e>", "<C-o>A", NS)
 
 -- get highlight under cursor
