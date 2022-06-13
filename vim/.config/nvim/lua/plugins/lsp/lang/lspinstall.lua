@@ -1,6 +1,18 @@
 local lsp_installer = require("nvim-lsp-installer")
 local lsp_config = require("lspconfig")
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
+
+local ignore_list = { "jdtls" }
+
+local installed_servers = vim.tbl_filter(function(server)
+	for _, name in ipairs(ignore_list) do
+		if name == server.name then
+			return false
+		end
+	end
+	return true
+end, lsp_installer.get_installed_servers())
+
+for _, server in ipairs(installed_servers) do
 	local config = require("plugins.lsp.config").config()
 	if server.name == "sumneko_lua" then
 		config.settings.Lua = {
@@ -32,21 +44,9 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
 			local function bufmap(...)
 				api.nvim_buf_set_keymap(bufnr, ...)
 			end
+
 			require("plugins.lsp.config").on_attach(client, bufnr)
-			bufmap("n", "go", ":lua require('nvim-lsp-installer.extras.tsserver').organize_imports()<CR>", NS)
-		end
-	elseif server.name == "jdtls" then
-		config.on_attach = function(client, bufnr)
-			require("plugins.lsp.config").on_attach(client, bufnr)
-			vim.keymap.set("n", "<leader>lu", function()
-				local params = { uri = vim.uri_from_bufnr(0) }
-				vim.lsp.buf_request(0, "java/projectConfigurationUpdate", params, function(err)
-					if err then
-						print("Could not update project configuration: " .. err.message)
-						return
-					end
-				end, { silent = true, buffer = bufnr })
-			end)
+			bufmap("n", "<leader>oi", ":lua require('nvim-lsp-installer.extras.tsserver').organize_imports()<CR>", NS)
 		end
 	end
 	lsp_config[server.name].setup(config)

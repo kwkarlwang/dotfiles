@@ -536,13 +536,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use({
-		"Pocco81/DAPInstall.nvim",
-		after = "nvim-dap",
-		config = function()
-			require("plugins.dap").setup()
-		end,
-	})
-	use({
 		"rcarriga/nvim-dap-ui",
 		after = "nvim-dap",
 		config = function()
@@ -716,4 +709,7 @@ return require("packer").startup(function(use)
 
 	-- ui library
 	use({ "stevearc/dressing.nvim" })
+
+	-- java lsp
+	use({ "mfussenegger/nvim-jdtls" })
 end)

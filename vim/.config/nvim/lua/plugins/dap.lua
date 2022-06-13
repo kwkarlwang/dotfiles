@@ -16,13 +16,6 @@ M.init = function()
 end
 
 M.setup = function()
-	local dap_install = require("dap-install")
-	local dbg_list = require("dap-install.debuggers_list").debuggers
-
-	for debugger, _ in pairs(dbg_list) do
-		dap_install.config(debugger, {})
-	end
-
 	local dap = require("dap")
 	dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 end
