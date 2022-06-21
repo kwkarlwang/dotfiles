@@ -11,6 +11,9 @@ local os_mapping = function()
 	end
 	return "linux"
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
 	-- The command that starts the language server
@@ -83,6 +86,7 @@ local config = {
 			jdtls.extract_variable(true)
 		end)
 	end,
+	capabilities = capabilities,
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
