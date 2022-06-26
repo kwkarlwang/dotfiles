@@ -63,7 +63,7 @@ end
 
 local block = {
 	provider = "▊",
-	hl = { fg = colors.violet, bg = colors.bgdark },
+	hl = { fg = colors.violet },
 }
 ins_left(block)
 --
@@ -89,7 +89,7 @@ local file_path = {
 	hl = function(winid)
 		winid = winid or 0
 		local bufnr = api.nvim_win_get_buf(winid)
-		local res = { fg = colors.yellow, bg = colors.bgdark, style = "bold" }
+		local res = { fg = colors.yellow, style = "bold" }
 		if vim.bo[bufnr].modifiable and vim.bo[bufnr].modified then
 			res.fg = colors.red
 		end
@@ -105,7 +105,7 @@ local file_name = {
 	hl = function(winid)
 		winid = winid or 0
 		local bufnr = api.nvim_win_get_buf(winid)
-		local res = { fg = colors.fg, bg = colors.bgdark, style = "bold" }
+		local res = { fg = colors.fg, style = "bold" }
 		if vim.bo[bufnr].modifiable and vim.bo[bufnr].modified then
 			res.fg = colors.red
 		end
@@ -125,7 +125,7 @@ local file_icon = {
 		end
 		return icon
 	end,
-	hl = { fg = colors.cyan, bg = colors.bgdark },
+	hl = { fg = colors.cyan },
 	left_sep = " ",
 	right_sep = " ",
 }
@@ -133,7 +133,7 @@ ins_left(file_icon)
 
 local position = {
 	provider = "position",
-	hl = { fg = colors.fg, bg = colors.bgdark },
+	hl = { fg = colors.fg },
 	left_sep = " ",
 	right_sep = " ",
 }
@@ -141,7 +141,7 @@ ins_left(position)
 
 local line_percentage = {
 	provider = "line_percentage",
-	hl = { fg = colors.fg, style = "bold", bg = colors.bgdark },
+	hl = { fg = colors.fg, style = "bold" },
 	right_sep = " ",
 }
 ins_left(line_percentage)
@@ -151,7 +151,7 @@ local diagnostic_error = {
 	enabled = function()
 		return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR)
 	end,
-	hl = { fg = colors.red, bg = colors.bgdark },
+	hl = { fg = colors.red },
 }
 ins_left(diagnostic_error)
 
@@ -160,7 +160,7 @@ local diagnostic_warnings = {
 	enabled = function()
 		return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
 	end,
-	hl = { fg = colors.orange, bg = colors.bgdark },
+	hl = { fg = colors.orange },
 }
 ins_left(diagnostic_warnings)
 
@@ -169,7 +169,7 @@ local diagnostic_hints = {
 	enabled = function()
 		return lsp.diagnostics_exist(vim.diagnostic.severity.HINT)
 	end,
-	hl = { fg = colors.blue, bg = colors.bgdark },
+	hl = { fg = colors.blue },
 }
 ins_left(diagnostic_hints)
 
@@ -178,7 +178,7 @@ local diagnostic_info = {
 	enabled = function()
 		return lsp.diagnostics_exist(vim.diagnostic.severity.INFO)
 	end,
-	hl = { fg = colors.blue, bg = colors.bgdark },
+	hl = { fg = colors.blue },
 }
 ins_left(diagnostic_info)
 
@@ -187,28 +187,28 @@ local lsp_clients = {
 	enabled = function()
 		return lsp.is_lsp_attached()
 	end,
-	hl = { fg = colors.fg, bg = colors.bgdark, style = "bold" },
+	hl = { fg = colors.fg, style = "bold" },
 	right_sep = " ",
 }
 ins_right(lsp_clients)
 
 local diff_add = {
 	provider = "git_diff_added",
-	hl = { fg = colors.green, bg = colors.bgdark },
+	hl = { fg = colors.green },
 	icon = "  ",
 }
 ins_right(diff_add)
 
 local diff_change = {
 	provider = "git_diff_changed",
-	hl = { fg = colors.orange, bg = colors.bgdark },
+	hl = { fg = colors.orange },
 	icon = "  ",
 }
 ins_right(diff_change)
 
 local diff_removed = {
 	provider = "git_diff_removed",
-	hl = { fg = colors.red, bg = colors.bgdark },
+	hl = { fg = colors.red },
 	icon = "  ",
 }
 ins_right(diff_removed)
@@ -216,7 +216,7 @@ ins_right(diff_removed)
 ins_right({ provider = " " })
 local git_branch = {
 	provider = "git_branch",
-	hl = { fg = colors.green, bg = colors.bgdark, style = "bold" },
+	hl = { fg = colors.green, style = "bold" },
 	left_sep = " ",
 	right_sep = " ",
 }
@@ -225,7 +225,7 @@ ins_right(block)
 
 local short_block = {
 	provider = "▊",
-	hl = { fg = colors.bglight, bg = colors.bgdark },
+	hl = { fg = colors.bglight },
 }
 
 short_ins_left(short_block)
@@ -256,10 +256,6 @@ local disable = {
 }
 
 feline.setup({
-	colors = {
-		bg = colors.bgdark,
-		fg = colors.fg,
-	},
 	components = components,
 	vi_mode_colors = vi_mode_colors,
 	update_triggers = { "VimEnter", "WinEnter", "WinClosed", "FileChangedShellPost", "BufModifiedSet" },
