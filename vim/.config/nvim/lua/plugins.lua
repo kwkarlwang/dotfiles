@@ -676,14 +676,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- format async
-	use({
-		"lukas-reineke/lsp-format.nvim",
-		commit = "84e117b99bb2bc0d0c8122e2b256046f046f8aff",
-		config = function()
-			require("lsp-format").setup({})
-		end,
-	})
 	-- regex explainer
 	use({
 		"bennypowers/nvim-regexplainer",
