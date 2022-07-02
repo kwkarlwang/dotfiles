@@ -4,7 +4,8 @@ local keymap = hs.keycodes.map
 local path = os.getenv("HOME") .. "/dotfiles/hammerspoon/.hammerspoon/"
 hs.pathwatcher.new(path, hs.reload):start()
 
-local browserName = "Brave Browser"
+-- local browserName = "Brave Browser"
+local browserName = "Google Chrome"
 
 ----------------------------------------------------------------------
 --                          reload config                           --
@@ -105,7 +106,7 @@ hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "s", toggleResolution)
 --                            Open Gmail                            --
 ----------------------------------------------------------------------
 local checkBrowser = function(app)
-	local listOfBrowsers = { "Chromium", "Brave" }
+	local listOfBrowsers = { "Chromium", "Brave", "Chrome" }
 	for _, v in pairs(listOfBrowsers) do
 		if string.find(app, v) ~= nil then
 			return true
