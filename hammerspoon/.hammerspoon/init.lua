@@ -5,16 +5,17 @@ local path = os.getenv("HOME") .. "/dotfiles/hammerspoon/.hammerspoon/"
 hs.pathwatcher.new(path, hs.reload):start()
 
 -- local browserName = "Brave Browser"
-local browserName = "Google Chrome"
+-- local browserName = "Google Chrome"
+local browserName = "Safari"
 
 ----------------------------------------------------------------------
 --                          reload config                           --
 ----------------------------------------------------------------------
 local reloadConfig = function()
-	hs.alert.show("Config reloaded")
 	hs.reload()
 end
 hs.hotkey.bind({ "cmd", "ctrl", "alt" }, "r", reloadConfig)
+hs.alert.show("Config reloaded")
 
 ----------------------------------------------------------------------
 --                       dismiss notification                       --
@@ -185,12 +186,18 @@ end
 hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "b", function()
 	local browserIsRunning = hs.application.find(browserName) ~= nil
 	if browserIsRunning then
-		hs.osascript.applescript([[tell application "]] .. browserName .. [["
+		if browserName ~= "Safari" then
+			hs.osascript.applescript([[tell application "]] .. browserName .. [["
 			make new window
 		end tell]])
-	else
-		hs.application.open(browserName)
+		else
+			hs.osascript.applescript([[tell application "]] .. browserName .. [["
+			make new document at end of documents with properties {URL:""}
+		end tell]])
+		end
+		-- else
 	end
+	hs.application.open(browserName)
 end)
 ----------------------------------------------------------------------
 --                            remap keys                            --
