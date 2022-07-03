@@ -184,20 +184,26 @@ end
 --                          launch browser                          --
 ----------------------------------------------------------------------
 hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "b", function()
-	local browserIsRunning = hs.application.find(browserName) ~= nil
-	if browserIsRunning then
-		if browserName ~= "Safari" then
+	if browserName == "Safari" then
+		local browserIsRunning = hs.application.get(browserName) ~= nil
+		if browserIsRunning then
+			hs.osascript.applescript([[tell application "]] .. browserName .. [["
+				make new document at end of documents with properties {URL:""}
+			end tell]])
+		else
+			hs.application.open(browserName)
+		end
+	else
+		local browserIsRunning = hs.application.find(browserName) ~= nil
+		if browserIsRunning then
+			hs.alert(hs.application.find(browserName))
 			hs.osascript.applescript([[tell application "]] .. browserName .. [["
 			make new window
 		end tell]])
 		else
-			hs.osascript.applescript([[tell application "]] .. browserName .. [["
-			make new document at end of documents with properties {URL:""}
-		end tell]])
+			hs.application.open(browserName)
 		end
-		-- else
 	end
-	hs.application.open(browserName)
 end)
 ----------------------------------------------------------------------
 --                            remap keys                            --
