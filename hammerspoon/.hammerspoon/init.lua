@@ -188,7 +188,7 @@ hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "b", function()
 		local browserIsRunning = hs.application.get(browserName) ~= nil
 		if browserIsRunning then
 			hs.osascript.applescript([[tell application "]] .. browserName .. [["
-				make new document at end of documents with properties {URL:""}
+				make new document at end of documents
 			end tell]])
 		end
 		hs.application.launchOrFocus(browserName)
