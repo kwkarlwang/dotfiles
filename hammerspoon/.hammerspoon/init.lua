@@ -195,7 +195,6 @@ hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "b", function()
 	else
 		local browserIsRunning = hs.application.find(browserName) ~= nil
 		if browserIsRunning then
-			hs.alert(hs.application.find(browserName))
 			hs.osascript.applescript([[tell application "]] .. browserName .. [["
 			make new window
 		end tell]])
