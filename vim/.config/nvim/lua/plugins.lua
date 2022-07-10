@@ -531,16 +531,12 @@ return require("packer").startup(function(use)
 	use({
 		"mfussenegger/nvim-dap",
 		module = "dap",
-		setup = function()
-			require("plugins.dap").init()
-		end,
+		setup = require("plugins.dap").init,
 	})
 	use({
 		"rcarriga/nvim-dap-ui",
 		after = "nvim-dap",
-		config = function()
-			require("dapui").setup()
-		end,
+		config = require("dapui").setup,
 	})
 	use({
 		"kwkarlwang/bufjump.nvim",
