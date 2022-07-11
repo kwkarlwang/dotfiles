@@ -50,6 +50,10 @@ local sources = {
 	builtins.formatting.yapf,
 	-- builtins.diagnostics.mypy,
 	----------------------------------------------------------------------
+	--                               java                               --
+	----------------------------------------------------------------------
+	builtins.formatting.google_java_format,
+	----------------------------------------------------------------------
 	--                               rust                               --
 	----------------------------------------------------------------------
 	builtins.formatting.rustfmt,
@@ -77,7 +81,7 @@ local sources = {
 	--                              proto                               --
 	----------------------------------------------------------------------
 	builtins.formatting.clang_format.with({
-		filetypes = { "proto", "java" },
+		filetypes = { "proto" },
 	}),
 	builtins.diagnostics.protolint,
 	----------------------------------------------------------------------
