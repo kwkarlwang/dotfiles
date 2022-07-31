@@ -536,7 +536,9 @@ return require("packer").startup(function(use)
 	use({
 		"rcarriga/nvim-dap-ui",
 		after = "nvim-dap",
-		config = require("dapui").setup,
+		config = function()
+			require("dapui").setup()
+		end,
 	})
 	use({
 		"kwkarlwang/bufjump.nvim",
