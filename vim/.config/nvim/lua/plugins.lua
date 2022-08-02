@@ -669,7 +669,7 @@ return require("packer").startup(function(use)
 	use({
 		"mizlan/iswap.nvim",
 		config = function()
-			require("iswap").setup({ autoswap = true })
+			require("iswap").setup({ autoswap = true, flash_style = nil, hl_flash = "" })
 			map("n", "<leader>is", "<cmd>ISwapWith<cr>", NS)
 		end,
 	})
