@@ -1,8 +1,6 @@
 local jdtls = require("jdtls")
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
-local home_dir = os.getenv("HOME") .. "/"
-
 local workspace_dir = home_dir .. "workspace/" .. project_name
 
 local os_mapping = function()

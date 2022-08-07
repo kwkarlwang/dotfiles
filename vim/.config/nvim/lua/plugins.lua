@@ -535,6 +535,7 @@ return require("packer").startup(function(use)
 		"mfussenegger/nvim-dap",
 		module = "dap",
 		setup = require("plugins.dap").init,
+		config = require("plugins.dap").config,
 	})
 	use({
 		"rcarriga/nvim-dap-ui",

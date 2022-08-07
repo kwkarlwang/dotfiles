@@ -10,11 +10,13 @@ bufmap = vim.api.nvim_buf_set_keymap
 
 NS = { noremap = true, silent = true }
 
+home_dir = os.getenv("HOME") .. "/"
+
 pcall(require, "impatient")
 require("settings")
 require("keybindings")
 require("plugins")
--- vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("error")
 
 -- vim.cmd("set rtp+=~/projects/neovim/nvim-jupyter")
 -- require("nvim-jupyter").setup()

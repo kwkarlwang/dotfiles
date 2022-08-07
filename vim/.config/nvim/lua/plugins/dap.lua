@@ -15,9 +15,13 @@ M.init = function()
 	map("n", "<leader>dq", "<cmd>lua require'dap'.close()<cr>", NS)
 end
 
-M.setup = function()
+M.config = function()
 	local dap = require("dap")
 	dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
+	dap.adapters.cppdbg = {
+		id = "cppdbg",
+		type = "executable",
+		command = home_dir .. ".local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+	}
 end
-
 return M
