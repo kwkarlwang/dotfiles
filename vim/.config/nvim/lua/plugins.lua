@@ -7,17 +7,20 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+	use({ "wbthomason/packer.nvim" })
 
 	use({ "lewis6991/impatient.nvim" })
 
 	-- lsp
-	use({ "williamboman/nvim-lsp-installer" })
 	use({
 		"neovim/nvim-lspconfig",
-		after = { "nvim-lsp-installer" },
+		requires = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
-			require("nvim-lsp-installer").setup({})
+			require("mason").setup()
+			require("mason-lspconfig").setup()
 			require("plugins.lsp")
 		end,
 	})
@@ -330,7 +333,7 @@ return require("packer").startup(function(use)
 
 	-- color hex code
 	use({
-		"norcalli/nvim-colorizer.lua",
+		"NvChad/nvim-colorizer.lua",
 		event = "BufRead",
 		config = function()
 			require("colorizer").setup()
@@ -702,4 +705,9 @@ return require("packer").startup(function(use)
 
 	-- java lsp
 	use({ "mfussenegger/nvim-jdtls" })
+
+	use({
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	})
 end)

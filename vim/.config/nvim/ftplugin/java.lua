@@ -34,11 +34,11 @@ local config = {
 
 		-- 💀
 		"-jar",
-		vim.fn.glob(home_dir .. ".local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+		vim.fn.glob(home_dir .. ".local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
 
 		-- 💀
 		"-configuration",
-		home_dir .. ".local/share/nvim/lsp_servers/jdtls/config_" .. os_mapping(),
+		home_dir .. ".local/share/nvim/mason/packages/jdtls/config_" .. os_mapping(),
 		-- 💀
 		-- See `data directory configuration` section in the README
 		"-data",

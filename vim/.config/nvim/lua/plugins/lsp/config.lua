@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
 	bufmap("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", NS)
 
 	bufmap("n", "gi", "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", NS)
-	bufmap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", NS)
+	bufmap("n", "<leader>ca", "<cmd>CodeActionMenu<cr>", NS)
 	bufmap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", NS)
 	bufmap("n", "gD", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", NS)
 	bufmap("n", "<leader>lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", NS)
