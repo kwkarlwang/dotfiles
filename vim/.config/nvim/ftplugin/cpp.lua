@@ -1,11 +1,11 @@
 local dap = require("dap")
 local function file_exists(name)
-   local f=io.open(name,"r")
-   if f~=nil then io.close(f) return true else return false end
+	local f=io.open(name,"r")
+	if f~=nil then io.close(f) return true else return false end
 end
 local gdb_path = "/usr/bin/gdb"
 if ~file_exists(gdb_path) then
-  gdb_path = "/usr/local/bin/gdb"
+	gdb_path = "/usr/local/bin/gdb"
 end
 
 dap.configurations.cpp = {
@@ -18,6 +18,14 @@ dap.configurations.cpp = {
 		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = true,
+
+		setupCommands = {
+			{
+				text = '-enable-pretty-printing',
+				description =  'enable pretty printing',
+				ignoreFailures = false
+			},
+		},
 	},
 	{
 		name = "Attach to gdbserver :1234",
@@ -30,5 +38,12 @@ dap.configurations.cpp = {
 		program = function()
 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 		end,
+		setupCommands = {
+			{
+				text = '-enable-pretty-printing',
+				description =  'enable pretty printing',
+				ignoreFailures = false
+			},
+		},
 	},
 }
