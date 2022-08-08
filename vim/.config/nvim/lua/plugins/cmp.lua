@@ -1,5 +1,6 @@
 local cmp = require("cmp")
 local mapping = require("cmp.config.mapping")
+local sources = require("cmp.config.sources")
 local types = require("cmp.types")
 local luasnip = require("luasnip")
 
@@ -105,16 +106,16 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	},
-	sources = {
+	sources = sources({
 		{ name = "nvim_lsp" },
-		-- { name = "nvim_lsp_signature_help" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "buffer" },
 		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "emoji" },
-	},
+	}),
 	formatting = {
 		fields = { "abbr", "kind" },
 		format = function(_, vim_item)
@@ -135,7 +136,7 @@ cmp.setup({
 	preselect = types.cmp.PreselectMode.None,
 })
 cmp.setup.filetype({ "markdown" }, {
-	sources = {
+	sources = sources({
 		{ name = "spell" },
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
@@ -143,11 +144,11 @@ cmp.setup.filetype({ "markdown" }, {
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "emoji" },
-	},
+	}),
 })
 
 cmp.setup.filetype({ "cpp" }, {
-	sources = {
+	sources = sources({
 		{ name = "nvim_insert_text_lsp" },
 		{ name = "buffer" },
 		{ name = "luasnip" },
@@ -155,7 +156,7 @@ cmp.setup.filetype({ "cpp" }, {
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "emoji" },
-	},
+	}),
 })
 cmp.setup.filetype({ "java" }, {
 	mapping = {
@@ -169,18 +170,20 @@ cmp.setup.filetype({ "java" }, {
 })
 
 cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
-	sources = {
-		{ name = "cmp_git" },
-		{ name = "buffer" },
-	},
+	sources = sources({
+		{ { name = "cmp_git" } },
+		{ { name = "buffer" } },
+	}),
 })
 cmp.setup.cmdline("/", {
-	sources = {
+	sources = sources({
 		{ name = "buffer" },
-	},
+	}, {
+		{ name = "nvim_lsp_document_symbol" },
+	}),
 })
 cmp.setup.cmdline(":", {
-	sources = cmp.config.sources({
+	sources = sources({
 		{ name = "path" },
 	}, {
 		{ name = "cmdline" },

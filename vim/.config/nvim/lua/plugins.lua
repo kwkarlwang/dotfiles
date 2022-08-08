@@ -32,22 +32,22 @@ return require("packer").startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	})
-	use({
-		"ray-x/lsp_signature.nvim",
-		after = "nvim-lspconfig",
-		config = function()
-			require("lsp_signature").setup({
-				bind = true,
-				doc_lines = 0,
-				floating_window = true,
-				hi_parameter = "Visual",
-				handler_opts = {
-					border = "none",
-				},
-				hint_enable = false,
-			})
-		end,
-	})
+	-- use({
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	after = "nvim-lspconfig",
+	-- 	config = function()
+	-- 		require("lsp_signature").setup({
+	-- 			bind = true,
+	-- 			doc_lines = 0,
+	-- 			floating_window = true,
+	-- 			hi_parameter = "Visual",
+	-- 			handler_opts = {
+	-- 				border = "none",
+	-- 			},
+	-- 			hint_enable = false,
+	-- 		})
+	-- 	end,
+	-- })
 
 	-- completion
 	use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
@@ -67,7 +67,8 @@ return require("packer").startup(function(use)
 			require("cmp_git").setup()
 		end,
 	})
-	-- use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
 	use({
 		"hrsh7th/nvim-cmp",
 		-- disable = true,
@@ -171,7 +172,12 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("tpope/vim-surround")
+	use({
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	})
 	use("tpope/vim-sleuth")
 	use("tpope/vim-repeat")
 	-- pair brackets
@@ -588,6 +594,7 @@ return require("packer").startup(function(use)
 	use({
 		"ellisonleao/glow.nvim",
 		cmd = "Glow",
+		ft = "markdown",
 	})
 
 	-- swap windows
@@ -707,8 +714,37 @@ return require("packer").startup(function(use)
 	-- java lsp
 	use({ "mfussenegger/nvim-jdtls" })
 
+	-- code action with preview
 	use({
 		"weilbith/nvim-code-action-menu",
 		cmd = "CodeActionMenu",
+	})
+
+	-- edit markdown
+	use({
+		"AckslD/nvim-FeMaco.lua",
+		config = 'require("femaco").setup()',
+		ft = "markdown",
+	})
+
+	-- better fold
+	use({
+		"kevinhwang91/nvim-ufo",
+		requires = "kevinhwang91/promise-async",
+		config = function()
+			require("ufo").setup({
+				provider_selector = function()
+					return { "treesitter", "indent" }
+				end,
+			})
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+		end,
+	})
+
+	-- better quickfix
+	use({
+		"kevinhwang91/nvim-bqf",
+		ft = "qf",
 	})
 end)
