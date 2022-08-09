@@ -36,6 +36,20 @@ local systemverilogfmt = h.make_builtin({
 	factory = h.formatter_factory,
 })
 
+local groovyfmt = h.make_builtin({
+	method = FORMATTING,
+	filetypes = { "groovy" },
+	generator_opts = {
+		command = "npm-groovy-lint",
+		args = {
+			"--noserver",
+			"--format",
+		},
+		to_temp_file = true,
+	},
+	factory = h.formatter_factory,
+})
+
 local builtins = null_ls.builtins
 local sources = {
 	----------------------------------------------------------------------
@@ -91,6 +105,7 @@ local sources = {
 	latexfmt,
 	systemverilogfmt,
 	builtins.formatting.shfmt,
+	groovyfmt,
 }
 null_ls.setup({
 	diagnostics_format = "#{s}: #{m}",
