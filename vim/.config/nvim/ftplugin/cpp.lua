@@ -1,4 +1,3 @@
-local dap = require("dap")
 local function file_exists(name)
 	local f = io.open(name, "r")
 	if f == nil then
@@ -11,11 +10,12 @@ end
 local gdb_path = "/usr/bin/gdb"
 if not file_exists(gdb_path) then
 	gdb_path = "/usr/local/bin/gdb"
-end
-if not file_exists(gdb_path) then
-	return
+	if not file_exists(gdb_path) then
+		return
+	end
 end
 
+local dap = require("dap")
 dap.configurations.cpp = {
 	{
 		name = "Launch file",
