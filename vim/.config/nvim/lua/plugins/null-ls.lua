@@ -44,6 +44,8 @@ local groovyfmt = h.make_builtin({
 		args = {
 			"--noserver",
 			"--format",
+			"--files",
+			"$DIRNAME/build.gradle",
 		},
 		to_temp_file = true,
 	},
@@ -110,6 +112,7 @@ local sources = {
 null_ls.setup({
 	diagnostics_format = "#{s}: #{m}",
 	sources = sources,
+	debug = true,
 })
 
 AsyncFormat = function(bufnr)
