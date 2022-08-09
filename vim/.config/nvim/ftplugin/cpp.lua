@@ -1,11 +1,19 @@
 local dap = require("dap")
 local function file_exists(name)
-	local f=io.open(name,"r")
-	if f~=nil then io.close(f) return true else return false end
+	local f = io.open(name, "r")
+	if f == nil then
+		return false
+	else
+		io.close(f)
+		return true
+	end
 end
 local gdb_path = "/usr/bin/gdb"
-if ~file_exists(gdb_path) then
+if not file_exists(gdb_path) then
 	gdb_path = "/usr/local/bin/gdb"
+end
+if not file_exists(gdb_path) then
+	return
 end
 
 dap.configurations.cpp = {
@@ -21,9 +29,9 @@ dap.configurations.cpp = {
 
 		setupCommands = {
 			{
-				text = '-enable-pretty-printing',
-				description =  'enable pretty printing',
-				ignoreFailures = false
+				text = "-enable-pretty-printing",
+				description = "enable pretty printing",
+				ignoreFailures = false,
 			},
 		},
 	},
@@ -40,9 +48,9 @@ dap.configurations.cpp = {
 		end,
 		setupCommands = {
 			{
-				text = '-enable-pretty-printing',
-				description =  'enable pretty printing',
-				ignoreFailures = false
+				text = "-enable-pretty-printing",
+				description = "enable pretty printing",
+				ignoreFailures = false,
 			},
 		},
 	},
