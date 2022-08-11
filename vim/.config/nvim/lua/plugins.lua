@@ -592,9 +592,17 @@ return require("packer").startup(function(use)
 
 	-- markdown
 	use({
-		"ellisonleao/glow.nvim",
+		-- "ellisonleao/glow.nvim",
+		"mengano-net/glow.nvim",
+		commit = "b1e81f213825659d9cba1ee8ce58ea2a069b8842",
 		cmd = "Glow",
 		ft = "markdown",
+	})
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	})
 
 	-- swap windows
@@ -725,16 +733,20 @@ return require("packer").startup(function(use)
 	use({ "MTDL9/vim-log-highlighting" })
 
 	-- ui library
-	use({ "stevearc/dressing.nvim" })
+	use({
+		"stevearc/dressing.nvim",
+		requires = "nvim-telescope/telescope.nvim",
+		config = function()
+			require("dressing").setup({
+				select = {
+					telescope = require("telescope.themes").get_cursor(),
+				},
+			})
+		end,
+	})
 
 	-- java lsp
 	use({ "mfussenegger/nvim-jdtls" })
-
-	-- code action with preview
-	use({
-		"weilbith/nvim-code-action-menu",
-		cmd = "CodeActionMenu",
-	})
 
 	-- edit markdown
 	use({
