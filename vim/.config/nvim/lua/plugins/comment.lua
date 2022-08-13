@@ -33,13 +33,13 @@ config.ignore = nil
 ToggleLine = function()
 	local currline = vim.api.nvim_get_current_line()
 	if currline == "" then
-		api.toggle_current_linewise(config)
+		api.toggle.linewise.current(nil, config)
 		vim.api.nvim_feedkeys("==A ", "n", true)
 	else
-		api.toggle_current_linewise()
+		api.toggle.linewise.current()
 	end
 end
 map("n", "cc", "<cmd>lua ToggleLine()<cr>", NS)
-map("n", "cb", '<cmd>lua require("Comment.api").toggle_current_blockwise()<cr>', NS)
-map("x", "cc", '<esc><cmd>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<cr>', NS)
-map("x", "cb", '<esc><cmd>lua require("Comment.api").toggle_blockwise_op(vim.fn.visualmode())<cr>', NS)
+map("n", "cb", '<cmd>lua require("Comment.api").toggle.blockwise.current()<cr>', NS)
+map("x", "cc", '<esc><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>', NS)
+map("x", "cb", '<esc><cmd>lua require("Comment.api").toggle.blockwise(vim.fn.visualmode())<cr>', NS)
