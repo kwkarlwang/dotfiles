@@ -44,8 +44,6 @@ local groovyfmt = h.make_builtin({
 		args = {
 			"--noserver",
 			"--format",
-			"-j",
-			"/opt/homebrew/opt/openjdk@11/bin/java",
 			"--files",
 			"$DIRNAME/*.gradle",
 		},

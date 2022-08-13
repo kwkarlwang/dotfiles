@@ -75,4 +75,14 @@ M.gen_from_file = function(opts)
 		return setmetatable({ line }, mt_file_entry)
 	end
 end
+
+M.file_exists = function(name)
+	local f = io.open(name, "r")
+	if f == nil then
+		return false
+	else
+		io.close(f)
+		return true
+	end
+end
 return M
