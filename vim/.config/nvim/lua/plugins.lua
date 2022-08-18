@@ -592,9 +592,17 @@ return require("packer").startup(function(use)
 
 	-- markdown
 	use({
-		"ellisonleao/glow.nvim",
+		-- "ellisonleao/glow.nvim",
+		"mengano-net/glow.nvim",
+		commit = "b1e81f213825659d9cba1ee8ce58ea2a069b8842",
 		cmd = "Glow",
 		ft = "markdown",
+	})
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	})
 
 	-- swap windows
@@ -660,20 +668,30 @@ return require("packer").startup(function(use)
 
 	-- yank over ssh
 	use({
-		"ojroques/nvim-osc52",
+		"ojroques/vim-oscyank",
 		config = function()
-			require("osc52").setup({
-				silent = true,
-			})
-			local function copy()
-				if vim.v.event.operator == "y" and vim.v.event.regname == "c" then
-					require("osc52").copy_register("c")
-				end
-			end
-
-			vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
+			vim.cmd(
+				[[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif]]
+			)
+			g.oscyank_silent = true
 		end,
 	})
+
+	-- use({
+	-- 	"ojroques/nvim-osc52",
+	-- 	config = function()
+	-- 		require("osc52").setup({
+	-- 			silent = true,
+	-- 		})
+	-- 		local function copy()
+	-- 			if vim.v.event.operator == "y" and vim.v.event.regname == "c" then
+	-- 				require("osc52").copy_register("c")
+	-- 			end
+	-- 		end
+
+	-- 		vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
+	-- 	end,
+	-- })
 
 	-- spellcheck
 	use({
@@ -715,16 +733,20 @@ return require("packer").startup(function(use)
 	use({ "MTDL9/vim-log-highlighting" })
 
 	-- ui library
-	use({ "stevearc/dressing.nvim" })
+	use({
+		"stevearc/dressing.nvim",
+		requires = "nvim-telescope/telescope.nvim",
+		config = function()
+			require("dressing").setup({
+				select = {
+					telescope = require("telescope.themes").get_cursor(),
+				},
+			})
+		end,
+	})
 
 	-- java lsp
 	use({ "mfussenegger/nvim-jdtls" })
-
-	-- code action with preview
-	use({
-		"weilbith/nvim-code-action-menu",
-		cmd = "CodeActionMenu",
-	})
 
 	-- edit markdown
 	use({

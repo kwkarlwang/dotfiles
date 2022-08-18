@@ -122,4 +122,14 @@ M.quickfix = function()
 
 	vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 end
+
+M.file_exists = function(name)
+	local f = io.open(name, "r")
+	if f == nil then
+		return false
+	else
+		io.close(f)
+		return true
+	end
+end
 return M
