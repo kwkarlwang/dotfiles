@@ -136,3 +136,7 @@ o.laststatus = 3
 
 -- shiftwidth default to 2
 o.shiftwidth = 2
+
+-- set markdown concel
+o.syntax = true
+o.conceallevel = 2

@@ -778,4 +778,6 @@ return require("packer").startup(function(use)
 			require("utils").quickfix()
 		end,
 	})
+
+	use({ "preservim/vim-markdown" })
 end)
