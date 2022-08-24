@@ -779,5 +779,17 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "preservim/vim-markdown" })
+	use({
+		"preservim/vim-markdown",
+		setup = function()
+			-- set markdown concel
+			vim.cmd([[
+			augroup MarkdownSyntax
+				autocmd!
+				autocmd BufNewFile,BufRead *.md set syntax=on
+			augroup END
+			]])
+			o.conceallevel = 2
+		end,
+	})
 end)
