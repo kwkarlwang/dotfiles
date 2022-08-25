@@ -786,10 +786,10 @@ return require("packer").startup(function(use)
 			vim.cmd([[
 			augroup MarkdownSyntax
 				autocmd!
-				autocmd BufNewFile,BufRead *.md set syntax=on
+				autocmd BufNewFile,BufRead *.md setlocal syntax=on
+				autocmd BufNewFile,BufRead *.md setlocal conceallevel=2
 			augroup END
 			]])
-			o.conceallevel = 2
 		end,
 	})
 end)
