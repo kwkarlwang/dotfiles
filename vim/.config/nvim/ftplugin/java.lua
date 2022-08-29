@@ -1,5 +1,8 @@
 local jdtls = require("jdtls")
-local utils = require("utils")
+local ok, utils = pcall(require, "utils")
+if not ok then
+	return
+end
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = home_dir .. "workspace/" .. project_name
