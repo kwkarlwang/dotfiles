@@ -1,5 +1,8 @@
 local gdb_path = "/usr/bin/gdb"
-local utils = require("utils")
+local ok, utils = pcall(require, "utils")
+if not ok then
+	return
+end
 if not utils.file_exists(gdb_path) then
 	gdb_path = "/usr/local/bin/gdb"
 	if not utils.file_exists(gdb_path) then
