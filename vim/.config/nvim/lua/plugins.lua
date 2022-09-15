@@ -32,22 +32,6 @@ return require("packer").startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	})
-	-- use({
-	-- 	"ray-x/lsp_signature.nvim",
-	-- 	after = "nvim-lspconfig",
-	-- 	config = function()
-	-- 		require("lsp_signature").setup({
-	-- 			bind = true,
-	-- 			doc_lines = 0,
-	-- 			floating_window = true,
-	-- 			hi_parameter = "Visual",
-	-- 			handler_opts = {
-	-- 				border = "none",
-	-- 			},
-	-- 			hint_enable = false,
-	-- 		})
-	-- 	end,
-	-- })
 
 	-- completion
 	use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
