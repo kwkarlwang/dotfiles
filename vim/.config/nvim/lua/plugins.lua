@@ -723,7 +723,7 @@ return require("packer").startup(function(use)
 		config = function()
 			require("dressing").setup({
 				select = {
-					telescope = require("telescope.themes").get_cursor(),
+					telescope = require("telescope.themes").get_ivy(),
 				},
 			})
 		end,

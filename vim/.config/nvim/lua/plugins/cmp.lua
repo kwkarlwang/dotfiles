@@ -120,16 +120,6 @@ cmp.setup({
 		fields = { "abbr", "kind" },
 		format = function(_, vim_item)
 			vim_item.kind = icons[vim_item.kind] .. vim_item.kind
-			-- vim_item.menu = ({
-			-- 	buffer = "[Buffer]",
-			-- 	path = "[Path]",
-			-- 	nvim_lsp = "[LSP]",
-			-- 	nvim_lua = "[Lua]",
-			-- 	calc = "[Calc]",
-			-- 	emoji = "[Emoji]",
-			-- 	luasnip = "[LuaSnip]",
-			-- 	cmp_tabnine = "[TabNine]",
-			-- })[entry.source.name]
 			return vim_item
 		end,
 	},
@@ -158,16 +148,16 @@ cmp.setup.filetype({ "cpp" }, {
 		{ name = "emoji" },
 	}),
 })
-cmp.setup.filetype({ "java" }, {
-	mapping = {
-		["<CR>"] = mapping({
-			i = cmp.mapping.confirm({
-				behavior = cmp.ConfirmBehavior.Replace,
-				select = false,
-			}),
-		}),
-	},
-})
+-- cmp.setup.filetype({ "java" }, {
+-- 	mapping = {
+-- 		["<CR>"] = mapping({
+-- 			i = cmp.mapping.confirm({
+-- 				behavior = cmp.ConfirmBehavior.Replace,
+-- 				select = false,
+-- 			}),
+-- 		}),
+-- 	},
+-- })
 
 cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
 	sources = sources({

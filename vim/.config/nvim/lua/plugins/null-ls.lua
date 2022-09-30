@@ -101,13 +101,17 @@ local sources = {
 	}),
 	builtins.diagnostics.protolint,
 	----------------------------------------------------------------------
+	--                               sql                                --
+	----------------------------------------------------------------------
+	builtins.formatting.pg_format,
+	----------------------------------------------------------------------
 	--                              other                               --
 	----------------------------------------------------------------------
 	haskellfmt,
 	latexfmt,
 	systemverilogfmt,
 	builtins.formatting.shfmt,
-	groovyfmt,
+	-- groovyfmt,
 }
 null_ls.setup({
 	diagnostics_format = "#{s}: #{m}",
