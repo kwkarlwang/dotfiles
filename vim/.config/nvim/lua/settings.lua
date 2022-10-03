@@ -136,3 +136,6 @@ o.laststatus = 3
 
 -- shiftwidth default to 2
 o.shiftwidth = 2
+
+-- hide command prompt
+o.cmdheight = 0

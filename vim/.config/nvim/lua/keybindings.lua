@@ -1,7 +1,7 @@
 --------Mappings-----------
 map("n", "j", "gj", NS)
 map("n", "k", "gk", NS)
-map("n", "<Esc>", ":noh<cr>:echo ''<cr>", NS)
+map("n", "<Esc>", ":noh<cr>:echo ''<cr><cr>", NS)
 map("v", "<", "<gv", NS)
 map("v", ">", ">gv", NS)
 map("i", "jk", "<Esc>", NS)

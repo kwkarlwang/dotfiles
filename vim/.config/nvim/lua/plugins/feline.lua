@@ -261,3 +261,5 @@ feline.setup({
 	update_triggers = { "VimEnter", "WinEnter", "WinClosed", "FileChangedShellPost", "BufModifiedSet" },
 	disable = disable,
 })
+
+feline.winbar.setup()
