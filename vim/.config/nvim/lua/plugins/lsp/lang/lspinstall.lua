@@ -30,8 +30,7 @@ require("mason-lspconfig").setup_handlers({
 			}
 			config.on_attach = function(client, bufnr)
 				require("plugins.lsp.config").on_attach(client, bufnr)
-				client.resolved_capabilities.document_formatting = true
-				client.resolved_capabilities.document_range_formatting = true
+				client.server_capabilities.documentFormattingProvider = true
 			end
 		elseif server_name == "tsserver" then
 			config.on_attach = function(client, bufnr)
