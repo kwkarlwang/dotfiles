@@ -319,8 +319,10 @@ local winbar_inactive_file_name = {
 
 winbar_ins_left({ provider = " " })
 winbar_ins_left(navic_component)
-winbar_ins_right(file_name)
+winbar_ins_right({ provider = " " })
+
 winbar_short_ins_left({ provider = " " })
-winbar_short_ins_right(winbar_inactive_file_name)
+winbar_short_ins_left(winbar_inactive_file_name)
+winbar_short_ins_right({ provider = " " })
 
 feline.winbar.setup({ components = winbar_components })
