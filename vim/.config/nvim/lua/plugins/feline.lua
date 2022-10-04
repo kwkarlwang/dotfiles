@@ -58,7 +58,7 @@ local short_ins_left = function(component)
 	table.insert(components.inactive[1], component)
 end
 local short_ins_right = function(component)
-	table.insert(components.inactive[#components.active], component)
+	table.insert(components.inactive[#components.inactive], component)
 end
 
 local block = {
@@ -261,5 +261,66 @@ feline.setup({
 	update_triggers = { "VimEnter", "WinEnter", "WinClosed", "FileChangedShellPost", "BufModifiedSet" },
 	disable = disable,
 })
+----------------------------------------------------------------------
+--                              winbar                              --
+----------------------------------------------------------------------
 
-feline.winbar.setup()
+local winbar_components = {
+	active = {},
+	inactive = {},
+}
+
+table.insert(winbar_components.active, {})
+table.insert(winbar_components.active, {})
+
+table.insert(winbar_components.inactive, {})
+table.insert(winbar_components.inactive, {})
+
+local winbar_ins_left = function(component)
+	table.insert(winbar_components.active[1], component)
+end
+local winbar_ins_right = function(component)
+	table.insert(winbar_components.active[#winbar_components.active], component)
+end
+
+local winbar_short_ins_left = function(component)
+	table.insert(winbar_components.inactive[1], component)
+end
+local winbar_short_ins_right = function(component)
+	table.insert(winbar_components.inactive[#winbar_components.inactive], component)
+end
+
+local navic = require("nvim-navic")
+
+local navic_component = {
+	provider = function()
+		return navic.get_location()
+	end,
+	enabled = function()
+		return navic.is_available()
+	end,
+}
+
+local winbar_inactive_file_name = {
+	provider = function()
+		return fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
+	end,
+	hl = function(winid)
+		winid = winid or 0
+		local bufnr = api.nvim_win_get_buf(winid)
+		local res = { fg = colors.fg }
+		if vim.bo[bufnr].modifiable and vim.bo[bufnr].modified then
+			res.fg = colors.red
+		end
+		return res
+	end,
+	icon = "",
+}
+
+winbar_ins_left({ provider = " " })
+winbar_ins_left(navic_component)
+winbar_ins_right(file_name)
+winbar_short_ins_left({ provider = " " })
+winbar_short_ins_right(winbar_inactive_file_name)
+
+feline.winbar.setup({ components = winbar_components })

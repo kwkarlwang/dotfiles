@@ -9,8 +9,6 @@ end
 return require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
-	use({ "lewis6991/impatient.nvim" })
-
 	-- lsp
 	use({
 		"neovim/nvim-lspconfig",
@@ -18,6 +16,7 @@ return require("packer").startup(function(use)
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
+		after = "cmp-nvim-lsp",
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup()
@@ -55,7 +54,6 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
 	use({
 		"hrsh7th/nvim-cmp",
-		-- disable = true,
 		config = function()
 			require("plugins.cmp")
 		end,
@@ -764,4 +762,6 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "preservim/vim-markdown" })
+
+	use({ "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" })
 end)

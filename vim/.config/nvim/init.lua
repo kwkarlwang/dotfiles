@@ -12,7 +12,6 @@ NS = { noremap = true, silent = true }
 
 home_dir = os.getenv("HOME") .. "/"
 
-pcall(require, "impatient")
 require("settings")
 require("keybindings")
 require("plugins")
