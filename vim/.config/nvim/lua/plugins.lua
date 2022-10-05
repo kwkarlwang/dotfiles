@@ -574,9 +574,7 @@ return require("packer").startup(function(use)
 
 	-- markdown
 	use({
-		-- "ellisonleao/glow.nvim",
-		"mengano-net/glow.nvim",
-		commit = "b1e81f213825659d9cba1ee8ce58ea2a069b8842",
+		"ellisonleao/glow.nvim",
 		cmd = "Glow",
 		ft = "markdown",
 	})
