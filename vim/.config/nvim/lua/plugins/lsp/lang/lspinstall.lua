@@ -37,7 +37,6 @@ require("mason-lspconfig").setup_handlers({
 				local function bufmap(...)
 					api.nvim_buf_set_keymap(bufnr, ...)
 				end
-
 				require("plugins.lsp.config").on_attach(client, bufnr)
 				bufmap(
 					"n",
@@ -45,6 +44,7 @@ require("mason-lspconfig").setup_handlers({
 					":lua require('nvim-lsp-installer.extras.tsserver').organize_imports()<CR>",
 					NS
 				)
+				client.server_capabilities.documentFormattingProvider = true
 			end
 		end
 		lsp_config[server_name].setup(config)

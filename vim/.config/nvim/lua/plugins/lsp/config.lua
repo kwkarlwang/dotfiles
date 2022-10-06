@@ -1,4 +1,3 @@
-local navic = require("nvim-navic")
 local on_attach = function(client, bufnr)
 	local function bufmap(...)
 		api.nvim_buf_set_keymap(bufnr, ...)
@@ -22,10 +21,6 @@ local on_attach = function(client, bufnr)
 	bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>", NS)
 
 	client.server_capabilities.documentFormattingProvider = false
-
-	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
-	end
 end
 
 local config = function()

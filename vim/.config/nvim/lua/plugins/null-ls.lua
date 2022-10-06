@@ -80,7 +80,9 @@ local sources = {
 	----------------------------------------------------------------------
 	--                            typescript                            --
 	----------------------------------------------------------------------
-	builtins.formatting.prettierd,
+	builtins.formatting.prettierd.with({
+		disabled_filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+	}),
 	-- builtins.diagnostics.eslint_d,
 	-- builtins.code_actions.eslint_d,
 	-- builtins.formatting.prettier,

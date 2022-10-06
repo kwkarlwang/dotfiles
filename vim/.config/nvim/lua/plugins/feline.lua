@@ -290,17 +290,6 @@ local winbar_short_ins_right = function(component)
 	table.insert(winbar_components.inactive[#winbar_components.inactive], component)
 end
 
-local navic = require("nvim-navic")
-
-local navic_component = {
-	provider = function()
-		return navic.get_location()
-	end,
-	enabled = function()
-		return navic.is_available()
-	end,
-}
-
 local winbar_inactive_file_name = {
 	provider = function()
 		return fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
@@ -318,7 +307,7 @@ local winbar_inactive_file_name = {
 }
 
 winbar_ins_left({ provider = " " })
-winbar_ins_left(navic_component)
+winbar_ins_left(file_name)
 winbar_ins_right({ provider = " " })
 
 winbar_short_ins_left({ provider = " " })

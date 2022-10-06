@@ -760,6 +760,4 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "preservim/vim-markdown" })
-
-	use({ "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" })
 end)
