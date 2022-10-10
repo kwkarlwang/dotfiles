@@ -39,13 +39,13 @@ local icons = {
 local super_tab = function(fallback)
 	-- if cmp.visible() then
 	-- 	cmp.select_next_item()
-	if luasnip.expand_or_jumpable() then
-		luasnip.expand_or_jump()
-		-- elseif has_words_before() then
-		-- 	cmp.complete()
-	else
-		fallback()
-	end
+	-- if luasnip.expand_or_jumpable() then
+	-- 	luasnip.expand_or_jump()
+	-- elseif has_words_before() then
+	-- 	cmp.complete()
+	-- else
+	fallback()
+	-- end
 end
 cmp.setup({
 	enabled = function()
