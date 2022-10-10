@@ -80,7 +80,7 @@ ins_left({ provider = " " })
 
 local file_path = {
 	provider = function()
-		local filepath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
+		local filepath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:."):gsub("%%%d.", "")
 		local splitpath = U.split(filepath, "/")
 		splitpath[#splitpath] = ""
 		filepath = table.concat(splitpath, "/")
@@ -100,7 +100,7 @@ ins_left(file_path)
 
 local file_name = {
 	provider = function()
-		return fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
+		return fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t"):gsub("%%%d.", "")
 	end,
 	hl = function(winid)
 		winid = winid or 0
