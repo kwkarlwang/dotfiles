@@ -3,13 +3,6 @@ bufmap(0, "n", "<leader>ce", "<cmd>FeMaco<cr>", NS)
 -- markdown preview
 bufmap(0, "n", "<leader>p", "<cmd>Glow<cr>", NS)
 
-vim.cmd([[
-  augroup MarkdownSyntax
-    autocmd!
-    autocmd BufNewFile,BufRead *.md setlocal syntax=on
-  augroup END
-]])
-
 g.vim_markdown_conceal_code_blocks = 0
 vim.opt_local.conceallevel = 2
 
@@ -61,3 +54,5 @@ require("vim.treesitter.query").set_query(
    ] @string.escape
  ]]
 )
+
+vim.cmd([[setlocal syntax=on]])
