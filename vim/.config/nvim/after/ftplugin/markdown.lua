@@ -54,5 +54,3 @@ require("vim.treesitter.query").set_query(
    ] @string.escape
  ]]
 )
-
-vim.cmd([[setlocal syntax=on]])
