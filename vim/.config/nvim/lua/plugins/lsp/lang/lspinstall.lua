@@ -17,7 +17,7 @@ require("mason-lspconfig").setup_handlers({
 		elseif server_name == "clangd" then
 			config.capabilities.offsetEncoding = { "utf-16" }
 			-- do not automatically insert ()
-			config.capabilities.textDocument.completion.completionItem.snippetSupport = false
+			config.capabilities.textDocument.completion.snippetSupport = false
 			config.cmd = {
 				"clangd",
 				"--background-index",

@@ -429,6 +429,18 @@ return require("packer").startup(function(use)
 			require("plugins.lightspeed")
 		end,
 	})
+	-- use({
+	-- 	"ggandor/leap.nvim",
+	-- 	config = function()
+	-- 		require("plugins.leap")
+	-- 	end,
+	-- })
+	-- use({
+	-- 	"ggandor/flit.nvim",
+	-- 	config = function()
+	-- 		require("flit").setup()
+	-- 	end,
+	-- })
 
 	-- auto session
 	use({
