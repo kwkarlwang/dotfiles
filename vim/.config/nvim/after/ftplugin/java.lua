@@ -14,8 +14,7 @@ local os_mapping = function()
 	return "linux"
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local java = "java"
 if utils.file_exists(home_dir .. ".sdkman/candidates/java/22.2.r17-grl/bin/java") then
