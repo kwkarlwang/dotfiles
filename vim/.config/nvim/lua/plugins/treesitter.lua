@@ -7,7 +7,7 @@ require("nvim-treesitter.configs").setup({
 	highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 	rainbow = {
 		enable = true,
-		extended_modes = false,
+		extended_mode = false,
 		colors = {
 			"#ebcb8b",
 			"#f199ce",
@@ -28,6 +28,10 @@ require("nvim-treesitter.configs").setup({
 				["ic"] = "@class.inner",
 				["al"] = "@loop.outer",
 				["il"] = "@loop.inner",
+				["ia"] = "@parameter.inner", -- a for argument
+				["aa"] = "@parameter.outer",
+				["ii"] = "@conditional.inner",
+				["ai"] = "@conditional.outer",
 			},
 		},
 		move = {
@@ -37,21 +41,29 @@ require("nvim-treesitter.configs").setup({
 				["]f"] = "@function.outer",
 				["]c"] = "@class.outer",
 				["]l"] = "@loop.outer",
+				["]a"] = "@parameter.outer",
+				["]i"] = "@conditional.outer",
 			},
 			goto_next_end = {
 				["]F"] = "@function.outer",
 				["]C"] = "@class.outer",
 				["]L"] = "@loop.outer",
+				["]A"] = "@parameter.outer",
+				["]I"] = "@conditional.outer",
 			},
 			goto_previous_start = {
 				["[f"] = "@function.outer",
 				["[c"] = "@class.outer",
 				["[l"] = "@loop.outer",
+				["[a"] = "@parameter.outer",
+				["[i"] = "@conditional.outer",
 			},
 			goto_previous_end = {
 				["[F"] = "@function.outer",
 				["[C"] = "@class.outer",
 				["[L"] = "@loop.outer",
+				["[A"] = "@parameter.outer",
+				["[I"] = "@conditional.outer",
 			},
 		},
 	},
