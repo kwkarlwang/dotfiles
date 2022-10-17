@@ -40,7 +40,7 @@ local super_tab = function(fallback)
 	-- if cmp.visible() then
 	-- 	cmp.select_next_item()
 	if luasnip.jumpable() then
-		luasnip.jump()
+		luasnip.jump(1)
 		-- elseif has_words_before() then
 		-- 	cmp.complete()
 	else
