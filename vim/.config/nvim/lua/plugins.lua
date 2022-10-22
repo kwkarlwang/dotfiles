@@ -772,4 +772,18 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "preservim/vim-markdown" })
+
+	-- replace UI for messages, cmdline, and popupmenu
+	use({
+		"folke/noice.nvim",
+		event = "VimEnter",
+		config = function()
+			require("noice").setup()
+			map("n", "<Esc>", ":noh<cr>:lua require('notify').dismiss()<cr>", NS)
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+	})
 end)
