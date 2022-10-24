@@ -15,19 +15,19 @@ require("mason-lspconfig").setup_handlers({
 				},
 			}
 		elseif server_name == "clangd" then
-			config.capabilities.offsetEncoding = { "utf-16" }
+			-- config.capabilities.offsetEncoding = { "utf-16" }
 			-- do not automatically insert ()
-			config.capabilities.textDocument.completion.snippetSupport = false
-			config.cmd = {
-				"clangd",
-				"--background-index",
-				"--suggest-missing-includes",
-				"--clang-tidy",
-				"--fallback-style=Google",
-				"--header-insertion=never",
-				"--completion-style=bundled",
-				"--enable-config",
-			}
+			-- config.capabilities.textDocument.completion.snippetSupport = false
+			-- config.cmd = {
+			-- 	"clangd",
+			-- 	"--background-index",
+			-- 	"--suggest-missing-includes",
+			-- 	"--clang-tidy",
+			-- 	"--fallback-style=Google",
+			-- 	"--header-insertion=never",
+			-- 	"--completion-style=bundled",
+			-- 	"--enable-config",
+			-- }
 			config.on_attach = function(client, bufnr)
 				require("plugins.lsp.config").on_attach(client, bufnr)
 				client.server_capabilities.documentFormattingProvider = true

@@ -258,7 +258,7 @@ local disable = {
 feline.setup({
 	components = components,
 	vi_mode_colors = vi_mode_colors,
-	update_triggers = { "VimEnter", "WinEnter", "WinClosed", "FileChangedShellPost", "BufModifiedSet" },
+	-- update_triggers = { "VimEnter", "WinEnter", "WinClosed", "FileChangedShellPost", "BufModifiedSet" },
 	disable = disable,
 })
 ----------------------------------------------------------------------

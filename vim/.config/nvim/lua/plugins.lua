@@ -774,16 +774,33 @@ return require("packer").startup(function(use)
 	use({ "preservim/vim-markdown" })
 
 	-- replace UI for messages, cmdline, and popupmenu
+	-- buggy as of 10/22/2022
 	use({
 		"folke/noice.nvim",
+		disable = true,
 		event = "VimEnter",
 		config = function()
-			require("noice").setup()
+			require("noice").setup({
+				routes = vim.tbl_map(function(find)
+					return { filter = {
+						event = "msg_show",
+						find = find,
+					}, opts = { skip = true } }
+				end, { "<", "written", "yanked", "second", "line", "change" }),
+			})
 			map("n", "<Esc>", ":noh<cr>:lua require('notify').dismiss()<cr>", NS)
 		end,
 		requires = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
+	})
+
+	use({
+		"rcarriga/nvim-notify",
+		config = function()
+			vim.notify = require("notify")
+			map("n", "<Esc>", ":noh<cr>:lua require('notify').dismiss()<cr>", NS)
+		end,
 	})
 end)

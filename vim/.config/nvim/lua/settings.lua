@@ -117,7 +117,7 @@ vim.cmd("let &t_ut=''")
 require("plugins.cursorline").setup()
 
 -- for auto-sessions
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winpos,terminal"
+vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winpos,terminal"
 
 -- Change file type
 vim.cmd([[
