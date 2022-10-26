@@ -199,6 +199,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"TimUntersberger/neogit",
+		commit = "4cc4476acbbc772f29fd6c1ccee43f58a29a1b13",
 		requires = "nvim-lua/plenary.nvim",
 		cmd = "Neogit",
 		setup = function()
