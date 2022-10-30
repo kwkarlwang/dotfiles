@@ -801,6 +801,9 @@ return require("packer").startup(function(use)
 		"rcarriga/nvim-notify",
 		config = function()
 			vim.notify = require("notify")
+			require("notify").setup({
+				background_color = "#000000",
+			})
 			map("n", "<Esc>", ":noh<cr>:lua require('notify').dismiss()<cr>", NS)
 		end,
 	})
