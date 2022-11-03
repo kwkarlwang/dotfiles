@@ -722,7 +722,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 	-- protobuf highlighting
-	use({ "wfxr/protobuf.vim" })
+	-- use({ "wfxr/protobuf.vim" })
 	use({ "MTDL9/vim-log-highlighting" })
 
 	-- ui library
