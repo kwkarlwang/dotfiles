@@ -291,9 +291,7 @@ local winbar_short_ins_right = function(component)
 end
 
 local winbar_inactive_file_name = {
-	provider = function()
-		return fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
-	end,
+	provider = file_name.provider,
 	hl = function(winid)
 		winid = winid or 0
 		local bufnr = api.nvim_win_get_buf(winid)
