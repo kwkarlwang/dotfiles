@@ -721,8 +721,7 @@ return require("packer").startup(function(use)
 			map("n", "<leader>S", "<cmd>lua require('spectre').open()<cr>", NS)
 		end,
 	})
-	-- protobuf highlighting
-	use({ "wfxr/protobuf.vim" })
+	-- log highlighting
 	use({ "MTDL9/vim-log-highlighting" })
 
 	-- ui library

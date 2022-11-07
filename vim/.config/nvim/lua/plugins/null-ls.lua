@@ -96,10 +96,10 @@ local sources = {
 	----------------------------------------------------------------------
 	--                              proto                               --
 	----------------------------------------------------------------------
-	builtins.formatting.clang_format.with({
-		filetypes = { "proto" },
-	}),
-	builtins.diagnostics.protolint,
+	-- builtins.formatting.clang_format.with({
+	-- 	filetypes = { "proto" },
+	-- }),
+	builtins.diagnostics.buf,
 	----------------------------------------------------------------------
 	--                               sql                                --
 	----------------------------------------------------------------------
