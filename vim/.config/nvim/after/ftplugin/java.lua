@@ -17,8 +17,8 @@ end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local java = "java"
-if utils.file_exists(home_dir .. ".sdkman/candidates/java/22.2.r17-grl/bin/java") then
-	java = home_dir .. ".sdkman/candidates/java/22.2.r17-grl/bin/java"
+if utils.file_exists(home_dir .. ".sdkman/candidates/java/19-open/bin/java") then
+	java = home_dir .. ".sdkman/candidates/java/19-open/bin/java"
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
