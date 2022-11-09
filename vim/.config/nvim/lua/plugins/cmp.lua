@@ -148,16 +148,16 @@ cmp.setup.filetype({ "cpp" }, {
 		{ name = "emoji" },
 	}),
 })
--- cmp.setup.filetype({ "java" }, {
--- 	mapping = {
--- 		["<CR>"] = mapping({
--- 			i = cmp.mapping.confirm({
--- 				behavior = cmp.ConfirmBehavior.Replace,
--- 				select = false,
--- 			}),
--- 		}),
--- 	},
--- })
+cmp.setup.filetype({ "java" }, {
+	mapping = {
+		["<CR>"] = mapping({
+			i = cmp.mapping.confirm({
+				behavior = cmp.ConfirmBehavior.Replace,
+				select = false,
+			}),
+		}),
+	},
+})
 
 cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
 	sources = sources({
