@@ -702,17 +702,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- regex explainer
-	use({
-		"bennypowers/nvim-regexplainer",
-		config = function()
-			require("regexplainer").setup()
-		end,
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-		},
-	})
 	-- search and replace
 	use({
 		"nvim-pack/nvim-spectre",
