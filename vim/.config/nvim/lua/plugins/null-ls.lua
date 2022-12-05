@@ -135,12 +135,13 @@ AsyncFormat = function(bufnr)
 				local err_msg = type(err) == "string" and err or err.message
 				-- you can modify the log message / level (or ignore it completely)
 				vim.notify("formatting: " .. err_msg, vim.log.levels.WARN)
+				vim.cmd("TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow")
 				return
 			end
 
 			-- don't apply results if buffer is unloaded or has been modified
 			if not vim.api.nvim_buf_is_loaded(bufnr) or vim.api.nvim_buf_get_option(bufnr, "modified") then
-				vim.cmd("TSDisable rainbow | TSEnable rainbow")
+				vim.cmd("TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow")
 				return
 			end
 
