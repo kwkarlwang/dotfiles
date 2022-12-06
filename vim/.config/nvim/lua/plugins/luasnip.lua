@@ -29,6 +29,14 @@ ls.add_snippets("cpp", {
 		}),
 	}),
 })
+ls.add_snippets("python", {
+	s("lc", {
+		t({
+			"from typing import List, Dict",
+			"import heapq",
+		}),
+	}),
+})
 
 ls.config.set_config({
 	history = false,
