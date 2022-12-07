@@ -149,7 +149,7 @@ AsyncFormat = function(bufnr)
 				local client = vim.lsp.get_client_by_id(ctx.client_id)
 				vim.lsp.util.apply_text_edits(res, bufnr, client and client.offset_encoding or "utf-16")
 				vim.api.nvim_buf_call(bufnr, function()
-					vim.cmd("silent noautocmd update | TSDisable rainbow | TSEnable rainbow")
+					vim.cmd("silent noautocmd update | TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow")
 				end)
 			end
 		end
