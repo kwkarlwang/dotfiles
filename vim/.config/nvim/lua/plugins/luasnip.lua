@@ -32,8 +32,8 @@ ls.add_snippets("cpp", {
 ls.add_snippets("python", {
 	s("lc", {
 		t({
-			"from typing import List, Dict",
-			"import heapq",
+			"from typing import List, Dict, Tuple",
+			"from heapq import heapify, heappush, heappop",
 		}),
 	}),
 })

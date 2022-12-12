@@ -148,12 +148,13 @@ return require("packer").startup(function(use)
 	--------Tree Sitter-----------
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		commit = "1656f67f261ab51525288d0c4b38e1577f79eaf3",
+		-- commit = "1656f67f261ab51525288d0c4b38e1577f79eaf3",
 		run = ":TSUpdate",
 		config = function()
 			require("plugins.treesitter")
 		end,
 	})
+	use({ "nvim-treesitter/playground" })
 
 	use({
 		"kylechui/nvim-surround",

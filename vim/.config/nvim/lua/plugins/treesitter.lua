@@ -6,7 +6,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 	rainbow = {
-		enable = true,
+		enable = false,
 		extended_mode = false,
 		colors = {
 			"#ebcb8b",
