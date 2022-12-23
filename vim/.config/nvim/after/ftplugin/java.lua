@@ -14,6 +14,8 @@ local os_mapping = function()
 	return "linux"
 end
 
+vim.cmd([[setlocal sw=2]])
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local java = "java"
