@@ -1,5 +1,8 @@
 local M = {
 	"feline-nvim/feline.nvim",
+	dependencies = {
+		"kyazdani42/nvim-web-devicons",
+	},
 }
 M.config = function()
 	local colors = {

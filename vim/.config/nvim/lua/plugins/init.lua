@@ -11,7 +11,6 @@ return {
 			vim.cmd("colorscheme dracula")
 		end,
 	},
-	"kyazdani42/nvim-web-devicons",
 	{
 		"kylechui/nvim-surround",
 		config = true,
