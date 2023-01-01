@@ -4,10 +4,10 @@ M.setup = function()
 	vim.cmd([[
 	  augroup CursorLine
 	    autocmd!
-	    autocmd BufEnter,WinEnter * lua require('plugins.cursorline').set_cursorline(true)
-	    autocmd BufLeave,WinLeave * lua require('plugins.cursorline').set_cursorline(false)
-	    autocmd FileType TelescopePrompt lua require('plugins.cursorline').block_set_cursorline(true)
-	    autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua require('plugins.cursorline').block_set_cursorline(false)
+	    autocmd BufEnter,WinEnter * lua require('extensions.cursorline').set_cursorline(true)
+	    autocmd BufLeave,WinLeave * lua require('extensions.cursorline').set_cursorline(false)
+	    autocmd FileType TelescopePrompt lua require('extensions.cursorline').block_set_cursorline(true)
+	    autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua require('extensions.cursorline').block_set_cursorline(false)
 	  augroup END
 	]])
 end

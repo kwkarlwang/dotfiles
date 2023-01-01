@@ -1,5 +1,4 @@
 ---@diagnostic disable: lowercase-global
-vim = vim
 fn = vim.fn
 g = vim.g
 map = vim.api.nvim_set_keymap
@@ -14,7 +13,7 @@ home_dir = os.getenv("HOME") .. "/"
 
 require("settings")
 require("keybindings")
-require("plugins")
+require("plugin")
 vim.lsp.set_log_level("error")
 
 -- vim.cmd("set rtp+=~/projects/neovim/nvim-jupyter")

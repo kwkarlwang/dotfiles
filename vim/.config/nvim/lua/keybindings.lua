@@ -9,10 +9,7 @@ map("i", "jk", "<Esc>", NS)
 map("c", "<Down>", "<C-n>", {})
 map("c", "<Up>", "<C-p>", {})
 -- HELP
-map("n", "<leader>ps", ":source %<cr>", { noremap = true })
-map("n", "<leader>pp", ":source %<cr>:PackerSync<cr>", NS)
-map("n", "<leader>pc", ":source %<cr>:PackerCompile profile=true<cr>", { noremap = true })
-map("n", "<leader>pP", ":source %<cr>:PackerProfile<cr>", { noremap = true })
+map("n", "<leader>pp", "<cmd>Lazy<cr>", NS)
 -- FILE
 map("n", "<leader>fs", ":silent up<cr>", NS)
 map("n", "s", "<nop>", NS)
@@ -65,8 +62,8 @@ map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", NS)
 map("i", "<M-Up>", "<Esc>:m .-2<cr>==gi", NS)
 map("n", "<M-Down>", ":m .+1<cr>==", NS)
 map("n", "<M-Up>", ":m .-2<cr>==", NS)
-map("v", "<M-Down>", ":m '>+1<cr>gv=gv", NS)
-map("v", "<M-Up>", ":m '<-2<cr>gv=gv", NS)
+map("x", "<M-Down>", ":m '>+1<cr>gv=gv", NS)
+map("x", "<M-Up>", ":m '<-2<cr>gv=gv", NS)
 
 -- y/Y
 map("v", "y", "ygv<esc>", NS)

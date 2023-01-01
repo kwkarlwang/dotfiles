@@ -114,7 +114,7 @@ o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.cmd("let &t_ut=''")
 
 --------disable cursor in inactvie pane-----------
-require("plugins.cursorline").setup()
+require("extensions.cursorline").setup()
 
 -- for auto-sessions
 vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winpos,terminal"
