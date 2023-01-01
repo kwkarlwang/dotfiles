@@ -17,14 +17,12 @@ return {
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-nvim-lsp-document-symbol",
 		"saadparwaiz1/cmp_luasnip",
-		"L3MON4D3/LuaSnip",
 	},
 	config = function()
 		local cmp = require("cmp")
 		local mapping = require("cmp.config.mapping")
 		local sources = require("cmp.config.sources")
 		local types = require("cmp.types")
-		local luasnip = require("luasnip")
 
 		local icons = {
 			Class = " ",
@@ -61,6 +59,7 @@ return {
 		local super_tab = function(fallback)
 			-- if cmp.visible() then
 			-- 	cmp.select_next_item()
+			local luasnip = require("luasnip")
 			if luasnip.jumpable() then
 				luasnip.jump(1)
 				-- elseif has_words_before() then
@@ -79,6 +78,7 @@ return {
 			},
 			snippet = {
 				expand = function(args)
+					local luasnip = require("luasnip")
 					luasnip.lsp_expand(args.body)
 				end,
 			},
@@ -121,6 +121,7 @@ return {
 				["<S-Tab>"] = mapping(function(fallback)
 					-- if cmp.visible() then
 					-- 	cmp.select_prev_item()
+					local luasnip = require("luasnip")
 					if luasnip.jumpable(-1) then
 						luasnip.jump(-1)
 					else
