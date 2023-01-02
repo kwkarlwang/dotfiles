@@ -84,11 +84,16 @@ return {
 				autotag = {
 					enable = true,
 				},
+				yati = {
+					enable = true,
+					default_lazy = true,
+					default_fallback = true,
+				},
 			})
 
-			vim.api.nvim_command(
-				"au Filetype javascriptreact,typescriptreact,html setlocal indentexpr=nvim_treesitter#indent()"
-			)
+			-- vim.api.nvim_command(
+			-- 	"au Filetype javascriptreact,typescriptreact,html setlocal indentexpr=nvim_treesitter#indent()"
+			-- )
 		end,
 	},
 	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
@@ -113,4 +118,5 @@ return {
 			multiline_keymap = "cm",
 		},
 	},
+	"yioneko/nvim-yati",
 }

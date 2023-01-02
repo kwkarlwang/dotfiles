@@ -179,6 +179,8 @@ return {
 	-- correct python indentation
 	{
 		"Vimjas/vim-python-pep8-indent",
+		-- nvim-yati does the trick now
+		enabled = false,
 		ft = "python",
 	},
 	-- Write Read without sudo permission
@@ -293,6 +295,7 @@ return {
 	},
 	{
 		"andymass/vim-matchup",
+		event = "BufReadPost",
 		keys = {
 			-- Go to pair
 			{ "q", "%", mode = { "n", "x", "o" } },
