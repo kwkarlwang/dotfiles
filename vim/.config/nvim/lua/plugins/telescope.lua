@@ -75,7 +75,40 @@ return {
 				lsp_definitions = {},
 				lsp_document_symbols = {},
 				lsp_workspace_symbols = {},
-				diagnostics = {},
+				diagnostics = {
+					mappings = {
+						i = {
+							["<m-e>"] = function()
+								vim.api.nvim_feedkeys(
+									vim.api.nvim_replace_termcodes(" <C-o>cc:error: ", true, true, true),
+									"n",
+									true
+								)
+							end,
+							["<m-i>"] = function()
+								vim.api.nvim_feedkeys(
+									vim.api.nvim_replace_termcodes(" <C-o>cc:info: ", true, true, true),
+									"n",
+									true
+								)
+							end,
+							["<m-w>"] = function()
+								vim.api.nvim_feedkeys(
+									vim.api.nvim_replace_termcodes(" <C-o>cc:warn: ", true, true, true),
+									"n",
+									true
+								)
+							end,
+							["<m-h>"] = function()
+								vim.api.nvim_feedkeys(
+									vim.api.nvim_replace_termcodes(" <C-o>cc:hint: ", true, true, true),
+									"n",
+									true
+								)
+							end,
+						},
+					},
+				},
 				lsp_code_actions = {},
 				help_tags = {},
 				live_grep = {
