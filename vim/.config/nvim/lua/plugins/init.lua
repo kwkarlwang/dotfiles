@@ -115,7 +115,7 @@ return {
 	-- color hex code
 	{
 		"NvChad/nvim-colorizer.lua",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			require("colorizer").setup()
 		end,
@@ -295,7 +295,7 @@ return {
 	},
 	{
 		"andymass/vim-matchup",
-		event = "BufReadPost",
+		event = "VeryLazy",
 		keys = {
 			-- Go to pair
 			{ "q", "%", mode = { "n", "x", "o" } },
@@ -382,6 +382,7 @@ return {
 	{
 		"stevearc/dressing.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
+		event = "VeryLazy",
 		config = function()
 			require("dressing").setup({
 				select = {

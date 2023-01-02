@@ -1,5 +1,4 @@
 local M = {}
-local utils = require("telescope.utils")
 M.split = function(inputstr, sep)
 	if sep == nil then
 		sep = "%s"
@@ -11,6 +10,7 @@ M.split = function(inputstr, sep)
 	return t
 end
 M.gen_from_file = function(opts)
+	local utils = require("telescope.utils")
 	local lookup_keys = {
 		ordinal = 1,
 		value = 1,
