@@ -37,6 +37,10 @@ return {
 					["vim.lsp.util.stylize_markdown"] = true,
 					["cmp.entry.get_documentation"] = true,
 				},
+				hover = {
+					-- jdtls hover doc does not support noice hover
+					enabled = false,
+				},
 			},
 			routes = routes,
 			presets = {

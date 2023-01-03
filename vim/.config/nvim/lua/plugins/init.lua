@@ -295,7 +295,7 @@ return {
 	},
 	{
 		"andymass/vim-matchup",
-		event = "VeryLazy",
+		lazy = false,
 		keys = {
 			-- Go to pair
 			{ "q", "%", mode = { "n", "x", "o" } },
