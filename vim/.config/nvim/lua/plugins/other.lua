@@ -340,13 +340,6 @@ return {
 			vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
 		end,
 	},
-	-- spellcheck
-	{
-		"lewis6991/spellsitter.nvim",
-		config = function()
-			require("spellsitter").setup()
-		end,
-	},
 	-- swap arguments, list elements
 	{
 		"mizlan/iswap.nvim",
