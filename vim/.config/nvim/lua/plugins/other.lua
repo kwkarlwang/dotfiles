@@ -419,6 +419,7 @@ return {
 			require("notify").setup({
 				background_colour = "#000000",
 			})
+			map("n", "<Esc>", "<cmd>noh<cr><cmd>lua require('notify').dismiss()<cr>", NS)
 		end,
 	},
 }

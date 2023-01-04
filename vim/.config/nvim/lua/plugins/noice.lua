@@ -1,20 +1,25 @@
 -- replace UI for messages, cmdline, and popupmenu
-local routes = vim.tbl_map(function(keyword)
+local routes = vim.tbl_map(function(pair)
 	return {
 		filter = {
-			find = keyword,
+			find = pair[1],
 		},
 		opts = { skip = true },
+		view = pair[2],
 	}
 end, {
-	"<",
-	"written",
-	"yanked",
-	"second",
-	"line",
-	"change",
-	"formatting",
-	"jdtls",
+	{ "written$", "notify" },
+	{ "yanked", "notify" },
+	{ "line less", "notify" },
+	{ "less line", "notify" },
+	{ "more line", "notify" },
+	{ "attempt", "notify" },
+	{ "Error executing vim.schedule lua callback", "notify" },
+	{ "change", "notify" },
+	{ "formatting", "mini" },
+	{ "Building jdtls", "mini" },
+	{ "Validate documents jdtls", "mini" },
+	{ "Publish Diagnostics jdtls", "mini" },
 })
 table.insert(routes, {
 	filter = {
@@ -51,6 +56,5 @@ return {
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 		})
-		map("n", "<Esc>", "<cmd>noh<cr><cmd>lua require('notify').dismiss()<cr>", NS)
 	end,
 }
