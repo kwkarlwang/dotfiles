@@ -17,7 +17,6 @@ return {
 		map("n", [["]], "<Plug>Lightspeed_S", {})
 		map("x", [[']], "<Plug>Lightspeed_s", {})
 		map("x", [["]], "<Plug>Lightspeed_S", {})
-		vim.cmd([[nunmap S]])
 		vim.cmd([[
 		let g:lightspeed_last_motion = ''
 		augroup lightspeed_last_motion
