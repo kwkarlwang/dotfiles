@@ -11,7 +11,7 @@ end, {
 	{ "written$", "notify" },
 	{ "yanked", "notify" },
 	{ "line less", "notify" },
-	{ "less line", "notify" },
+	{ "fewer line", "notify" },
 	{ "more line", "notify" },
 	{ "attempt", "notify" },
 	{ "Error executing vim.schedule lua callback", "notify" },
