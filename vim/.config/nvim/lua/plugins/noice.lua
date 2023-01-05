@@ -20,6 +20,7 @@ end, {
 	{ "Building jdtls", "mini" },
 	{ "Validate documents jdtls", "mini" },
 	{ "Publish Diagnostics jdtls", "mini" },
+	{ "Refreshing workspace jdtls", "mini" },
 })
 table.insert(routes, {
 	filter = {
