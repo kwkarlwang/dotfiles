@@ -46,6 +46,9 @@ return {
 					-- jdtls hover doc does not support noice hover
 					enabled = false,
 				},
+				progress = {
+					enabled = false,
+				},
 			},
 			routes = routes,
 			presets = {
