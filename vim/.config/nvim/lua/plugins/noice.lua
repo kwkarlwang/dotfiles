@@ -10,6 +10,7 @@ local routes = vim.tbl_map(function(pair)
 end, {
 	{ "written$", "notify" },
 	{ "yanked", "notify" },
+	{ "indented", "notify" },
 	{ "line less", "notify" },
 	{ "fewer line", "notify" },
 	{ "more line", "notify" },
