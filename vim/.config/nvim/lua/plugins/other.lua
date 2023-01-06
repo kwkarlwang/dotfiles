@@ -332,9 +332,7 @@ return {
 				silent = true,
 			})
 			local function copy()
-				if vim.v.event.operator == "y" then
-					require("osc52").copy_register(vim.v.event.regname)
-				end
+				require("osc52").copy_register(vim.v.event.regname)
 			end
 
 			vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
