@@ -1,5 +1,8 @@
 return {
 	"ggandor/lightspeed.nvim",
+	init = function()
+		g.lightspeed_no_default_keymaps = true
+	end,
 	config = function()
 		require("lightspeed").setup({
 			ignore_case = true,
@@ -17,6 +20,14 @@ return {
 		map("n", [["]], "<Plug>Lightspeed_S", {})
 		map("x", [[']], "<Plug>Lightspeed_s", {})
 		map("x", [["]], "<Plug>Lightspeed_S", {})
+		map("n", [[f]], "<Plug>Lightspeed_f", {})
+		map("n", [[F]], "<Plug>Lightspeed_F", {})
+		map("x", [[f]], "<Plug>Lightspeed_f", {})
+		map("x", [[F]], "<Plug>Lightspeed_f", {})
+		map("n", [[t]], "<Plug>Lightspeed_t", {})
+		map("n", [[T]], "<Plug>Lightspeed_T", {})
+		map("x", [[t]], "<Plug>Lightspeed_t", {})
+		map("x", [[T]], "<Plug>Lightspeed_T", {})
 		vim.cmd([[
 		let g:lightspeed_last_motion = ''
 		augroup lightspeed_last_motion
