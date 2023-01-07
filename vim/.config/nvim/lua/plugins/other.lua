@@ -180,7 +180,7 @@ return {
 	{
 		"Vimjas/vim-python-pep8-indent",
 		-- nvim-yati does the trick now
-		enabled = false,
+		-- enabled = false,
 		ft = "python",
 	},
 	-- Write Read without sudo permission
