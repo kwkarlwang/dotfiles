@@ -19,6 +19,7 @@ vim.cmd([[setlocal sw=2]])
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local java = "java"
+-- use the following as java lsp provider
 if utils.file_exists(home_dir .. ".sdkman/candidates/java/17.0.5-tem/bin/java") then
 	java = home_dir .. ".sdkman/candidates/java/17.0.5-tem/bin/java"
 end
@@ -63,7 +64,26 @@ local config = {
 	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	-- for a list of options
 	settings = {
-		java = {},
+		java = {
+			configuration = {
+				updateBuildConfiguration = "interactive",
+			},
+			signatureHelp = { enabled = true },
+			completion = {
+				favoriteStaticMembers = {
+					"org.hamcrest.MatcherAssert.assertThat",
+					"org.hamcrest.Matchers.*",
+					"org.hamcrest.CoreMatchers.*",
+					"org.junit.jupiter.api.Assertions.*",
+					"java.util.Objects.requireNonNull",
+					"java.util.Objects.requireNonNullElse",
+					"org.mockito.Mockito.*",
+				},
+			},
+		},
+		flags = {
+			allow_incremental_sync = true,
+		},
 	},
 
 	-- Language server `initializationOptions`
@@ -77,7 +97,6 @@ local config = {
 		bundles = {},
 	},
 	on_attach = function(client, bufnr)
-		require("jdtls.setup").add_commands()
 		require("plugins.lsp.config").on_attach(client, bufnr)
 		vim.keymap.set("n", "<leader>lu", jdtls.update_project_config)
 		vim.keymap.set("n", "<leader>oi", jdtls.organize_imports)
@@ -94,9 +113,23 @@ local config = {
 		vim.keymap.set("v", "<leader>gv", function()
 			jdtls.extract_variable(true)
 		end)
+		require("jdtls").setup_dap({ hotcodereplace = "auto" })
+		require("jdtls.setup").add_commands()
 	end,
 	capabilities = capabilities,
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
+config.init_options = {
+	bundles = {
+		vim.fn.glob(
+			home_dir
+				.. ".local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"
+		),
+	},
+}
+vim.list_extend(
+	config.init_options.bundles,
+	vim.split(vim.fn.glob(home_dir .. ".local/share/nvim/mason/packages/java-test/extension/server/*.jar", 1), "\n")
+)
 jdtls.start_or_attach(config)

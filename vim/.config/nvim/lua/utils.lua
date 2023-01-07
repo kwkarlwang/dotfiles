@@ -124,12 +124,6 @@ M.quickfix = function()
 end
 
 M.file_exists = function(name)
-	local f = io.open(name, "r")
-	if f == nil then
-		return false
-	else
-		io.close(f)
-		return true
-	end
+	return vim.fn.glob(name) ~= ""
 end
 return M

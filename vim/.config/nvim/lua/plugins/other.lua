@@ -179,8 +179,6 @@ return {
 	-- correct python indentation
 	{
 		"Vimjas/vim-python-pep8-indent",
-		-- nvim-yati does the trick now
-		-- enabled = false,
 		ft = "python",
 	},
 	-- Write Read without sudo permission
@@ -418,6 +416,27 @@ return {
 				background_colour = "#000000",
 			})
 			map("n", "<Esc>", ":noh<cr><cmd>lua require('notify').dismiss()<cr>", NS)
+		end,
+	},
+
+	-- code runner
+	{
+		"CRAG666/code_runner.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		keys = { { "<leader>r", "<cmd>RunCode<cr>", NS } },
+		config = function()
+			require("code_runner").setup({
+				mode = "toggleterm",
+				startinsert = true,
+				filetype = {
+					java = "cd $dir && java $fileName",
+					python = "python3 -u",
+					cpp = "cd $dir && cpp $fileName",
+					go = "cd $dir && go run $fileName",
+				},
+			})
 		end,
 	},
 }

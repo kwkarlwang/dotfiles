@@ -7,6 +7,12 @@ return {
 				require("dapui").setup()
 			end,
 		},
+		{
+			"mfussenegger/nvim-dap-python",
+			config = function()
+				require("dap-python").setup("python3")
+			end,
+		},
 	},
 	keys = {
 		{ "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>" },
@@ -25,11 +31,21 @@ return {
 	},
 	config = function()
 		local dap = require("dap")
-		dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 		dap.adapters.cppdbg = {
 			id = "cppdbg",
 			type = "executable",
 			command = home_dir .. ".local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
 		}
+
+		local dapui = require("dapui")
+		dap.listeners.after.event_initialized["dapui_config"] = function()
+			dapui.open()
+		end
+		dap.listeners.before.event_terminated["dapui_config"] = function()
+			dapui.close()
+		end
+		dap.listeners.before.event_exited["dapui_config"] = function()
+			dapui.close()
+		end
 	end,
 }

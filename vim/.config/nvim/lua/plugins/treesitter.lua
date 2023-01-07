@@ -92,22 +92,11 @@ return {
 		end,
 	},
 	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
-	-- {
-	-- 	"s1n7ax/nvim-comment-frame",
-	-- 	keys = "cm",
-	-- 	config = function()
-	-- 		require("nvim-comment-frame").setup({
-	-- 			keymap = "cm",
-	-- 			multiline_keymap = "cm",
-	-- 		})
-	-- 	end,
-	-- },
 	"p00f/nvim-ts-rainbow", -- make color brackets
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"windwp/nvim-ts-autotag",
 	{
 		"s1n7ax/nvim-comment-frame",
-		-- keys = "cm",
 		config = {
 			keymap = "cm",
 			multiline_keymap = "cm",
