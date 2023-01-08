@@ -197,7 +197,7 @@ return {
 	{
 		"danymat/neogen",
 		keys = {
-			{ "cd", ":lua require('neogen').generate()<cr>" },
+			{ "cd", "<cmd>lua require('neogen').generate()<cr>" },
 		},
 		config = {
 			enabled = true,
