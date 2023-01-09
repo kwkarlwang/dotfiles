@@ -97,7 +97,7 @@ return {
 	"windwp/nvim-ts-autotag",
 	{
 		"s1n7ax/nvim-comment-frame",
-		config = {
+		opts = {
 			keymap = "cm",
 			multiline_keymap = "cm",
 		},

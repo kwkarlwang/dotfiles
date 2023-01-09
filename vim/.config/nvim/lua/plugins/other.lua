@@ -104,7 +104,7 @@ return {
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
 
-		config = {
+		opts = {
 			hooks = {
 				diff_buf_read = function()
 					vim.cmd([[set nocursorline]])
@@ -157,7 +157,7 @@ return {
 	},
 	{
 		"rmagatti/auto-session",
-		config = {
+		opts = {
 			log_level = "error",
 		},
 	},
@@ -199,7 +199,7 @@ return {
 		keys = {
 			{ "cd", "<cmd>lua require('neogen').generate()<cr>" },
 		},
-		config = {
+		opts = {
 			enabled = true,
 			input_after_comment = false,
 			languages = {
