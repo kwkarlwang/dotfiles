@@ -277,7 +277,7 @@ return {
 		-- after = "dracula",
 		cmd = "WinShift",
 		keys = {
-			{ "<leader>ww", ":WinShift<cr>" },
+			{ "<leader>ww", "<cmd>WinShift<cr>" },
 		},
 		config = function()
 			require("winshift").setup({
