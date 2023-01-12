@@ -111,6 +111,8 @@ local config = {
 		vim.keymap.set("v", "<leader>gv", function()
 			jdtls.extract_variable(true)
 		end)
+		vim.keymap.set("n", "<leader>tf", jdtls.test_nearest_method)
+		vim.keymap.set("n", "<leader>tc", jdtls.test_class)
 		require("jdtls").setup_dap({ hotcodereplace = "auto" })
 		require("jdtls.setup").add_commands()
 	end,
