@@ -19,7 +19,7 @@ return {
 		{ "<leader>dB", "<cmd>lua require'dap'.step_back()<cr>" },
 		{ "<leader>dc", "<cmd>lua require'dap'.continue()<cr>" },
 		{ "<leader>dC", "<cmd>lua require'dap'.run_to_cursor()<cr>" },
-		{ "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>" },
+		{ "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr><cmd>lua require'dapui'.close()<cr>" },
 		{ "<leader>dg", "<cmd>lua require'dap'.session()<cr>" },
 		{ "<leader>di", "<cmd>lua require'dap'.step_into()<cr>" },
 		{ "<leader>do", "<cmd>lua require'dap'.step_over()<cr>" },
@@ -41,11 +41,11 @@ return {
 		dap.listeners.after.event_initialized["dapui_config"] = function()
 			dapui.open()
 		end
-		dap.listeners.before.event_terminated["dapui_config"] = function()
-			dapui.close()
-		end
-		dap.listeners.before.event_exited["dapui_config"] = function()
-			dapui.close()
-		end
+		-- dap.listeners.before.event_terminated["dapui_config"] = function()
+		-- 	dapui.close()
+		-- end
+		-- dap.listeners.before.event_exited["dapui_config"] = function()
+		-- 	dapui.close()
+		-- end
 	end,
 }
