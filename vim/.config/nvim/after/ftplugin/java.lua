@@ -1,11 +1,12 @@
 local jdtls = require("jdtls")
-local ok, utils = pcall(require, "utils")
-if not ok then
-	return
-end
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local utils = require("utils")
+-- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
-local workspace_dir = home_dir .. "workspace/" .. project_name
+-- local workspace_dir = home_dir .. "workspace/" .. project_name
+local workspace_dir = home_dir .. "workspace/" .. string.gsub(vim.fn.getcwd(), home_dir, "")
+print(workspace_dir)
+print(workspace_dir)
+print(workspace_dir)
 
 local os_mapping = function()
 	if vim.loop.os_uname().sysname == "Darwin" then
