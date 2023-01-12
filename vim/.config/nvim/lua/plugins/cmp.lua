@@ -171,7 +171,7 @@ return {
 				{ name = "emoji" },
 			}),
 		})
-		cmp.setup.filetype({ "java" }, {
+		cmp.setup.filetype({ "java", "go" }, {
 			mapping = {
 				["<CR>"] = mapping({
 					i = cmp.mapping.confirm({

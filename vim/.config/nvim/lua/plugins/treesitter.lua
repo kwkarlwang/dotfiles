@@ -7,9 +7,7 @@ return {
 			-- require("nvim-treesitter.install").compilers = { "gcc" }
 			require("nvim-treesitter.configs").setup({
 				ignore_install = {},
-				indent = {
-					enable = false,
-				},
+				indent = { enable = false },
 				-- highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 				highlight = { enable = true },
 				rainbow = {
@@ -92,7 +90,7 @@ return {
 		end,
 	},
 	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
-	"p00f/nvim-ts-rainbow", -- make color brackets
+	-- "p00f/nvim-ts-rainbow", -- make color brackets
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"windwp/nvim-ts-autotag",
 	{
