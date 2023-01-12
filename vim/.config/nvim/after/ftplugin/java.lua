@@ -4,9 +4,6 @@ local utils = require("utils")
 
 -- local workspace_dir = home_dir .. "workspace/" .. project_name
 local workspace_dir = home_dir .. "workspace/" .. string.gsub(vim.fn.getcwd(), home_dir, "")
-print(workspace_dir)
-print(workspace_dir)
-print(workspace_dir)
 
 local os_mapping = function()
 	if vim.loop.os_uname().sysname == "Darwin" then
