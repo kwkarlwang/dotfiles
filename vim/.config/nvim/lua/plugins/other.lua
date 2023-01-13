@@ -430,8 +430,6 @@ return {
 			require("code_runner").setup({
 				mode = "toggleterm",
 				startinsert = true,
-				filetype_path = "",
-				project_path = "",
 				filetype = {
 					java = "cd $dir && java $fileName",
 					python = "python3 -u",
