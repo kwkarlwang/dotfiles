@@ -57,14 +57,6 @@ map(
 	NS
 )
 
--- move line up and down
-map("i", "<M-Down>", "<Esc>:m .+1<cr>==gi", NS)
-map("i", "<M-Up>", "<Esc>:m .-2<cr>==gi", NS)
-map("n", "<M-Down>", ":m .+1<cr>==", NS)
-map("n", "<M-Up>", ":m .-2<cr>==", NS)
-map("x", "<M-Down>", ":m '>+1<cr>gv=gv", NS)
-map("x", "<M-Up>", ":m '<-2<cr>gv=gv", NS)
-
 -- y/Y
 map("v", "y", "ygv<esc>", NS)
 
@@ -74,9 +66,6 @@ map("i", ".", ".<C-g>u", NS)
 map("i", "!", "!<C-g>u", NS)
 map("i", "?", "?<C-g>u", NS)
 map("i", "[", "[<C-g>u", NS)
-
--- don't lose indent with esc
-map("i", "<cr>", "<cr>x<bs>", NS)
 
 -- select non blank line
 map("n", "vv", "^vg_", NS)
