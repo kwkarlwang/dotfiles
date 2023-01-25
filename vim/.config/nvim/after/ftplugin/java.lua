@@ -69,13 +69,11 @@ local config = {
 			signatureHelp = { enabled = true },
 			completion = {
 				favoriteStaticMembers = {
-					"org.hamcrest.MatcherAssert.assertThat",
-					"org.hamcrest.Matchers.*",
-					"org.hamcrest.CoreMatchers.*",
 					"org.junit.jupiter.api.Assertions.*",
+					"org.mockito.Mockito.*",
+					"org.mockito.ArgumentMatchers.*",
 					"java.util.Objects.requireNonNull",
 					"java.util.Objects.requireNonNullElse",
-					"org.mockito.Mockito.*",
 				},
 			},
 		},
