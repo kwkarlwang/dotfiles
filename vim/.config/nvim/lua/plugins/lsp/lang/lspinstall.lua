@@ -15,8 +15,7 @@ require("mason-lspconfig").setup_handlers({
 				},
 			}
 		elseif server_name == "clangd" then
-			-- do not automatically insert ()
-			config.capabilities.textDocument.completion.completionItem.snippetSupport = false
+			config.capabilities = require("cmp_nvim_insert_text_lsp").default_capabilities()
 			config.cmd = {
 				"clangd",
 				"--background-index",
