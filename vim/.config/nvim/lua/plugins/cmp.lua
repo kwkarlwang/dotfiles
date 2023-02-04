@@ -16,6 +16,7 @@ return {
 		},
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-nvim-lsp-document-symbol",
+		"kwkarlwang/cmp-nvim-insert-text-lsp",
 		"saadparwaiz1/cmp_luasnip",
 	},
 	config = function()
@@ -150,8 +151,9 @@ return {
 		})
 		cmp.setup.filetype({ "markdown" }, {
 			sources = sources({
-				{ name = "spell" },
 				{ name = "nvim_lsp" },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "spell" },
 				{ name = "buffer" },
 				{ name = "luasnip" },
 				{ name = "path" },
@@ -163,6 +165,7 @@ return {
 		cmp.setup.filetype({ "cpp" }, {
 			sources = sources({
 				{ name = "nvim_insert_text_lsp" },
+				{ name = "nvim_lsp_signature_help" },
 				{ name = "buffer" },
 				{ name = "luasnip" },
 				{ name = "nvim_lua" },
