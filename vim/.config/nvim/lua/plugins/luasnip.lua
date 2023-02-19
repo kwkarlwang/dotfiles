@@ -42,7 +42,7 @@ return {
 		ls.add_snippets("python", {
 			s("lc", {
 				t({
-					"from typing import List, Dict, Tuple",
+					"from typing import List, Dict, Tuple, Optional",
 					"from heapq import heapify, heappush, heappop",
 					"from collections import Counter, defaultdict, deque",
 				}),
