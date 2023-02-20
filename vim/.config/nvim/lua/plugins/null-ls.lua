@@ -122,6 +122,7 @@ M.config = function()
 		latexfmt,
 		systemverilogfmt,
 		builtins.formatting.shfmt,
+		builtins.formatting.scalafmt,
 		-- groovyfmt,
 	}
 	null_ls.setup({

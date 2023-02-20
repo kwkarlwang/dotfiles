@@ -468,4 +468,9 @@ return {
 			require("nx").setup()
 		end,
 	},
+
+	{
+		"scalameta/nvim-metals",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 }
