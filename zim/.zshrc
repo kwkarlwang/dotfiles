@@ -210,6 +210,9 @@ export PATH="$HOME/.jbang/bin:$PATH"
 
 [ -f "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# C++ package manager
+export VCPKG_ROOT="$HOME/vcpkg"
+
 # Comment out the following as it slows down the startup signficiantly
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

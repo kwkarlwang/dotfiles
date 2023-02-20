@@ -95,6 +95,7 @@ rshift + lshift - 4 : yabai -m window --space 4
 rshift + lshift - 5 : yabai -m window --space 5
 rshift + lshift - 6 : yabai -m window --space 6
 rshift + lshift - 7 : yabai -m window --space 7
+rshift + lshift - 8 : yabai -m window --space 8
 
 ## toggle window zoom
 rshift - f : yabai -m window --toggle zoom-fullscreen
