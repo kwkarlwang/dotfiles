@@ -70,6 +70,7 @@ source ${ZIM_HOME}/init.zsh
 # ------------------------------
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+eval "$(thefuck --alias)"
 
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 bindkey '^[[A' history-substring-search-up
