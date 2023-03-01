@@ -33,7 +33,7 @@ return {
 			})
 			npairs.add_rule(Rule("'", "'", "python"):with_pair(cond.after_text("f")))
 			npairs.add_rule(
-				Rule("<", ">", { "cpp", "java" })
+				Rule("<", ">", { "cpp", "java", "javascript", "typescript", "javascriptreact", "typescriptreact" })
 					:with_pair(cond.not_after_regex("%w"))
 					:with_pair(cond.before_regex("%w"))
 					:with_pair(cond.not_after_text(">"))
@@ -435,6 +435,7 @@ return {
 					python = "python3 -u",
 					cpp = "cd $dir && cpp $fileName",
 					go = "cd $dir && go run $fileName",
+					typescript = "cd $dir && ts-node $fileName",
 				},
 			})
 		end,
