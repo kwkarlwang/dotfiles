@@ -12,22 +12,16 @@ return {
 				highlight = { enable = true },
 				rainbow = {
 					enable = true,
-					-- list of languages you want to disable the plugin for
-					disable = {},
-					-- Which query to use for finding delimiters
-					query = "rainbow-parens",
-					-- Highlight the entire buffer all at once
-					strategy = require("ts-rainbow.strategy.global"),
-					hlgroups = {
-						"TSRainbowRed",
-						"TSRainbowBlue",
-						"TSRainbowOrange",
-						"TSRainbowGrey",
-						"TSRainbowPink",
-						"TSRainbowCyan",
+					extended_mode = false,
+					colors = {
+						"#ebcb8b",
+						"#f199ce",
+						"#569cd6",
+						"#a3c4ef",
+						"#acebfb",
+						"#ee766d",
 					},
 				},
-
 				textobjects = {
 					select = {
 						enable = true,
@@ -106,17 +100,5 @@ return {
 			multiline_keymap = "cm",
 		},
 	},
-	{
-		"HiPhish/nvim-ts-rainbow2",
-		config = function()
-			vim.cmd([[
-				hi TSRainbowRed guifg=#ee766d
-				hi TSRainbowBlue guifg=#569cd6
-				hi TSRainbowOrange guifg=#ebcb8b
-				hi TSRainbowGrey guifg=#a3c4ef
-				hi TSRainbowPink guifg=#f199ce
-				hi TSRainbowCyan guifg=#acebfb
-			]])
-		end,
-	},
+	"mrjones2014/nvim-ts-rainbow",
 }
