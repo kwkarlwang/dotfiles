@@ -68,9 +68,9 @@ M.config = function()
 		----------------------------------------------------------------------
 		--                              python                              --
 		----------------------------------------------------------------------
-		builtins.formatting.black,
+		-- builtins.formatting.black,
 		-- builtins.formatting.reorder_python_imports,
-		-- builtins.formatting.yapf,
+		builtins.formatting.yapf,
 		-- builtins.diagnostics.mypy,
 		----------------------------------------------------------------------
 		--                               java                               --
@@ -106,11 +106,13 @@ M.config = function()
 		-- builtins.formatting.clang_format.with({
 		-- 	filetypes = { "proto" },
 		-- }),
-		builtins.diagnostics.buf,
+		-- builtins.diagnostics.buf,
 		----------------------------------------------------------------------
 		--                               sql                                --
 		----------------------------------------------------------------------
-		builtins.formatting.sql_formatter,
+		builtins.formatting.sql_formatter.with({
+			extra_args = { "-l", "postgresql" },
+		}),
 		----------------------------------------------------------------------
 		--                               json                               --
 		----------------------------------------------------------------------
@@ -123,6 +125,8 @@ M.config = function()
 		systemverilogfmt,
 		builtins.formatting.shfmt,
 		builtins.formatting.scalafmt,
+		builtins.diagnostics.buildifier,
+		builtins.formatting.buildifier,
 		-- groovyfmt,
 	}
 	null_ls.setup({

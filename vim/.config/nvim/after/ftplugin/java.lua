@@ -34,6 +34,7 @@ local config = {
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
 		"-Xms1g",
+		"-javaagent:" .. home_dir .. ".local/share/nvim/mason/packages/jdtls/lombok.jar",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
 		"java.base/java.util=ALL-UNNAMED",
