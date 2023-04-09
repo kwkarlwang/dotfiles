@@ -14,6 +14,9 @@ home_dir = os.getenv("HOME") .. "/"
 require("settings")
 require("keybindings")
 require("plugin")
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+	vim.api.nvim_set_hl(0, group, {})
+end
 vim.lsp.set_log_level("error")
 
 -- vim.cmd("set rtp+=~/projects/neovim/nvim-jupyter")

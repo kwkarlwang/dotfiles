@@ -1,7 +1,3 @@
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-	vim.api.nvim_set_hl(0, group, {})
-end
-
 local jdtls = require("jdtls")
 local utils = require("utils")
 -- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")

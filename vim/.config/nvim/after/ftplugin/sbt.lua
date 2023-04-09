@@ -1,1 +1,1 @@
-require("scala")
+-- require("scala")
