@@ -21,6 +21,8 @@ local on_attach = function(client, bufnr)
 	bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>", NS)
 
 	client.server_capabilities.documentFormattingProvider = false
+	-- disable semantic highlight
+	-- client.server_capabilities.semanticTokensProvider = nil
 end
 
 local config = function()
