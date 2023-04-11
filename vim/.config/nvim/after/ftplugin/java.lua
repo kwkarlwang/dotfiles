@@ -5,6 +5,9 @@ local utils = require("utils")
 -- local workspace_dir = home_dir .. "workspace/" .. project_name
 local workspace_dir = home_dir .. "workspace/" .. string.gsub(vim.fn.getcwd(), home_dir, "")
 
+vim.api.nvim_buf_create_user_command(0, "JdtWipe", function()
+	utils.remove_workspace_dir(workspace_dir)
+end, { bang = true })
 local os_mapping = function()
 	if vim.loop.os_uname().sysname == "Darwin" then
 		return "mac"

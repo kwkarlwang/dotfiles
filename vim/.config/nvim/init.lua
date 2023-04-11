@@ -15,24 +15,22 @@ require("settings")
 require("keybindings")
 require("plugin")
 local links = {
-  ['@lsp.type.namespace'] = '@namespace',
-  ['@lsp.type.type'] = '@type',
-  ['@lsp.type.class'] = '@type',
-  ['@lsp.type.enum'] = '@type',
-  ['@lsp.type.interface'] = '@type',
-  ['@lsp.type.struct'] = '@structure',
-  ['@lsp.type.parameter'] = '@parameter',
-  ['@lsp.type.variable'] = '@variable',
-  ['@lsp.type.property'] = '@property',
-  ['@lsp.type.enumMember'] = '@constant',
-  ['@lsp.type.function'] = '@function',
-  ['@lsp.type.method'] = '@method',
-  ['@lsp.type.macro'] = '@macro',
-  ['@lsp.type.decorator'] = '@function',
+	["@lsp.type.namespace"] = "@namespace",
+	["@lsp.type.type"] = "@type",
+	["@lsp.type.class"] = "@type",
+	["@lsp.type.enum"] = "@type",
+	["@lsp.type.interface"] = "@type",
+	["@lsp.type.struct"] = "@structure",
+	["@lsp.type.parameter"] = "@parameter",
+	["@lsp.type.variable"] = "@variable",
+	["@lsp.type.property"] = "@property",
+	["@lsp.type.enumMember"] = "@constant",
+	["@lsp.type.function"] = "@function",
+	["@lsp.type.method"] = "@method",
+	["@lsp.type.macro"] = "@macro",
+	["@lsp.type.decorator"] = "@function",
 }
-for newgroup, oldgroup in pairs(links) do
-  vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
-end
+require("utils").link_highlights(links)
 vim.lsp.set_log_level("error")
 
 -- vim.cmd("set rtp+=~/projects/neovim/nvim-jupyter")

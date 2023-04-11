@@ -126,4 +126,22 @@ end
 M.file_exists = function(name)
 	return vim.fn.glob(name) ~= ""
 end
+M.link_highlight = function(newgroup, oldgroup)
+	vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
+end
+M.link_highlights = function(links)
+	for newgroup, oldgroup in pairs(links) do
+		M.link_highlight(newgroup, oldgroup)
+	end
+end
+M.remove_workspace_dir = function(workspace_dir)
+	vim.ui.select({ "Yes", "No" }, {
+		prompt = "Are you sure you want to wipe the data folder: " .. workspace_dir,
+	}, function(choice)
+		if choice ~= "Yes" then
+			return
+		end
+		vim.fn.delete(workspace_dir, "rf")
+	end)
+end
 return M
