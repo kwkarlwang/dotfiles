@@ -111,7 +111,7 @@ M.config = function()
 		--                               sql                                --
 		----------------------------------------------------------------------
 		builtins.formatting.sql_formatter.with({
-			extra_args = { "-l", "postgresql" },
+			extra_args = { "-c", home_dir .. "/.sql-formatter.json" },
 		}),
 		----------------------------------------------------------------------
 		--                               json                               --
