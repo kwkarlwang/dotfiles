@@ -9,7 +9,7 @@ return {
 				ignore_install = {},
 				indent = { enable = false },
 				-- highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
-				highlight = { enable = true },
+				highlight = { enable = true, disable = { "yaml" } },
 				rainbow = {
 					enable = true,
 					extended_mode = false,
