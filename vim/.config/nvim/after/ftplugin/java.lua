@@ -25,6 +25,15 @@ if utils.file_exists(home_dir .. ".sdkman/candidates/java/17.0.5-tem/bin/java") 
 	java = home_dir .. ".sdkman/candidates/java/17.0.5-tem/bin/java"
 end
 
+local runtimes = {}
+if utils.file_exists(home_dir .. ".sdkman/candidates/java/11.0.19-tem/bin/java") then
+	table.insert(runtimes, {
+		name = "JavaSE-11",
+		path = home_dir .. ".sdkman/candidates/java/11.0.19-tem",
+		default = true,
+	})
+end
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
 	-- The command that starts the language server
@@ -68,7 +77,8 @@ local config = {
 	settings = {
 		java = {
 			configuration = {
-				updateBuildConfiguration = "interactive",
+				updateBuildConfiguration = "automatic",
+				runtimes = runtimes,
 			},
 			signatureHelp = { enabled = true },
 			completion = {
