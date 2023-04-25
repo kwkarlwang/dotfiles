@@ -11,15 +11,15 @@
 BasedOnStyle: Google
 ColumnLimit: 100
 
-BreakBeforeBraces: Allman
-AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
-AllowShortLambdasOnASingleLine: Empty
-CompactNamespaces: false
-DerivePointerAlignment: false
-PointerAlignment: Left
-SortIncludes: false
+# BreakBeforeBraces: Allman
+# AllowShortFunctionsOnASingleLine: Empty
+# AllowShortIfStatementsOnASingleLine: false
+# AllowShortLoopsOnASingleLine: false
+# AllowShortLambdasOnASingleLine: Empty
+# CompactNamespaces: false
+# DerivePointerAlignment: false
+# PointerAlignment: Left
+SortIncludes: true
 
 BreakAfterJavaFieldAnnotations: true
 ...
