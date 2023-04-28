@@ -8,6 +8,7 @@ return {
 		"hrsh7th/cmp-calc",
 		"hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-emoji",
+		"lukas-reineke/cmp-under-comparator",
 		{
 			"petertriho/cmp-git",
 			config = function()
@@ -148,6 +149,11 @@ return {
 				end,
 			},
 			preselect = types.cmp.PreselectMode.None,
+			sorting = {
+				comparators = {
+					require("cmp-under-comparator").under,
+				},
+			},
 		})
 		cmp.setup.filetype({ "markdown" }, {
 			sources = sources({
