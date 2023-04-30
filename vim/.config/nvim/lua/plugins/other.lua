@@ -437,6 +437,7 @@ return {
 					cpp = "cd $dir && cpp $fileName",
 					go = "cd $dir && go run $fileName",
 					typescript = "cd $dir && ts-node $fileName",
+					scala = "cd $dir && scala $fileName",
 				},
 			})
 		end,
