@@ -56,7 +56,6 @@ local config = {
 		-- 💀
 		"-jar",
 		vim.fn.glob(home_dir .. ".local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-
 		-- 💀
 		"-configuration",
 		home_dir .. ".local/share/nvim/mason/packages/jdtls/config_" .. os_mapping(),
@@ -86,9 +85,8 @@ local config = {
 					"org.junit.jupiter.api.Assertions.*",
 					"org.mockito.Mockito.*",
 					"org.mockito.ArgumentMatchers.*",
-					"java.util.Objects.requireNonNull",
-					"java.util.Objects.requireNonNullElse",
 				},
+				maxResults = 12,
 			},
 		},
 		flags = {
@@ -130,8 +128,6 @@ local config = {
 	end,
 	capabilities = capabilities,
 }
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
 config.init_options = {
 	bundles = {
 		vim.fn.glob(
@@ -144,4 +140,6 @@ vim.list_extend(
 	config.init_options.bundles,
 	vim.split(vim.fn.glob(home_dir .. ".local/share/nvim/mason/packages/java-test/extension/server/*.jar", 1), "\n")
 )
+-- This starts a new client & server,
+-- or attaches to an existing client & server depending on the `root_dir`.
 jdtls.start_or_attach(config)
