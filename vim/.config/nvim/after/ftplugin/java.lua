@@ -84,7 +84,7 @@ local config = {
 					"org.mockito.Mockito.*",
 					"org.mockito.ArgumentMatchers.*",
 				},
-				-- postfix = { enabled = false },
+				postfix = { enabled = false },
 			},
 		},
 		flags = {
