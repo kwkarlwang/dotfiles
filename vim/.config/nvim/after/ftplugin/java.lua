@@ -86,6 +86,7 @@ local config = {
 					"org.mockito.Mockito.*",
 					"org.mockito.ArgumentMatchers.*",
 				},
+				postfix = { enabled = false },
 				maxResults = 12,
 			},
 		},
