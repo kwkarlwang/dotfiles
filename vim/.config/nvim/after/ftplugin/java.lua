@@ -15,8 +15,6 @@ local os_mapping = function()
 	return "linux"
 end
 
-vim.cmd([[setlocal sw=2]])
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local java = "java"
@@ -86,8 +84,7 @@ local config = {
 					"org.mockito.Mockito.*",
 					"org.mockito.ArgumentMatchers.*",
 				},
-				postfix = { enabled = false },
-				maxResults = 12,
+				-- postfix = { enabled = false },
 			},
 		},
 		flags = {
@@ -144,3 +141,4 @@ vim.list_extend(
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 jdtls.start_or_attach(config)
+vim.cmd([[setlocal sw=2]])
