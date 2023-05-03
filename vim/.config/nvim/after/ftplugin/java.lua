@@ -15,7 +15,16 @@ local os_mapping = function()
 	return "linux"
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- https://github.com/mfussenegger/nvim-jdtls/issues/467
+local capabilities = vim.tbl_deep_extend("force", require("cmp_nvim_lsp").default_capabilities(), {
+	textDocument = {
+		completion = {
+			completionItem = {
+				labelDetailsSupport = false,
+			},
+		},
+	},
+})
 
 local java = "java"
 -- use the following as java lsp provider

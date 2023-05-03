@@ -1,6 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
-	commit = "5dcbc91d9a0eed00f66b6cdc406f843c4253020f",
+	-- commit = "5dcbc91d9a0eed00f66b6cdc406f843c4253020f",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-cmdline",
