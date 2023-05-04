@@ -34,6 +34,3 @@ require("mason-lspconfig").setup_handlers({
 		lsp_config[server_name].setup(config)
 	end,
 })
-
-local config = require("plugins.lsp.config").config()
-lsp_config.hls.setup(config)

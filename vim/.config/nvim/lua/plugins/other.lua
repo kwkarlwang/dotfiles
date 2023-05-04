@@ -307,7 +307,7 @@ return {
 	-- haskell highlghting (tree sitter too slow)
 	{
 		"neovimhaskell/haskell-vim",
-		enabled = false,
+		enabled = true,
 		ft = "haskell",
 		config = function()
 			g.haskell_enable_quantification = 0
@@ -471,9 +471,19 @@ return {
 			require("nx").setup()
 		end,
 	},
-
+	-- scala lsp
 	{
 		"scalameta/nvim-metals",
 		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	-- haskell lsp
+	{
+		"MrcJkb/haskell-tools.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		ft = "haskell",
+		branch = "1.x.x",
 	},
 }
