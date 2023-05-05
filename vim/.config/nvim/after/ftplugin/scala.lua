@@ -28,6 +28,7 @@ dap.configurations.scala = {
 }
 metals_config.on_attach = function(client, bufnr)
 	require("plugins.lsp.config").on_attach(client, bufnr)
+	client.server_capabilities.documentFormattingProvider = true
 	require("metals").setup_dap()
 end
 vim.cmd([[hi link @property @function]])

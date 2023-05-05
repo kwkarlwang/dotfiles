@@ -124,7 +124,7 @@ M.config = function()
 		latexfmt,
 		systemverilogfmt,
 		builtins.formatting.shfmt,
-		builtins.formatting.scalafmt,
+		-- builtins.formatting.scalafmt,
 		builtins.diagnostics.buildifier,
 		builtins.formatting.buildifier,
 		-- groovyfmt,
