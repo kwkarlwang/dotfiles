@@ -23,6 +23,13 @@ return {
 		-- local fmt = require("luasnip.extras.fmt").fmt
 		-- local m = require("luasnip.extras").m
 		-- local lambda = require("luasnip.extras").l
+
+		local getFiletypeComment = function()
+			local ft = require("Comment.ft")
+			local U = require("Comment.utils")
+			local current_filetype = vim.bo.filetype
+			return ft.get(current_filetype, U.ctype.linewise)
+		end
 		ls.add_snippets("cpp", {
 			s("lc", {
 				t({
@@ -62,7 +69,18 @@ return {
 				}),
 			}),
 		})
-
+		ls.add_snippets("all", {
+			s("amo", {
+				f(function()
+					return getFiletypeComment():gsub("%%s", " >>>")
+				end),
+			}),
+			s("amc", {
+				f(function()
+					return getFiletypeComment():gsub("%%s", " <<<")
+				end),
+			}),
+		})
 		ls.config.set_config({
 			history = false,
 			update_events = "TextChanged,TextChangedI",
