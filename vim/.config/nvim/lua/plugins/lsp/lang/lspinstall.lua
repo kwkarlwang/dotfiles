@@ -1,4 +1,4 @@
-local lsp_config = require("lspconfig")
+local lspconfig = require("lspconfig")
 
 local ignore_list = { "jdtls" }
 
@@ -30,7 +30,9 @@ require("mason-lspconfig").setup_handlers({
 				require("plugins.lsp.config").on_attach(client, bufnr)
 				client.server_capabilities.documentFormattingProvider = true
 			end
+		elseif server_name == "tsserver" or server_name == "eslint" then
+			config.root_dir = lspconfig.util.root_pattern("node_modules") or vim.loop.cwd()
 		end
-		lsp_config[server_name].setup(config)
+		lspconfig[server_name].setup(config)
 	end,
 })
