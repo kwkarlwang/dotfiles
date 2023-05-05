@@ -10,7 +10,7 @@ return {
 	config = function()
 		local ls = require("luasnip")
 		local s = ls.snippet
-		local sn = ls.snippet_node
+		-- local sn = ls.snippet_node
 		-- local isn = ls.indent_snippet_node
 		local t = ls.text_node
 		local i = ls.insert_node
@@ -24,12 +24,6 @@ return {
 		-- local m = require("luasnip.extras").m
 		-- local lambda = require("luasnip.extras").l
 
-		local getFiletypeComment = function()
-			local ft = require("Comment.ft")
-			local U = require("Comment.utils")
-			local current_filetype = vim.bo.filetype
-			return ft.get(current_filetype, U.ctype.linewise)
-		end
 		ls.add_snippets("cpp", {
 			s("lc", {
 				t({
@@ -71,14 +65,10 @@ return {
 		})
 		ls.add_snippets("all", {
 			s("amo", {
-				f(function()
-					return getFiletypeComment():gsub("%%s", " >>>")
-				end),
+				f(require("extensions.algomonad").commentWithOpenIdentifier),
 			}),
 			s("amc", {
-				f(function()
-					return getFiletypeComment():gsub("%%s", " <<<")
-				end),
+				f(require("extensions.algomonad").commentWithCloseIdentifier),
 			}),
 		})
 		ls.config.set_config({

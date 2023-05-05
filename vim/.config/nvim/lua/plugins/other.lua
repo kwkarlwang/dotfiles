@@ -13,7 +13,21 @@ return {
 	},
 	{
 		"kylechui/nvim-surround",
-		config = true,
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				surrounds = {
+					["A"] = {
+						add = function()
+							local am = require("extensions.algomonad")
+							local left = am.commentWithOpenIdentifier()
+							local right = am.commentWithCloseIdentifier()
+							return { { left }, { right } }
+						end,
+					},
+				},
+			})
+		end,
 	},
 	"tpope/vim-sleuth",
 	"tpope/vim-repeat",
@@ -143,7 +157,7 @@ return {
 	{
 		"kevinhwang91/rnvimr",
 		cmd = "RnvimrToggle",
-		keys = { { "<leader>.", "<cmd>RnvimrToggle<cr>" } },
+		keys = { { "<leader>.", "<cmd>RnvimrToggle<cr><esc>" } },
 		config = function()
 			g.rnvimr_enable_ex = 1
 			g.rnvimr_enable_picker = 1
