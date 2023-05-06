@@ -61,7 +61,7 @@ o.cursorline = true
 
 o.signcolumn = "yes"
 o.numberwidth = 2
-o.wrap = true
+o.wrap = false
 o.spell = false
 o.spelllang = { "en_us" }
 

@@ -3,12 +3,12 @@ return {
 	event = "BufReadPre",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-    "williamboman/mason-lspconfig.nvim",
-    "williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		{ "williamboman/mason.nvim", build = ":MasonUpdate" },
 	},
 	config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup()
+		require("mason").setup()
+		require("mason-lspconfig").setup()
 		require("plugins.lsp.lang")
 		require("plugins.lsp.settings")
 	end,
