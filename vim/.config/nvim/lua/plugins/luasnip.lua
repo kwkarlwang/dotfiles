@@ -63,6 +63,15 @@ return {
 				}),
 			}),
 		})
+		for _, ft in pairs({ "typescriptreact", "typescript", "javascriptreact", "javascript" }) do
+			ls.add_snippets(ft, {
+				s("cl", {
+					t({ "console.log(" }),
+					i(1),
+					t({ ")" }),
+				}),
+			})
+		end
 		ls.add_snippets("all", {
 			s("amo", {
 				f(require("extensions.algomonad").commentWithOpenIdentifier),
