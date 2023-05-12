@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 
-local ignore_list = { "jdtls" }
+local ignore_list = { "jdtls", "hls" }
 
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
