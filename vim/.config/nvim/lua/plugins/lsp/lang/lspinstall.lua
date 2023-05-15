@@ -32,6 +32,11 @@ require("mason-lspconfig").setup_handlers({
 			end
 		elseif server_name == "tsserver" or server_name == "eslint" then
 			config.root_dir = lspconfig.util.root_pattern("node_modules") or vim.loop.cwd()
+		elseif server_name == "yamlls" then
+			config.settings = {
+				redhat = { telemetry = { enabled = false } },
+				yaml = { validate = false },
+			}
 		end
 		lspconfig[server_name].setup(config)
 	end,
