@@ -500,4 +500,14 @@ return {
 		ft = "haskell",
 		branch = "1.x.x",
 	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				show_current_context = true,
+				filetype = { "yaml" },
+			})
+			vim.cmd([[highlight IndentBlanklineContextChar guifg=#6272a4 gui=nocombine]])
+		end,
+	},
 }
