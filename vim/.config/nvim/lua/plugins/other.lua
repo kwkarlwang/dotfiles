@@ -479,6 +479,7 @@ return {
 	},
 	{
 		"Equilibris/nx.nvim",
+		enabled = false,
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
