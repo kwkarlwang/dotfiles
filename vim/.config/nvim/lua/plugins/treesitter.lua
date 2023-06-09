@@ -82,6 +82,14 @@ return {
 				autotag = {
 					enable = true,
 				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<cr>",
+						node_incremental = "<cr>",
+						node_decremental = "<bs>",
+					},
+				},
 			})
 
 			vim.api.nvim_command(
