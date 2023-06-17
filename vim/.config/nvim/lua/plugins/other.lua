@@ -444,7 +444,6 @@ return {
 		config = function()
 			require("code_runner").setup({
 				mode = "toggleterm",
-				startinsert = true,
 				filetype = {
 					java = "cd $dir && java $fileName",
 					python = "python3 -u",

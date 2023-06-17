@@ -37,6 +37,11 @@ require("mason-lspconfig").setup_handlers({
 				redhat = { telemetry = { enabled = false } },
 				yaml = { validate = false },
 			}
+		elseif server_name == "gopls" then
+			config.on_attach = function(client, bufnr)
+				require("plugins.lsp.config").on_attach(client, bufnr)
+				client.server_capabilities.documentFormattingProvider = true
+			end
 		end
 		lspconfig[server_name].setup(config)
 	end,
