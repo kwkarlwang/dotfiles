@@ -72,6 +72,11 @@ return {
 				}),
 			})
 		end
+		ls.add_snippets("go", {
+			s("lc", {
+				t({ "package main" }),
+			}),
+		})
 		ls.add_snippets("all", {
 			s("amo", {
 				f(require("extensions.algomonad").commentWithOpenIdentifier),
