@@ -510,4 +510,5 @@ return {
 			vim.cmd([[highlight IndentBlanklineContextChar guifg=#6272a4 gui=nocombine]])
 		end,
 	},
+	{ "yioneko/nvim-vtsls" },
 }

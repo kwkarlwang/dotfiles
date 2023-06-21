@@ -88,11 +88,6 @@ M.config = function()
 		--                            typescript                            --
 		----------------------------------------------------------------------
 		builtins.formatting.prettier,
-		-- builtins.diagnostics.eslint_d,
-		-- builtins.code_actions.eslint_d,
-		-- builtins.formatting.prettier,
-		-- builtins.diagnostics.eslint,
-		-- builtins.code_actions.eslint,
 		-- builtins.formatting.stylelint,
 		-- builtins.diagnostics.stylelint,
 		----------------------------------------------------------------------
