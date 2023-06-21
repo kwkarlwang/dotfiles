@@ -76,6 +76,11 @@ return {
 			s("lc", {
 				t({ "package main" }),
 			}),
+			s("main", {
+				t({ "// >>>", "func main() {", "" }),
+				i(1),
+				t({ "", "}", "// <<<" }),
+			}),
 		})
 		ls.add_snippets("all", {
 			s("amo", {

@@ -25,7 +25,7 @@ return {
 		local mapping = require("cmp.config.mapping")
 		local sources = require("cmp.config.sources")
 		local types = require("cmp.types")
-
+		local compare = require("cmp.config.compare")
 		local icons = {
 			Class = " ",
 			Color = " ",
@@ -150,15 +150,15 @@ return {
 			},
 			preselect = types.cmp.PreselectMode.None,
 			sorting = {
+				priority_weight = 1.0,
 				comparators = {
-					cmp.config.compare.offset,
-					cmp.config.compare.exact,
-					cmp.config.compare.score,
+					compare.locality,
+					compare.recently_used,
+					compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+					compare.offset,
+					compare.order,
+					compare.score,
 					require("cmp-under-comparator").under,
-					cmp.config.compare.kind,
-					cmp.config.compare.sort_text,
-					cmp.config.compare.length,
-					cmp.config.compare.order,
 				},
 			},
 		})
