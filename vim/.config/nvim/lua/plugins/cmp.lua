@@ -150,15 +150,19 @@ return {
 			},
 			preselect = types.cmp.PreselectMode.None,
 			sorting = {
-				priority_weight = 1.0,
+				priority_weight = 2,
 				comparators = {
-					compare.locality,
-					compare.recently_used,
-					compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
 					compare.offset,
-					compare.order,
+					compare.exact,
+					-- compare.scopes,
 					compare.score,
+					compare.recently_used,
+					compare.locality,
 					require("cmp-under-comparator").under,
+					compare.kind,
+					-- compare.sort_text,
+					compare.length,
+					compare.order,
 				},
 			},
 		})
