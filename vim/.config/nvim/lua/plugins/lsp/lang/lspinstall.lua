@@ -5,6 +5,7 @@ local ignore_list = { "jdtls", "hls" }
 local use_lsp_formatting = { "clangd", "gopls" }
 
 require("mason-lspconfig").setup_handlers({
+	---@param server_name string
 	function(server_name)
 		if vim.tbl_contains(ignore_list, server_name) then
 			return
@@ -28,8 +29,9 @@ require("mason-lspconfig").setup_handlers({
 				"--completion-style=bundled",
 				"--enable-config",
 			}
-		elseif server_name == "tsserver" or server_name == "eslint" then
+		elseif server_name == "eslint" then
 			config.root_dir = lspconfig.util.root_pattern("node_modules") or vim.loop.cwd()
+			config.on_attach = function() end
 		elseif server_name == "vtsls" then
 			require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 			local on_attach = config.on_attach
@@ -43,9 +45,22 @@ require("mason-lspconfig").setup_handlers({
 							AsyncFormat(current_buf)
 						end)
 					end)
-				end)
-				vim.keymap.set("n", "gd", require("vtsls").commands.goto_source_definition)
+				end, { buffer = bufnr })
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
 			end
+			-- filter react index.d.ts, make telescope go to definition
+			-- https://github.com/typescript-language-server/typescript-language-server/issues/216
+			local function filterReactDTS(value)
+				return string.match(value.targetUri, "react/index.d.ts") == nil
+			end
+			config.handlers = {
+				["textDocument/definition"] = function(err, result, method, ...)
+					if vim.tbl_islist(result) and #result > 1 then
+						result = vim.tbl_filter(filterReactDTS, result)
+					end
+					return vim.lsp.handlers["textDocument/definition"](err, result, method, ...)
+				end,
+			}
 		elseif server_name == "yamlls" then
 			config.settings = {
 				redhat = { telemetry = { enabled = false } },

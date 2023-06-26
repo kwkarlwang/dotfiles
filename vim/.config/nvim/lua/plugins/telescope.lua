@@ -79,32 +79,16 @@ return {
 					mappings = {
 						i = {
 							["<m-e>"] = function()
-								vim.api.nvim_feedkeys(
-									vim.api.nvim_replace_termcodes(" <C-o>cc:error: ", true, true, true),
-									"n",
-									true
-								)
+								vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(" <C-o>cc:error: ", true, true, true), "n", true)
 							end,
 							["<m-i>"] = function()
-								vim.api.nvim_feedkeys(
-									vim.api.nvim_replace_termcodes(" <C-o>cc:info: ", true, true, true),
-									"n",
-									true
-								)
+								vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(" <C-o>cc:info: ", true, true, true), "n", true)
 							end,
 							["<m-w>"] = function()
-								vim.api.nvim_feedkeys(
-									vim.api.nvim_replace_termcodes(" <C-o>cc:warn: ", true, true, true),
-									"n",
-									true
-								)
+								vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(" <C-o>cc:warn: ", true, true, true), "n", true)
 							end,
 							["<m-h>"] = function()
-								vim.api.nvim_feedkeys(
-									vim.api.nvim_replace_termcodes(" <C-o>cc:hint: ", true, true, true),
-									"n",
-									true
-								)
+								vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(" <C-o>cc:hint: ", true, true, true), "n", true)
 							end,
 						},
 					},
