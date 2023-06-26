@@ -44,6 +44,7 @@ require("mason-lspconfig").setup_handlers({
 						end)
 					end)
 				end)
+				vim.keymap.set("n", "gd", require("vtsls").commands.goto_source_definition)
 			end
 		elseif server_name == "yamlls" then
 			config.settings = {
