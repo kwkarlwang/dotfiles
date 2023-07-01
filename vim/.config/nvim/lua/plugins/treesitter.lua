@@ -4,7 +4,7 @@ return {
 		build = ":TSUpdate",
 		-- event = "BufReadPost",
 		config = function()
-			require("nvim-treesitter.install").compilers = { "clang" }
+			-- require("nvim-treesitter.install").compilers = { "clang" }
 			require("nvim-treesitter.configs").setup({
 				ignore_install = {},
 				indent = { enable = false },

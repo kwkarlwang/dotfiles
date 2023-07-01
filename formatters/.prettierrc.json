@@ -4,5 +4,6 @@
       "files": "*.launch",
       "options": { "parser": "html" }
     }
-  ]
+  ],
+  "semi": false
 }
