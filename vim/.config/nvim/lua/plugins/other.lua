@@ -66,7 +66,7 @@ return {
 		},
 	},
 	{
-		"TimUntersberger/neogit",
+		"NeogitOrg/neogit",
 		-- commit = "4cc4476acbbc772f29fd6c1ccee43f58a29a1b13",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = "Neogit",
