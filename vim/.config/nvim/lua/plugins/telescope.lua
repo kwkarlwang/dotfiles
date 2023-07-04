@@ -56,7 +56,6 @@ return {
 			},
 			pickers = {
 				buffers = {
-					sort_lastused = true,
 					mappings = {
 						i = {
 							["<c-d>"] = actions.delete_buffer,
