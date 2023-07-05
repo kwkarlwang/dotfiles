@@ -109,4 +109,4 @@ map("n", "<leader>hg", [[:echo synIDattr(synID(line("."), col("."), 1), "name")<
 map("n", "cn", ":cnext<cr>", NS)
 map("n", "cp", ":cprev<cr>", NS)
 map("n", "co", ":copen<cr>", NS)
-map("n", "cl", ":close<cr>", NS)
+map("n", "cl", ":cclose<cr>", NS)
