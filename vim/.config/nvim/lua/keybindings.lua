@@ -110,3 +110,7 @@ map("n", "cn", ":cnext<cr>", NS)
 map("n", "cp", ":cprev<cr>", NS)
 map("n", "co", ":copen<cr>", NS)
 map("n", "cl", ":cclose<cr>", NS)
+
+-- tab
+map("n", "gn", "gt", NS)
+map("n", "gp", "gT", NS)
