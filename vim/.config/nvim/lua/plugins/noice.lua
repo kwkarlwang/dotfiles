@@ -15,6 +15,7 @@ end, {
 	{ "fewer line", "notify" },
 	{ "more line", "notify" },
 	{ "attempt", "notify" },
+	{ "No information available", "notify" },
 	{ "Error executing vim.schedule lua callback", "notify" },
 	{ "change", "notify" },
 	{ "formatting", "mini" },

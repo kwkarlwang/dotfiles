@@ -451,6 +451,7 @@ return {
 					go = "cd $dir && go run $fileName",
 					typescript = "cd $dir && ts-node $fileName",
 					scala = "cd $dir && scala $fileName",
+					rust = "cd $dir && rustc $fileName && ./$fileNameWithoutExt || true && rm $fileNameWithoutExt",
 				},
 			})
 		end,
@@ -511,4 +512,23 @@ return {
 		end,
 	},
 	{ "yioneko/nvim-vtsls" },
+	{
+		"simrat39/rust-tools.nvim",
+		event = { "BufReadPost *.rs" },
+		config = function()
+			local rt = require("rust-tools")
+			rt.setup({
+				server = {
+					on_attach = function(client, bufnr)
+						require("plugins.lsp.config").on_attach(client, bufnr)
+						-- client.server_capabilities.documentFormattingProvider = true
+						-- -- Hover actions
+						-- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+						-- -- Code action groups
+						-- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+					end,
+				},
+			})
+		end,
+	},
 }

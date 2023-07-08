@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 
-local ignore_list = { "jdtls", "hls" }
+local ignore_list = { "jdtls", "hls", "rust_analyzer" }
 
 local use_lsp_formatting = { "clangd", "gopls" }
 

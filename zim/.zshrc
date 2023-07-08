@@ -116,7 +116,7 @@ autoload -Uz add-zsh-hook
 # add-zsh-hook preexec set-title-preexec
 
 function cpp {
-  g++ -std=c++20 -fsanitize=undefined $1 && ./a.out 
+  g++ -std=c++20 -fsanitize=undefined $1 && ./a.out || true
   rm a.out
 }
 
