@@ -20,8 +20,8 @@ return {
 					["A"] = {
 						add = function()
 							local am = require("extensions.algomonad")
-							local left = am.commentWithOpenIdentifier()
-							local right = am.commentWithCloseIdentifier()
+							local left = am.comment_with_open_identifier()
+							local right = am.comment_with_close_identifier()
 							return { { left }, { right } }
 						end,
 					},
@@ -531,4 +531,5 @@ return {
 			})
 		end,
 	},
+	{ "folke/neodev.nvim", opts = {} },
 }

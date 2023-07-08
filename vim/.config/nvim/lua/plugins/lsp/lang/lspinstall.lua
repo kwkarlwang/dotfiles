@@ -11,7 +11,8 @@ require("mason-lspconfig").setup_handlers({
 			return
 		end
 		local config = require("plugins.lsp.config").config()
-		if server_name == "sumneko_lua" then
+		if server_name == "lua_ls" then
+			require("neodev").setup({})
 			config.settings.Lua = {
 				diagnostics = {
 					globals = { "vim" },

@@ -24,6 +24,8 @@ return {
 		-- local m = require("luasnip.extras").m
 		-- local lambda = require("luasnip.extras").l
 
+		local am = require("extensions.algomonad")
+
 		ls.add_snippets("cpp", {
 			s("lc", {
 				t({
@@ -76,7 +78,7 @@ return {
 			s("lc", {
 				t({ "package main" }),
 			}),
-			s("main", {
+			s("amain", {
 				t({ "// >>>", "func main() {", "" }),
 				i(1),
 				t({ "", "}", "// <<<" }),
@@ -102,12 +104,28 @@ return {
 				}),
 			}),
 		})
+		ls.add_snippets("rust", {
+			s("lc", {
+				f(am.comment_with_open_identifier),
+				t({ "", "" }),
+				f(function()
+					return "struct " .. am.get_rust_impl_name() .. ";"
+				end),
+				t({ "", "" }),
+				f(am.comment_with_close_identifier),
+			}),
+			s("amain", {
+				t({ "// >>>", "fn main() {", "" }),
+				i(1),
+				t({ "", "}", "// <<<" }),
+			}),
+		})
 		ls.add_snippets("all", {
 			s("amo", {
-				f(require("extensions.algomonad").commentWithOpenIdentifier),
+				f(am.comment_with_open_identifier),
 			}),
 			s("amc", {
-				f(require("extensions.algomonad").commentWithCloseIdentifier),
+				f(am.comment_with_close_identifier),
 			}),
 		})
 		ls.config.set_config({
