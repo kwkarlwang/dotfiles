@@ -131,7 +131,7 @@ return {
 		"NvChad/nvim-colorizer.lua",
 		event = "VeryLazy",
 		config = function()
-			require("colorizer").setup()
+			require("colorizer").setup({})
 		end,
 	},
 	{
@@ -514,7 +514,6 @@ return {
 	{ "yioneko/nvim-vtsls" },
 	{
 		"simrat39/rust-tools.nvim",
-		event = { "BufReadPost *.rs" },
 		config = function()
 			local rt = require("rust-tools")
 			rt.setup({
