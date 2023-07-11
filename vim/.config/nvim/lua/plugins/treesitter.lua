@@ -92,9 +92,9 @@ return {
 				},
 			})
 
-			-- vim.api.nvim_command(
-			-- 	"au Filetype javascriptreact,typescriptreact,html setlocal indentexpr=nvim_treesitter#indent()"
-			-- )
+			vim.api.nvim_command(
+				"au Filetype javascriptreact,typescriptreact,html setlocal indentexpr=nvim_treesitter#indent()"
+			)
 		end,
 	},
 	-- "p00f/nvim-ts-rainbow", -- make color brackets
