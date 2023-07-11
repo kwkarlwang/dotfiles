@@ -24,3 +24,5 @@ __pycache__
 ranger/.config/ranger/plugins
 
 .zshrc.other
+
+.luarc.json
