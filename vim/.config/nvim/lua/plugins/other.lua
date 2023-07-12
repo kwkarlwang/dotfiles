@@ -59,10 +59,10 @@ return {
 		"tpope/vim-fugitive",
 		cmd = { "Git", "Gdiffsplit", "Git mergetool" },
 		keys = {
-			{ "<leader>gd", ":Gdiffsplit!<cr>" },
-			{ "<leader>gh", ":diffget 2<cr>" },
-			{ "<leader>gl", ":diffget 3<cr>" },
-			{ "<leader>mt", ":Git mergetool" },
+			{ "<leader>gd", "<cmd>Gdiffsplit!<cr>" },
+			{ "<leader>gh", "<cmd>diffget 2<cr>" },
+			{ "<leader>gl", "<cmd>diffget 3<cr>" },
+			{ "<leader>mt", "<cmd>Git mergetool<cr>" },
 		},
 	},
 	{
