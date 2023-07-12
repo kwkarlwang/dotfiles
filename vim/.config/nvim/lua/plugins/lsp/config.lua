@@ -1,25 +1,33 @@
 local on_attach = function(client, bufnr)
-	local function bufmap(...)
-		api.nvim_buf_set_keymap(bufnr, ...)
+	---
+	---@param mode string
+	---@param lhs string
+	---@param rhs function | string
+	local function bufmap(mode, lhs, rhs)
+		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
 	end
 
-	bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", NS)
-	bufmap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float({ show_header=false })<cr>", NS)
-	bufmap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", NS)
-	bufmap("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", NS)
+	bufmap("n", "K", vim.lsp.buf.hover)
+	bufmap("n", "<space>e", function()
+		vim.diagnostic.open_float({ show_header = false })
+	end)
+	bufmap("n", "[e", vim.diagnostic.goto_prev)
+	bufmap("n", "]e", vim.diagnostic.goto_next)
 
-	bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", NS)
-	bufmap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", NS)
-	bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", NS)
-	bufmap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", NS)
-	bufmap("n", "gD", "<cmd>lua vim.lsp.buf.references()<cr>", NS)
-	bufmap("n", "<leader>lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", NS)
-	bufmap("n", "<leader>ld", "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<cr>", NS)
-	bufmap("n", "<leader>lS", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", NS)
-	bufmap("n", "<leader>ls", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", NS)
-	bufmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<cr>", NS)
-	bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", NS)
-	bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>", NS)
+	bufmap("n", "gi", vim.lsp.buf.implementation)
+	bufmap("n", "<leader>ca", vim.lsp.buf.code_action)
+	bufmap("n", "gd", vim.lsp.buf.definition)
+	bufmap("n", "gt", vim.lsp.buf.type_definition)
+	bufmap("n", "gD", vim.lsp.buf.references)
+	bufmap("n", "<leader>lD", require("telescope.builtin").diagnostics)
+	bufmap("n", "<leader>ld", function()
+		require("telescope.builtin").diagnostics({ bufnr = 0 })
+	end)
+	bufmap("n", "<leader>lS", require("telescope.builtin").lsp_workspace_symbols)
+	bufmap("n", "<leader>ls", require("telescope.builtin").lsp_document_symbols)
+	bufmap("n", "<leader>cf", vim.lsp.buf.formatting)
+	bufmap("n", "<leader>cr", vim.lsp.buf.rename)
+	bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>")
 
 	client.server_capabilities.documentFormattingProvider = false
 	-- disable semantic highlight
