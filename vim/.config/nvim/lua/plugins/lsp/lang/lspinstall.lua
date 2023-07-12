@@ -42,12 +42,11 @@ require("mason-lspconfig").setup_handlers({
 					local current_buf = vim.api.nvim_get_current_buf()
 					require("vtsls").commands.add_missing_imports(current_buf, function()
 						require("vtsls").commands.organize_imports(current_buf, function()
-							vim.api.nvim_command("write")
+							vim.api.nvim_command("silent noautocmd update")
 							AsyncFormat(current_buf)
 						end)
 					end)
 				end, { buffer = bufnr })
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
 			end
 			-- filter react index.d.ts, make telescope go to definition
 			-- https://github.com/typescript-language-server/typescript-language-server/issues/216
