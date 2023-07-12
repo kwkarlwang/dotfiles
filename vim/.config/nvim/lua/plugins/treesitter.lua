@@ -10,18 +10,6 @@ return {
 				indent = { enable = false },
 				-- highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 				highlight = { enable = true, disable = { "yaml" } },
-				rainbow = {
-					enable = true,
-					extended_mode = false,
-					colors = {
-						"#ebcb8b",
-						"#f199ce",
-						"#569cd6",
-						"#a3c4ef",
-						"#acebfb",
-						"#ee766d",
-					},
-				},
 				textobjects = {
 					select = {
 						enable = true,
@@ -107,5 +95,37 @@ return {
 			multiline_keymap = "cm",
 		},
 	},
-	"mrjones2014/nvim-ts-rainbow",
+	{
+		"hiphish/rainbow-delimiters.nvim",
+		config = function()
+			local rainbow_delimiters = require("rainbow-delimiters")
+			vim.g.rainbow_delimiters = {
+				strategy = {
+					[""] = rainbow_delimiters.strategy["global"],
+					-- vim = rainbow_delimiters.strategy["local"],
+				},
+				query = {
+					[""] = "rainbow-delimiters",
+					tsx = "rainbow-parens",
+					-- lua = "rainbow-blocks",
+				},
+				highlight = {
+					"RainbowDelimiterOrange",
+					"RainbowDelimiterPink",
+					"RainbowDelimiterBlue",
+					"RainbowDelimiterGrey",
+					"RainbowDelimiterCyan",
+					"RainbowDelimiterRed",
+				},
+			}
+			vim.cmd([[
+				hi RainbowDelimiterOrange guifg=#ebcb8b
+				hi RainbowDelimiterPink guifg=#f199ce
+				hi RainbowDelimiterBlue guifg=#569cd6
+				hi RainbowDelimiterGrey guifg=#a3c4ef
+				hi RainbowDelimiterCyan guifg=#acebfb
+				hi RainbowDelimiterRed guifg=#ee766d
+			]])
+		end,
+	},
 }

@@ -5,9 +5,11 @@ return {
 		"nvim-lua/popup.nvim",
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"gbrlsnchs/telescope-lsp-handlers.nvim",
 	},
 	config = function()
 		local actions = require("telescope.actions")
+		local ivy = require("telescope.themes").get_ivy({ borderchars = { preview = { " " } } })
 		local config = {
 			defaults = {
 				vimgrep_arguments = {
@@ -103,13 +105,19 @@ return {
 				spell_suggest = {},
 				highlights = {},
 				keymaps = {},
-				extensions = {
-					fzf = {
-						fuzzy = true, -- false will only do exact matching
-						override_generic_sorter = true, -- override the generic sorter
-						override_file_sorter = true, -- override the file sorter
-						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-					},
+			},
+			extensions = {
+				fzf = {
+					fuzzy = true, -- false will only do exact matching
+					override_generic_sorter = true, -- override the generic sorter
+					override_file_sorter = true, -- override the file sorter
+					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+				},
+				lsp_handlers = {
+					location = { telescope = ivy },
+					symbol = { telescope = ivy },
+					call_hierarchy = { telescope = ivy },
+					code_action = { telescope = ivy },
 				},
 			},
 		}
@@ -124,6 +132,7 @@ return {
 		end
 		require("telescope").setup(config)
 		require("telescope").load_extension("fzf")
+		require("telescope").load_extension("lsp_handlers")
 	end,
 	keys = {
 		{
