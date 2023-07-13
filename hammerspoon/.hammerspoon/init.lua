@@ -7,7 +7,10 @@ hs.pathwatcher.new(path, hs.reload):start()
 -- local browserName = "Brave Browser"
 -- local browserName = "Google Chrome"
 local browserName = "Safari"
-
+local status_ok, ignore = pcall(require, "ignore")
+if status_ok and ignore.browserName then
+	browserName = ignore.browserName
+end
 ----------------------------------------------------------------------
 --                          reload config                           --
 ----------------------------------------------------------------------
@@ -153,7 +156,6 @@ hs.hotkey.bind({ "cmd", "alt" }, "4", goToCalendar)
 ----------------------------------------------------------------------
 --                               Work                               --
 ----------------------------------------------------------------------
-local status_ok, ignore = pcall(require, "ignore")
 if status_ok then
 	hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "p", function()
 		local fortiClient = hs.application.open("FortiClient", 3, true)
