@@ -98,14 +98,14 @@ return {
 	{
 		"hiphish/rainbow-delimiters.nvim",
 		config = function()
-			local rainbow_delimiters = require("rainbow-delimiters")
+			-- local rainbow_delimiters = require("rainbow-delimiters")
 			vim.g.rainbow_delimiters = {
-				strategy = {
-					[""] = rainbow_delimiters.strategy["global"],
-					-- vim = rainbow_delimiters.strategy["local"],
-				},
+				-- strategy = {
+				-- 	[""] = rainbow_delimiters.strategy["global"],
+				-- 	-- vim = rainbow_delimiters.strategy["local"],
+				-- },
 				query = {
-					[""] = "rainbow-delimiters",
+					-- [""] = "rainbow-delimiters",
 					tsx = "rainbow-parens",
 					-- lua = "rainbow-blocks",
 				},
