@@ -67,7 +67,6 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
-		-- commit = "4cc4476acbbc772f29fd6c1ccee43f58a29a1b13",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = "Neogit",
 		keys = { { "<leader>gg", "<cmd>Neogit<cr>" } },
@@ -75,7 +74,7 @@ return {
 			require("neogit").setup({
 				disable_commit_confirmation = true,
 				disable_commit_notifications = true,
-				disable_context_highlighting = false,
+				disable_context_highlighting = true,
 				disable_hint = true,
 				integrations = {
 					diffview = true,
@@ -107,11 +106,11 @@ return {
 					status = { ["p"] = "PushPopup", ["P"] = "", ["F"] = "PullPopup" },
 				},
 			})
-			vim.cmd([[
-				hi! link NeogitDiffAddHighlight DiffAdd
-				hi! link NeogitDiffDeleteHighlight DiffDelete
-				hi NeogitDiffContextHighlight guibg=#1E2029
-			]])
+			-- vim.cmd([[
+			-- 	hi! link NeogitDiffAddHighlight DiffAdd
+			-- 	hi! link NeogitDiffDeleteHighlight DiffDelete
+			-- 	hi NeogitDiffContextHighlight guibg=#1E2029
+			-- ]])
 		end,
 	},
 	{
