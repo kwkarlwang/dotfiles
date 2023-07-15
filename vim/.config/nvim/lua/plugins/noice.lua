@@ -17,6 +17,7 @@ end, {
 	-- { "attempt", "notify" },
 	{ "No information available", "notify" },
 	-- { "Error executing vim.schedule lua callback", "notify" },
+	{ "'width' key must be a positive Integer", "notify" },
 	{ "change", "notify" },
 	{ "formatting", "mini" },
 	{ "Building jdtls", "mini" },
