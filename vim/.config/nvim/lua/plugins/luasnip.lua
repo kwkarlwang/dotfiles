@@ -101,6 +101,12 @@ return {
 					"	}",
 					"	return b",
 					"}",
+					"func abs[T numbers](a T) T {",
+					"	if a < 0 {",
+					"		return -a",
+					"	}",
+					"	return a",
+					"}",
 				}),
 			}),
 		})
