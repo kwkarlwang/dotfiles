@@ -85,7 +85,6 @@ return {
 			)
 		end,
 	},
-	-- "p00f/nvim-ts-rainbow", -- make color brackets
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"windwp/nvim-ts-autotag",
 	{
