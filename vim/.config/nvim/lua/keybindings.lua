@@ -103,7 +103,7 @@ map("i", "<C-q>", "<C-o>I", NS)
 map("i", "<C-e>", "<C-o>A", NS)
 
 -- get highlight under cursor
-map("n", "<leader>hg", [[:echo synIDattr(synID(line("."), col("."), 1), "name")<cr>]], {})
+map("n", "<leader>hg", [[<cmd>echo synIDattr(synID(line("."), col("."), 1), "name")<cr>]], {})
 
 -- quickfix list
 map("n", "cn", ":cnext<cr>", NS)
