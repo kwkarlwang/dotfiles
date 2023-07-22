@@ -68,9 +68,9 @@ M.config = function()
 		----------------------------------------------------------------------
 		--                              python                              --
 		----------------------------------------------------------------------
-		-- builtins.formatting.black,
-		-- builtins.formatting.reorder_python_imports,
-		builtins.formatting.yapf,
+		builtins.formatting.black,
+		builtins.formatting.reorder_python_imports,
+		-- builtins.formatting.yapf,
 		-- builtins.diagnostics.mypy,
 		----------------------------------------------------------------------
 		--                               java                               --

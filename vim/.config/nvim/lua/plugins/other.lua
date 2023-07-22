@@ -3,7 +3,6 @@ return {
 	{
 		"kwkarlwang/vim-dracula",
 		name = "dracula",
-		priority = 1000,
 		init = function()
 			g.dracula_full_special_attrs_support = 1
 		end,
@@ -106,11 +105,11 @@ return {
 					status = { ["p"] = "PushPopup", ["P"] = "", ["F"] = "PullPopup" },
 				},
 			})
-			-- vim.cmd([[
-			-- 	hi! link NeogitDiffAddHighlight DiffAdd
-			-- 	hi! link NeogitDiffDeleteHighlight DiffDelete
-			-- 	hi NeogitDiffContextHighlight guibg=#1E2029
-			-- ]])
+			vim.cmd([[
+				hi! link NeogitDiffAdd DiffAdd
+				hi! link NeogitDiffDelete DiffDelete
+				hi NeogitDiffContext guibg=#1E2029
+			]])
 		end,
 	},
 	{
