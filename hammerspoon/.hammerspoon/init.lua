@@ -1,5 +1,5 @@
----@diagnostic disable: undefined-global
--- reload config
+hs.loadSpoon("LeftRightHotkey")
+hs.loadSpoon("EmmyLua")
 local keymap = hs.keycodes.map
 local path = os.getenv("HOME") .. "/dotfiles/hammerspoon/.hammerspoon/"
 hs.pathwatcher.new(path, hs.reload):start()
@@ -27,7 +27,7 @@ local dismissNotification = function()
 	-- hs.osascript.javascriptFromFile(path .. "close_notifications.js")
 	hs.osascript.applescriptFromFile(path .. "close_notifications.applescript")
 end
-hs.hotkey.bind({ "rightshift" }, keymap["escape"], dismissNotification)
+hs.hotkey.bind({ "shift" }, keymap["escape"], dismissNotification)
 
 ----------------------------------------------------------------------
 --                      send test notification                      --
@@ -84,6 +84,7 @@ hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "a", toggleAirPods)
 local toggleResolution = function()
 	local allScreens = hs.screen.allScreens()
 	local screen = nil
+	---@diagnostic disable-next-line: param-type-mismatch
 	for _, val in pairs(allScreens) do
 		if string.find(tostring(val), "Built%-in") ~= nil then
 			screen = val
@@ -110,6 +111,7 @@ hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "s", toggleResolution)
 ----------------------------------------------------------------------
 --                            Open Gmail                            --
 ----------------------------------------------------------------------
+---@type fun(app: string): boolean
 local checkBrowser = function(app)
 	local listOfBrowsers = { "Chromium", "Brave", "Chrome", "Safari" }
 	for _, v in pairs(listOfBrowsers) do
@@ -119,6 +121,7 @@ local checkBrowser = function(app)
 	end
 	return false
 end
+---@type fun(website: string)
 local goToWebsite = function(website)
 	local app = hs.application.frontmostApplication()
 	local isBrowser = checkBrowser(tostring(app))
@@ -223,14 +226,46 @@ local enableHotkeyForApps = function(appNames, hotkeys)
 	end)
 end
 local goRight = function()
-	hs.eventtap.keyStroke({}, "Right", 1)
+	hs.eventtap.keyStroke({}, "right", 1)
 end
 local goRightHotkey = hs.hotkey.new({ "ctrl" }, "s", goRight, nil, goRight)
 local goLeft = function()
-	hs.eventtap.keyStroke({}, "Left", 1)
+	hs.eventtap.keyStroke({}, "left", 1)
 end
 local goLeftHotkey = hs.hotkey.new({ "ctrl" }, "a", goLeft, nil, goLeft)
 local leftClickHotkey = hs.hotkey.new({ "ctrl" }, "f", function()
 	hs.eventtap.leftClick(hs.mouse.absolutePosition())
 end)
 enableHotkeyForApps({ browserName, "VLC", "VitalSource Bookshelf" }, { goRightHotkey, goLeftHotkey, leftClickHotkey })
+
+----------------------------------------------------------------------
+--                              expose                              --
+----------------------------------------------------------------------
+local goToRightSpace = function()
+	hs.eventtap.keyStroke({ "ctrl", "fn" }, "right")
+end
+
+local goToLeftSpace = function()
+	hs.eventtap.keyStroke({ "ctrl", "fn" }, "left")
+end
+
+-- go to desktop space. 1-based index
+---@type fun(spaceNum: number)
+local goToSpace = function(spaceNum)
+	hs.eventtap.keyStroke({ "ctrl", "cmd" }, tostring(spaceNum))
+end
+
+spoon.LeftRightHotkey:stop()
+spoon.LeftRightHotkey:start()
+spoon.LeftRightHotkey:bind({ "lCtrl" }, "2", goToRightSpace)
+spoon.LeftRightHotkey:bind({ "lCtrl" }, "1", goToLeftSpace)
+
+spoon.LeftRightHotkey:bind({ "rShift" }, "e", goToRightSpace)
+spoon.LeftRightHotkey:bind({ "rShift" }, "q", goToLeftSpace)
+
+for i = 1, 8 do
+	local key = tostring(i)
+	spoon.LeftRightHotkey:bind({ "rShift" }, key, function()
+		goToSpace(i)
+	end)
+end

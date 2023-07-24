@@ -15,7 +15,12 @@ require("mason-lspconfig").setup_handlers({
 			require("neodev").setup({})
 			config.settings.Lua = {
 				diagnostics = {
-					globals = { "vim" },
+					globals = { "vim", "hs" },
+				},
+				workspace = {
+					library = {
+						home_dir .. ".hammerspoon/Spoons/EmmyLua.spoon/annotations",
+					},
 				},
 			}
 		elseif server_name == "clangd" then
