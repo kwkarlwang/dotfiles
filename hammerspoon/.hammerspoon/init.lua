@@ -236,7 +236,10 @@ local goLeftHotkey = hs.hotkey.new({ "ctrl" }, "a", goLeft, nil, goLeft)
 local leftClickHotkey = hs.hotkey.new({ "ctrl" }, "f", function()
 	hs.eventtap.leftClick(hs.mouse.absolutePosition())
 end)
-enableHotkeyForApps({ browserName, "VLC", "VitalSource Bookshelf" }, { goRightHotkey, goLeftHotkey, leftClickHotkey })
+enableHotkeyForApps(
+	{ "Brave Browser", "Google Chrome", "Safari", "VLC", "VitalSource Bookshelf" },
+	{ goRightHotkey, goLeftHotkey, leftClickHotkey }
+)
 
 ----------------------------------------------------------------------
 --                              expose                              --
