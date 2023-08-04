@@ -126,6 +126,22 @@ return {
 				t({ "", "}", "// <<<" }),
 			}),
 		})
+		ls.add_snippets("java", {
+			s("apair", {
+				t({
+					"class Pair<X, Y> {",
+					"  X x;",
+					"  Y y;",
+					"  static<X, Y> Pair<X, Y> with(X x, Y y) {",
+					"    var res = new Pair<X, Y>();",
+					"    res.x = x;",
+					"    res.y = y;",
+					"    return res;",
+					"  }",
+					"}",
+				}),
+			}),
+		})
 		ls.add_snippets("all", {
 			s("amo", {
 				f(am.comment_with_open_identifier),
