@@ -70,6 +70,7 @@ M.config = function()
 		----------------------------------------------------------------------
 		builtins.formatting.black,
 		builtins.formatting.reorder_python_imports,
+		builtins.formatting.autoflake,
 		-- builtins.formatting.yapf,
 		-- builtins.diagnostics.mypy,
 		----------------------------------------------------------------------
