@@ -122,17 +122,19 @@ local checkBrowser = function(app)
 	return false
 end
 ---@type fun(website: string)
+---@return hs.application | nil
 local goToWebsite = function(website)
 	local app = hs.application.frontmostApplication()
 	local isBrowser = checkBrowser(tostring(app))
 	if isBrowser == false then
-		return
+		return nil
 	end
 
 	hs.eventtap.keyStroke({ "cmd", "option" }, "b", 2e5, app)
 	hs.eventtap.keyStroke({ "cmd" }, "l", 2e5, app)
 	hs.eventtap.keyStrokes(website, app)
 	hs.eventtap.keyStroke({}, keymap["return"], 2e5, app)
+	return app
 end
 local goToPersonal = function()
 	local url = "https://mail.google.com/mail/u/0/#inbox"
@@ -272,3 +274,15 @@ for i = 1, 8 do
 		goToSpace(i)
 	end)
 end
+
+local checkInOn1P3P = function()
+	local url = "https://www.1point3acres.com/next/daily-checkin"
+	local app = goToWebsite(url)
+	if app == nil then
+		return
+	end
+	hs.timer.usleep(4e6)
+	hs.eventtap.keyStrokes("iTo be or not to be, that is the question", app)
+end
+
+hs.hotkey.bind({ "cmd", "alt" }, "5", checkInOn1P3P)

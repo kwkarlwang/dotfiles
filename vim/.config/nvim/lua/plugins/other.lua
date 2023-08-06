@@ -102,7 +102,7 @@ return {
 					},
 				},
 				mappings = {
-					status = { ["p"] = "PushPopup", ["P"] = "", ["F"] = "PullPopup" },
+					status = { ["p"] = "PushPopup", ["F"] = "PullPopup" },
 				},
 			})
 			vim.cmd([[
