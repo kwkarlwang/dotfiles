@@ -91,10 +91,16 @@ return {
 					stashes = {
 						folded = false,
 					},
-					unpulled = {
+					unpulled_upstream = {
 						folded = false,
 					},
-					unmerged = {
+					unmerged_upstream = {
+						folded = false,
+					},
+					unpulled_pushRemote = {
+						folded = false,
+					},
+					unmerged_pushRemote = {
 						folded = false,
 					},
 					recent = {
