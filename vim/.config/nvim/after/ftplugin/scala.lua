@@ -5,6 +5,7 @@ metals_config.settings = {
 	showImplicitArguments = true,
 	enableSemanticHighlighting = true,
 	testUserInterface = "Test Explorer",
+	superMethodLensesEnabled = false,
 }
 metals_config.init_options.statusBarProvider = "on"
 metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -32,6 +33,7 @@ metals_config.on_attach = function(client, bufnr)
 	require("plugins.lsp.config").on_attach(client, bufnr)
 	client.server_capabilities.documentFormattingProvider = true
 	require("metals").setup_dap()
+	vim.cmd("setlocal indentkeys-=<>>")
 end
 -- vim.cmd([[hi link @property @function]])
 vim.opt_global.shortmess:remove("F")

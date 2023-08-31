@@ -12,6 +12,7 @@ end, {
 	{ "yanked", "notify" },
 	{ "indented", "notify" },
 	{ "line less", "notify" },
+	{ " lines ", "notify" },
 	{ "fewer line", "notify" },
 	{ "more line", "notify" },
 	-- { "attempt", "notify" },
