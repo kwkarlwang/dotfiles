@@ -535,4 +535,5 @@ return {
 		end,
 	},
 	{ "folke/neodev.nvim", opts = {} },
+	{ "Almo7aya/openingh.nvim" },
 }
