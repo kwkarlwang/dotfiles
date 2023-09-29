@@ -507,13 +507,8 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("indent_blankline").setup({
-				show_current_context = true,
-				filetype = { "yaml" },
-			})
-			vim.cmd([[highlight IndentBlanklineContextChar guifg=#6272a4 gui=nocombine]])
-		end,
+		main = "ibl",
+		opts = {enabled = false}
 	},
 	{ "yioneko/nvim-vtsls" },
 	{
