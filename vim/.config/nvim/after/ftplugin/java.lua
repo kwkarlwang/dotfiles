@@ -4,6 +4,7 @@ local utils = require("utils")
 
 -- local workspace_dir = home_dir .. "workspace/" .. project_name
 local workspace_dir = home_dir .. "workspace/" .. string.gsub(vim.fn.getcwd(), home_dir, "")
+local use_lsp_formatting = false
 
 vim.api.nvim_buf_create_user_command(0, "JdtWipe", function()
 	utils.remove_workspace_dir(workspace_dir)
@@ -82,7 +83,7 @@ local config = {
 	-- for a list of options
 	settings = {
 		java = {
-			format = { enabled = false },
+			format = { enabled = use_lsp_formatting },
 			configuration = {
 				updateBuildConfiguration = "automatic",
 				runtimes = runtimes,
@@ -132,6 +133,7 @@ local config = {
 		vim.keymap.set("n", "<leader>tf", jdtls.test_nearest_method)
 		vim.keymap.set("n", "<leader>tc", jdtls.test_class)
 		require("jdtls").setup_dap({ hotcodereplace = "auto" })
+		client.server_capabilities.documentFormattingProvider = use_lsp_formatting
 	end,
 	capabilities = capabilities,
 }
