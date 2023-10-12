@@ -15,16 +15,13 @@ end, {
 	{ " lines ", "notify" },
 	{ "fewer line", "notify" },
 	{ "more line", "notify" },
-	-- { "attempt", "notify" },
-	{ "No information available", "notify" },
-	-- { "Error executing vim.schedule lua callback", "notify" },
-	{ "'width' key must be a positive Integer", "notify" },
-	{ "change", "notify" },
-	{ "formatting", "mini" },
-	{ "Building jdtls", "mini" },
-	{ "Validate documents jdtls", "mini" },
-	{ "Publish Diagnostics jdtls", "mini" },
-	{ "Refreshing workspace jdtls", "mini" },
+	-- -- { "attempt", "notify" },
+	-- { "No information available", "notify" },
+	-- -- { "Error executing vim.schedule lua callback", "notify" },
+	-- { "'width' key must be a positive Integer", "notify" },
+	-- { "change", "notify" },
+	-- { "formatting", "mini" },
+	{ '[Modified]', "notify" },
 })
 table.insert(routes, {
 	filter = {

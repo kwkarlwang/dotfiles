@@ -16,6 +16,7 @@ local on_attach = function(client, bufnr)
 
   bufmap("n", "gi", vim.lsp.buf.implementation)
   bufmap("n", "<leader>ca", vim.lsp.buf.code_action)
+  bufmap("n", "<leader>cl", vim.lsp.codelens.run)
   bufmap("n", "gd", vim.lsp.buf.definition)
   bufmap("n", "gt", vim.lsp.buf.type_definition)
   bufmap("n", "gD", vim.lsp.buf.references)
