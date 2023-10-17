@@ -21,7 +21,6 @@ end, {
 	-- { "'width' key must be a positive Integer", "notify" },
 	-- { "change", "notify" },
 	-- { "formatting", "mini" },
-	{ '[Modified]', "notify" },
 })
 table.insert(routes, {
 	filter = {
