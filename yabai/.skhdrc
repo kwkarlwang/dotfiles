@@ -55,7 +55,7 @@ rshift - 0 : yabai -m space --balance
 
 
 ## Restart
-rshift + cmd + lshift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+rshift + cmd + lshift - r : yabai --restart-service
 
 ## rotate windows clockwise and anticlockwise
 rshift - r : yabai -m space --rotate 270
