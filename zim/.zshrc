@@ -58,7 +58,7 @@ KEYTIMEOUT=1
 # ------------------
 # Initialize modules
 # ------------------
-
+ZIM_HOME=${HOME}/.zim
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   # Update static initialization script if it does not exist or it's outdated, before sourcing it
   source ${ZIM_HOME}/zimfw.zsh init -q
@@ -100,7 +100,7 @@ bindkey -v '^W' backward-kill-word
 
 
 # This disable the vim too many open files error
-ulimit -S -n 200048
+# ulimit -S -n 200048
 
 # This automatically set window name
 # function set-title-precmd() {
@@ -227,3 +227,7 @@ export PATH="$HOME/.jbang/bin:$PATH"
 # fi
 # unset __conda_setup
 # <<< conda initialize <<<
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
