@@ -1,0 +1,90 @@
+let mapleader=" "
+
+" plugins
+set surround
+set commentary
+set argtextobj
+set easymotion
+set matchit
+set nerdtree
+
+
+map ' <Plug>(easymotion-f2)
+map " <Plug>(easymotion-F2)
+nmap cc <Plug>CommentaryLine
+xmap cc <Plug>Commentary
+nmap gco o<space><esc>ccA
+nmap gcO O<space><esc>ccA
+map <M-up> <Action>(MoveLineUp)
+map <M-down> <Action>(MoveLineDown)
+
+
+nnoremap s :nop<cr>
+
+
+nmap <leader><leader> <Action>(GotoFile)
+nmap <leader>, <Action>(RecentFiles)
+nmap ]e <Action>(GotoNextError)zz
+nmap [e <Action>(GotoPreviousError)zz
+nmap <leader>e <Action>(ShowErrorDescription)
+nmap <leader>sp <Action>(FindInPath)
+nmap <leader>gf mmviw<Action>($Copy)<Action>(FindInPath)<Action>($Paste)`m<esc>
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>cf <Action>(ReformatCode)
+nmap <leader>hr <Action>(Vcs.RollbackChangedLines)
+nmap <leader>ls <Action>(FileStructurePopup)
+nmap ]h <Action>(VcsShowNextChangeMarker)<Action>(EditorScrollToCenter)
+nmap [h <Action>(VcsShowPrevChangeMarker)<Action>(EditorScrollToCenter)
+nmap ss :w<cr><Action>(ReformatCode)
+nmap <leader>. :NERDTreeFind<cr>
+nmap cd <Action>(Scala.CreateScalaDocStub)
+nmap <leader>wo <Action>(MaximizeEditorInSplit)
+nmap <leader>w= <Action>(MaximizeEditorInSplit)
+nmap <leader>oi <Action>(OptimizeImports)
+nmap [f <Action>(MethodUp)
+nmap ]f <Action>(MethodDown)
+
+noremap Q q
+noremap q %
+noremap L $
+noremap H _
+
+nnoremap Y y$
+nnoremap sd <c-w>c
+nnoremap sa :wa<cr>
+nnoremap <leader>wv :vsplit<cr>
+nnoremap <leader>ws :split<cr>
+nnoremap dh <c-w>h
+nnoremap dl <c-w>l
+nnoremap dj <c-w>j
+nnoremap dk <c-w>k
+nnoremap <leader>wh <c-w>h
+nnoremap <leader>wl <c-w>l
+nnoremap <leader>wj <c-w>j
+nnoremap <leader>wk <c-w>k
+nnoremap vv ^vg_
+nnoremap gf *N
+nnoremap <esc> :noh<cr><esc>
+nnoremap <D-S-i> :source ~/.ideavimrc<cr>
+vnoremap y ygv<Esc>
+
+inoremap <c-e> <c-o>A
+inoremap <c-q> <c-o>I
+inoremap jk <esc>
+
+" settings
+set visualbell
+set ignorecase
+
+set splitbelow
+set splitright
+
+set incsearch
+set scrolloff=5
+set sidescrolloff=5
+set clipboard+=unnamed
+set hlsearch
+
+" idea specific
+set ideajoin
