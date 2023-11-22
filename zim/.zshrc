@@ -120,6 +120,10 @@ function cpp {
   rm a.out
 }
 
+function bazeli {
+  bazel $1 $(bazel query $2 | grep "^//" | fzf --height=30% --reverse --info=inline)
+}
+
 # ------------------------------
 # Alias
 # ------------------------------
