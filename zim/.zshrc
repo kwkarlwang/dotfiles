@@ -121,7 +121,9 @@ function cpp {
 }
 
 function bazeli {
-  bazel $1 $(bazel query $2 | grep "^//" | fzf --height=30% --reverse --info=inline)
+  capture=$(bazel query $2 | grep "^//" | fzf --height=30% --reverse --info=inline)
+  cmd="bazel $1 $capture"
+  print -z $cmd
 }
 
 # ------------------------------

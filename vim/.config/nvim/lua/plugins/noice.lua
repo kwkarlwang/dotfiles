@@ -19,7 +19,7 @@ end, {
 	-- { "No information available", "notify" },
 	-- -- { "Error executing vim.schedule lua callback", "notify" },
 	-- { "'width' key must be a positive Integer", "notify" },
-	-- { "change", "notify" },
+	{ "change;", "notify" },
 	-- { "formatting", "mini" },
 })
 table.insert(routes, {
