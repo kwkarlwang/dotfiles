@@ -126,6 +126,12 @@ function bazeli {
   print -z $cmd
 }
 
+_fzf_complete_bazel() {
+  _fzf_complete -- "$@" < <(
+    bazel query //...
+  )
+}
+
 # ------------------------------
 # Alias
 # ------------------------------
