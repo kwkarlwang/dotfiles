@@ -65,60 +65,6 @@ return {
 		},
 	},
 	{
-		"NeogitOrg/neogit",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		cmd = "Neogit",
-		keys = { { "<leader>gg", "<cmd>Neogit<cr>" } },
-		config = function()
-			require("neogit").setup({
-				disable_commit_confirmation = true,
-				disable_commit_notifications = true,
-				disable_context_highlighting = true,
-				disable_hint = true,
-				integrations = {
-					diffview = true,
-				},
-				sections = {
-					untracked = {
-						folded = false,
-					},
-					unstaged = {
-						folded = false,
-					},
-					staged = {
-						folded = false,
-					},
-					stashes = {
-						folded = false,
-					},
-					unpulled_upstream = {
-						folded = false,
-					},
-					unmerged_upstream = {
-						folded = false,
-					},
-					unpulled_pushRemote = {
-						folded = false,
-					},
-					unmerged_pushRemote = {
-						folded = false,
-					},
-					recent = {
-						folded = false,
-					},
-				},
-				mappings = {
-					status = { ["p"] = "PushPopup", ["F"] = "PullPopup" },
-				},
-			})
-			vim.cmd([[
-				hi! link NeogitDiffAdd DiffAdd
-				hi! link NeogitDiffDelete DiffDelete
-				hi NeogitDiffContext guibg=#1E2029
-			]])
-		end,
-	},
-	{
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
 
@@ -508,7 +454,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {enabled = false}
+		opts = { enabled = false },
 	},
 	{ "yioneko/nvim-vtsls" },
 	{
