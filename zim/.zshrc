@@ -128,7 +128,7 @@ function bazeli {
 
 _fzf_complete_bazel() {
   _fzf_complete -- "$@" < <(
-    bazel query //...
+    bazel query --ui_event_filters=-info,-warning,-start,-debug,-progress,-finish,-subcommand //...
   )
 }
 
