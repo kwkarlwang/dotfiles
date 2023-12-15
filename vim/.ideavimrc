@@ -44,6 +44,7 @@ nmap <leader>w= <Action>(MaximizeEditorInSplit)
 nmap <leader>oi <Action>(OptimizeImports)
 nmap [f <Action>(MethodUp)
 nmap ]f <Action>(MethodDown)
+nmap gi <Action>(GotoImplementation)
 
 noremap Q q
 noremap q %
