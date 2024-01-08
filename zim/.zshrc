@@ -127,7 +127,7 @@ function bazeli {
 }
 
 function bazel-refresh {
-    bazel query $2 | grep "^//" > $HOME/.bazel_targets
+    (bazel query $2 | grep "^//") >! $HOME/.bazel_targets
 }
 
 _fzf_complete_bazel() {
