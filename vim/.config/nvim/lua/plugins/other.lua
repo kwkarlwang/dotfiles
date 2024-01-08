@@ -67,7 +67,10 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
-
+		keys = {
+			{ "<leader>do", "<cmd>DiffviewOpen<cr>" },
+			{ "<leader>dc", "<cmd>DiffviewOpen<cr>" },
+		},
 		opts = {
 			hooks = {
 				diff_buf_read = function()
