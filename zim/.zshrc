@@ -126,9 +126,14 @@ function bazeli {
   print -z $cmd
 }
 
+function bazel-refresh {
+    bazel query $2 | grep "^//" > $HOME/.bazel_targets
+}
+
 _fzf_complete_bazel() {
   _fzf_complete -- "$@" < <(
-    bazel query --ui_event_filters=-info,-warning,-start,-debug,-progress,-finish,-subcommand //...
+    cat $HOME/.bazel_targets
+    # bazel query --ui_event_filters=-info,-warning,-start,-debug,-progress,-finish,-subcommand //...
   )
 }
 
