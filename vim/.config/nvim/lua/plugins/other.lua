@@ -69,7 +69,7 @@ return {
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
 		keys = {
 			{ "<leader>do", "<cmd>DiffviewOpen<cr>" },
-			{ "<leader>dc", "<cmd>DiffviewOpen<cr>" },
+			{ "<leader>dc", "<cmd>DiffviewClose<cr>" },
 		},
 		opts = {
 			hooks = {
