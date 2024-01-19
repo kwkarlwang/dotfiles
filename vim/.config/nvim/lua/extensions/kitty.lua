@@ -12,7 +12,7 @@ local setup = function()
 	vim.opt.ruler = false
 	vim.opt.laststatus = 0
 	vim.opt.showcmd = false
-	vim.opt.scrollback = 1000
+	vim.opt.scrollback = 100000
 	local term_buf = vim.api.nvim_create_buf(true, false)
 	local term_io = vim.api.nvim_open_term(term_buf, {})
 	vim.api.nvim_buf_set_keymap(term_buf, "n", "q", "<Cmd>q<CR>", {})
