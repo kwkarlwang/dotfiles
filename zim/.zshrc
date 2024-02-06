@@ -70,7 +70,7 @@ source ${ZIM_HOME}/init.zsh
 # ------------------------------
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-eval "$(thefuck --alias)"
+# eval "$(thefuck --alias)"
 
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 bindkey '^[[A' history-substring-search-up
@@ -133,7 +133,18 @@ function bazel-refresh {
 _fzf_complete_bazel() {
   _fzf_complete -- "$@" < <(
     cat $HOME/.bazel_targets
-    # bazel query --ui_event_filters=-info,-warning,-start,-debug,-progress,-finish,-subcommand //...
+  )
+}
+
+_fzf_complete_br() {
+  _fzf_complete -- "$@" < <(
+    cat $HOME/.bazel_targets
+  )
+}
+
+_fzf_complete_bb() {
+  _fzf_complete -- "$@" < <(
+    cat $HOME/.bazel_targets
   )
 }
 
