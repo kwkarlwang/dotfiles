@@ -69,6 +69,8 @@ nnoremap gf *N
 nnoremap <esc> :noh<cr><esc>
 nnoremap <D-S-i> :source ~/.ideavimrc<cr>
 vnoremap y ygv<Esc>
+vnoremap < <gv
+vnoremap > >gv
 
 inoremap <c-e> <c-o>A
 inoremap <c-q> <c-o>I

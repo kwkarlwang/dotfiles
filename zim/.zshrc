@@ -148,6 +148,10 @@ _fzf_complete_bb() {
   )
 }
 
+function b64json {
+  echo $1 | base64 --decode | jq .
+}
+
 # ------------------------------
 # Alias
 # ------------------------------
