@@ -120,6 +120,10 @@ function cpp {
   rm a.out
 }
 
+function cpf {
+  fd $1 | fzf --height=30% --reverse --info=inline | tee /dev/tty | pbcopy
+}
+
 function bazeli {
   capture=$(bazel query $2 | grep "^//" | fzf --height=30% --reverse --info=inline)
   cmd="bazel $1 $capture"
@@ -147,6 +151,8 @@ _fzf_complete_bb() {
     cat $HOME/.bazel_targets
   )
 }
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
 function b64json {
   echo $1 | base64 --decode | jq .

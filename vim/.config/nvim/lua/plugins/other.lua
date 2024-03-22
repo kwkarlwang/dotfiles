@@ -238,7 +238,7 @@ return {
 		ft = "markdown",
 	},
 	-- markdown link conceal
-	{ "preservim/vim-markdown", enabled = false },
+	{ "preservim/vim-markdown", enabled = true },
 	-- swap windows
 	{
 		"sindrets/winshift.nvim",
