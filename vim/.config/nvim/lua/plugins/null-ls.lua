@@ -123,6 +123,10 @@ M.config = function()
 		-- builtins.formatting.scalafmt,
 		builtins.diagnostics.buildifier,
 		builtins.formatting.buildifier,
+		builtins.formatting.jsonnetfmt.with({
+			-- double quotes
+			extra_args = { "--string-style", "d" },
+		}),
 		-- groovyfmt,
 	}
 	null_ls.setup({

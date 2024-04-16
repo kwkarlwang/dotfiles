@@ -13,10 +13,12 @@ map ' <Plug>(easymotion-f2)
 map " <Plug>(easymotion-F2)
 nmap cc <Plug>CommentaryLine
 xmap cc <Plug>Commentary
-nmap gco o<space><esc>ccA
-nmap gcO O<space><esc>ccA
+nmap gco o//<space>
+nmap gcO O//<space>
 map <M-up> <Action>(MoveLineUp)
 map <M-down> <Action>(MoveLineDown)
+nmap <C-;> m`A;<esc>``
+imap <C-;> <esc>lm`A;<esc>``
 
 
 nnoremap s :nop<cr>
@@ -45,6 +47,7 @@ nmap <leader>oi <Action>(OptimizeImports)
 nmap [f <Action>(MethodUp)
 nmap ]f <Action>(MethodDown)
 nmap gi <Action>(GotoImplementation)
+
 
 noremap Q q
 noremap q %
