@@ -1,7 +1,8 @@
 local M = {
-	"jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvimtools/none-ls-extras.nvim",
 	},
 }
 M.config = function()
@@ -69,8 +70,6 @@ M.config = function()
 		--                              python                              --
 		----------------------------------------------------------------------
 		builtins.formatting.black,
-		builtins.formatting.reorder_python_imports,
-		builtins.formatting.autoflake,
 		-- builtins.formatting.yapf,
 		-- builtins.diagnostics.mypy,
 		----------------------------------------------------------------------
@@ -80,7 +79,7 @@ M.config = function()
 		----------------------------------------------------------------------
 		--                               rust                               --
 		----------------------------------------------------------------------
-		builtins.formatting.rustfmt,
+		-- require('none-ls.formatting.rustfmt'),
 		----------------------------------------------------------------------
 		--                               c++                                --
 		----------------------------------------------------------------------
@@ -110,10 +109,6 @@ M.config = function()
 			extra_args = { "-c", home_dir .. "/.sql-formatter.json" },
 		}),
 		----------------------------------------------------------------------
-		--                               json                               --
-		----------------------------------------------------------------------
-		builtins.diagnostics.jsonlint,
-		----------------------------------------------------------------------
 		--                              other                               --
 		----------------------------------------------------------------------
 		haskellfmt,
@@ -123,10 +118,10 @@ M.config = function()
 		-- builtins.formatting.scalafmt,
 		builtins.diagnostics.buildifier,
 		builtins.formatting.buildifier,
-		builtins.formatting.jsonnetfmt.with({
-			-- double quotes
-			extra_args = { "--string-style", "d" },
-		}),
+		-- builtins.formatting.jsonnetfmt.with({
+		-- 	-- double quotes
+		-- 	extra_args = { "--string-style", "d" },
+		-- }),
 		-- groovyfmt,
 	}
 	null_ls.setup({
