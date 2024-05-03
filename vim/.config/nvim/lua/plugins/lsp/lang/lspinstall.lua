@@ -2,7 +2,7 @@ local lspconfig = require("lspconfig")
 
 local ignore_list = { "jdtls", "hls", "rust_analyzer" }
 
-local use_lsp_formatting = { "clangd", "gopls", "ruff_lsp", "rust_analyzer", "jsonnet_ls"}
+local use_lsp_formatting = { "clangd", "gopls", "rust_analyzer", "jsonnet_ls" }
 
 require("mason-lspconfig").setup_handlers({
 	---@param server_name string
@@ -74,8 +74,8 @@ require("mason-lspconfig").setup_handlers({
 		elseif server_name == "jsonnet_ls" then
 			config.settings = {
 				formatting = {
-					StringStyle = 'double'
-				}
+					StringStyle = "double",
+				},
 			}
 		end
 

@@ -15,6 +15,7 @@ nmap cc <Plug>CommentaryLine
 xmap cc <Plug>Commentary
 nmap gco o//<space>
 nmap gcO O//<space>
+nmap gcA A<space>//<space>
 map <M-up> <Action>(MoveLineUp)
 map <M-down> <Action>(MoveLineDown)
 nmap <C-;> m`A;<esc>``

@@ -29,27 +29,21 @@ local setup = function()
 				vim.api.nvim_chan_send(term_io, "\r\n")
 			end
 			term_io = false
-			vim.api.nvim_create_autocmd('ModeChanged', {
+			vim.api.nvim_create_autocmd("ModeChanged", {
 				group = group,
 				buffer = term_buf,
 				callback = function()
 					local mode = vim.fn.mode()
-					if mode == 't' then
+					if mode == "t" then
 						vim.cmd.stopinsert()
-						vim.schedule(setCursor)
 					end
 				end,
 			})
-			-- vim.api.nvim_create_autocmd("ModeChanged", {
-			-- 	group = group,
-			-- 	pattern = "([nN]:[^vV])|([vV]:[^nN])",
-			-- 	command = "stopinsert",
-			-- })
 			vim.api.nvim_win_set_buf(current_win, term_buf)
 			if nlines ~= vim.NIL and cur_line ~= vim.NIL and cur_column ~= vim.NIL then
 				vim.api.nvim_win_set_cursor(current_win, { vim.fn.max({ 1, nlines }) + cur_line, cur_column - 1 })
 			else
-				vim.api.nvim_input([[<C-\><C-n>G]])
+				vim.api.nvim_input([[Gi]])
 			end
 			vim.api.nvim_buf_delete(ev.buf, { force = true })
 		end,

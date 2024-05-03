@@ -480,4 +480,24 @@ return {
 	},
 	{ "folke/neodev.nvim", opts = {} },
 	{ "Almo7aya/openingh.nvim" },
+	{
+		"mikesmithgh/kitty-scrollback.nvim",
+		enabled = true,
+		lazy = true,
+		cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+		event = { "User KittyScrollbackLaunch" },
+		-- version = '*', -- latest stable version, may have breaking changes if major version changed
+		-- version = '^4.0.0', -- pin major version, include fixes and features that do not have breaking changes
+		config = function()
+			require("kitty-scrollback").setup({
+				visual_selection_highlight_mode = "nvim",
+				ksb_example_get_text_last_non_empty_output = {
+					kitty_get_text = {
+						extent = "last_non_empty_output",
+						ansi = true,
+					},
+				},
+			})
+		end,
+	},
 }
