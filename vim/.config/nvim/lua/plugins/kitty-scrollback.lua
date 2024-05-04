@@ -11,17 +11,20 @@ return {
 			-- global configurations
 			{
 				visual_selection_highlight_mode = "nvim",
+				keymaps_enabled = false,
 				callbacks = {
 					after_launch = function()
 						local api = require("kitty-scrollback.api")
 						vim.keymap.set("n", "q", api.close_or_quit_all, { buffer = 0 })
-						bufmap(0, "n", "<Esc>", ":noh<cr><cmd>lua require('notify').dismiss()<cr>", NS)
+						-- bufmap(0, "n", "<Esc>", ":noh<cr><cmd>lua require('notify').dismiss()<cr>", NS)
 						vim.opt.winbar = ""
 						vim.opt.signcolumn = "no"
 					end,
 				},
-				status_window = {
-					enabled = false,
+				status_window = { enabled = false },
+				paste_window = {
+					yank_register_enabled = false,
+					hide_footer = true,
 				},
 			},
 			ksb_builtin_get_text_all = {
