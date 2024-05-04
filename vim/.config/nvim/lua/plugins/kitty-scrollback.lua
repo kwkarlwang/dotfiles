@@ -12,10 +12,6 @@ return {
 			{
 				visual_selection_highlight_mode = "nvim",
 				callbacks = {
-					-- after_setup = function()
-					-- 	local api = require("kitty-scrollback.api")
-					-- 	vim.keymap.set("n", "q", api.close_or_quit_all)
-					-- end,
 					after_launch = function()
 						local api = require("kitty-scrollback.api")
 						vim.keymap.set("n", "q", api.close_or_quit_all, { buffer = 0 })
