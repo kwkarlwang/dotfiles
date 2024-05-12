@@ -33,29 +33,10 @@ map("n", "dj", "<C-w>j", NS)
 map("n", "dk", "<C-w>k", NS)
 map("n", "dl", "<C-w>l", NS)
 
--- map("t", "dh", "<C-\\><C-n><C-w>h", NS)
--- map("t", "dj", "<C-\\><C-n><C-w>j", NS)
--- map("t", "dk", "<C-\\><C-n><C-w>k", NS)
--- map("t", "dl", "<C-\\><C-n><C-w>l", NS)
-
 -- terminal
 map("n", "<leader>oT", ":terminal<cr>", NS)
 map("t", "<C-cr>", "<C-\\><C-n>", NS)
--- map(
--- 	"t",
--- 	"sd",
--- 	"<C-\\><C-n>"
--- 		.. ":lua require('bufresize').block_register()<cr>"
--- 		.. "<C-w>c"
--- 		.. ":lua require('bufresize').resize_close()<cr>",
--- 	NS
--- )
-map(
-	"n",
-	"sd",
-	":lua require('bufresize').block_register()<cr>" .. "<C-w>c" .. ":lua require('bufresize').resize_close()<cr>",
-	NS
-)
+map("n", "sd", "<C-w>c", NS)
 
 -- y/Y
 map("v", "y", "ygv<esc>", NS)

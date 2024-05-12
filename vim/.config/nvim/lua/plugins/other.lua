@@ -189,6 +189,16 @@ return {
 				},
 			})
 		end,
+		keys = {
+			{
+				"sd",
+				function()
+					require("bufresize").block_register()
+					vim.api.nvim_win_close(0, false)
+					require("bufresize").resize_close()
+				end,
+			},
+		},
 	},
 	-- markdown
 	{

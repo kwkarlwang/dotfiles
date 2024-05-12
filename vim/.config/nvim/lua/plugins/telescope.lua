@@ -58,11 +58,11 @@ return {
 			},
 			pickers = {
 				buffers = {
-					mappings = {
-						i = {
-							["<c-d>"] = actions.delete_buffer,
-						},
-					},
+					ignore_current_buffer = true,
+					sort_mru = true,
+					cwd_only = true,
+					show_all_buffers = false,
+					mappings = { i = { ["<c-d>"] = actions.delete_buffer } },
 				},
 				find_files = {
 					find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
@@ -137,36 +137,40 @@ return {
 	keys = {
 		{
 			"<leader><leader>",
-			"<cmd>lua require('telescope.builtin').find_files({entry_maker=require('utils').gen_from_file()})<cr>",
+			function()
+				require("telescope.builtin").find_files({ entry_maker = require("utils").gen_from_file() })
+			end,
 		},
 
 		{
 			"<leader>ff",
-			"<cmd>lua require('telescope.builtin').find_files({"
-				.. "entry_maker=require('utils').gen_from_file(),"
-				.. "find_command={'fd', '--no-ignore', '--hidden', '--strip-cwd-prefix'}"
-				.. "})<cr>",
+			function()
+				require("telescope.builtin").find_files({
+					entry_maker = require("utils").gen_from_file(),
+					find_command = { "fd", "--no-ignore", "--hidden", "--strip-cwd-prefix" },
+				})
+			end,
 		},
 		{
 			"<leader>fp",
-			[[<cmd>lua require('telescope.builtin').find_files({cwd="~/.config/nvim"})<cr>]],
+			function()
+				require("telescope.builtin").find_files({ cwd = "~/.config/nvim" })
+			end,
 		},
+		{ "<leader>sp", require("telescope.builtin").live_grep },
+		{ "<leader>gf", require("telescope.builtin").grep_string },
+		{ "<leader>ss", require("telescope.builtin").current_buffer_fuzzy_find },
+		{ "<leader>su", require("telescope.builtin").spell_suggest },
 
-		{ "<leader>sp", "<cmd>lua require('telescope.builtin').live_grep()<cr>" },
-		{ "<leader>gf", "<cmd>lua require('telescope.builtin').grep_string()<cr>" },
-		{ "<leader>ss", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>" },
-		{ "<leader>su", "<cmd>lua require('telescope.builtin').spell_suggest()<cr>" },
+		{ "<leader>hh", require("telescope.builtin").help_tags },
+		{ "<leader>hi", require("telescope.builtin").highlights },
+		{ "<leader>km", require("telescope.builtin").keymaps },
 
-		{ "<leader>hh", "<cmd>lua require('telescope.builtin').help_tags()<cr>" },
-		{ "<leader>hi", "<cmd>lua require('telescope.builtin').highlights()<cr>" },
-		{ "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<cr>" },
+		{ "<leader>,", require("telescope.builtin").buffers },
 
-		{ "<leader>,", "<cmd>lua require('telescope.builtin').buffers()<cr>" },
-
-		{ "<M-x>", "<cmd>lua require('telescope.builtin').commands()<cr>" },
-		{ "<leader>:", "<cmd>lua require('telescope.builtin').commands()<cr>" },
-		{ "<leader>fr", "<cmd>lua require('telescope.builtin').oldfiles()<cr>" },
-
-		{ "<leader>v", "<cmd>lua require('telescope.builtin').registers()<cr>" },
+		{ "<M-x>", require("telescope.builtin").commands },
+		{ "<leader>:", require("telescope.builtin").commands },
+		{ "<leader>fr", require("telescope.builtin").oldfiles },
+		{ "<leader>v", require("telescope.builtin").registers },
 	},
 }
