@@ -1,3 +1,4 @@
+-- common plugins for both kitty-scrollback and nvim
 return {
 	-- theme
 	{
