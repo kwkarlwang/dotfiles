@@ -103,13 +103,6 @@ o.timeoutlen = 400
 --------Turn off scan search-----------
 -- o.wrapscan = false
 
---------Fold-----------
--- startup fold
-o.foldenable = false
-o.foldmethod = "expr"
-o.foldlevel = 20
-o.foldexpr = "nvim_treesitter#foldexpr()"
-
 --------Kitty-----------
 vim.cmd("let &t_ut=''")
 
