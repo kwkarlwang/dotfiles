@@ -37,7 +37,8 @@ require("mason-lspconfig").setup_handlers({
 			}
 		elseif server_name == "eslint" then
 			config.root_dir = lspconfig.util.root_pattern("node_modules") or vim.loop.cwd()
-			config.on_attach = function() end
+		elseif server_name == "pyright" then
+			config.root_dir = lspconfig.util.root_pattern(".git") or vim.loop.cwd()
 		elseif server_name == "vtsls" then
 			require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 			local on_attach = config.on_attach

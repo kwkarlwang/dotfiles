@@ -61,7 +61,7 @@ return {
 					ignore_current_buffer = true,
 					sort_mru = true,
 					cwd_only = true,
-					show_all_buffers = false,
+					show_all_buffers = true,
 					mappings = { i = { ["<c-d>"] = actions.delete_buffer } },
 				},
 				find_files = {

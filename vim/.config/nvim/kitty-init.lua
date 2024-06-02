@@ -12,6 +12,7 @@ NS = { noremap = true, silent = true }
 home_dir = os.getenv("HOME") .. "/"
 
 require("settings")
+o.wrap = true
 require("keybindings")
 
 require("plugin").setup("kitty-plugins")
