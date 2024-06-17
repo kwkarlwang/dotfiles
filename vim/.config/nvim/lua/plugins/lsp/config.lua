@@ -26,11 +26,11 @@ local on_attach = function(client, bufnr)
   end)
   bufmap("n", "<leader>lS", require("telescope.builtin").lsp_workspace_symbols)
   bufmap("n", "<leader>ls", require("telescope.builtin").lsp_document_symbols)
-  bufmap("n", "<leader>cf", vim.lsp.buf.format)
+  -- bufmap("n", "<leader>cf", vim.lsp.buf.format)
   bufmap("n", "<leader>cr", vim.lsp.buf.rename)
   bufmap("n", "<leader>lr", "<cmd>LspRestart<cr>")
 
-  client.server_capabilities.documentFormattingProvider = false
+  client.server_capabilities.documentFormattingProvider = true
   -- disable semantic highlight
   -- client.server_capabilities.semanticTokensProvider = nil
 end

@@ -41,19 +41,19 @@ require("mason-lspconfig").setup_handlers({
 			config.root_dir = lspconfig.util.root_pattern(".git") or vim.loop.cwd()
 		elseif server_name == "vtsls" then
 			require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-			local on_attach = config.on_attach
-			config.on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
-				vim.keymap.set("n", "ss", function()
-					local current_buf = vim.api.nvim_get_current_buf()
-					require("vtsls").commands.add_missing_imports(current_buf, function()
-						require("vtsls").commands.organize_imports(current_buf, function()
-							vim.api.nvim_command("silent noautocmd update")
-							AsyncFormat(current_buf)
-						end)
-					end)
-				end, { buffer = bufnr })
-			end
+			-- local on_attach = config.on_attach
+			-- config.on_attach = function(client, bufnr)
+			-- 	on_attach(client, bufnr)
+			-- 	vim.keymap.set("n", "ss", function()
+			-- 		local current_buf = vim.api.nvim_get_current_buf()
+			-- 		require("vtsls").commands.add_missing_imports(current_buf, function()
+			-- 			require("vtsls").commands.organize_imports(current_buf, function()
+			-- 				vim.api.nvim_command("silent noautocmd update")
+			-- 				AsyncFormat(current_buf)
+			-- 			end)
+			-- 		end)
+			-- 	end, { buffer = bufnr })
+			-- end
 			-- filter react index.d.ts, make telescope go to definition
 			-- https://github.com/typescript-language-server/typescript-language-server/issues/216
 			local function filterReactDTS(value)
@@ -80,13 +80,13 @@ require("mason-lspconfig").setup_handlers({
 			}
 		end
 
-		if vim.tbl_contains(use_lsp_formatting, server_name) then
-			local on_attach = config.on_attach
-			config.on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
-				client.server_capabilities.documentFormattingProvider = true
-			end
-		end
+		-- if vim.tbl_contains(use_lsp_formatting, server_name) then
+		-- 	local on_attach = config.on_attach
+		-- 	config.on_attach = function(client, bufnr)
+		-- 		on_attach(client, bufnr)
+		-- 		client.server_capabilities.documentFormattingProvider = true
+		-- 	end
+		-- end
 
 		lspconfig[server_name].setup(config)
 	end,

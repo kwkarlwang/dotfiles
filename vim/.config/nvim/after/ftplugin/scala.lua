@@ -37,4 +37,4 @@ metals_config.on_attach = function(client, bufnr)
 end
 -- vim.cmd([[hi link @property @function]])
 vim.opt_global.shortmess:remove("F")
-require("metals").initialize_or_attach(metals_config)
+-- require("metals").initialize_or_attach(metals_config)

@@ -15,7 +15,7 @@ map("n", "<leader>fs", ":silent up<cr>", NS)
 map("n", "s", "<nop>", NS)
 -- save all files
 map("n", "sa", ":wa<cr>", NS)
-map("n", "ss", "<cmd>silent up<cr><cmd>lua AsyncFormat()<cr>", NS)
+-- vim.keymap.set("n", "ss", function() AsyncFormat() end)
 
 -- WINDOWS
 map("n", "<leader>wd", "<C-w>c", NS)

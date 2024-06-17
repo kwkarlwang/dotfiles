@@ -1,5 +1,6 @@
 local M = {
 	"nvimtools/none-ls.nvim",
+	enabled = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvimtools/none-ls-extras.nvim",
@@ -130,6 +131,7 @@ M.config = function()
 		-- debug = true,
 	})
 
+	---@param bufnr integer | nil
 	AsyncFormat = function(bufnr)
 		bufnr = bufnr or vim.api.nvim_get_current_buf()
 

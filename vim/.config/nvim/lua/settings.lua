@@ -118,6 +118,7 @@ augroup FiletypeChange
   autocmd!
   autocmd BufNewFile,BufRead *.xml setf html
   autocmd BufNewFile,BufRead *.launch setf html
+  autocmd BufNewFile,BufRead *.jsonnet.TEMPLATE setf jsonnet
 augroup END
 ]])
 
