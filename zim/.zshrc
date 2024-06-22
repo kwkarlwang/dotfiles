@@ -158,6 +158,15 @@ function b64json {
   echo $1 | base64 --decode | jq .
 }
 
+function yy() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 # ------------------------------
 # Alias
 # ------------------------------
@@ -218,7 +227,7 @@ fi
 # ------------------------------
 # Keybindings
 # ------------------------------
-bindkey -s '^o' 'ranger^M'
+bindkey -s '^o' 'yy^M'
 bindkey "\e[1;3D" backward-word # ⌥←
 bindkey "\e[1;3C" forward-word # ⌥→
 bindkey '^A' beginning-of-line

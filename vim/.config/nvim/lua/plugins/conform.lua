@@ -32,6 +32,7 @@ return {
 			sql = { "sql_formatter" },
 			java = { "google-java-format" },
 			proto = { "buf" },
+			toml = { "taplo" },
 		},
 		formatters = {
 			injected = { options = { ignore_errors = true } },
