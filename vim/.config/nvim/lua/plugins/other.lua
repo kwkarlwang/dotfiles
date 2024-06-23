@@ -98,6 +98,7 @@ return {
 	"gpanders/editorconfig.nvim",
 	{
 		"kevinhwang91/rnvimr",
+		enabled = false,
 		cmd = "RnvimrToggle",
 		keys = { { "<leader>.", "<cmd>RnvimrToggle<cr><esc>" } },
 		config = function()
@@ -106,6 +107,34 @@ return {
 			g.rnvimr_enable_bw = 1
 			vim.cmd("let g:rnvimr_presets = [{'width': 1.000, 'height': 1.000}]")
 		end,
+	},
+	---@type LazySpec
+	{
+		"mikavilpas/yazi.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
+		keys = {
+			-- 👇 in this section, choose your own keymappings!
+			{
+				"<leader>.",
+				function()
+					require("yazi").yazi()
+				end,
+				desc = "Open the file manager",
+			},
+			{
+				-- Open in the current working directory
+				"<leader>cw",
+				function()
+					require("yazi").yazi(nil, vim.fn.getcwd())
+				end,
+				desc = "Open the file manager in nvim's working directory",
+			},
+		},
+		opts = {
+			open_for_directories = false,
+			floating_window_scaling_factor = 1.0,
+		},
 	},
 	{
 		"famiu/bufdelete.nvim",
