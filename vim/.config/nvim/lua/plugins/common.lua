@@ -3,6 +3,7 @@ return {
 	-- theme
 	{
 		"dracula/vim",
+		name = "dracula",
 		init = function()
 			g.dracula_full_special_attrs_support = 1
 		end,
