@@ -15,20 +15,16 @@ end, {
 	{ " lines ", "notify" },
 	{ "fewer line", "notify" },
 	{ "more line", "notify" },
-	-- -- { "attempt", "notify" },
-	-- { "No information available", "notify" },
-	-- -- { "Error executing vim.schedule lua callback", "notify" },
-	-- { "'width' key must be a positive Integer", "notify" },
 	{ "change;", "notify" },
 	{ "Modified]", "notify" },
-	-- { "formatting", "mini" },
 })
 table.insert(routes, {
 	filter = {
-		event = "msg_showmode",
+		find = "Reloading..."
 	},
-	view = "notify",
+	view = "mini",
 })
+
 return {
 	"folke/noice.nvim",
 	-- enabled = false,
