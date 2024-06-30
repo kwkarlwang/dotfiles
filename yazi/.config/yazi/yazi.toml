@@ -2,5 +2,8 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
+# preset config
+# https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi.toml
+
 [manager]
 show_hidden = true
