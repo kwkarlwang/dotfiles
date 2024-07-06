@@ -20,6 +20,8 @@ map <M-up> <Action>(MoveLineUp)
 map <M-down> <Action>(MoveLineDown)
 nmap <C-;> m`A;<esc>``
 imap <C-;> <esc>lm`A;<esc>``
+nmap <C-,> m`A,<esc>``
+imap <C-,> <esc>lm`A,<esc>``
 
 
 nnoremap s :nop<cr>

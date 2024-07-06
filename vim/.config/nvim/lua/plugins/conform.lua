@@ -6,14 +6,14 @@ return {
 		{
 			"<leader>cf",
 			function()
-				require("conform").format({ async = true })
+				require("conform").format({ async = true, lsp_format = "fallback" })
 			end,
 			mode = { "n", "v" },
 		},
 		{
 			"ss",
 			function()
-				require("conform").format({ async = true }, function()
+				require("conform").format({ async = true, lsp_format = "fallback" }, function()
 					vim.cmd("silent noautocmd update")
 				end)
 			end,

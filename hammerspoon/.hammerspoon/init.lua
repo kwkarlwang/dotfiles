@@ -151,7 +151,7 @@ local goToWork = function()
 end
 
 local goToCalendar = function()
-	local url = "https://calendar.google.com/calendar/u/2/r"
+	local url = "https://calendar.google.com/calendar/u/0/r"
 	goToWebsite(url)
 end
 hs.hotkey.bind({ "cmd", "alt" }, "1", goToPersonal)
