@@ -9,3 +9,13 @@
 on = ["<Esc>"]
 run = "close"
 desc = "Cancel input"
+
+[[manager.prepend_keymap]]
+on = ["q"]
+run = "quit --no-cwd-file"
+desc = "Exit the process without writing cwd-file"
+
+[[manager.prepend_keymap]]
+on = ["Q"]
+run = "quit"
+desc = "Exit the process"
