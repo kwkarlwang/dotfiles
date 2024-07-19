@@ -7,8 +7,6 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 # install zsh
 stow zim
-source ~/.zshrc
-zimfw install
-zimfw clean
-zimfw compile
-source ~/.zshrc
+source ~/.zim/zimfw.zsh install
+source ~/.zim/zimfw.zsh clean
+source ~/.zim/zimfw.zsh compile
