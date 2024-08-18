@@ -132,7 +132,7 @@ o.laststatus = 3
 o.shiftwidth = 2
 
 -- hide command prompt
-o.cmdheight = 0
+o.cmdheight = 1
 
 -- don't fold by default
 o.foldenable = false
