@@ -33,6 +33,7 @@ return {
 			java = { "google-java-format" },
 			proto = { "buf" },
 			toml = { "taplo" },
+			markdown = { "prettier" },
 		},
 		formatters = {
 			injected = { options = { ignore_errors = true } },
