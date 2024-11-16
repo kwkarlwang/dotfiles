@@ -32,10 +32,11 @@ hs.hotkey.bind({ "shift" }, keymap["escape"], dismissNotification)
 ----------------------------------------------------------------------
 --                      send test notification                      --
 ----------------------------------------------------------------------
-hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "/", function()
-	hs.notify.new({ title = "hammerspoon" }):send()
-end)
-
+local showAppName = function()
+	local app = hs.application.frontmostApplication()
+	hs.alert.show({ title = "App name: " .. app:title() })
+end
+hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "/", showAppName)
 ----------------------------------------------------------------------
 --                         Connect AirPods                          --
 ----------------------------------------------------------------------
@@ -60,7 +61,7 @@ local toggleAirPods = function()
 		connectAirPods()
 	end
 end
-hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "a", toggleAirPods)
+-- hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "a", toggleAirPods)
 
 ----------------------------------------------------------------------
 --                        Change resolution                         --
