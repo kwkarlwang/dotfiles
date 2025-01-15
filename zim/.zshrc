@@ -186,14 +186,14 @@ alias icat="kitty +kitten icat"
 alias dot="cd ~/dotfiles"
 alias lc="cd ~/leetcode"
 alias lg="lazygit"
-# use exa if available
-if (( $+commands[exa])); then
-  alias ls='exa -1 --icons'
-  alias lsa='exa -1a --icons'
-  alias l='exa -lb --icons'
-  alias la='exa -lba --icons'
-  alias lt='exa --icons --tree --level=2'
-  alias lta='exa -a --icons --tree --level=2'
+# use eza if available
+if (( $+commands[eza])); then
+  alias ls='eza -1 --icons'
+  alias lsa='eza -1a --icons'
+  alias l='eza -lb --icons'
+  alias la='eza -lba --icons'
+  alias lt='eza --icons --tree --level=2'
+  alias lta='eza -a --icons --tree --level=2'
 else
   case "$(uname -s)" in
 
