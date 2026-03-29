@@ -1,22 +1,4 @@
 return {
-	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				surrounds = {
-					["A"] = {
-						add = function()
-							local am = require("extensions.algomonad")
-							local left = am.comment_with_open_identifier()
-							local right = am.comment_with_close_identifier()
-							return { { left }, { right } }
-						end,
-					},
-				},
-			})
-		end,
-	},
 	"tpope/vim-sleuth",
 	"tpope/vim-repeat",
 	-- pair brackets

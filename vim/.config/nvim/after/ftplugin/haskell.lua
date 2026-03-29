@@ -1,4 +1,7 @@
-local ht = require("haskell-tools")
+local ok, ht = pcall(require, "haskell-tools")
+if not ok then
+	return
+end
 local def_opts = { noremap = true, silent = true }
 ht.start_or_attach({
 	tools = {

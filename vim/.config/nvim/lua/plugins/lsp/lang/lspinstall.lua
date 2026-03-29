@@ -4,7 +4,7 @@ local ignore_list = { "jdtls", "hls", "rust_analyzer" }
 
 local use_lsp_formatting = { "clangd", "gopls", "rust_analyzer", "jsonnet_ls" }
 
-require("mason-lspconfig").setup_handlers({
+require("mason-lspconfig").setup({
 	---@param server_name string
 	function(server_name)
 		if vim.tbl_contains(ignore_list, server_name) then
@@ -38,7 +38,8 @@ require("mason-lspconfig").setup_handlers({
 		elseif server_name == "eslint" then
 			config.root_dir = lspconfig.util.root_pattern("node_modules") or vim.loop.cwd()
 		elseif server_name == "pyright" then
-			config.root_dir = lspconfig.util.root_pattern(".git") or vim.loop.cwd()
+			-- cause OOM in large repo
+			-- config.root_dir = lspconfig.util.root_pattern(".git") or vim.loop.cwd()
 		elseif server_name == "vtsls" then
 			require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 			-- local on_attach = config.on_attach

@@ -1,3 +1,4 @@
+local is_vscode = vim.g.vscode
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -9,7 +10,7 @@ return {
 				ignore_install = {},
 				indent = { enable = false },
 				-- highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
-				highlight = { enable = true, disable = { "yaml" } },
+				highlight = { enable = not is_vscode, disable = { "yaml" } },
 				textobjects = {
 					select = {
 						enable = true,
@@ -21,8 +22,10 @@ return {
 							["ic"] = "@class.inner",
 							["al"] = "@loop.outer",
 							["il"] = "@loop.inner",
-							["ia"] = "@parameter.inner", -- a for argument
-							["aa"] = "@parameter.outer",
+							-- ["ia"] = "@parameter.inner", -- a for argument
+							-- ["aa"] = "@parameter.outer",
+							["ia"] = "@arguments.inner", -- a for argument
+							["aa"] = "@arguments.outer",
 							["ii"] = "@conditional.inner",
 							["ai"] = "@conditional.outer",
 						},
@@ -82,9 +85,13 @@ return {
 		end,
 	},
 	"nvim-treesitter/nvim-treesitter-textobjects",
-	"windwp/nvim-ts-autotag",
+	{
+		"windwp/nvim-ts-autotag",
+		cond = not is_vscode,
+	},
 	{
 		"s1n7ax/nvim-comment-frame",
+		cond = not is_vscode,
 		opts = {
 			keymap = "cm",
 			multiline_keymap = "cm",
@@ -92,7 +99,7 @@ return {
 	},
 	{
 		"hiphish/rainbow-delimiters.nvim",
-		-- enabled = false,
+		cond = not is_vscode,
 		config = function()
 			-- local rainbow_delimiters = require("rainbow-delimiters")
 			vim.g.rainbow_delimiters = {

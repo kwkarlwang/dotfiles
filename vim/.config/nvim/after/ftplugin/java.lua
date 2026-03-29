@@ -1,4 +1,7 @@
-local jdtls = require("jdtls")
+local ok, jdtls = pcall(require, "jdtls")
+if not ok then
+	return
+end
 local utils = require("utils")
 -- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 

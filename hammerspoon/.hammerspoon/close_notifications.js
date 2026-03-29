@@ -1,12 +1,13 @@
 function run(input, parameters) {
-  const appName = "";
+  const appNames = [];
+  const skipAppNames = [];
   const verbose = true;
 
-  const scriptName = "close_notifications_applescript";
+  const scriptName = 'close_notifications_applescript';
 
-  const CLEAR_ALL_ACTION = "Clear All";
-  const CLEAR_ALL_ACTION_TOP = "Clear";
-  const CLOSE_ACTION = "Close";
+  const CLEAR_ALL_ACTION = 'Clear All';
+  const CLEAR_ALL_ACTION_TOP = 'Clear';
+  const CLOSE_ACTION = 'Close';
 
   const notNull = (val) => {
     return val !== null && val !== undefined;
@@ -16,14 +17,22 @@ function run(input, parameters) {
     return !notNull(val);
   };
 
+  const notNullOrEmpty = (val) => {
+    return notNull(val) && val.length > 0;
+  };
+
+  const isNullOrEmpty = (val) => {
+    return !notNullOrEmpty(val);
+  };
+
   const isError = (maybeErr) => {
     return notNull(maybeErr) && (maybeErr instanceof Error || maybeErr.message);
   };
 
   const systemVersion = () => {
-    return Application("Finder")
+    return Application('Finder')
       .version()
-      .split(".")
+      .split('.')
       .map((val) => parseInt(val));
   };
 
@@ -35,17 +44,22 @@ function run(input, parameters) {
     return systemVersionGreaterThanOrEqualTo(11);
   };
 
+  const SYS_VERSION = systemVersion();
   const V11_OR_GREATER = isBigSurOrGreater();
-  const APP_NAME_MATCHER_ROLE = V11_OR_GREATER ? "AXStaticText" : "AXImage";
-  const hasAppName = notNull(appName) && appName !== "";
-  const appNameForLog = hasAppName ? ` [${appName}]` : "";
+  const V10_OR_LESS = !V11_OR_GREATER;
+  const V12 = SYS_VERSION[0] === 12;
+  const V15_OR_GREATER = SYS_VERSION[0] >= 15;
+  const V15_2_OR_GREATER = SYS_VERSION[0] >= 15 && SYS_VERSION[1] >= 2;
+  const APP_NAME_MATCHER_ROLE = V11_OR_GREATER ? 'AXStaticText' : 'AXImage';
+  const NOTIFICATION_SUB_ROLES = ['AXNotificationCenterAlert', 'AXNotificationCenterAlertStack'];
+  const hasAppNames = notNullOrEmpty(appNames);
+  const hasSkipAppNames = notNullOrEmpty(skipAppNames);
+  const hasAppNameFilters = hasAppNames || hasSkipAppNames;
+  const appNameForLog = hasAppNames ? ` [${appNames.join(',')}]` : '';
 
   const logs = [];
   const log = (message, ...optionalParams) => {
-    let message_with_prefix = `${new Date()
-      .toISOString()
-      .replace("Z", "")
-      .replace("T", " ")} [${scriptName}]${appNameForLog} ${message}`;
+    let message_with_prefix = `${new Date().toISOString().replace('Z', '').replace('T', ' ')} [${scriptName}]${appNameForLog} ${message}`;
     console.log(message_with_prefix, optionalParams);
     logs.push(message_with_prefix);
   };
@@ -53,7 +67,7 @@ function run(input, parameters) {
   const logError = (message, ...optionalParams) => {
     if (isError(message)) {
       let err = message;
-      message = `${err}${err.stack ? " " + err.stack : ""}`;
+      message = `${err}${err.stack ? ' ' + err.stack : ''}`;
     }
     log(`ERROR ${message}`, optionalParams);
   };
@@ -71,20 +85,20 @@ function run(input, parameters) {
   };
 
   const getLogLines = () => {
-    return logs.join("\n");
+    return logs.join('\n');
   };
 
   const getSystemEvents = () => {
-    let systemEvents = Application("System Events");
+    let systemEvents = Application('System Events');
     systemEvents.includeStandardAdditions = true;
     return systemEvents;
   };
 
   const getNotificationCenter = () => {
     try {
-      return getSystemEvents().processes.byName("NotificationCenter");
+      return getSystemEvents().processes.byName('NotificationCenter');
     } catch (err) {
-      logError("Could not get NotificationCenter");
+      logError('Could not get NotificationCenter');
       throw err;
     }
   };
@@ -95,14 +109,21 @@ function run(input, parameters) {
       if (notificationCenter.windows.length <= 0) {
         return [];
       }
-      if (!V11_OR_GREATER) {
+      if (V10_OR_LESS) {
         return notificationCenter.windows();
       }
-      return notificationCenter.windows[0].uiElements[0].uiElements[0].uiElements();
+      if (V12) {
+        return notificationCenter.windows[0].uiElements[0].uiElements[0].uiElements();
+      }
+      if (V15_2_OR_GREATER) {
+        return findNotificationCenterAlerts([], notificationCenter.windows[0].uiElements[0].uiElements[0].uiElements());
+      }
+      return notificationCenter.windows[0].uiElements[0].uiElements[0].uiElements[0].uiElements();
     } catch (err) {
-      logError("Could not get NotificationCenter groups");
+      logError('Could not get NotificationCenter groups');
       if (retryOnError) {
         logError(err);
+        log('Retrying getNotificationCenterGroups...');
         return getNotificationCenterGroups(false);
       } else {
         throw err;
@@ -110,15 +131,67 @@ function run(input, parameters) {
     }
   };
 
-  const isClearButton = (description, name) => {
-    return description === "button" && name === CLEAR_ALL_ACTION_TOP;
+  const findNotificationCenterAlerts = (alerts, elements) => {
+    for (let elem of elements) {
+      let subrole = elem.subrole();
+      if (NOTIFICATION_SUB_ROLES.indexOf(subrole) > -1) {
+        alerts.push(elem);
+      } else if (elem.uiElements.length > 0) {
+        findNotificationCenterAlerts(alerts, elem.uiElements());
+      }
+    }
+    return alerts;
   };
 
-  const matchesAppName = (role, value) => {
-    return (
-      role === APP_NAME_MATCHER_ROLE &&
-      value.toLowerCase() === appName.toLowerCase()
-    );
+  const isClearButton = (description, name) => {
+    return description === 'button' && name === CLEAR_ALL_ACTION_TOP;
+  };
+
+  const matchesAnyAppNames = (value, checkValues) => {
+    if (isNullOrEmpty(checkValues)) {
+      return false;
+    }
+    let lowerAppName = value.toLowerCase();
+    for (let checkValue of checkValues) {
+      if (lowerAppName === checkValue.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const matchesAppName = (value) => {
+    if (hasAppNames) {
+      return matchesAnyAppNames(value, appNames);
+    }
+    return !matchesAnyAppNames(value, skipAppNames);
+  };
+
+  const getAppName = (group) => {
+    if (V15_OR_GREATER) {
+      for (let action of group.actions()) {
+        if (action.description() === 'Remind Me Tomorrow') {
+          return 'reminders';
+        }
+      }
+      return '';
+    }
+
+    if (V10_OR_LESS) {
+      if (group.role() !== APP_NAME_MATCHER_ROLE) {
+        return '';
+      }
+      return group.description();
+    }
+
+    let checkElem = group.uiElements[0];
+    if (checkElem.value().toLowerCase() === 'time sensitive') {
+      checkElem = group.uiElements[1];
+    }
+    if (checkElem.role() !== APP_NAME_MATCHER_ROLE) {
+      return '';
+    }
+    return checkElem.value();
   };
 
   const notificationGroupMatches = (group) => {
@@ -127,14 +200,19 @@ function run(input, parameters) {
       if (V11_OR_GREATER && isClearButton(description, group.name())) {
         return true;
       }
-      if (V11_OR_GREATER && description !== "group") {
+      if (V15_OR_GREATER) {
+        let subrole = group.subrole();
+        if (NOTIFICATION_SUB_ROLES.indexOf(subrole) === -1) {
+          return false;
+        }
+      } else if (V11_OR_GREATER && description !== 'group') {
         return false;
       }
-      if (!V11_OR_GREATER) {
-        let matchedAppName = !hasAppName;
+      if (V10_OR_LESS) {
+        let matchedAppName = !hasAppNameFilters;
         if (!matchedAppName) {
           for (let elem of group.uiElements()) {
-            if (matchesAppName(elem.role(), elem.description())) {
+            if (matchesAppName(getAppName(elem))) {
               matchedAppName = true;
               break;
             }
@@ -145,15 +223,12 @@ function run(input, parameters) {
         }
         return false;
       }
-      if (!hasAppName) {
+      if (!hasAppNameFilters) {
         return true;
       }
-      let firstElem = group.uiElements[0];
-      return matchesAppName(firstElem.role(), firstElem.value());
+      return matchesAppName(getAppName(group));
     } catch (err) {
-      logErrorVerbose(
-        `Caught error while checking window, window is probably closed: ${err}`
-      );
+      logErrorVerbose(`Caught error while checking window, window is probably closed: ${err}`);
       logErrorVerbose(err);
     }
     return false;
@@ -162,24 +237,22 @@ function run(input, parameters) {
   const findCloseActionV10 = (group, closedCount) => {
     try {
       for (let elem of group.uiElements()) {
-        if (elem.role() === "AXButton" && elem.title() === CLOSE_ACTION) {
-          return elem.actions["AXPress"];
+        if (elem.role() === 'AXButton' && elem.title() === CLOSE_ACTION) {
+          return elem.actions['AXPress'];
         }
       }
     } catch (err) {
-      logErrorVerbose(
-        `(group_${closedCount}) Caught error while searching for close action, window is probably closed: ${err}`
-      );
+      logErrorVerbose(`(group_${closedCount}) Caught error while searching for close action, window is probably closed: ${err}`);
       logErrorVerbose(err);
       return null;
     }
-    log("No close action found for notification");
+    log('No close action found for notification');
     return null;
   };
 
   const findCloseAction = (group, closedCount) => {
     try {
-      if (!V11_OR_GREATER) {
+      if (V10_OR_LESS) {
         return findCloseActionV10(group, closedCount);
       }
       let checkForPress = isClearButton(group.description(), group.name());
@@ -192,7 +265,7 @@ function run(input, parameters) {
           break;
         } else if (description === CLOSE_ACTION) {
           closeAction = action;
-        } else if (checkForPress && description === "press") {
+        } else if (checkForPress && description === 'press') {
           clearAllAction = action;
           break;
         }
@@ -203,13 +276,11 @@ function run(input, parameters) {
         return closeAction;
       }
     } catch (err) {
-      logErrorVerbose(
-        `(group_${closedCount}) Caught error while searching for close action, window is probably closed: ${err}`
-      );
+      logErrorVerbose(`(group_${closedCount}) Caught error while searching for close action, window is probably closed: ${err}`);
       logErrorVerbose(err);
       return null;
     }
-    log("No close action found for notification");
+    log('No close action found for notification');
     return null;
   };
 
@@ -224,9 +295,7 @@ function run(input, parameters) {
               closeAction.perform();
               return [true, 1];
             } catch (err) {
-              logErrorVerbose(
-                `(group_${closedCount}) Caught error while performing close action, window is probably closed: ${err}`
-              );
+              logErrorVerbose(`(group_${closedCount}) Caught error while performing close action, window is probably closed: ${err}`);
               logErrorVerbose(err);
             }
           }
@@ -235,22 +304,16 @@ function run(input, parameters) {
       }
       return false;
     } catch (err) {
-      logError("Could not run closeNextGroup");
+      logError('Could not run closeNextGroup');
       throw err;
     }
   };
 
   try {
-    let groupsCount = getNotificationCenterGroups(true).filter((group) =>
-      notificationGroupMatches(group)
-    ).length;
+    let groupsCount = getNotificationCenterGroups(true).filter((group) => notificationGroupMatches(group)).length;
 
     if (groupsCount > 0) {
-      logVerbose(
-        `Closing ${groupsCount}${appNameForLog} notification group${
-          groupsCount > 1 ? "s" : ""
-        }`
-      );
+      logVerbose(`Closing ${groupsCount}${appNameForLog} notification group${groupsCount > 1 ? 's' : ''}`);
 
       let startTime = new Date().getTime();
       let closedCount = 0;
@@ -259,21 +322,14 @@ function run(input, parameters) {
       let attempts = 1;
       while (maybeMore && new Date().getTime() - startTime <= 1000 * 30) {
         try {
-          let closeResult = closeNextGroup(
-            getNotificationCenterGroups(),
-            closedCount
-          );
+          let closeResult = closeNextGroup(getNotificationCenterGroups(), closedCount);
           maybeMore = closeResult[0];
           if (maybeMore) {
             closedCount = closedCount + closeResult[1];
           }
         } catch (innerErr) {
           if (maybeMore && closedCount === 0 && attempts < maxAttempts) {
-            log(
-              `Caught an error before anything closed, trying ${
-                maxAttempts - attempts
-              } more time(s).`
-            );
+            log(`Caught an error before anything closed, trying ${maxAttempts - attempts} more time(s).`);
             attempts++;
           } else {
             throw innerErr;

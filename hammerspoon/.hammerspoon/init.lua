@@ -24,8 +24,8 @@ hs.alert.show("Config reloaded")
 --                       dismiss notification                       --
 ----------------------------------------------------------------------
 local dismissNotification = function()
-	-- hs.osascript.javascriptFromFile(path .. "close_notifications.js")
-	hs.osascript.applescriptFromFile(path .. "close_notifications.applescript")
+	hs.osascript.javascriptFromFile(path .. "close_notifications.js")
+	-- hs.osascript.applescriptFromFile(path .. "close_notifications.applescript")
 end
 hs.hotkey.bind({ "shift" }, keymap["escape"], dismissNotification)
 

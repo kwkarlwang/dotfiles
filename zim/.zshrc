@@ -274,3 +274,5 @@ export PATH="$HOME/.jbang/bin:$PATH"
 # fi
 # unset __conda_setup
 # <<< conda initialize <<<
+
+export PATH=$PATH:~/bin

@@ -1,7 +1,4 @@
 ---@diagnostic disable: lowercase-global
-if vim.g.vscode then
-	return require("vscode-init")
-end
 fn = vim.fn
 g = vim.g
 map = vim.api.nvim_set_keymap
@@ -14,7 +11,6 @@ NS = { noremap = true, silent = true }
 
 home_dir = os.getenv("HOME") .. "/"
 
-require("settings")
-require("keybindings")
-require("plugin").setup("plugins")
-vim.lsp.set_log_level("error")
+-- require("settings")
+require("vscode-keybindings")
+require("plugin").setup("vscode-plugins")

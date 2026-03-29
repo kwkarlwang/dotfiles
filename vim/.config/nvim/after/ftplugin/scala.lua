@@ -1,4 +1,8 @@
-local metals_config = require("metals").bare_config()
+local ok, metals = pcall(require, "metals")
+if not ok then
+	return
+end
+local metals_config = metals.bare_config()
 
 -- Example of settings
 metals_config.settings = {
