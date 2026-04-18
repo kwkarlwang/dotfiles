@@ -163,6 +163,7 @@ function yy() {
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
     cd -- "$cwd"
+    zoxide add "$cwd"
   fi
   rm -f -- "$tmp"
 }
