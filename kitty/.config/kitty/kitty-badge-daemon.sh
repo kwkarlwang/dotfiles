@@ -1,39 +1,31 @@
 #!/bin/bash
-# Background daemon: polls Kitty terminal windows every 1s.
-# Counts how many windows are showing a Claude permission prompt.
-# Updates the Kitty dock badge accordingly.
+# Background daemon: polls kitty every 1s and counts tabs that have a
+# color override ("needs attention" from Claude Stop/permission or a
+# manual cmd+, mark). Updates the kitty dock badge.
 # Managed by launchd (com.claude.kitty-badge).
+#
+# Since `kitty @ ls` doesn't expose tab color overrides in its JSON,
+# we count via user-vars instead: every painting action also sets a
+# signaling user-var on the window. Two names are used to preserve the
+# focus-based clearing semantics:
+#   - claude_tab_pending=1 : set by hooks; watcher auto-clears if tab
+#                             is focused when the hook fires.
+#   - tab_sticky=1          : set by cmd+,; survives on focused tabs,
+#                             cleared only on focus-change.
+
+source "$(dirname "$0")/_kitty_socket.sh"
 
 while true; do
-  # Auto-discover Kitty's socket (re-discover each loop in case Kitty restarts)
-  sock=$(ls /tmp/kitty-* 2>/dev/null | head -1)
-  if [[ -n "$sock" ]]; then
-    export KITTY_LISTEN_ON="unix:$sock"
-  else
-    unset KITTY_LISTEN_ON
-    sleep 5
-    continue
+  # Re-probe every tick so daemon recovers when kitty is restarted.
+  _kitty_pick_socket || { sleep 1; continue; }
+
+  count=$(kitten @ ls 2>/dev/null \
+    | jq '[.[] | .tabs[] | select(any(.windows[]; .user_vars.claude_tab_pending == "1" or .user_vars.tab_sticky == "1"))] | length' 2>/dev/null)
+
+  if [[ -z "$count" ]]; then
+    count=0
   fi
 
-  # Get IDs of all windows (silently skip if Kitty isn't running)
-  window_ids=$(kitten @ ls 2>/dev/null | jq -r '[.[] | .tabs[] | .windows[] | .id] | .[]' 2>/dev/null)
-
-  if [[ -z "$window_ids" ]]; then
-    kitten @ kitten dock_badge.py 0 2>/dev/null
-    sleep 1
-    continue
-  fi
-
-  # Count windows showing a permission prompt
-  count=0
-  for wid in $window_ids; do
-    text=$(kitten @ get-text --match id:"$wid" 2>/dev/null | tail -20)
-    if echo "$text" | grep -q "Do you want to"; then
-      count=$((count + 1))
-    fi
-  done
-
-  # Always set badge (kitten @ kitten can silently fail)
   kitten @ kitten dock_badge.py "$count" 2>/dev/null
 
   sleep 1
