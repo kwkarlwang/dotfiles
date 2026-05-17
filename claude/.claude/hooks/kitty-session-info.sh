@@ -10,6 +10,10 @@
 #   claude_remote=1            set only when running under arca-et
 set -u
 
+# Reuse _kitty_ctty: hooks run detached from the ctty, so /dev/tty is
+# unavailable — we have to find an ancestor's PTY to write DCS bytes to.
+source "${0%/*}/_kitty_dcs.sh"
+
 # Need a match target. Bail silently if neither is available (not in kitty).
 if [ -n "${KITTY_TAB_MATCHER:-}" ]; then
     match="$KITTY_TAB_MATCHER"
@@ -20,6 +24,8 @@ elif [ -n "${KITTY_WINDOW_ID:-}" ]; then
 else
     exit 0
 fi
+
+ctty=$(_kitty_ctty) || exit 0
 
 input=$(cat)
 session_id=$(printf '%s' "$input" | jq -r '.session_id // empty')
@@ -38,4 +44,4 @@ payload=$(jq -cn --argjson vars "$vars_json" --arg match "$match" '
    payload:{var:$vars, match:$match}}
 ')
 
-printf '\033P@kitty-cmd%s\033\\' "$payload" > /dev/tty 2>/dev/null || true
+printf '\033P@kitty-cmd%s\033\\' "$payload" > "$ctty" 2>/dev/null || true
